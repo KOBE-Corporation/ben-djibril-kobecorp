@@ -9,11 +9,10 @@ import {
 import { Link } from 'react-router-dom'
 import { ArrowRightIcon } from '@heroicons/react/24/solid'
 
+const EASE_IN_OUT = [0.4, 0, 0.2, 1] as const
+
 function ProjectsHero() {
   const { t } = useTranslation()
-
-  // Define easing tuple separately to ensure proper typing
-  const easeInOut = [0.4, 0, 0.2, 1] as const
 
   // Memoize variants to prevent re-creation on each render
   const containerVariants = useMemo(() => ({
@@ -34,10 +33,10 @@ function ProjectsHero() {
       y: 0,
       transition: {
         duration: 0.5,
-        ease: easeInOut,
+        ease: EASE_IN_OUT,
       },
     },
-  }), [easeInOut])
+  }), [])
 
   const iconVariants = useMemo(() => ({
     hidden: { opacity: 0, scale: 0.9, rotate: -180 },
@@ -47,10 +46,10 @@ function ProjectsHero() {
       rotate: 0,
       transition: {
         duration: 0.7,
-        ease: easeInOut,
+        ease: EASE_IN_OUT,
       },
     },
-  }), [easeInOut])
+  }), [])
 
   // Memoize stats to prevent re-creation
   const stats = useMemo(() => [
