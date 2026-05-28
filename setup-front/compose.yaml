@@ -1,17 +1,6 @@
 services:
   server:
-    build:
-      context: ..
-      dockerfile: setup-front/Dockerfile
-      args:
-        # Variables d'environnement pour le build (Vite les nécessite au moment du build)
-        VITE_EMAILJS_PUBLIC_KEY: ${VITE_EMAILJS_PUBLIC_KEY}
-        VITE_EMAILJS_SERVICE_ID: ${VITE_EMAILJS_SERVICE_ID}
-        VITE_EMAILJS_CONTACT_TEMPLATE_ID: ${VITE_EMAILJS_CONTACT_TEMPLATE_ID}
-        VITE_EMAILJS_NEWSLETTER_TEMPLATE_ID: ${VITE_EMAILJS_NEWSLETTER_TEMPLATE_ID}
-    image: ben-djibril-site:latest
-    env_file:
-      - .env
+    image: azerty78/ben-djibril-site:latest
     environment:
       NODE_ENV: production
     # Port interne uniquement - blogpress-nginx fera le reverse proxy

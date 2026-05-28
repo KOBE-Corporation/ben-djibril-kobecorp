@@ -1,5 +1,3 @@
-# syntax=docker/dockerfile:1
-
 ARG NODE_VERSION=22.13.1
 
 # Stage 1: Build
@@ -11,8 +9,7 @@ WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 
 # Install all dependencies (including devDependencies for build)
-RUN --mount=type=cache,target=/root/.npm \
-    npm ci
+RUN npm ci --legacy-peer-deps --no-audit
 
 # Copy source files
 COPY . .
@@ -39,13 +36,13 @@ FROM nginx:alpine AS production
 COPY --from=builder /usr/src/app/dist /usr/share/nginx/html
 
 # Copier la configuration Nginx
-COPY setup-front/nginx.conf /etc/nginx/nginx.conf
+COPY setup-front/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Créer les répertoires pour les logs
 RUN mkdir -p /var/log/nginx && \
     chown -R nginx:nginx /var/log/nginx && \
     chown -R nginx:nginx /usr/share/nginx/html && \
-    chown -R nginx:nginx /etc/nginx/nginx.conf
+    chown -R nginx:nginx /etc/nginx/conf.d/default.conf
 
 # Exposer le port 80
 EXPOSE 80

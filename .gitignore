@@ -11,6 +11,10 @@ node_modules
 dist
 dist-ssr
 *.local
+setup-front/.env
+.env
+.env.*
+!.env.example
 
 # Ngrok
 ngrok.log
