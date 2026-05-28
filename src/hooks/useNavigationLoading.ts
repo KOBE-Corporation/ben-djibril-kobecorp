@@ -60,7 +60,7 @@ export function useNavigationLoading() {
                 return true
               }
             }
-          } catch (e) {
+          } catch {
             continue
           }
         }

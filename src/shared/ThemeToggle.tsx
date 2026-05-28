@@ -1,4 +1,4 @@
-import { useTheme } from '../theme/ThemeProvider'
+import { useTheme } from '../theme/useTheme'
 import { SunIcon, MoonIcon } from '@heroicons/react/24/solid'
 
 function ThemeToggle() {

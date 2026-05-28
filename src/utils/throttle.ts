@@ -2,14 +2,14 @@
  * Utilitaire throttle pour optimiser les événements fréquents (scroll, resize, etc.)
  * Limite l'exécution d'une fonction à une fois toutes les X millisecondes
  */
-export function throttle<T extends (...args: any[]) => void>(
+export function throttle<T extends (...args: unknown[]) => void>(
   func: T,
   wait: number
 ): (...args: Parameters<T>) => void {
   let timeout: ReturnType<typeof setTimeout> | null = null
   let previous = 0
 
-  return function (this: any, ...args: Parameters<T>) {
+  return function (this: unknown, ...args: Parameters<T>) {
     const now = Date.now()
     const remaining = wait - (now - previous)
 
@@ -34,13 +34,13 @@ export function throttle<T extends (...args: any[]) => void>(
  * Utilitaire debounce pour retarder l'exécution d'une fonction
  * Attends que l'utilisateur ait fini de faire l'action avant d'exécuter
  */
-export function debounce<T extends (...args: any[]) => void>(
+export function debounce<T extends (...args: unknown[]) => void>(
   func: T,
   wait: number
 ): (...args: Parameters<T>) => void {
   let timeout: ReturnType<typeof setTimeout> | null = null
 
-  return function (this: any, ...args: Parameters<T>) {
+  return function (this: unknown, ...args: Parameters<T>) {
     if (timeout) {
       clearTimeout(timeout)
     }

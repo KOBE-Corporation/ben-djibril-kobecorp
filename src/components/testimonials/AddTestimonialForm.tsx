@@ -108,7 +108,7 @@ function AddTestimonialForm({ onClose, onSuccess }: AddTestimonialFormProps) {
         const base64 = await imageToBase64(file)
         setFormData({ ...formData, image: base64 })
         setErrors({ ...errors, image: '' })
-      } catch (error) {
+      } catch {
         setErrors({ ...errors, image: getTranslation('testimonials.form.errors.imageError', 'Erreur lors du chargement de l\'image') })
       }
     }

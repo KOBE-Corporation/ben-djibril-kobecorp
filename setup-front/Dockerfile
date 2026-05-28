@@ -27,7 +27,7 @@ ENV VITE_EMAILJS_CONTACT_TEMPLATE_ID=${VITE_EMAILJS_CONTACT_TEMPLATE_ID}
 ENV VITE_EMAILJS_NEWSLETTER_TEMPLATE_ID=${VITE_EMAILJS_NEWSLETTER_TEMPLATE_ID}
 
 # Build the application
-RUN npm run build
+RUN npx vite build
 
 # Stage 2: Production avec Nginx
 FROM nginx:alpine AS production

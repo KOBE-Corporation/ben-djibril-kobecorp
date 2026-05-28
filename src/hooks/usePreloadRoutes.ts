@@ -9,8 +9,9 @@ export function usePreloadRoutes() {
   const location = useLocation()
 
   useEffect(() => {
+    type RouteImport = () => Promise<unknown>
     // Routes à précharger avec leurs imports correspondants
-    const routesToPreload: Record<string, () => Promise<any>> = {
+    const routesToPreload: Record<string, RouteImport> = {
       '/': () => import('../pages/Home'),
       '/services': () => import('../pages/Services'),
       '/projects': () => import('../pages/Projects'),

@@ -84,7 +84,7 @@ export function useProgressiveLoading() {
                 return true
               }
             }
-          } catch (e) {
+          } catch {
             continue
           }
         }

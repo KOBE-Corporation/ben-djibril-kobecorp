@@ -804,7 +804,7 @@ function ServicesList() {
       <Suspense fallback={null}>
         <ServiceInfoDialog
           open={selectedServiceId !== null}
-          serviceId={selectedServiceId as any}
+          serviceId={selectedServiceId}
           onClose={() => setSelectedServiceId(null)}
         />
       </Suspense>
