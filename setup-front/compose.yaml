@@ -3,15 +3,7 @@ services:
     image: azerty78/ben-djibril-site:latest
     environment:
       NODE_ENV: production
-    # Port interne uniquement - blogpress-nginx fera le reverse proxy
-    expose:
-      - "80"
+    ports:
+      - "127.0.0.1:4001:80"
     restart: unless-stopped
     container_name: ben-djibril-site
-    networks:
-      - kobecorp-network
-
-networks:
-  kobecorp-network:
-    name: kobecorp-network
-    external: true
