@@ -176,13 +176,13 @@ function ContactForm() {
           setStatus('idle')
         }, 10000)
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('EmailJS error:', error)
       setStatus('error')
       
       // Gestion d'erreurs spécifiques
-      if (error?.text) {
-        setErrorMessage(error.text)
+      if (typeof error === 'object' && error !== null && 'text' in error) {
+        setErrorMessage(String((error as { text?: unknown }).text ?? ''))
       } else if (navigator.onLine === false) {
         setErrorMessage(t('contact.form.errors.networkOffline') as string)
       } else {

@@ -11,19 +11,13 @@ import {
 } from '@heroicons/react/24/outline'
 import { FaWhatsapp } from 'react-icons/fa6'
 
-type ServiceId = 
-  | 'web-dev' | 'showcase' | 'portfolio' | 'ecommerce' | 'web-app' | 'mobile' | 'desktop' | 'api' | 'devops' | 'consulting'
-  | 'inventory' | 'restaurant' | 'billing' | 'orders' | 'pos' | 'crm' | 'delivery' | 'booking'
-  | 'pharmacy' | 'gym' | 'salon' | 'transport' | 'rental' | 'accounting' | 'payroll' | 'mobile-money'
-  | 'market' | 'parking' | 'school' | 'hospital'
-
 type PlanType = 'saas' | 'fullControl'
 type SaaSPlan = 'goodDeal' | 'pro' | 'ultra'
 type FullControlPlan = 'normal' | 'speed' | 'ultraSpeed'
 
 type ServiceInfoDialogProps = {
   open: boolean
-  serviceId: ServiceId | null
+  serviceId: string | null
   onClose: () => void
 }
 

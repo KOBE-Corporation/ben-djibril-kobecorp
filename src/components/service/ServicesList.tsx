@@ -61,7 +61,7 @@ function ServicesList() {
   const [selectedCategory, setSelectedCategory] = useState<'all' | ServiceCategory>('all')
   const [selectedServiceId, setSelectedServiceId] = useState<string | null>(null)
 
-  const allServices: Service[] = [
+  const allServices: Service[] = useMemo(() => [
     {
       id: 'web-dev',
       icon: GlobeAltIcon,
@@ -572,7 +572,7 @@ function ServicesList() {
       category: 'vertical',
       sector: t('services.sectors.health'),
     },
-  ]
+  ], [t])
 
   // Liste des IDs de services valides pour la vérification
   const validServiceIds = useMemo(() => 
@@ -804,7 +804,7 @@ function ServicesList() {
       <Suspense fallback={null}>
         <ServiceInfoDialog
           open={selectedServiceId !== null}
-          serviceId={selectedServiceId as any}
+          serviceId={selectedServiceId}
           onClose={() => setSelectedServiceId(null)}
         />
       </Suspense>

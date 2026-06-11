@@ -1,10 +1,6 @@
 import { motion } from 'framer-motion'
-import { useTranslation } from 'react-i18next'
 
 function FooterBottom() {
-  const { t } = useTranslation()
-  const currentYear = new Date().getFullYear()
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

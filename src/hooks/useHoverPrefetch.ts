@@ -7,6 +7,7 @@ import { useEffect, useRef } from 'react'
 export function useHoverPrefetch() {
   const prefetchedOnHover = useRef(new Set<string>())
   const linkTimeoutsRef = useRef(new Map<Element, ReturnType<typeof setTimeout>>())
+  type PrefetchAnchor = HTMLAnchorElement & { __prefetchListenerAdded?: boolean }
 
   useEffect(() => {
     const linkTimeouts = linkTimeoutsRef.current
@@ -35,7 +36,7 @@ export function useHoverPrefetch() {
         if (!document.querySelector(`link[href="${path}"]`)) {
           document.head.appendChild(prefetchLink)
         }
-      } catch (error) {
+      } catch {
         // Ignorer les erreurs silencieusement
         console.debug('Hover prefetch failed:', path)
       }
@@ -48,7 +49,7 @@ export function useHoverPrefetch() {
       
       if (href && href.startsWith('/') && !href.includes('#')) {
         // Annuler tout timeout précédent pour ce lien
-        const existingTimeout = linkTimeoutsRef.current.get(target)
+        const existingTimeout = linkTimeouts.get(target)
         if (existingTimeout) {
           clearTimeout(existingTimeout)
         }
@@ -56,20 +57,20 @@ export function useHoverPrefetch() {
         // Précharger après un court délai (100ms) pour éviter les préchargements inutiles
         const timeoutId = setTimeout(() => {
           prefetchRoute(href)
-          linkTimeoutsRef.current.delete(target)
+          linkTimeouts.delete(target)
         }, 100)
 
-        linkTimeoutsRef.current.set(target, timeoutId)
+        linkTimeouts.set(target, timeoutId)
       }
     }
 
     // Fonction pour gérer le mouseleave
     const handleLinkLeave = (e: Event) => {
       const target = e.currentTarget as Element
-      const timeoutId = linkTimeoutsRef.current.get(target)
+      const timeoutId = linkTimeouts.get(target)
       if (timeoutId) {
         clearTimeout(timeoutId)
-        linkTimeoutsRef.current.delete(target)
+        linkTimeouts.delete(target)
       }
     }
 
@@ -78,11 +79,12 @@ export function useHoverPrefetch() {
       const navLinks = document.querySelectorAll('a[href^="/"]')
       
       navLinks.forEach((link) => {
+        const anchor = link as PrefetchAnchor
         // Ne pas ajouter de listener si déjà présent
-        if (!(link as any).__prefetchListenerAdded) {
-          link.addEventListener('mouseenter', handleLinkHover)
-          link.addEventListener('mouseleave', handleLinkLeave)
-          ;(link as any).__prefetchListenerAdded = true
+        if (!anchor.__prefetchListenerAdded) {
+          anchor.addEventListener('mouseenter', handleLinkHover)
+          anchor.addEventListener('mouseleave', handleLinkLeave)
+          anchor.__prefetchListenerAdded = true
         }
       })
     }
@@ -105,13 +107,14 @@ export function useHoverPrefetch() {
       observer.disconnect()
       const navLinks = document.querySelectorAll('a[href^="/"]')
       navLinks.forEach((link) => {
-        link.removeEventListener('mouseenter', handleLinkHover)
-        link.removeEventListener('mouseleave', handleLinkLeave)
-        ;(link as any).__prefetchListenerAdded = false
+        const anchor = link as PrefetchAnchor
+        anchor.removeEventListener('mouseenter', handleLinkHover)
+        anchor.removeEventListener('mouseleave', handleLinkLeave)
+        anchor.__prefetchListenerAdded = false
       })
       // Nettoyer tous les timeouts
-      linkTimeoutsRef.current.forEach((timeout) => clearTimeout(timeout))
-      linkTimeoutsRef.current.clear()
+      linkTimeouts.forEach((timeout) => clearTimeout(timeout))
+      linkTimeouts.clear()
     }
   }, [])
 }
