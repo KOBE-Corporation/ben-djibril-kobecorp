@@ -114,6 +114,7 @@ function ProjectCard({
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
   const hasImages = images && images.length > 0
+  const isLogoImage = Boolean(hasImages && /logo/i.test(images[0]))
 
   const handleImageClick = useCallback((index: number) => {
     setLightboxIndex(index)
@@ -136,7 +137,11 @@ function ProjectCard({
       >
         {/* Image/Header Section */}
         <div 
-          className={`relative h-56 sm:h-64 bg-gradient-to-br ${typeColor.gradient} overflow-hidden ${hasImages ? 'cursor-pointer' : 'cursor-default'}`} 
+          className={`relative h-56 sm:h-64 overflow-hidden ${hasImages ? 'cursor-pointer' : 'cursor-default'} ${
+            isLogoImage
+              ? 'bg-white dark:bg-secondary-800'
+              : `bg-gradient-to-br ${typeColor.gradient}`
+          }`} 
           onClick={hasImages ? () => handleImageClick(0) : undefined}
           role={hasImages ? 'button' : undefined}
           tabIndex={hasImages ? 0 : undefined}
@@ -156,7 +161,11 @@ function ProjectCard({
                 alt={name}
                 loading="lazy"
                 decoding="async"
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 will-change-transform"
+                className={`w-full h-full transition-transform duration-500 will-change-transform ${
+                  isLogoImage
+                    ? 'object-contain p-4 sm:p-6 group-hover:scale-105'
+                    : 'object-cover group-hover:scale-110'
+                }`}
               />
               {/* Image Count Badge */}
               {images.length > 1 && (
@@ -192,8 +201,10 @@ function ProjectCard({
             </>
           )}
           
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-20" />
+          {/* Gradient Overlay — skipped for logos so branding stays readable */}
+          {!isLogoImage && (
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-20" />
+          )}
           
           {/* Type Badge */}
           <motion.div
