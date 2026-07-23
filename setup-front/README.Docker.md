@@ -140,7 +140,7 @@ docker compose up -d --build
 Pour tester uniquement la configuration Nginx :
 
 ```bash
-docker run --rm -v "$(pwd)/nginx.conf:/etc/nginx/nginx.conf:ro" nginx:alpine nginx -t
+docker run --rm -v "$(pwd)/nginx.conf:/etc/nginx/conf.d/default.conf:ro" nginx:alpine nginx -t
 ```
 
 ## Configuration Reverse Proxy (blogpress-nginx)

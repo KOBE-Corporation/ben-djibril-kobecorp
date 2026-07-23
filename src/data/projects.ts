@@ -196,7 +196,7 @@ export const projects: Project[] = [
     id: '2',
     type: 'consulting',
     visibility: 'public',
-    stack: ['React', 'Spring Boot', 'Kotlin', 'Docker', 'PostgreSQL', 'Strapi'],
+    stack: ['React', 'Spring Boot', 'Kotlin', 'Docker', 'MongoDB', 'Strapi'],
     client: {
       name: 'KOBE Corporation',
       type: 'company',
