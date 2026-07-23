@@ -98,7 +98,7 @@ export const projects: Project[] = [
     links: {
       official: 'https://tridom.org'
     },
-    images: ['/projects/tridom-logo.jpeg'],
+    images: ['/project-assets/tridom-logo.jpeg'],
     translations: {
       en: {
         name: 'TRIDOM Multisite Portal (Technical Offer in Progress, Mar - Aug 2026)',
@@ -136,7 +136,7 @@ export const projects: Project[] = [
     links: {
       official: 'https://id-foot.kobecorporation.com'
     },
-    images: ['/projects/id-foot-logo.png'],
+    images: ['/project-assets/id-foot-logo.png'],
     translations: {
       en: {
         name: 'ID Foot (Jun 2026 - Jul 2027)',
@@ -212,7 +212,7 @@ export const projects: Project[] = [
     links: {
       official: 'https://kobecorporation.com'
     },
-    images: ['/projects/kobe-corporation-logo.jpeg'],
+    images: ['/project-assets/kobe-corporation-logo.jpeg'],
     translations: {
       en: {
         name: 'KOBE Corporation - Full-Stack Client Projects (Dec 2025 - Present)',

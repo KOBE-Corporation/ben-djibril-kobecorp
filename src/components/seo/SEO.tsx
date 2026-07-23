@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
+import { localizePath, stripLocaleFromPath } from '../../i18n/routing'
 
 type SEOProps = {
   title?: string
@@ -29,8 +30,9 @@ function SEO({
   useEffect(() => {
     const lang = i18n.language
     const baseUrl = window.location.origin
-    // URL canonique sans paramètres de requête pour éviter les pages en double
+    // URL canonique localisée (sans query) pour éviter les pages en double
     const canonicalUrl = `${baseUrl}${location.pathname}`
+    const barePath = stripLocaleFromPath(location.pathname)
     
     // Update document title avec variations du nom
     if (title) {
@@ -44,7 +46,7 @@ function SEO({
         '/about': t('seo.about.title') as string,
         '/contact': t('seo.contact.title') as string,
       }
-      const baseTitle = routeTitles[location.pathname] || 'Ben Djibril - Portfolio Professionnel'
+      const baseTitle = routeTitles[barePath] || 'Ben Djibril - Portfolio Professionnel'
       // S'assurer que les deux noms sont présents dans le titre
       if (!baseTitle.includes('Kone Djibril Benjamin') && !baseTitle.includes('Kone')) {
         document.title = `${baseTitle} | Kone Djibril Benjamin`
@@ -73,7 +75,7 @@ function SEO({
         '/about': t('seo.about.description') as string,
         '/contact': t('seo.contact.description') as string,
       }
-      return routeDescriptions[location.pathname] || t('seo.default.description') as string
+      return routeDescriptions[barePath] || t('seo.default.description') as string
     })()
     // Enrichir la description avec les deux noms si pas déjà présents
     let metaDescription = baseDescription
@@ -93,7 +95,7 @@ function SEO({
         '/about': t('seo.about.keywords') as string,
         '/contact': t('seo.contact.keywords') as string,
       }
-      return routeKeywords[location.pathname] || t('seo.default.keywords') as string
+      return routeKeywords[barePath] || t('seo.default.keywords') as string
     })()
     // Ajouter les variations du nom pour améliorer le référencement
     const enhancedKeywords = `${baseKeywords}, Ben Djibril, Kone Djibril Benjamin, Benjamin Kone Djibril, Djibril Benjamin, Ben Djibril Portfolio, Kone Djibril Benjamin Portfolio, Ben Djibril Developer, Kone Djibril Benjamin Developer`
@@ -200,23 +202,28 @@ function SEO({
     // Alternate languages - Important pour éviter les pages en double
     const alternateLinks = document.querySelectorAll('link[rel="alternate"][hreflang]')
     alternateLinks.forEach(link => link.remove())
+
+    const enUrl = `${baseUrl}${localizePath(barePath, 'en')}`
+    const frUrl = `${baseUrl}${localizePath(barePath, 'fr')}`
     
-    // Ajouter x-default pour indiquer la version par défaut (canonique)
+    // x-default → version anglaise
     const defaultLink = document.createElement('link')
     defaultLink.setAttribute('rel', 'alternate')
     defaultLink.setAttribute('hreflang', 'x-default')
-    defaultLink.setAttribute('href', canonicalUrl)
+    defaultLink.setAttribute('href', enUrl)
     document.head.appendChild(defaultLink)
-    
-    // Ajouter les versions linguistiques
-    const languages = ['fr', 'en']
-    languages.forEach(langCode => {
-      const alternateLink = document.createElement('link')
-      alternateLink.setAttribute('rel', 'alternate')
-      alternateLink.setAttribute('hreflang', langCode)
-      alternateLink.setAttribute('href', `${baseUrl}${location.pathname}?lang=${langCode}`)
-      document.head.appendChild(alternateLink)
-    })
+
+    const enLink = document.createElement('link')
+    enLink.setAttribute('rel', 'alternate')
+    enLink.setAttribute('hreflang', 'en')
+    enLink.setAttribute('href', enUrl)
+    document.head.appendChild(enLink)
+
+    const frLink = document.createElement('link')
+    frLink.setAttribute('rel', 'alternate')
+    frLink.setAttribute('hreflang', 'fr')
+    frLink.setAttribute('href', frUrl)
+    document.head.appendChild(frLink)
 
     // Structured Data (JSON-LD) pour améliorer le référencement
     // Supprimer tous les scripts JSON-LD existants
@@ -344,7 +351,7 @@ function SEO({
           name: 'Accueil',
           item: baseUrl
         },
-        ...(location.pathname !== '/' ? [{
+        ...(barePath !== '/' ? [{
           '@type': 'ListItem',
           position: 2,
           name: document.title.split(' - ')[0] || document.title,
@@ -354,7 +361,7 @@ function SEO({
     }
     
     // ProfessionalService Schema - Pour les services
-    const professionalServiceSchema = location.pathname === '/services' ? {
+    const professionalServiceSchema = barePath === '/services' ? {
       '@context': 'https://schema.org',
       '@type': 'ProfessionalService',
       name: 'Ben Djibril - Services de Développement',

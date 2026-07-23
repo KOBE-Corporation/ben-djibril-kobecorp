@@ -4,8 +4,7 @@ import { fullControlTranslations } from './fullControl'
 import { servicesTranslations } from './services'
 
 const savedLang = localStorage.getItem('lang')
-const browserLang = navigator.language?.toLowerCase() || 'fr'
-const initialLang = savedLang || (browserLang.startsWith('fr') ? 'fr' : 'en')
+const initialLang = savedLang || 'en'
 
 export const resources = {
   en: {
@@ -1478,7 +1477,7 @@ i18n
   .init({
     resources,
     lng: initialLang,
-    fallbackLng: 'fr',
+    fallbackLng: 'en',
     interpolation: { escapeValue: false },
   })
 

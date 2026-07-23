@@ -3,9 +3,11 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { CodeBracketIcon, RocketLaunchIcon, AcademicCapIcon, ArrowDownTrayIcon, ArrowRightIcon, GlobeAltIcon } from '@heroicons/react/24/solid'
 import profileImage from '../../assets/ben-djibirl/ben-djibril-official-no-glass-nbg.png'
+import { getCvDownload } from '../../utils/cv'
 
 function AboutSection() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const cv = getCvDownload(i18n.language)
 
   return (
     <section id="about" data-section="about" className="py-16 md:py-20 bg-gradient-to-br from-white via-primary-50/30 to-accent-50/20 dark:from-secondary-900 dark:via-secondary-900 dark:to-secondary-800 relative overflow-hidden">
@@ -160,13 +162,14 @@ function AboutSection() {
                 transition={{ duration: 0.5, delay: 0.3 }}
                 className="mt-6 flex flex-col sm:flex-row gap-3"
               >
-                <Link
-                  to="/about"
+                <a
+                  href={cv.href}
+                  download={cv.filename}
                   className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-primary-600 hover:bg-primary-500 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group"
                 >
                   <ArrowDownTrayIcon className="w-5 h-5 group-hover:translate-y-0.5 transition-transform" />
                   <span>{t('home.about.downloadCV') || 'Télécharger mon CV'}</span>
-                </Link>
+                </a>
                 <Link
                   to="/about"
                   className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl border-2 border-primary-600 dark:border-primary-500 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 font-semibold transition-all duration-300"

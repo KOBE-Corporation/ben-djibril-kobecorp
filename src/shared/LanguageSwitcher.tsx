@@ -1,18 +1,24 @@
 import i18n from '../i18n'
 import { useTranslation } from 'react-i18next'
+import { useNavigate, useLocation } from 'react-router-dom'
+import { localizePath, stripLocaleFromPath, type Locale } from '../i18n/routing'
 
 function LanguageSwitcher() {
   const { i18n: i18nInstance } = useTranslation()
+  const navigate = useNavigate()
+  const location = useLocation()
   const current = i18n.language || i18nInstance.language
 
-  const setLang = (lng: 'fr' | 'en') => {
+  const setLang = (lng: Locale) => {
     i18n.changeLanguage(lng)
     localStorage.setItem('lang', lng)
     document.documentElement.lang = lng
+    const bare = stripLocaleFromPath(location.pathname)
+    navigate(localizePath(`${bare}${location.search}${location.hash}`, lng))
   }
 
   const toggleLanguage = () => {
-    const newLang = current.startsWith('fr') ? 'en' : 'fr'
+    const newLang: Locale = current.startsWith('fr') ? 'en' : 'fr'
     setLang(newLang)
   }
 

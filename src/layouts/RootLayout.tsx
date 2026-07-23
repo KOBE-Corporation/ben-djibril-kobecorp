@@ -1,7 +1,8 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet, Navigate, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { XMarkIcon } from '@heroicons/react/24/solid'
+import { useTranslation } from 'react-i18next'
 import Navbar from '../shared/Navbar'
 import Footer from '../shared/Footer'
 import Loading from '../components/ui/Loading'
@@ -10,17 +11,30 @@ import { useHoverPrefetch } from '../hooks/useHoverPrefetch'
 import { usePreloadRoutes } from '../hooks/usePreloadRoutes'
 import { useScrollToTop } from '../hooks/useScrollToTop'
 import { useProgressiveLoading } from '../hooks/useProgressiveLoading'
+import { DEFAULT_LOCALE, isLocale, type Locale } from '../i18n/routing'
 import profileImage from '../assets/bendjibril.jpg'
 
 function RootLayout() {
+  const { lang } = useParams()
+  const { i18n } = useTranslation()
+
   usePrefetch()
-  useHoverPrefetch() // Préchargement au survol des liens
-  usePreloadRoutes() // Préchargement agressif des chunks JS
+  useHoverPrefetch()
+  usePreloadRoutes()
   useScrollToTop()
   const { isLoading, progress, loadingStage } = useProgressiveLoading()
   const [isProfileImageOpen, setIsProfileImageOpen] = useState(false)
 
-  // Bloquer le scroll du body quand la lightbox est ouverte
+  useEffect(() => {
+    if (!isLocale(lang)) return
+    const locale = lang as Locale
+    if (i18n.language !== locale && !i18n.language.startsWith(locale)) {
+      void i18n.changeLanguage(locale)
+    }
+    localStorage.setItem('lang', locale)
+    document.documentElement.lang = locale
+  }, [lang, i18n])
+
   useEffect(() => {
     if (isProfileImageOpen) {
       document.body.style.overflow = 'hidden'
@@ -32,7 +46,6 @@ function RootLayout() {
     }
   }, [isProfileImageOpen])
 
-  // Fermer la lightbox avec la touche Escape
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isProfileImageOpen) {
@@ -46,62 +59,60 @@ function RootLayout() {
       window.removeEventListener('keydown', handleEscape)
     }
   }, [isProfileImageOpen])
-  
-  // Bloquer le scroll pendant le chargement pour éviter l'effet désagréable
+
   useEffect(() => {
     if (isLoading) {
-      // Bloquer le scroll pendant le chargement
       document.body.style.overflow = 'hidden'
-      // Forcer le scroll vers le haut immédiatement
       document.documentElement.scrollTop = 0
       document.body.scrollTop = 0
       window.scrollTo(0, 0)
-      
-      // Forcer plusieurs fois pour garantir
+
       requestAnimationFrame(() => {
         document.documentElement.scrollTop = 0
         document.body.scrollTop = 0
         window.scrollTo(0, 0)
       })
     } else {
-      // Réactiver le scroll une fois le chargement terminé
-      // Petit délai pour s'assurer que le rendu est complet
       requestAnimationFrame(() => {
         document.body.style.overflow = ''
       })
     }
-    
+
     return () => {
       document.body.style.overflow = ''
     }
   }, [isLoading])
 
+  if (!isLocale(lang)) {
+    return <Navigate to={`/${DEFAULT_LOCALE}`} replace />
+  }
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-primary-50 to-secondary-100 dark:from-secondary-900 dark:to-secondary-800">
-      <Loading 
-        isLoading={isLoading} 
-        progress={progress} 
-        stage={loadingStage === 'idle' ? 'loading' : loadingStage} 
+      <Loading
+        isLoading={isLoading}
+        progress={progress}
+        stage={loadingStage === 'idle' ? 'loading' : loadingStage}
       />
-      {/* Navbar et Footer mémorisés - ne se rechargent pas lors de la navigation */}
       <Navbar onProfileImageClick={() => setIsProfileImageOpen(true)} />
-      <main className="flex-1" style={{ 
-        // Afficher le contenu dès l'étape 'rendering' pour une transition fluide
-        opacity: isLoading && loadingStage !== 'rendering' && loadingStage !== 'complete' ? 0 : 1,
-        pointerEvents: isLoading && loadingStage !== 'rendering' && loadingStage !== 'complete' ? 'none' : 'auto',
-        transition: 'opacity 0.3s ease-in-out'
-      }}>
+      <main
+        className="flex-1"
+        style={{
+          opacity: isLoading && loadingStage !== 'rendering' && loadingStage !== 'complete' ? 0 : 1,
+          pointerEvents:
+            isLoading && loadingStage !== 'rendering' && loadingStage !== 'complete' ? 'none' : 'auto',
+          transition: 'opacity 0.3s ease-in-out',
+        }}
+      >
         <div className="w-full">
           <Outlet />
         </div>
       </main>
       <Footer />
 
-      {/* Profile Image Lightbox - Rendu au niveau du layout */}
       <AnimatePresence>
         {isProfileImageOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -110,18 +121,16 @@ function RootLayout() {
               className="fixed inset-0 z-[100] bg-black/80 dark:bg-black/90 backdrop-blur-sm"
               onClick={() => setIsProfileImageOpen(false)}
             />
-            
-            {/* Lightbox Content */}
+
             <div className="fixed inset-0 z-[101] flex items-center justify-center p-4 pointer-events-none">
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.8, opacity: 0 }}
-                transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 30 }}
+                transition={{ duration: 0.3, type: 'spring', stiffness: 300, damping: 30 }}
                 className="relative w-full h-full max-w-4xl max-h-[90vh] flex items-center justify-center pointer-events-auto"
                 onClick={(e) => e.stopPropagation()}
               >
-                {/* Close Button */}
                 <button
                   onClick={() => setIsProfileImageOpen(false)}
                   className="absolute -top-12 right-0 w-10 h-10 rounded-full bg-white/10 dark:bg-white/20 hover:bg-white/20 dark:hover:bg-white/30 backdrop-blur-sm flex items-center justify-center text-white transition-all duration-200 hover:scale-110 z-10 shadow-lg"
@@ -130,7 +139,6 @@ function RootLayout() {
                   <XMarkIcon className="w-6 h-6" />
                 </button>
 
-                {/* Image Container */}
                 <div className="relative w-full h-full max-w-3xl max-h-[85vh] flex items-center justify-center rounded-2xl overflow-hidden shadow-2xl bg-white dark:bg-secondary-800 p-2">
                   <img
                     src={profileImage}
@@ -144,7 +152,6 @@ function RootLayout() {
                   />
                 </div>
 
-                {/* Close hint */}
                 <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -163,5 +170,3 @@ function RootLayout() {
 }
 
 export default RootLayout
-
-

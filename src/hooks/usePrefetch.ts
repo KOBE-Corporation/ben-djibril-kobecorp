@@ -1,8 +1,8 @@
 import { useEffect, useCallback } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocale } from './useLocale'
 
-// Définir les routes disponibles pour le préchargement
-const ROUTES = ['/', '/services', '/projects', '/about', '/contact']
+// Définir les routes disponibles pour le préchargement (chemins nus)
+const BARE_ROUTES = ['/', '/services', '/projects', '/about', '/contact']
 
 // Set pour éviter les doublons de prefetch
 const prefetchedRoutes = new Set<string>()
@@ -12,12 +12,13 @@ const prefetchedRoutes = new Set<string>()
  * Précharge les pages les plus visitées et évite les doublons
  */
 export function usePrefetch() {
-  const location = useLocation()
+  const { lp, barePath } = useLocale()
 
-  // Fonction pour précharger une route spécifique
+  // Fonction pour précharger une route spécifique (chemin déjà localisé)
   const prefetchRoute = useCallback((path: string) => {
+    const currentLocalized = lp(barePath)
     // Ne pas précharger la route actuelle ou si déjà préchargée
-    if (path === location.pathname || prefetchedRoutes.has(path)) {
+    if (path === currentLocalized || prefetchedRoutes.has(path)) {
       return
     }
 
@@ -40,7 +41,7 @@ export function usePrefetch() {
       // Ignorer les erreurs silencieusement
       console.debug('Prefetch failed for:', path, error)
     }
-  }, [location.pathname])
+  }, [lp, barePath])
 
   useEffect(() => {
     // Précharger les liens HTML présents sur la page
@@ -48,7 +49,7 @@ export function usePrefetch() {
     
     links.forEach((link) => {
       const href = link.getAttribute('href')
-      if (!href || href === location.pathname) return
+      if (!href || href === lp(barePath)) return
 
       // Utiliser la fonction de préchargement optimisée
       prefetchRoute(href)
@@ -56,37 +57,40 @@ export function usePrefetch() {
 
     // Précharger intelligemment les routes adjacentes (routes les plus probables)
     // Basé sur la route actuelle, précharger les routes liées
-    const currentRouteIndex = ROUTES.indexOf(location.pathname)
+    const currentRouteIndex = BARE_ROUTES.indexOf(barePath)
     if (currentRouteIndex !== -1) {
       // Précharger la route suivante et précédente
       const adjacentRoutes = [
-        ROUTES[currentRouteIndex + 1],
-        ROUTES[currentRouteIndex - 1],
+        BARE_ROUTES[currentRouteIndex + 1],
+        BARE_ROUTES[currentRouteIndex - 1],
       ].filter(Boolean) as string[]
 
       // Précharger immédiatement les routes adjacentes (plus agressif)
       requestAnimationFrame(() => {
-        adjacentRoutes.forEach(route => prefetchRoute(route))
+        adjacentRoutes.forEach(route => prefetchRoute(lp(route)))
       })
     }
 
     // Précharger les routes les plus visitées en arrière-plan (plus rapide)
     // (Home, Services, Contact sont les plus courantes)
-    if (!prefetchedRoutes.has('/') && location.pathname !== '/') {
-      requestAnimationFrame(() => {
-        setTimeout(() => prefetchRoute('/'), 500)
-      })
-    }
-    if (!prefetchedRoutes.has('/services') && location.pathname !== '/services') {
-      requestAnimationFrame(() => {
-        setTimeout(() => prefetchRoute('/services'), 700)
-      })
-    }
-    if (!prefetchedRoutes.has('/contact') && location.pathname !== '/contact') {
-      requestAnimationFrame(() => {
-        setTimeout(() => prefetchRoute('/contact'), 900)
-      })
-    }
-  }, [location.pathname, prefetchRoute])
-}
+    const homePath = lp('/')
+    const servicesPath = lp('/services')
+    const contactPath = lp('/contact')
 
+    if (!prefetchedRoutes.has(homePath) && barePath !== '/') {
+      requestAnimationFrame(() => {
+        setTimeout(() => prefetchRoute(homePath), 500)
+      })
+    }
+    if (!prefetchedRoutes.has(servicesPath) && barePath !== '/services') {
+      requestAnimationFrame(() => {
+        setTimeout(() => prefetchRoute(servicesPath), 700)
+      })
+    }
+    if (!prefetchedRoutes.has(contactPath) && barePath !== '/contact') {
+      requestAnimationFrame(() => {
+        setTimeout(() => prefetchRoute(contactPath), 900)
+      })
+    }
+  }, [barePath, lp, prefetchRoute])
+}

@@ -7,40 +7,39 @@ import {
   FolderIcon,
   ChatBubbleLeftRightIcon
 } from '@heroicons/react/24/solid'
+import { getCvDownload } from '../../utils/cv'
 
 function AboutCTAs() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const cv = getCvDownload(i18n.language)
 
   const ctas = [
     {
       key: 'downloadCV',
       icon: ArrowDownTrayIcon,
       color: 'primary',
-      link: '#', // TODO: Ajouter le lien vers le CV
-      external: false
+      link: cv.href,
+      download: cv.filename,
     },
     {
       key: 'bookCall',
       icon: PhoneIcon,
       color: 'accent',
       link: '/contact?subject=appel',
-      external: false
     },
     {
       key: 'viewProjects',
       icon: FolderIcon,
       color: 'success',
       link: '/projects',
-      external: false
     },
     {
       key: 'contact',
       icon: ChatBubbleLeftRightIcon,
       color: 'warning',
       link: '/contact',
-      external: false
     }
-  ]
+  ] as const
 
   const colorClasses = {
     primary: 'bg-primary-600 hover:bg-primary-500 text-white border-primary-600',
@@ -71,7 +70,7 @@ function AboutCTAs() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
             {ctas.map((cta, index) => {
               const Icon = cta.icon
-              const colorClass = colorClasses[cta.color as keyof typeof colorClasses]
+              const colorClass = colorClasses[cta.color]
 
               const buttonContent = (
                 <motion.div
@@ -103,13 +102,8 @@ function AboutCTAs() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                 >
-                  {cta.external ? (
-                    <a
-                      href={cta.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block"
-                    >
+                  {cta.key === 'downloadCV' ? (
+                    <a href={cta.link} download={cta.download} className="block">
                       {buttonContent}
                     </a>
                   ) : (

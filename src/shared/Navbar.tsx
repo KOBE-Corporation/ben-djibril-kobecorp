@@ -9,6 +9,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'
 import { motion, AnimatePresence } from 'framer-motion'
 import MobileMenu from '../components/ui/MobileMenu'
 import profileImage from '../assets/bendjibril.jpg'
+import { useLocale } from '../hooks/useLocale'
 
 type NavbarProps = {
   onProfileImageClick?: () => void
@@ -17,6 +18,7 @@ type NavbarProps = {
 const Navbar = memo(function Navbar({ onProfileImageClick }: NavbarProps) {
   const { t } = useTranslation()
   const location = useLocation()
+  const { lp } = useLocale()
   const [scrolled, setScrolled] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -67,7 +69,7 @@ const Navbar = memo(function Navbar({ onProfileImageClick }: NavbarProps) {
         <div className="flex items-center justify-between py-3 sm:py-3.5 lg:py-4">
           <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-shrink">
             <NavLink 
-              to="/" 
+              to={lp('/')} 
               className="flex items-center gap-2 sm:gap-2.5 hover:scale-105 transition-transform duration-200"
               onClick={() => setIsMenuOpen(false)}
             >
@@ -95,7 +97,7 @@ const Navbar = memo(function Navbar({ onProfileImageClick }: NavbarProps) {
           </div>
 
           <div className="hidden lg:flex items-center gap-1 xl:gap-2 text-sm">
-            <NavLink to="/" className={({ isActive }) => linkClass(isActive)}>
+            <NavLink to={lp('/')} end className={({ isActive }) => linkClass(isActive)}>
               {({ isActive }) => (
                 <>
                   {t('nav.home')}
@@ -109,7 +111,7 @@ const Navbar = memo(function Navbar({ onProfileImageClick }: NavbarProps) {
                 </>
               )}
             </NavLink>
-            <NavLink to="/services" className={({ isActive }) => linkClass(isActive)}>
+            <NavLink to={lp('/services')} className={({ isActive }) => linkClass(isActive)}>
               {({ isActive }) => (
                 <>
                   {t('nav.services')}
@@ -123,7 +125,7 @@ const Navbar = memo(function Navbar({ onProfileImageClick }: NavbarProps) {
                 </>
               )}
             </NavLink>
-            <NavLink to="/projects" className={({ isActive }) => linkClass(isActive)}>
+            <NavLink to={lp('/projects')} className={({ isActive }) => linkClass(isActive)}>
               {({ isActive }) => (
                 <>
                   {t('nav.projects')}
@@ -137,7 +139,7 @@ const Navbar = memo(function Navbar({ onProfileImageClick }: NavbarProps) {
                 </>
               )}
             </NavLink>
-            <NavLink to="/about" className={({ isActive }) => linkClass(isActive)}>
+            <NavLink to={lp('/about')} className={({ isActive }) => linkClass(isActive)}>
               {({ isActive }) => (
                 <>
                   {t('nav.about')}
@@ -151,7 +153,7 @@ const Navbar = memo(function Navbar({ onProfileImageClick }: NavbarProps) {
                 </>
               )}
             </NavLink>
-            <NavLink to="/contact" className={({ isActive }) => linkClass(isActive)}>
+            <NavLink to={lp('/contact')} className={({ isActive }) => linkClass(isActive)}>
               {({ isActive }) => (
                 <>
                   {t('nav.contact')}
@@ -171,7 +173,7 @@ const Navbar = memo(function Navbar({ onProfileImageClick }: NavbarProps) {
             <LanguageSwitcher />
             <ThemeToggle />
             <NavLink 
-              to="/contact" 
+              to={lp('/contact')} 
               className="btn-primary text-sm px-5 py-2.5 whitespace-nowrap shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105"
             >
               {t('nav.contact')}

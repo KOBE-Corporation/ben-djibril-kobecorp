@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { useLocale } from '../../hooks/useLocale'
 
 const pages = [
   { name: 'Accueil', path: '/' },
@@ -10,11 +11,11 @@ const pages = [
 ]
 
 function FooterPages() {
-  const navigate = useNavigate()
+  const { lp, navigateLocalized } = useLocale()
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
     e.preventDefault()
-    navigate(path)
+    navigateLocalized(path)
     // Scroll instantané vers le haut (pas de transition)
     window.scrollTo(0, 0)
   }
@@ -45,7 +46,7 @@ function FooterPages() {
             transition={{ duration: 0.3, delay: index * 0.05 }}
           >
             <Link 
-              to={page.path} 
+              to={lp(page.path)} 
               onClick={(e) => handleLinkClick(e, page.path)}
               className="text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 text-sm transition-colors inline-flex items-center gap-2 group"
             >
@@ -60,4 +61,3 @@ function FooterPages() {
 }
 
 export default FooterPages
-

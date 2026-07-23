@@ -1,8 +1,9 @@
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { ChevronDownIcon } from '@heroicons/react/24/solid'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { useState } from 'react'
+import { useLocale } from '../../hooks/useLocale'
 
 type MobileMenuProps = {
   onNavigate?: () => void
@@ -10,7 +11,7 @@ type MobileMenuProps = {
 
 function MobileMenu({ onNavigate }: MobileMenuProps) {
   const { t } = useTranslation()
-  const navigate = useNavigate()
+  const { lp, navigateLocalized } = useLocale()
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false)
   
   const linkBase = 'px-3 py-2.5 rounded-lg font-medium transition-colors'
@@ -25,7 +26,7 @@ function MobileMenu({ onNavigate }: MobileMenuProps) {
 
   const scrollToSection = (sectionId: string, path: string = '/services') => {
     handleNavigation(() => {
-      navigate(path)
+      navigateLocalized(path)
       // Utiliser requestAnimationFrame pour une meilleure synchronisation avec le rendu React
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
@@ -46,7 +47,7 @@ function MobileMenu({ onNavigate }: MobileMenuProps) {
 
   const scrollToSubSection = (sectionId: string, path: string = '/services') => {
     handleNavigation(() => {
-      navigate(path)
+      navigateLocalized(path)
       // Utiliser requestAnimationFrame pour une meilleure synchronisation
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
@@ -88,7 +89,8 @@ function MobileMenu({ onNavigate }: MobileMenuProps) {
   return (
     <nav className="grid gap-2 text-sm">
       <NavLink 
-        to="/" 
+        to={lp('/')} 
+        end
         className={({ isActive }) => linkClass(isActive)}
         onClick={handleNavLinkClick}
       >
@@ -129,28 +131,28 @@ function MobileMenu({ onNavigate }: MobileMenuProps) {
       </div>
 
       <NavLink 
-        to="/projects" 
+        to={lp('/projects')} 
         className={({ isActive }) => linkClass(isActive)}
         onClick={handleNavLinkClick}
       >
         {t('nav.projects')}
       </NavLink>
       <NavLink 
-        to="/about" 
+        to={lp('/about')} 
         className={({ isActive }) => linkClass(isActive)}
         onClick={handleNavLinkClick}
       >
         {t('nav.about')}
       </NavLink>
       <NavLink 
-        to="/contact" 
+        to={lp('/contact')} 
         className={({ isActive }) => linkClass(isActive)}
         onClick={handleNavLinkClick}
       >
         {t('nav.contact')}
       </NavLink>
       <NavLink 
-        to="/contact" 
+        to={lp('/contact')} 
         className="btn-primary w-full text-center mt-3 py-2.5"
         onClick={handleNavLinkClick}
       >
@@ -161,4 +163,3 @@ function MobileMenu({ onNavigate }: MobileMenuProps) {
 }
 
 export default MobileMenu
-

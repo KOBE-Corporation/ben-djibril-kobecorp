@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { useLocale } from '../../hooks/useLocale'
 
 const popularServices = [
   { name: 'E-commerce', link: '/services?type=ecommerce' },
@@ -13,18 +14,18 @@ const popularServices = [
 ]
 
 function FooterServices() {
-  const navigate = useNavigate()
+  const { lp, navigateLocalized } = useLocale()
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
     e.preventDefault()
-    navigate(path)
+    navigateLocalized(path)
     // Scroll instantané vers le haut (pas de transition)
     window.scrollTo(0, 0)
   }
 
   const handleViewAllServices = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
-    navigate('/services')
+    navigateLocalized('/services')
     // Scroll instantané vers le haut (la section services sera visible en haut de page)
     window.scrollTo(0, 0)
   }
@@ -55,7 +56,7 @@ function FooterServices() {
             transition={{ duration: 0.3, delay: index * 0.05 }}
           >
             <Link 
-              to={service.link}
+              to={lp(service.link)}
               onClick={(e) => handleLinkClick(e, service.link)}
               className="text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 text-sm transition-colors inline-flex items-center gap-2 group"
             >
@@ -72,7 +73,7 @@ function FooterServices() {
           className="pt-2"
         >
           <Link 
-            to="/services"
+            to={lp('/services')}
             onClick={handleViewAllServices}
             className="text-primary-600 dark:text-primary-400 hover:underline text-sm font-medium inline-flex items-center gap-1 group"
           >
@@ -86,4 +87,3 @@ function FooterServices() {
 }
 
 export default FooterServices
-
