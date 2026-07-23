@@ -384,8 +384,8 @@ jobs:
           username: ${{ secrets.VPS_USERNAME }}
           key: ${{ secrets.VPS_SSH_KEY }}
           source: "setup-front/compose.yaml"
-          # Chemin relatif au $HOME distant (éviter "~/" : non expansé → /home/user/~/...)
-          target: "${{ secrets.VPS_DEPLOY_DIR || 'kobe-corporation/ben-djibril/setup-front' }}/"
+          # Chemin FIXE distinct du site principal — ne pas partager VPS_DEPLOY_DIR entre repos
+          target: "kobe-corporation/ben-djibril/setup-front/"
           strip_components: 1
           overwrite: true
 
@@ -395,17 +395,18 @@ jobs:
           FRONT_IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
-          DEPLOY_DIR: ${{ secrets.VPS_DEPLOY_DIR || 'kobe-corporation/ben-djibril/setup-front' }}
+          DEPLOY_DIR: kobe-corporation/ben-djibril/setup-front
+          COMPOSE_PROJECT_NAME: ben-djibril
         with:
           host: ${{ secrets.VPS_HOST }}
           port: ${{ secrets.VPS_PORT || 22 }}
           username: ${{ secrets.VPS_USERNAME }}
           key: ${{ secrets.VPS_SSH_KEY }}
-          envs: FRONT_IMAGE,DOCKERHUB_USERNAME,DOCKERHUB_PASSWORD,DEPLOY_DIR
+          envs: FRONT_IMAGE,DOCKERHUB_USERNAME,DOCKERHUB_PASSWORD,DEPLOY_DIR,COMPOSE_PROJECT_NAME
           script: |
             set -eu
 
-            raw_dir="${DEPLOY_DIR:-$HOME/kobe-corporation/ben-djibril/setup-front}"
+            raw_dir="${DEPLOY_DIR:-kobe-corporation/ben-djibril/setup-front}"
             case "$raw_dir" in
               "~/"*) DEPLOY_DIR="$HOME/${raw_dir#~/}" ;;
               "~")   DEPLOY_DIR="$HOME" ;;
@@ -413,7 +414,7 @@ jobs:
               *)     DEPLOY_DIR="$HOME/$raw_dir" ;;
             esac
 
-            echo "==> Deploy dir: $DEPLOY_DIR"
+            echo "==> Deploy dir: $DEPLOY_DIR (project=${COMPOSE_PROJECT_NAME:-ben-djibril})"
             mkdir -p "$DEPLOY_DIR"
             cd "$DEPLOY_DIR"
 
@@ -440,12 +441,18 @@ jobs:
             docker pull "$FRONT_IMAGE"
 
             echo "==> Docker Compose pull/up"
-            docker compose -f compose.yaml pull
-            docker compose -f compose.yaml up -d --force-recreate --remove-orphans
-            docker compose -f compose.yaml ps
+            docker compose -p "${COMPOSE_PROJECT_NAME:-ben-djibril}" -f compose.yaml pull
+            docker compose -p "${COMPOSE_PROJECT_NAME:-ben-djibril}" -f compose.yaml up -d --force-recreate
+            docker compose -p "${COMPOSE_PROJECT_NAME:-ben-djibril}" -f compose.yaml ps
+
+            # Remettre l'autre site sur le réseau s'il tourne (évite 502 croisés)
+            if docker ps --format '{{.Names}}' | grep -qx 'kobecorporation-web'; then
+              docker network connect kobecorp-network kobecorporation-web 2>/dev/null || true
+            fi
 
             echo "==> Verify proxy can resolve container"
             if docker ps --format '{{.Names}}' | grep -qx 'blogpress-nginx'; then
+              docker network connect kobecorp-network blogpress-nginx 2>/dev/null || true
               docker exec blogpress-nginx wget -q --spider http://ben-djibril-site:80/ \
                 || echo "::warning::blogpress-nginx ne joint pas encore ben-djibril-site"
             fi

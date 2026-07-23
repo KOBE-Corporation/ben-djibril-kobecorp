@@ -1,3 +1,7 @@
+# Projet Compose unique — évite le conflit avec kobecorp-web
+# (les deux dossiers s'appellent setup-front → même nom de projet par défaut)
+name: ben-djibril
+
 services:
   server:
     image: azerty78/ben-djibril-site:latest
@@ -8,7 +12,6 @@ services:
     # blogpress-nginx proxifie vers ben-djibril-site:80 sur kobecorp-network
     expose:
       - "80"
-    # Bind local optionnel (debug) — le trafic public passe par le reverse proxy
     ports:
       - "127.0.0.1:4001:80"
     networks:
