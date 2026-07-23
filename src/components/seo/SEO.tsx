@@ -19,9 +19,9 @@ function SEO({
   keywords,
   ogTitle,
   ogDescription,
-  ogImage = '/favicon.png',
+  ogImage = '/og-image.jpg',
   ogUrl,
-  twitterCard = 'summary',
+  twitterCard = 'summary_large_image',
 }: SEOProps) {
   const { t, i18n } = useTranslation()
   const location = useLocation()
@@ -31,8 +31,6 @@ function SEO({
     const baseUrl = window.location.origin
     // URL canonique sans paramètres de requête pour éviter les pages en double
     const canonicalUrl = `${baseUrl}${location.pathname}`
-    // URL complète avec paramètres pour Open Graph et autres
-    const currentUrl = `${baseUrl}${location.pathname}${location.search}`
     
     // Update document title avec variations du nom
     if (title) {
@@ -130,16 +128,20 @@ function SEO({
     updateMetaTag('distribution', 'global')
     updateMetaTag('rating', 'general')
 
-    // Open Graph - Enrichi
+    // Open Graph - Enrichi (image absolue pour réseaux sociaux)
+    const absoluteOgImage = ogImage.startsWith('http') ? ogImage : `${baseUrl}${ogImage}`
     updateMetaTag('og:title', ogTitle || document.title, 'property')
     updateMetaTag('og:description', ogDescription || metaDescription, 'property')
-    updateMetaTag('og:image', `${baseUrl}${ogImage}`, 'property')
+    updateMetaTag('og:image', absoluteOgImage, 'property')
+    updateMetaTag('og:image:secure_url', absoluteOgImage, 'property')
+    updateMetaTag('og:image:type', absoluteOgImage.endsWith('.png') ? 'image/png' : 'image/jpeg', 'property')
     updateMetaTag('og:image:width', '1200', 'property')
     updateMetaTag('og:image:height', '630', 'property')
-    updateMetaTag('og:image:alt', 'Ben Djibril (Kone Djibril Benjamin) - DevOps Engineer Portfolio', 'property')
-    updateMetaTag('og:url', ogUrl || currentUrl, 'property')
+    updateMetaTag('og:image:alt', 'Ben Djibril (Kone Djibril Benjamin) - Ingénieur DevOps, Backend et Mobile', 'property')
+    updateMetaTag('og:url', ogUrl || canonicalUrl, 'property')
     updateMetaTag('og:type', 'website', 'property')
     updateMetaTag('og:locale', lang === 'fr' ? 'fr_FR' : 'en_US', 'property')
+    updateMetaTag('og:locale:alternate', lang === 'fr' ? 'en_US' : 'fr_FR', 'property')
     updateMetaTag('og:site_name', 'Ben Djibril Portfolio', 'property')
     updateMetaTag('og:updated_time', new Date().toISOString(), 'property')
 
@@ -149,7 +151,8 @@ function SEO({
     updateMetaTag('twitter:creator', '@le_bendji')
     updateMetaTag('twitter:title', ogTitle || document.title)
     updateMetaTag('twitter:description', ogDescription || metaDescription)
-    updateMetaTag('twitter:image', `${baseUrl}${ogImage}`)
+    updateMetaTag('twitter:image', absoluteOgImage)
+    updateMetaTag('twitter:image:alt', 'Ben Djibril (Kone Djibril Benjamin) - Ingénieur DevOps, Backend et Mobile')
 
     // Language
     const htmlLang = document.documentElement.getAttribute('lang')
@@ -229,7 +232,9 @@ function SEO({
       jobTitle: 'DevOps Engineer',
       description: metaDescription,
       url: canonicalUrl,
-      image: `${baseUrl}${ogImage}`,
+      image: absoluteOgImage.endsWith('og-image.jpg')
+        ? `${baseUrl}/bendjibril.jpg`
+        : absoluteOgImage,
       sameAs: [
         'https://www.facebook.com/share/1apyznqNgf/',
         'https://www.instagram.com/le_bendji',

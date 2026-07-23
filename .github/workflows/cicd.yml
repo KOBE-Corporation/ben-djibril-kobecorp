@@ -384,8 +384,9 @@ jobs:
           username: ${{ secrets.VPS_USERNAME }}
           key: ${{ secrets.VPS_SSH_KEY }}
           source: "setup-front/compose.yaml"
-          target: "${{ secrets.VPS_DEPLOY_DIR || '~/kobe-corporation/ben-djibril/setup-front' }}/"
-          strip_components: 2
+          # Chemin relatif au $HOME distant (éviter "~/" : non expansé → /home/user/~/...)
+          target: "${{ secrets.VPS_DEPLOY_DIR || 'kobe-corporation/ben-djibril/setup-front' }}/"
+          strip_components: 1
           overwrite: true
 
       - name: Deploy via SSH (pull & restart)
@@ -394,7 +395,7 @@ jobs:
           FRONT_IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
-          DEPLOY_DIR: ${{ secrets.VPS_DEPLOY_DIR || '~/kobe-corporation/ben-djibril/setup-front' }}
+          DEPLOY_DIR: ${{ secrets.VPS_DEPLOY_DIR || 'kobe-corporation/ben-djibril/setup-front' }}
         with:
           host: ${{ secrets.VPS_HOST }}
           port: ${{ secrets.VPS_PORT || 22 }}
@@ -404,9 +405,23 @@ jobs:
           script: |
             set -eu
 
-            DEPLOY_DIR="${DEPLOY_DIR:-$HOME/kobe-corporation/ben-djibril/setup-front}"
+            raw_dir="${DEPLOY_DIR:-$HOME/kobe-corporation/ben-djibril/setup-front}"
+            case "$raw_dir" in
+              "~/"*) DEPLOY_DIR="$HOME/${raw_dir#~/}" ;;
+              "~")   DEPLOY_DIR="$HOME" ;;
+              /*)    DEPLOY_DIR="$raw_dir" ;;
+              *)     DEPLOY_DIR="$HOME/$raw_dir" ;;
+            esac
+
+            echo "==> Deploy dir: $DEPLOY_DIR"
             mkdir -p "$DEPLOY_DIR"
             cd "$DEPLOY_DIR"
+
+            if [ ! -f compose.yaml ]; then
+              echo "compose.yaml introuvable dans $DEPLOY_DIR"
+              ls -la
+              exit 1
+            fi
 
             if ! command -v docker >/dev/null 2>&1; then
               echo "Docker absent sur le VPS"

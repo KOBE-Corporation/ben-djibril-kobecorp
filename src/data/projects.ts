@@ -139,14 +139,14 @@ export const projects: Project[] = [
     images: ['/projects/id-foot-logo.png'],
     translations: {
       en: {
-        name: 'ID Foot (01/06/2026 - 01/07/2027)',
+        name: 'ID Foot (Jun 2026 - Jul 2027)',
         description: 'Web platform for digital player identification, licence cards and QR access control in football competitions.',
         problem: 'Football competitions needed a digital way to manage and identify players reliably before and during matches.',
         solution: 'Designed and built a web application to register clubs and players, generate licence cards with unique QR codes, and control pitch access by scanning.',
         impact: 'Centralizes competition administration, speeds up entry checks on the field, and provides traceable licences for clubs and organizers — already used for events such as the Inter-Village Mafa Championship in Douala.'
       },
       fr: {
-        name: 'ID Foot (01/06/2026 - 01/07/2027)',
+        name: 'ID Foot (Juin 2026 - Juillet 2027)',
         description: 'Application web d\'identification des joueurs, de cartes licence et de contrôle d\'accès QR en compétition de football.',
         problem: 'Besoin d\'une gestion numérique et d\'une identification fiable des joueurs pour une compétition de football.',
         solution: 'Conception et réalisation d\'une application web de gestion de l\'identification des joueurs d\'une compétition de football.',
@@ -177,14 +177,14 @@ export const projects: Project[] = [
     images: [],
     translations: {
       en: {
-        name: 'Revlut (01/06/2026 - 01/07/2027)',
+        name: 'Revlut (Jun 2026 - Jul 2027)',
         description: 'AI agent console that turns ideas into LinkedIn posts ready to generate, review, schedule and publish from the browser.',
         problem: 'Content teams needed a single place to generate LinkedIn tips with AI, keep human review, and publish or schedule to personal profiles without juggling multiple tools.',
         solution: 'Built Revlut Agent Console with multi-provider AI generation (Gemini, OpenAI, Anthropic), LinkedIn OAuth (apps and accounts), editable review workflow, auto-scheduling, and publication history in one iOS-like ops console.',
         impact: 'Speeds up the path from draft to LinkedIn profile: one-click AI tips, controlled review, and scheduled publishing — so content teams ship more consistently with less friction.'
       },
       fr: {
-        name: 'Revlut (01/06/2026 - 01/07/2027)',
+        name: 'Revlut (Juin 2026 - Juillet 2027)',
         description: 'Console agent IA qui transforme des idées en posts LinkedIn prêts à générer, relire, planifier et publier depuis le navigateur.',
         problem: 'Les équipes contenu avaient besoin d\'un outil unique pour générer des tips LinkedIn avec l\'IA, conserver une relecture humaine, puis publier ou planifier sur le profil — sans multiplier les outils.',
         solution: 'Conception et réalisation de Revlut Agent Console : génération multi-providers (Gemini, OpenAI, Anthropic), OAuth LinkedIn (apps et comptes), workflow de relecture éditable, planification automatique et historique des publications dans une console unifiée.',
