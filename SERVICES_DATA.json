@@ -43,7 +43,6 @@
         }
       },
       "eligiblePlans": {
-        "saas": ["goodDeal", "pro", "ultra"],
         "fullControl": ["normal", "speed", "ultraSpeed"]
       }
     },
@@ -83,7 +82,6 @@
         }
       },
       "eligiblePlans": {
-        "saas": ["goodDeal", "pro", "ultra"],
         "fullControl": ["normal", "speed", "ultraSpeed"]
       }
     },
@@ -123,7 +121,6 @@
         }
       },
       "eligiblePlans": {
-        "saas": ["goodDeal", "pro", "ultra"],
         "fullControl": ["normal", "speed", "ultraSpeed"]
       }
     },
@@ -191,7 +188,6 @@
         }
       },
       "eligiblePlans": {
-        "saas": ["goodDeal", "pro", "ultra"],
         "fullControl": ["normal", "speed", "ultraSpeed"]
       }
     },
@@ -231,7 +227,6 @@
         }
       },
       "eligiblePlans": {
-        "saas": ["goodDeal", "pro", "ultra"],
         "fullControl": ["normal", "speed", "ultraSpeed"]
       }
     },
@@ -271,7 +266,6 @@
         }
       },
       "eligiblePlans": {
-        "saas": ["goodDeal", "pro", "ultra"],
         "fullControl": ["normal", "speed", "ultraSpeed"]
       }
     },
@@ -311,7 +305,6 @@
         }
       },
       "eligiblePlans": {
-        "saas": ["goodDeal", "pro", "ultra"],
         "fullControl": ["normal", "speed", "ultraSpeed"]
       }
     },
@@ -351,7 +344,6 @@
         }
       },
       "eligiblePlans": {
-        "saas": ["goodDeal", "pro", "ultra"],
         "fullControl": ["normal", "speed", "ultraSpeed"]
       }
     },
@@ -391,7 +383,6 @@
         }
       },
       "eligiblePlans": {
-        "saas": ["goodDeal", "pro", "ultra"],
         "fullControl": ["normal", "speed", "ultraSpeed"]
       }
     },
@@ -431,7 +422,6 @@
         }
       },
       "eligiblePlans": {
-        "saas": ["goodDeal", "pro", "ultra"],
         "fullControl": ["normal", "speed", "ultraSpeed"]
       }
     },
@@ -499,7 +489,6 @@
         }
       },
       "eligiblePlans": {
-        "saas": ["goodDeal", "pro", "ultra"],
         "fullControl": ["normal", "speed", "ultraSpeed"]
       }
     },
@@ -567,7 +556,6 @@
         }
       },
       "eligiblePlans": {
-        "saas": ["pro", "ultra"],
         "fullControl": ["speed", "ultraSpeed"]
       }
     },
@@ -635,7 +623,6 @@
         }
       },
       "eligiblePlans": {
-        "saas": ["goodDeal", "pro", "ultra"],
         "fullControl": ["normal", "speed", "ultraSpeed"]
       }
     },
@@ -675,7 +662,6 @@
         }
       },
       "eligiblePlans": {
-        "saas": ["goodDeal", "pro", "ultra"],
         "fullControl": ["normal", "speed", "ultraSpeed"]
       }
     },
@@ -715,7 +701,6 @@
         }
       },
       "eligiblePlans": {
-        "saas": ["goodDeal", "pro", "ultra"],
         "fullControl": ["normal", "speed", "ultraSpeed"]
       }
     },
@@ -755,7 +740,6 @@
         }
       },
       "eligiblePlans": {
-        "saas": ["goodDeal", "pro", "ultra"],
         "fullControl": ["normal", "speed", "ultraSpeed"]
       }
     },
@@ -795,7 +779,6 @@
         }
       },
       "eligiblePlans": {
-        "saas": ["goodDeal", "pro", "ultra"],
         "fullControl": ["normal", "speed", "ultraSpeed"]
       }
     },
@@ -835,7 +818,6 @@
         }
       },
       "eligiblePlans": {
-        "saas": ["goodDeal", "pro", "ultra"],
         "fullControl": ["normal", "speed", "ultraSpeed"]
       }
     },
@@ -875,7 +857,6 @@
         }
       },
       "eligiblePlans": {
-        "saas": ["goodDeal", "pro", "ultra"],
         "fullControl": ["normal", "speed", "ultraSpeed"]
       }
     },
@@ -915,7 +896,6 @@
         }
       },
       "eligiblePlans": {
-        "saas": ["goodDeal", "pro", "ultra"],
         "fullControl": ["normal", "speed", "ultraSpeed"]
       }
     },
@@ -983,7 +963,6 @@
         }
       },
       "eligiblePlans": {
-        "saas": ["goodDeal", "pro", "ultra"],
         "fullControl": ["normal", "speed", "ultraSpeed"]
       }
     },
@@ -1023,7 +1002,6 @@
         }
       },
       "eligiblePlans": {
-        "saas": ["goodDeal", "pro", "ultra"],
         "fullControl": ["normal", "speed", "ultraSpeed"]
       }
     },
@@ -1063,7 +1041,6 @@
         }
       },
       "eligiblePlans": {
-        "saas": ["goodDeal", "pro", "ultra"],
         "fullControl": ["normal", "speed", "ultraSpeed"]
       }
     },
@@ -1103,7 +1080,6 @@
         }
       },
       "eligiblePlans": {
-        "saas": ["goodDeal", "pro", "ultra"],
         "fullControl": ["normal", "speed", "ultraSpeed"]
       }
     },
@@ -1143,7 +1119,6 @@
         }
       },
       "eligiblePlans": {
-        "saas": ["goodDeal", "pro", "ultra"],
         "fullControl": ["normal", "speed", "ultraSpeed"]
       }
     },
@@ -1183,7 +1158,6 @@
         }
       },
       "eligiblePlans": {
-        "saas": ["goodDeal", "pro", "ultra"],
         "fullControl": ["normal", "speed", "ultraSpeed"]
       }
     },
@@ -1223,7 +1197,6 @@
         }
       },
       "eligiblePlans": {
-        "saas": ["goodDeal", "pro", "ultra"],
         "fullControl": ["normal", "speed", "ultraSpeed"]
       }
     },
@@ -1263,7 +1236,6 @@
         }
       },
       "eligiblePlans": {
-        "saas": ["goodDeal", "pro", "ultra"],
         "fullControl": ["normal", "speed", "ultraSpeed"]
       }
     },
@@ -1303,7 +1275,6 @@
         }
       },
       "eligiblePlans": {
-        "saas": ["goodDeal", "pro", "ultra"],
         "fullControl": ["normal", "speed", "ultraSpeed"]
       }
     },
@@ -1343,7 +1314,6 @@
         }
       },
       "eligiblePlans": {
-        "saas": ["goodDeal", "pro", "ultra"],
         "fullControl": ["normal", "speed", "ultraSpeed"]
       }
     }

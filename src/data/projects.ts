@@ -240,10 +240,10 @@ export const projects: Project[] = [
       type: 'startup',
       translations: {
         en: {
-          description: 'Internal SaaS product focused on long-form publishing, community engagement, subscriptions and secure creator onboarding.'
+          description: 'Internal platform focused on long-form publishing, community engagement, subscriptions and secure creator onboarding.'
         },
         fr: {
-          description: 'Produit SaaS interne orienté publication longue, engagement communautaire, abonnements et onboarding sécurisé des créateurs.'
+          description: 'Produit plateforme interne orienté publication longue, engagement communautaire, abonnements et onboarding sécurisé des créateurs.'
         }
       }
     },
@@ -254,14 +254,14 @@ export const projects: Project[] = [
     translations: {
       en: {
         name: 'BlogPress - Blogging & Social Platform (Sep-Dec 2025)',
-        description: 'SaaS platform for long-form content with community features, subscriptions and social sharing for creators and audiences.',
+        description: 'Platform for long-form content with community features, subscriptions and social sharing for creators and audiences.',
         problem: 'Creators and communities needed one place to publish rich long-form posts, embed media, manage audience subscriptions and onboard users securely — without juggling disconnected tools.',
         solution: 'Delivered BlogPress with a rich writing experience (editor and Markdown), media embeds, subscriptions and sharing flows, plus secure sign-in via email/social providers so creators can publish and grow an audience in one product.',
         impact: 'From September to December 2025, shipped an integrated publishing and social experience that reduces tool fragmentation for creators and lays a scalable base for community growth.'
       },
       fr: {
         name: 'BlogPress - Plateforme de Blogging & Réseau Social (Sept-Dec 2025)',
-        description: 'Plateforme SaaS de contenus longs avec fonctionnalités communautaires, abonnements et partage social pour créateurs et audiences.',
+        description: 'Plateforme de contenus longs avec fonctionnalités communautaires, abonnements et partage social pour créateurs et audiences.',
         problem: 'Les créateurs et communautés avaient besoin d\'un seul endroit pour publier du contenu long riche, embarquer des médias, gérer les abonnements et onboarder les utilisateurs en sécurité — sans multiplier les outils.',
         solution: 'Livraison de BlogPress avec une expérience d\'écriture riche (éditeur et Markdown), médias embarqués, abonnements et partage, ainsi qu\'une connexion sécurisée (email / réseaux) pour publier et faire grandir une audience dans un seul produit.',
         impact: 'De septembre à décembre 2025, expérience unifiée de publication et de réseau social, moins de fragmentation d\'outils côté créateurs et base scalable pour la croissance de la communauté.'

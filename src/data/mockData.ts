@@ -56,8 +56,8 @@ export const mockProjects = [
     codeUrl: '#',
   },
   {
-    title: 'SaaS Dashboard',
-    description: 'Analytics dashboard for a B2B SaaS company',
+    title: 'Analytics Dashboard',
+    description: 'Analytics dashboard for a B2B platform company',
     problem: 'Users needed better insights into their data',
     solution: 'Created an interactive dashboard with real-time updates',
     impact: '40% increase in user engagement',

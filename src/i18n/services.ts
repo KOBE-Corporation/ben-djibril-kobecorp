@@ -25,7 +25,6 @@ export const servicesTranslations = {
         'Mobile application (optional)',
       ],
       eligiblePlans: {
-        saas: ['goodDeal', 'pro', 'ultra'],
         fullControl: ['normal', 'speed', 'ultraSpeed'],
       },
     },
@@ -57,7 +56,6 @@ export const servicesTranslations = {
         'Stock valuation and accounting integration',
       ],
       eligiblePlans: {
-        saas: ['goodDeal', 'pro', 'ultra'],
         fullControl: ['normal', 'speed', 'ultraSpeed'],
       },
     },
@@ -83,7 +81,6 @@ export const servicesTranslations = {
         'Sales reports and analytics',
       ],
       eligiblePlans: {
-        saas: ['pro', 'ultra'],
         fullControl: ['speed', 'ultraSpeed'],
       },
     },
@@ -109,7 +106,6 @@ export const servicesTranslations = {
         'Integration with accounting software (optional)',
       ],
       eligiblePlans: {
-        saas: ['goodDeal', 'pro', 'ultra'],
         fullControl: ['normal', 'speed', 'ultraSpeed'],
       },
     },
@@ -141,7 +137,7 @@ export const servicesTranslations = {
         'Sales reports and analytics',
         'Multi-location support (optional)',
       ],
-      eligiblePlans: { saas: ['goodDeal', 'pro', 'ultra'], fullControl: ['normal', 'speed', 'ultraSpeed'] },
+      eligiblePlans: { fullControl: ['normal', 'speed', 'ultraSpeed'] },
     },
     serviceTransport: { title: 'Transport Management', desc: 'Transport and logistics management system', feature1: 'Vehicle tracking', feature2: 'Route planning', feature3: 'Driver management', feature4: 'Fuel management' },
     serviceRental: { title: 'Rental Management', desc: 'Property and equipment rental management', feature1: 'Property listing', feature2: 'Booking management', feature3: 'Payment tracking', feature4: 'Contract management' },
@@ -180,7 +176,7 @@ export const servicesTranslations = {
         'Marketplace multi-vendeurs (optionnel)',
         'Application mobile (optionnel)',
       ],
-      eligiblePlans: { saas: ['goodDeal', 'pro', 'ultra'], fullControl: ['normal', 'speed', 'ultraSpeed'] },
+      eligiblePlans: { fullControl: ['normal', 'speed', 'ultraSpeed'] },
     },
     serviceApp: { title: 'Applications Web', desc: 'Solutions métier sur mesure', feature1: 'Fonctionnalités personnalisées', feature2: 'Authentification utilisateur', feature3: 'Intégration base de données', feature4: 'Développement API' },
     serviceMobile: { title: 'Applications Mobile', desc: 'Apps mobiles cross-platform', feature1: 'iOS & Android', feature2: 'Kotlin Multiplatform', feature3: 'Performance native', feature4: 'Support hors ligne' },
@@ -219,7 +215,7 @@ export const servicesTranslations = {
         'Rapports de ventes et analyses',
         'Support multi-emplacements (optionnel)',
       ],
-      eligiblePlans: { saas: ['goodDeal', 'pro', 'ultra'], fullControl: ['normal', 'speed', 'ultraSpeed'] },
+      eligiblePlans: { fullControl: ['normal', 'speed', 'ultraSpeed'] },
     },
     serviceTransport: { title: 'Gestion de Transport', desc: 'Système de gestion de transport et logistique', feature1: 'Suivi des véhicules', feature2: 'Planification des itinéraires', feature3: 'Gestion des chauffeurs', feature4: 'Gestion du carburant' },
     serviceRental: { title: 'Gestion de Location', desc: 'Gestion de location de biens et équipements', feature1: 'Liste des biens', feature2: 'Gestion des réservations', feature3: 'Suivi des paiements', feature4: 'Gestion des contrats' },
