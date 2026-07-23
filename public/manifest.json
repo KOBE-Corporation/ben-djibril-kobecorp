@@ -2,7 +2,7 @@
   "name": "Ben Djibril - Portfolio Professionnel",
   "short_name": "Ben Djibril",
   "description": "Portfolio professionnel de Ben Djibril (Kone Djibril Benjamin) - Ingénieur DevOps spécialisé en développement backend, mobile et DevOps. Services internationaux de qualité.",
-  "start_url": "/",
+  "start_url": "/en",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#3b82f6",
@@ -37,7 +37,7 @@
     }
   ],
   "categories": ["portfolio", "developer", "devops", "web development", "business", "technology"],
-  "lang": "fr",
+  "lang": "en",
   "dir": "ltr",
   "scope": "/",
   "related_applications": [],
@@ -46,15 +46,15 @@
     {
       "name": "Services",
       "short_name": "Services",
-      "description": "Découvrez nos services de développement",
-      "url": "/services",
+      "description": "Discover our development services",
+      "url": "/en/services",
       "icons": [{ "src": "/favicon.png", "sizes": "192x192" }]
     },
     {
       "name": "Contact",
       "short_name": "Contact",
-      "description": "Contactez-nous",
-      "url": "/contact",
+      "description": "Get in touch",
+      "url": "/en/contact",
       "icons": [{ "src": "/favicon.png", "sizes": "192x192" }]
     }
   ]

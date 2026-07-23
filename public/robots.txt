@@ -65,8 +65,8 @@ Sitemap: https://ben-djibril.kobecorporation.com/sitemap.xml
 
 # Pas de restrictions - tout le site est indexable
 # Les pages importantes sont :
-# - / (Accueil)
-# - /about (À propos)
-# - /services (Services)
-# - /projects (Projets)
-# - /contact (Contact)
+# - /en , /fr (Home)
+# - /en/about , /fr/about
+# - /en/services , /fr/services
+# - /en/projects , /fr/projects
+# - /en/contact , /fr/contact
