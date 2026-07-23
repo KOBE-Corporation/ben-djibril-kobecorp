@@ -1,9 +1,26 @@
 services:
   server:
     image: azerty78/ben-djibril-site:latest
+    container_name: ben-djibril-site
+    restart: unless-stopped
     environment:
       NODE_ENV: production
+    # blogpress-nginx proxifie vers ben-djibril-site:80 sur kobecorp-network
+    expose:
+      - "80"
+    # Bind local optionnel (debug) — le trafic public passe par le reverse proxy
     ports:
       - "127.0.0.1:4001:80"
-    restart: unless-stopped
-    container_name: ben-djibril-site
+    networks:
+      - kobecorp-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://127.0.0.1/"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+networks:
+  kobecorp-network:
+    name: kobecorp-network
+    external: true

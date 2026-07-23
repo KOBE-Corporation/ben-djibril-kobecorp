@@ -432,7 +432,9 @@ jobs:
               echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             fi
 
-            docker network inspect kobecorp-network >/dev/null 2>&1 || docker network create kobecorp-network
+            echo "==> Ensure Docker network kobecorp-network"
+            docker network inspect kobecorp-network >/dev/null 2>&1 \
+              || docker network create kobecorp-network
 
             echo "==> Pull image Docker Hub : $FRONT_IMAGE"
             docker pull "$FRONT_IMAGE"
@@ -441,6 +443,13 @@ jobs:
             docker compose -f compose.yaml pull
             docker compose -f compose.yaml up -d --force-recreate --remove-orphans
             docker compose -f compose.yaml ps
+
+            echo "==> Verify proxy can resolve container"
+            if docker ps --format '{{.Names}}' | grep -qx 'blogpress-nginx'; then
+              docker exec blogpress-nginx wget -q --spider http://ben-djibril-site:80/ \
+                || echo "::warning::blogpress-nginx ne joint pas encore ben-djibril-site"
+            fi
+
             docker image prune -f
 
             docker logout || true
@@ -478,11 +487,30 @@ jobs:
               exit 1
             fi
 
-            HEALTH="$(docker inspect -f '{{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}}' "${CONTAINER_NAME}")"
-            echo "Health status: ${HEALTH}"
+            echo "==> Attente readiness (max ~90s)"
+            ok=0
+            for i in $(seq 1 30); do
+              HEALTH="$(docker inspect -f '{{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}}' "${CONTAINER_NAME}")"
+              echo "Tentative ${i}/30 — health: ${HEALTH}"
 
-            docker exec "${CONTAINER_NAME}" wget -q --spider http://localhost/ || {
+              if docker exec "${CONTAINER_NAME}" wget -q --spider http://127.0.0.1/; then
+                ok=1
+                break
+              fi
+
+              if [ "$HEALTH" = "unhealthy" ]; then
+                echo "Conteneur unhealthy"
+                break
+              fi
+
+              sleep 3
+            done
+
+            if [ "$ok" -ne 1 ]; then
               echo "Le conteneur ne répond pas en local"
+              docker inspect -f '{{json .State.Health}}' "${CONTAINER_NAME}" || true
               docker logs --tail 100 "${CONTAINER_NAME}" || true
               exit 1
-            }
+            fi
+
+            echo "Smoke test OK"
