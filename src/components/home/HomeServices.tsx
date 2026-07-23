@@ -55,8 +55,8 @@ function HomeServices() {
       color: 'from-accent-500 to-accent-600',
       bgColor: 'bg-accent-100 dark:bg-accent-900/30',
       textColor: 'text-accent-600 dark:text-accent-400',
-      link: '/services?type=web',
-      serviceType: 'web',
+      link: '/services?type=web-app',
+      serviceType: 'web-app',
       tag: 'new' as const,
       tagLabel: t('home.services.newTag') || 'New',
     },
@@ -177,7 +177,7 @@ function HomeServices() {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <Link to={lp('/services')} className="btn-primary text-lg px-8 py-3 inline-block">
+          <Link to={lp('/services#services')} className="btn-primary text-lg px-8 py-3 inline-block">
             {t('home.services.viewAll') || 'Voir tous les services'}
           </Link>
         </motion.div>

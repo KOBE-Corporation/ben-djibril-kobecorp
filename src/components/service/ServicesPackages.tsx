@@ -34,7 +34,9 @@ function ServicesPackages() {
     const planParam = searchParams.get('plan')
     if (planParam && VALID_PLANS.includes(planParam as PlanId)) {
       setSelectedPlan(planParam as PlanId)
-      setSearchParams({}, { replace: true })
+      const next = new URLSearchParams(searchParams)
+      next.delete('plan')
+      setSearchParams(next, { replace: true })
     }
   }, [searchParams, setSearchParams])
 
@@ -55,48 +57,14 @@ function ServicesPackages() {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 relative">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-8 sm:mb-12 md:mb-16"
-        >
-          <motion.div
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, type: "spring", stiffness: 200 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-6"
-          >
-            <div className="relative">
-              <div className="absolute inset-0 bg-accent-400 rounded-full blur-xl opacity-50" />
-              <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-accent-500 to-primary-500 rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg">
-                <motion.div
-                  animate={{ rotate: [0, 10, -10, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, repeatDelay: 2 }}
-                >
-                  <CodeBracketIcon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
-                </motion.div>
-              </div>
-            </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-secondary-900 dark:text-white">
-              {t('services.packagesTitle')}
-            </h2>
-          </motion.div>
-          <p className="text-base sm:text-lg md:text-xl text-secondary-600 dark:text-secondary-300 max-w-2xl mx-auto px-2">
-            {t('services.packagesSubtitle')}
-          </p>
-        </motion.div>
-
-        {/* Full Control category */}
+        {/* Full Control offers */}
         <motion.div
           id="fullControl"
           data-subsection="fullControl"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.6 }}
         >
           <div className="text-center mb-8 sm:mb-10 md:mb-12">
             <motion.div
@@ -108,13 +76,13 @@ function ServicesPackages() {
             >
               <div className="relative">
                 <div className="absolute inset-0 bg-accent-400 rounded-full blur-xl opacity-50" />
-                <div className="relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-gradient-to-br from-accent-500 to-accent-600 rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg">
-                  <CodeBracketIcon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white" />
+                <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-accent-500 to-primary-500 rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg">
+                  <CodeBracketIcon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
                 </div>
               </div>
-              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-secondary-900 dark:text-white">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-secondary-900 dark:text-white">
                 {t('services.fullControlTitle')}
-              </h3>
+              </h2>
             </motion.div>
             <p className="text-base sm:text-lg md:text-xl text-secondary-600 dark:text-secondary-300 max-w-3xl mx-auto px-2 mb-3 sm:mb-4">
               {t('services.fullControlSubtitle')}
@@ -268,11 +236,11 @@ function ServicesPackages() {
           </div>
 
           {/* Comparison button and table */}
-          <div className="mt-8 text-center hidden md:block">
+          <div className="mt-8 text-center">
             <button
               type="button"
               onClick={toggleFullControlComparison}
-              className="inline-flex items-center gap-2 rounded-xl border-2 border-primary-500 dark:border-primary-400 bg-primary-50 dark:bg-primary-900/30 px-6 py-3 text-sm font-semibold text-primary-700 dark:text-primary-300 hover:bg-primary-100 dark:hover:bg-primary-900/50 transition-all duration-200 shadow-md hover:shadow-lg"
+              className="inline-flex items-center gap-2 rounded-xl border-2 border-primary-500 dark:border-primary-400 bg-primary-50 dark:bg-primary-900/30 px-5 sm:px-6 py-3 text-sm font-semibold text-primary-700 dark:text-primary-300 hover:bg-primary-100 dark:hover:bg-primary-900/50 transition-all duration-200 shadow-md hover:shadow-lg"
             >
               <span>
                 {showFullControlComparison

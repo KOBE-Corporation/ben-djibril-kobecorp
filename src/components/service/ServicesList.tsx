@@ -586,8 +586,9 @@ function ServicesList() {
     const typeParam = searchParams.get('type')
     if (typeParam && validServiceIds.includes(typeParam)) {
       setSelectedServiceId(typeParam)
-      // Nettoyer l'URL après ouverture
-      setSearchParams({}, { replace: true })
+      const next = new URLSearchParams(searchParams)
+      next.delete('type')
+      setSearchParams(next, { replace: true })
     }
   }, [searchParams, setSearchParams, validServiceIds])
 
@@ -741,19 +742,7 @@ function ServicesList() {
                   <div
                     className={`w-16 h-16 ${service.bgColor} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}
                   >
-                    <motion.div
-                      animate={{
-                        y: [0, -5, 0],
-                        rotate: [0, 5, -5, 0],
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        repeatDelay: 2,
-                      }}
-                    >
-                      <IconComponent className={`w-8 h-8 ${service.textColor}`} />
-                    </motion.div>
+                    <IconComponent className={`w-8 h-8 ${service.textColor}`} />
                   </div>
                   {service.sector && (
                     <span className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-medium bg-secondary-100 dark:bg-secondary-800 text-secondary-700 dark:text-secondary-200 border border-secondary-200 dark:border-secondary-700">

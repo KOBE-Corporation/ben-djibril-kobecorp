@@ -11,10 +11,25 @@ export const resources = {
     translation: {
       nav: {
         home: 'Home', services: 'Services', projects: 'Projects', about: 'About', contact: 'Contact',
+        servicesOffers: 'Full Control offers',
+        servicesCatalog: 'All services',
+        requestQuote: 'Request a quote',
         serviceWeb: 'Web Development', serviceEcom: 'E-commerce', serviceApp: 'Web Apps', serviceConsult: 'Consulting'
       },
       footer: {
-        legal: 'Legal notice', privacy: 'Privacy policy', rights: 'All rights reserved.'
+        legal: 'Legal notice', privacy: 'Privacy policy', rights: 'All rights reserved.',
+        servicesTitle: 'Services',
+        viewAllServices: 'View all services',
+        popular: {
+          ecommerce: 'E-commerce',
+          inventory: 'Inventory management',
+          restaurant: 'Restaurant management',
+          billing: 'Billing software',
+          pos: 'Point of Sale (POS)',
+          crm: 'CRM',
+          mobile: 'Mobile apps',
+          webApp: 'Web apps',
+        },
       },
       home: {
         title: 'DevOps Engineer',
@@ -742,10 +757,25 @@ export const resources = {
     translation: {
       nav: {
         home: 'Accueil', services: 'Services', projects: 'Projets', about: 'À propos', contact: 'Contact',
+        servicesOffers: 'Offres Full Control',
+        servicesCatalog: 'Tous les services',
+        requestQuote: 'Demander un devis',
         serviceWeb: 'Développement Web', serviceEcom: 'E-commerce', serviceApp: 'Applications Web', serviceConsult: 'Conseil'
       },
       footer: {
-        legal: 'Mentions légales', privacy: 'Politique de confidentialité', rights: 'Tous droits réservés.'
+        legal: 'Mentions légales', privacy: 'Politique de confidentialité', rights: 'Tous droits réservés.',
+        servicesTitle: 'Services',
+        viewAllServices: 'Voir tous les services',
+        popular: {
+          ecommerce: 'E-commerce',
+          inventory: 'Gestion de Stock',
+          restaurant: 'Gestion de Restaurant',
+          billing: 'Logiciel de Facturation',
+          pos: 'Point de Vente (PDV)',
+          crm: 'Gestion de Clients',
+          mobile: 'Applications Mobile',
+          webApp: 'Applications Web',
+        },
       },
       home: {
         title: 'Ingénieur DevOps',

@@ -11,60 +11,12 @@ type MobileMenuProps = {
 
 function MobileMenu({ onNavigate }: MobileMenuProps) {
   const { t } = useTranslation()
-  const { lp, navigateLocalized } = useLocale()
+  const { lp } = useLocale()
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false)
-  
+
   const linkBase = 'px-3 py-2.5 rounded-lg font-medium transition-colors'
   const linkClass = (isActive: boolean) =>
     `${linkBase} ${isActive ? 'bg-primary-600 text-white' : 'text-secondary-700 dark:text-secondary-200 hover:bg-secondary-100 dark:hover:bg-secondary-700'}`
-
-  const handleNavigation = (callback: () => void) => {
-    callback()
-    setIsSubMenuOpen(false)
-    onNavigate?.()
-  }
-
-  const scrollToSection = (sectionId: string, path: string = '/services') => {
-    handleNavigation(() => {
-      navigateLocalized(path)
-      // Utiliser requestAnimationFrame pour une meilleure synchronisation avec le rendu React
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          const section = document.querySelector(`[data-section="${sectionId}"]`)
-          if (section) {
-            const offset = 80 // Offset for sticky header
-            const elementPosition = section.getBoundingClientRect().top
-            const offsetPosition = elementPosition + window.pageYOffset - offset
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: 'smooth'
-            })
-          }
-        })
-      })
-    })
-  }
-
-  const scrollToSubSection = (sectionId: string, path: string = '/services') => {
-    handleNavigation(() => {
-      navigateLocalized(path)
-      // Utiliser requestAnimationFrame pour une meilleure synchronisation
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          const section = document.querySelector(`[data-subsection="${sectionId}"]`)
-          if (section) {
-            const offset = 80
-            const elementPosition = section.getBoundingClientRect().top
-            const offsetPosition = elementPosition + window.pageYOffset - offset
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: 'smooth'
-            })
-          }
-        })
-      })
-    })
-  }
 
   const handleNavLinkClick = () => {
     setIsSubMenuOpen(false)
@@ -72,24 +24,20 @@ function MobileMenu({ onNavigate }: MobileMenuProps) {
   }
 
   const serviceLinks = [
-    { 
-      onClick: () => scrollToSection('services'),
-      label: t('nav.services')
+    {
+      to: lp('/services#packages'),
+      label: t('nav.servicesOffers'),
     },
-    { 
-      onClick: () => scrollToSection('packages'),
-      label: 'Forfaits'
-    },
-    { 
-      onClick: () => scrollToSubSection('fullControl'),
-      label: 'Full Control'
+    {
+      to: lp('/services#services'),
+      label: t('nav.servicesCatalog'),
     },
   ]
 
   return (
     <nav className="grid gap-2 text-sm">
-      <NavLink 
-        to={lp('/')} 
+      <NavLink
+        to={lp('/')}
         end
         className={({ isActive }) => linkClass(isActive)}
         onClick={handleNavLinkClick}
@@ -99,11 +47,14 @@ function MobileMenu({ onNavigate }: MobileMenuProps) {
 
       <div>
         <button
+          type="button"
           onClick={() => setIsSubMenuOpen(!isSubMenuOpen)}
           className={`${linkBase} flex items-center justify-between text-secondary-700 dark:text-secondary-200 hover:bg-secondary-100 dark:hover:bg-secondary-700 font-medium w-full`}
         >
           <span>{t('nav.services')}</span>
-          <ChevronDownIcon className={`w-4 h-4 transition-transform duration-300 ease-in-out ${isSubMenuOpen ? 'rotate-180' : ''} text-secondary-600 dark:text-secondary-400`} />
+          <ChevronDownIcon
+            className={`w-4 h-4 transition-transform duration-300 ease-in-out ${isSubMenuOpen ? 'rotate-180' : ''} text-secondary-600 dark:text-secondary-400`}
+          />
         </button>
         <AnimatePresence>
           {isSubMenuOpen && (
@@ -115,14 +66,15 @@ function MobileMenu({ onNavigate }: MobileMenuProps) {
               className="overflow-hidden"
             >
               <div className="pl-4 space-y-1.5 mt-2 border-l-2 border-secondary-200 dark:border-secondary-700">
-                {serviceLinks.map((link, index) => (
-                  <button
-                    key={index}
-                    onClick={link.onClick}
-                    className={`${linkBase} text-sm w-full text-left bg-white dark:bg-secondary-800 text-secondary-700 dark:text-secondary-200 hover:bg-secondary-50 dark:hover:bg-secondary-700 hover:text-primary-600 dark:hover:text-primary-400`}
+                {serviceLinks.map((link) => (
+                  <NavLink
+                    key={link.to}
+                    to={link.to}
+                    className={`${linkBase} text-sm w-full text-left bg-white dark:bg-secondary-800 text-secondary-700 dark:text-secondary-200 hover:bg-secondary-50 dark:hover:bg-secondary-700 hover:text-primary-600 dark:hover:text-primary-400 block`}
+                    onClick={handleNavLinkClick}
                   >
                     {link.label}
-                  </button>
+                  </NavLink>
                 ))}
               </div>
             </motion.div>
@@ -130,33 +82,33 @@ function MobileMenu({ onNavigate }: MobileMenuProps) {
         </AnimatePresence>
       </div>
 
-      <NavLink 
-        to={lp('/projects')} 
+      <NavLink
+        to={lp('/projects')}
         className={({ isActive }) => linkClass(isActive)}
         onClick={handleNavLinkClick}
       >
         {t('nav.projects')}
       </NavLink>
-      <NavLink 
-        to={lp('/about')} 
+      <NavLink
+        to={lp('/about')}
         className={({ isActive }) => linkClass(isActive)}
         onClick={handleNavLinkClick}
       >
         {t('nav.about')}
       </NavLink>
-      <NavLink 
-        to={lp('/contact')} 
+      <NavLink
+        to={lp('/contact')}
         className={({ isActive }) => linkClass(isActive)}
         onClick={handleNavLinkClick}
       >
         {t('nav.contact')}
       </NavLink>
-      <NavLink 
-        to={lp('/contact')} 
+      <NavLink
+        to={lp('/contact')}
         className="btn-primary w-full text-center mt-3 py-2.5"
         onClick={handleNavLinkClick}
       >
-        {t('nav.contact')}
+        {t('nav.requestQuote')}
       </NavLink>
     </nav>
   )

@@ -7,31 +7,8 @@ function ServicesHero() {
   const { t } = useTranslation()
   const { navigateLocalized } = useLocale()
   
-  const scrollToSubSection = (subsectionId: string) => {
-    navigateLocalized('/services')
-    setTimeout(() => {
-      const section = document.querySelector(`[data-subsection="${subsectionId}"]`)
-      if (section) {
-        const offset = 80
-        const elementPosition = section.getBoundingClientRect().top
-        const offsetPosition = elementPosition + window.pageYOffset - offset
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        })
-      } else {
-        const packagesSection = document.querySelector('[data-section="packages"]')
-        if (packagesSection) {
-          const offset = 80
-          const elementPosition = packagesSection.getBoundingClientRect().top
-          const offsetPosition = elementPosition + window.pageYOffset - offset
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          })
-        }
-      }
-    }, 200)
+  const goToPackages = () => {
+    navigateLocalized('/services#packages')
   }
 
   const easeInOut = [0.4, 0, 0.2, 1] as const
@@ -156,7 +133,7 @@ function ServicesHero() {
             >
               <motion.button
                 type="button"
-                onClick={() => scrollToSubSection('fullControl')}
+                onClick={goToPackages}
                 whileHover={{ scale: 1.02, y: -2 }}
                 transition={{ duration: 0.2 }}
                 className="flex items-center gap-2.5 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 rounded-2xl bg-white dark:bg-secondary-900/70 shadow-md hover:shadow-lg border border-accent-100 dark:border-accent-700/60 transition-all duration-300 cursor-pointer"
@@ -185,7 +162,7 @@ function ServicesHero() {
             >
               <button
                 type="button"
-                onClick={() => scrollToSubSection('fullControl')}
+                onClick={goToPackages}
                 className="w-full sm:w-auto btn-primary inline-flex items-center justify-center gap-2 px-5 py-3 text-sm sm:text-base"
               >
                 {t('services.heroCtaFull')}
@@ -267,7 +244,7 @@ function ServicesHero() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 whileHover={{ scale: 1.02, y: -2 }}
-                onClick={() => scrollToSubSection('fullControl')}
+                onClick={goToPackages}
                 className="w-full rounded-2xl border border-accent-100 dark:border-accent-700 bg-accent-50/70 dark:bg-accent-900/40 p-3 sm:p-4 md:p-5 shadow-md hover:shadow-lg transition-all duration-300 text-left cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2"
               >
                 <div className="flex items-start sm:items-center justify-between mb-2 sm:mb-3 gap-2">

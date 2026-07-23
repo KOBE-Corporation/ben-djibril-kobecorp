@@ -1,114 +1,78 @@
 import { useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 
+const HEADER_OFFSET = 80
+const HASH_RETRY_MS = 150
+const HASH_MAX_ATTEMPTS = 20
+/** Wait for progressive loader (~1s) before first hash scroll attempt */
+const HASH_INITIAL_DELAY_MS = 1100
+
+function findHashTarget(hash: string): Element | null {
+  if (!hash) return null
+  const id = hash.replace('#', '')
+  return (
+    document.querySelector(hash) ||
+    document.querySelector(`[data-section="${id}"]`) ||
+    document.querySelector(`[data-subsection="${id}"]`)
+  )
+}
+
+function scrollToElement(element: Element) {
+  const top = element.getBoundingClientRect().top + window.pageYOffset - HEADER_OFFSET
+  window.scrollTo({
+    top: Math.max(0, top),
+    behavior: 'smooth',
+  })
+}
+
 /**
- * Hook optimisé qui fait défiler instantanément vers le haut AVANT que le contenu ne soit visible
- * Le scroll se fait pendant que le loader est affiché pour éviter l'effet désagréable
- * Gère également la navigation vers les sections via hash (#section-id)
+ * Scrolls to top on route change, or to a hash target (#packages, #services, …)
+ * after the progressive loader has finished.
  */
 export function useScrollToTop() {
   const { pathname, hash } = useLocation()
-  const isScrollingRef = useRef(false)
-  const hashTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
-    // Nettoyer le timeout précédent si il existe
-    if (hashTimeoutRef.current) {
-      clearTimeout(hashTimeoutRef.current)
-      hashTimeoutRef.current = null
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+      timeoutRef.current = null
     }
 
-    // Marquer qu'on est en train de scroller
-    isScrollingRef.current = true
-
-    // Si l'URL contient un hash, on ne scroll pas vers le haut mais on attend que le contenu soit chargé
     if (hash) {
-      // Attendre que le contenu soit rendu avant de scroller vers le hash
       const scrollToHash = (attempt = 0) => {
-        // Essayer plusieurs méthodes pour trouver l'élément
-        let element: Element | null = null
-        
-        // Méthode 1: Chercher par ID direct
-        element = document.querySelector(hash)
-        
-        // Méthode 2: Chercher par data-section
-        if (!element) {
-          const sectionId = hash.replace('#', '')
-          element = document.querySelector(`[data-section="${sectionId}"]`)
-        }
-        
-        // Méthode 3: Chercher par data-subsection
-        if (!element) {
-          const subsectionId = hash.replace('#', '')
-          element = document.querySelector(`[data-subsection="${subsectionId}"]`)
-        }
-        
+        const element = findHashTarget(hash)
         if (element) {
-          const offset = 80 // Offset pour le header sticky
-          const elementPosition = element.getBoundingClientRect().top
-          const offsetPosition = elementPosition + window.pageYOffset - offset
-          
-          // Scroll avec un léger délai pour s'assurer que le layout est stable
           requestAnimationFrame(() => {
             requestAnimationFrame(() => {
-              window.scrollTo({
-                top: Math.max(0, offsetPosition),
-                behavior: 'smooth'
-              })
-              isScrollingRef.current = false
+              scrollToElement(element)
             })
           })
-        } else if (attempt < 10) {
-          // Si l'élément n'est pas trouvé, réessayer après un délai (max 10 tentatives)
-          hashTimeoutRef.current = setTimeout(() => {
-            scrollToHash(attempt + 1)
-          }, 100)
+          return
+        }
+        if (attempt < HASH_MAX_ATTEMPTS) {
+          timeoutRef.current = setTimeout(() => scrollToHash(attempt + 1), HASH_RETRY_MS)
         } else {
-          // Après 10 tentatives, abandonner et scroll vers le haut
           window.scrollTo(0, 0)
-          isScrollingRef.current = false
         }
       }
-      
-      // Attendre que le DOM soit prêt et que le contenu soit chargé
-      // Utiliser plusieurs méthodes pour s'assurer que le contenu est prêt
-      const tryScroll = () => {
-        // Attendre un peu pour que React ait fini de rendre
-        setTimeout(() => {
-          scrollToHash()
-        }, 100)
-      }
-      
-      if (document.readyState === 'complete') {
-        tryScroll()
-      } else {
-        window.addEventListener('load', tryScroll, { once: true })
-        // Fallback avec timeout plus long pour les pages lourdes
-        hashTimeoutRef.current = setTimeout(tryScroll, 800)
-      }
+
+      timeoutRef.current = setTimeout(() => scrollToHash(0), HASH_INITIAL_DELAY_MS)
     } else {
-      // Pas de hash, scroll vers le haut instantanément
-      if (document.documentElement) {
-        document.documentElement.scrollTop = 0
-      }
-      if (document.body) {
-        document.body.scrollTop = 0
-      }
+      document.documentElement.scrollTop = 0
+      document.body.scrollTop = 0
       window.scrollTo(0, 0)
-      
       requestAnimationFrame(() => {
         document.documentElement.scrollTop = 0
         document.body.scrollTop = 0
         window.scrollTo(0, 0)
-        isScrollingRef.current = false
       })
     }
 
-    // Nettoyage
     return () => {
-      if (hashTimeoutRef.current) {
-        clearTimeout(hashTimeoutRef.current)
-        hashTimeoutRef.current = null
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+        timeoutRef.current = null
       }
     }
   }, [pathname, hash])
