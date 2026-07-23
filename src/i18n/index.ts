@@ -1,7 +1,6 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import { fullControlTranslations } from './fullControl'
-import { saasTranslations } from './saas'
 import { servicesTranslations } from './services'
 
 const savedLang = localStorage.getItem('lang')
@@ -256,39 +255,17 @@ export const resources = {
       },
       services: {
         ...fullControlTranslations.en,
-        ...saasTranslations.en,
         title: 'Services',
         subtitle: 'Tailored solutions for your digital needs',
-        heroDescription: 'I offer two flexible billing models to suit your needs: SaaS for monthly subscriptions with managed infrastructure, or Full Control for complete ownership of your project.',
-        heroCtaSaas: 'View SaaS offers',
+        heroDescription: 'Full Control gives you complete ownership of your project: source code, infrastructure choices, and long-term independence — built and delivered for you.',
         heroCtaFull: 'View Full Control offers',
-        heroCompare: {
-          title: 'Which model is best for you?',
-          rows: {
-            ownership: {
-              label: 'Code & project ownership',
-              saas: 'I manage the infrastructure and code',
-              full: 'You fully own the code and project'
-            },
-            billing: {
-              label: 'Billing',
-              saas: 'Monthly subscription',
-              full: 'One-time project fee'
-            },
-            hosting: {
-              label: 'Hosting & maintenance',
-              saas: 'Included and fully managed',
-              full: 'You choose where and how to host'
-            },
-            ideal: {
-              label: 'Ideal for',
-              saas: 'Startups & flexible budgets',
-              full: 'Long-term projects & full control'
-            }
-          }
-        },
         packagesTitle: 'Our Offers',
-        packagesSubtitle: 'Two billing models adapted to how you want to manage your project',
+        packagesSubtitle: 'Full Control packages adapted to how you want to own and manage your project',
+        featureTooltips: {
+          mvp: 'MVP: Minimum Viable Product - A basic version with essential features to launch quickly',
+          mvpa: 'MVPA: Minimum Vital Product Advanced - An enhanced version with more features and capabilities',
+          crud: 'CRUD: Create, Read, Update, Delete - The 4 basic operations for managing data',
+        },
         allServicesTitle: 'All Our Services',
         allServicesSubtitle: 'Complete solutions for all your digital needs',
         filters: {
@@ -330,9 +307,6 @@ export const resources = {
         features: 'Features', getStarted: 'Get Started', mostPopular: 'Most Popular', bestValue: 'Best value',
         idealForLabel: 'Ideal for',
         details: {
-          saas: {
-            ...saasTranslations.en.details.saas,
-          },
           fullControl: {
             ...fullControlTranslations.en.details.fullControl,
           },
@@ -584,7 +558,7 @@ export const resources = {
             },
             pricing: {
               question: 'How do you price your projects?',
-              answer: 'Pricing depends on the scope, complexity, and timeline of your project. I offer both SaaS (subscription-based) and Full Control (one-time payment) models. Contact me for a free, personalized quote.'
+              answer: 'Pricing depends on the scope, complexity, and timeline of your project. I offer Full Control packages with a one-time payment and complete ownership of your project. Contact me for a free, personalized quote.'
             },
             process: {
               question: 'What is your development process?',
@@ -650,7 +624,7 @@ export const resources = {
             },
             pricing: {
               title: 'Transparent Pricing',
-              description: 'Clear, upfront pricing with no hidden fees. Choose between SaaS or Full Control models that fit your budget.'
+              description: 'Clear, upfront pricing with no hidden fees. Full Control packages with a one-time payment that fit your budget.'
             },
             experience: {
               title: '4+ Years Experience',
@@ -743,8 +717,8 @@ export const resources = {
         },
         services: {
           title: 'Services - Ben Djibril (Kone Djibril Benjamin) | Web, Mobile & DevOps Solutions',
-          description: 'Ben Djibril (Kone Djibril Benjamin) - Professional development services: Web applications, Mobile apps, E-commerce, APIs, DevOps & Cloud. SaaS and Full Control billing models. Free quotes available.',
-          keywords: 'Ben Djibril Services, Kone Djibril Benjamin Services, Ben Djibril Developer Services, Kone Djibril Benjamin Developer Services, Web Development, Mobile Apps, E-commerce, API Development, DevOps, Cloud Services, SaaS, Full Stack Development'
+          description: 'Ben Djibril (Kone Djibril Benjamin) - Professional development services: Web applications, Mobile apps, E-commerce, APIs, DevOps & Cloud. Full Control packages with complete project ownership. Free quotes available.',
+          keywords: 'Ben Djibril Services, Kone Djibril Benjamin Services, Ben Djibril Developer Services, Kone Djibril Benjamin Developer Services, Web Development, Mobile Apps, E-commerce, API Development, DevOps, Cloud Services, Full Control, Full Stack Development'
         },
         projects: {
           title: 'Projects - Ben Djibril (Kone Djibril Benjamin) | Portfolio of Realized Projects',
@@ -1012,39 +986,17 @@ export const resources = {
       },
       services: {
         ...fullControlTranslations.fr,
-        ...saasTranslations.fr,
         title: 'Services',
         subtitle: 'Solutions sur mesure pour vos besoins digitaux',
-        heroDescription: 'Je propose deux modèles de facturation flexibles adaptés à vos besoins : SaaS pour des abonnements mensuels avec infrastructure gérée, ou Full Control pour une propriété complète de votre projet.',
-        heroCtaSaas: 'Voir les offres SaaS',
+        heroDescription: 'Full Control vous donne la propriété complète de votre projet : code source, choix d’infrastructure et indépendance à long terme — conçu et livré pour vous.',
         heroCtaFull: 'Voir les offres Full Control',
-        heroCompare: {
-          title: 'Quel modèle est fait pour vous ?',
-          rows: {
-            ownership: {
-              label: 'Propriété du code & du projet',
-              saas: 'Je gère l’infrastructure et le code',
-              full: 'Vous possédez totalement le code et le projet'
-            },
-            billing: {
-              label: 'Facturation',
-              saas: 'Abonnement mensuel',
-              full: 'Paiement unique de projet'
-            },
-            hosting: {
-              label: 'Hébergement & maintenance',
-              saas: 'Inclus et entièrement géré',
-              full: 'Vous choisissez où et comment héberger'
-            },
-            ideal: {
-              label: 'Idéal pour',
-              saas: 'Startups & budgets flexibles',
-              full: 'Projets long terme & contrôle total'
-            }
-          }
-        },
         packagesTitle: 'Nos Offres',
-        packagesSubtitle: 'Deux modèles de facturation selon la façon dont vous voulez gérer votre projet',
+        packagesSubtitle: 'Des forfaits Full Control adaptés à la façon dont vous voulez posséder et gérer votre projet',
+        featureTooltips: {
+          mvp: 'MVP : Minimum Vital Product - Version de base avec les fonctionnalités essentielles pour lancer rapidement',
+          mvpa: 'MVPA : Minimum Vital Product Advanced - Version améliorée avec plus de fonctionnalités et capacités',
+          crud: 'CRUD : Create, Read, Update, Delete - Les 4 opérations de base pour gérer les données',
+        },
         allServicesTitle: 'Tous nos Services',
         allServicesSubtitle: 'Des solutions complètes pour tous vos besoins digitaux',
         filters: {
@@ -1086,9 +1038,6 @@ export const resources = {
         features: 'Fonctionnalités', getStarted: 'Commencer', mostPopular: 'Le plus populaire', bestValue: 'Meilleur rapport qualité / prix',
         idealForLabel: 'Idéal pour',
         details: {
-          saas: {
-            ...saasTranslations.fr.details.saas,
-          },
           fullControl: {
             ...fullControlTranslations.fr.details.fullControl,
           },
@@ -1340,7 +1289,7 @@ export const resources = {
             },
             pricing: {
               question: 'Comment tarifiez-vous vos projets ?',
-              answer: 'Le tarif dépend de la portée, de la complexité et du délai de votre projet. Je propose deux modèles : SaaS (abonnement mensuel) et Full Control (paiement unique). Contactez-moi pour un devis gratuit et personnalisé.'
+              answer: 'Le tarif dépend de la portée, de la complexité et du délai de votre projet. Je propose des forfaits Full Control avec paiement unique et propriété complète de votre projet. Contactez-moi pour un devis gratuit et personnalisé.'
             },
             process: {
               question: 'Quel est votre processus de développement ?',
@@ -1406,7 +1355,7 @@ export const resources = {
             },
             pricing: {
               title: 'Tarification Transparente',
-              description: 'Tarification claire et transparente sans frais cachés. Choisissez entre les modèles SaaS ou Full Control qui correspondent à votre budget.'
+              description: 'Tarification claire et transparente sans frais cachés. Des forfaits Full Control en paiement unique adaptés à votre budget.'
             },
             experience: {
               title: '4+ Ans d\'Expérience',
@@ -1500,8 +1449,8 @@ export const resources = {
         },
         services: {
           title: 'Services - Ben Djibril (Kone Djibril Benjamin) | Solutions Web, Mobile & DevOps',
-          description: 'Ben Djibril (Kone Djibril Benjamin) - Services de développement professionnels : Applications web, Apps mobiles, E-commerce, APIs, DevOps & Cloud. Modèles de facturation SaaS et Full Control. Devis gratuits disponibles.',
-          keywords: 'Ben Djibril Services, Kone Djibril Benjamin Services, Ben Djibril Développeur Services, Kone Djibril Benjamin Développeur Services, Développement Web, Applications Mobiles, E-commerce, Développement API, DevOps, Services Cloud, SaaS, Développement Full Stack'
+          description: 'Ben Djibril (Kone Djibril Benjamin) - Services de développement professionnels : Applications web, Apps mobiles, E-commerce, APIs, DevOps & Cloud. Forfaits Full Control avec propriété complète du projet. Devis gratuits disponibles.',
+          keywords: 'Ben Djibril Services, Kone Djibril Benjamin Services, Ben Djibril Développeur Services, Kone Djibril Benjamin Développeur Services, Développement Web, Applications Mobiles, E-commerce, Développement API, DevOps, Services Cloud, Full Control, Développement Full Stack'
         },
         projects: {
           title: 'Projets - Ben Djibril (Kone Djibril Benjamin) | Portfolio de Projets Réalisés',

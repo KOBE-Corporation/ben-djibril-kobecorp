@@ -80,10 +80,6 @@ function MobileMenu({ onNavigate }: MobileMenuProps) {
       label: 'Forfaits'
     },
     { 
-      onClick: () => scrollToSubSection('saas'),
-      label: 'Good Deal (SaaS)'
-    },
-    { 
       onClick: () => scrollToSubSection('fullControl'),
       label: 'Full Control'
     },

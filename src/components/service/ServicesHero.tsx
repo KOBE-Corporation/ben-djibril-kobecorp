@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
-import { CloudIcon, CodeBracketIcon } from '@heroicons/react/24/solid'
+import { CodeBracketIcon } from '@heroicons/react/24/solid'
 import { useNavigate } from 'react-router-dom'
 
 function ServicesHero() {
@@ -20,7 +20,6 @@ function ServicesHero() {
           behavior: 'smooth'
         })
       } else {
-        // Si la sous-section n'est pas trouvée, scroll vers la section packages
         const packagesSection = document.querySelector('[data-section="packages"]')
         if (packagesSection) {
           const offset = 80
@@ -35,7 +34,6 @@ function ServicesHero() {
     }, 200)
   }
 
-  // Define easing tuple separately to ensure proper typing
   const easeInOut = [0.4, 0, 0.2, 1] as const
 
   const containerVariants = {
@@ -114,7 +112,7 @@ function ServicesHero() {
             >
               <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse" />
               <span className="text-[10px] xs:text-xs sm:text-sm font-medium text-primary-700 dark:text-primary-300 whitespace-nowrap">
-                SaaS & Full Control · {t('services.title')}
+                Full Control · {t('services.title')}
               </span>
             </motion.div>
 
@@ -148,7 +146,7 @@ function ServicesHero() {
               {t('services.heroDescription')}
             </motion.p>
 
-            {/* Pills for SaaS vs Full Control */}
+            {/* Full Control pill */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -156,26 +154,6 @@ function ServicesHero() {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start mb-4 sm:mb-6"
             >
-              <motion.button
-                type="button"
-                onClick={() => scrollToSubSection('saas')}
-                whileHover={{ scale: 1.02, y: -2 }}
-                transition={{ duration: 0.2 }}
-                className="flex items-center gap-2.5 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 rounded-2xl bg-white dark:bg-secondary-900/70 shadow-md hover:shadow-lg border border-primary-100 dark:border-primary-700/60 transition-all duration-300 cursor-pointer"
-              >
-                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-primary-50 dark:bg-primary-900/40 flex items-center justify-center flex-shrink-0">
-                  <CloudIcon className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600 dark:text-primary-300" />
-                </div>
-                <div className="text-left min-w-0">
-                  <p className="text-[10px] xs:text-xs font-semibold uppercase tracking-wide text-primary-600 dark:text-primary-300">
-                    SaaS
-                  </p>
-                  <p className="text-[10px] xs:text-xs sm:text-sm text-secondary-700 dark:text-secondary-200 line-clamp-2">
-                    {t('services.saasSubtitle')}
-                  </p>
-                </div>
-              </motion.button>
-
               <motion.button
                 type="button"
                 onClick={() => scrollToSubSection('fullControl')}
@@ -197,7 +175,7 @@ function ServicesHero() {
               </motion.button>
             </motion.div>
 
-            {/* CTA buttons */}
+            {/* CTA */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -207,15 +185,8 @@ function ServicesHero() {
             >
               <button
                 type="button"
-                onClick={() => scrollToSubSection('saas')}
-                className="w-full sm:w-auto btn-primary inline-flex items-center justify-center gap-2 px-5 py-3 text-sm sm:text-base"
-              >
-                {t('services.heroCtaSaas')}
-              </button>
-              <button
-                type="button"
                 onClick={() => scrollToSubSection('fullControl')}
-                className="w-full sm:w-auto btn-secondary inline-flex items-center justify-center gap-2 px-5 py-3 text-sm sm:text-base"
+                className="w-full sm:w-auto btn-primary inline-flex items-center justify-center gap-2 px-5 py-3 text-sm sm:text-base"
               >
                 {t('services.heroCtaFull')}
               </button>
@@ -248,47 +219,9 @@ function ServicesHero() {
                 </span>
               </div>
             </motion.div>
-
-            {/* Mini comparaison SaaS vs Full Control */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              className="hidden md:block"
-            >
-              <div className="rounded-2xl border border-secondary-200 dark:border-secondary-700 bg-white/80 dark:bg-secondary-900/70 backdrop-blur-sm p-4 sm:p-5">
-                <p className="text-xs sm:text-sm font-semibold text-secondary-700 dark:text-secondary-200 mb-3">
-                  {t('services.heroCompare.title')}
-                </p>
-                <div className="grid grid-cols-[1.2fr,1fr,1fr] gap-3 text-xs sm:text-sm text-secondary-700 dark:text-secondary-200">
-                  <div />
-                  <div className="font-semibold text-center text-primary-700 dark:text-primary-300">
-                    SaaS
-                  </div>
-                  <div className="font-semibold text-center text-accent-700 dark:text-accent-300">
-                    Full Control
-                  </div>
-
-                  {(['ownership', 'billing', 'hosting', 'ideal'] as const).map((rowKey) => (
-                    <div key={rowKey} className="contents">
-                      <div className="py-1 border-t border-secondary-100 dark:border-secondary-800 text-left">
-                        {t(`services.heroCompare.rows.${rowKey}.label`)}
-                      </div>
-                      <div className="py-1 border-t border-secondary-100 dark:border-secondary-800 text-[11px] leading-snug text-secondary-700 dark:text-secondary-300">
-                        {t(`services.heroCompare.rows.${rowKey}.saas`)}
-                      </div>
-                      <div className="py-1 border-t border-secondary-100 dark:border-secondary-800 text-[11px] leading-snug text-secondary-700 dark:text-secondary-300">
-                        {t(`services.heroCompare.rows.${rowKey}.full`)}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
           </motion.div>
 
-          {/* Illustration */}
+          {/* Illustration — Full Control Speed preview only */}
           <motion.div
             variants={itemVariants}
             className="relative max-w-md mx-auto lg:mx-0 order-1 lg:order-2"
@@ -327,80 +260,38 @@ function ServicesHero() {
               whileHover={{ y: -5 }}
               className="relative bg-white/80 dark:bg-secondary-900/80 backdrop-blur-sm rounded-3xl border border-secondary-100 dark:border-secondary-700 shadow-2xl p-4 sm:p-5 md:p-6 lg:p-8 transition-all duration-300"
             >
-              <div className="grid gap-3 sm:gap-4 md:gap-5">
-                {/* SaaS card preview */}
-                <motion.button
-                  type="button"
-                  variants={cardVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  transition={{ duration: 0.2 }}
-                  onClick={() => scrollToSubSection('saas')}
-                  className="w-full rounded-2xl border border-primary-100 dark:border-primary-700 bg-primary-50/70 dark:bg-primary-900/40 p-3 sm:p-4 md:p-5 shadow-md hover:shadow-lg transition-all duration-300 text-left cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
-                >
-                  <div className="flex items-start sm:items-center justify-between mb-2 sm:mb-3 gap-2">
-                    <div className="min-w-0 flex-1">
-                      <p className="text-[10px] xs:text-xs uppercase tracking-wide text-primary-600 dark:text-primary-300 font-semibold mb-1">
-                        SaaS
-                      </p>
-                      <p className="text-xs sm:text-sm md:text-base font-bold text-secondary-900 dark:text-white line-clamp-1">
-                        {t('services.saas.goodDeal.name')}
-                      </p>
-                    </div>
-                    <div className="text-right flex-shrink-0">
-                      <p className="text-[9px] xs:text-xs text-secondary-500 dark:text-secondary-400 line-through">
-                        200 000 f (HT)
-                      </p>
-                      <p className="text-lg sm:text-xl md:text-2xl font-extrabold text-primary-700 dark:text-primary-300">
-                        15 500 F
-                      </p>
-                      <p className="text-[9px] xs:text-[10px] sm:text-xs text-secondary-600 dark:text-secondary-300">
-                        {t('services.saas.goodDeal.priceUnit')}
-                      </p>
-                    </div>
+              <motion.button
+                type="button"
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.02, y: -2 }}
+                onClick={() => scrollToSubSection('fullControl')}
+                className="w-full rounded-2xl border border-accent-100 dark:border-accent-700 bg-accent-50/70 dark:bg-accent-900/40 p-3 sm:p-4 md:p-5 shadow-md hover:shadow-lg transition-all duration-300 text-left cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2"
+              >
+                <div className="flex items-start sm:items-center justify-between mb-2 sm:mb-3 gap-2">
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[10px] xs:text-xs uppercase tracking-wide text-accent-600 dark:text-accent-300 font-semibold mb-1">
+                      Full Control
+                    </p>
+                    <p className="text-xs sm:text-sm md:text-base font-bold text-secondary-900 dark:text-white line-clamp-1">
+                      {t('services.fullControl.speed.name')}
+                    </p>
                   </div>
-                  <p className="text-[10px] xs:text-xs sm:text-sm text-secondary-700 dark:text-secondary-200">
-                    {t('services.saas.goodDeal.shortDesc')}
-                  </p>
-                </motion.button>
-
-                {/* Full Control card preview */}
-                <motion.button
-                  type="button"
-                  variants={cardVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 }}
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  onClick={() => scrollToSubSection('fullControl')}
-                  className="w-full rounded-2xl border border-accent-100 dark:border-accent-700 bg-accent-50/70 dark:bg-accent-900/40 p-3 sm:p-4 md:p-5 shadow-md hover:shadow-lg transition-all duration-300 text-left cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2"
-                >
-                  <div className="flex items-start sm:items-center justify-between mb-2 sm:mb-3 gap-2">
-                    <div className="min-w-0 flex-1">
-                      <p className="text-[10px] xs:text-xs uppercase tracking-wide text-accent-600 dark:text-accent-300 font-semibold mb-1">
-                        Full Control
-                      </p>
-                      <p className="text-xs sm:text-sm md:text-base font-bold text-secondary-900 dark:text-white line-clamp-1">
-                        {t('services.fullControl.speed.name')}
-                      </p>
-                    </div>
-                    <div className="text-right flex-shrink-0">
-                      <p className="text-[9px] xs:text-xs text-secondary-500 dark:text-secondary-400">
-                        {t('services.fullControl.speed.deliveryTime')}
-                      </p>
-                      <p className="text-[9px] xs:text-[10px] sm:text-xs text-secondary-600 dark:text-secondary-300 font-semibold">
-                        {t('services.fullControl.speed.price')}
-                      </p>
-                    </div>
+                  <div className="text-right flex-shrink-0">
+                    <p className="text-[9px] xs:text-xs text-secondary-500 dark:text-secondary-400">
+                      {t('services.fullControl.speed.deliveryTime')}
+                    </p>
+                    <p className="text-[9px] xs:text-[10px] sm:text-xs text-secondary-600 dark:text-secondary-300 font-semibold">
+                      {t('services.fullControl.speed.price')}
+                    </p>
                   </div>
-                  <p className="text-[10px] xs:text-xs sm:text-sm text-secondary-700 dark:text-secondary-200">
-                    {t('services.fullControl.speed.description')}
-                  </p>
-                </motion.button>
-              </div>
+                </div>
+                <p className="text-[10px] xs:text-xs sm:text-sm text-secondary-700 dark:text-secondary-200">
+                  {t('services.fullControl.speed.description')}
+                </p>
+              </motion.button>
             </motion.div>
           </motion.div>
         </motion.div>
@@ -410,5 +301,3 @@ function ServicesHero() {
 }
 
 export default ServicesHero
-
-

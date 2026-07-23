@@ -4,15 +4,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 import {
   XMarkIcon,
   CheckCircleIcon,
-  CloudIcon,
   CodeBracketIcon,
   InformationCircleIcon,
   EnvelopeIcon,
 } from '@heroicons/react/24/outline'
 import { FaWhatsapp } from 'react-icons/fa6'
 
-type PlanType = 'saas' | 'fullControl'
-type SaaSPlan = 'goodDeal' | 'pro' | 'ultra'
 type FullControlPlan = 'normal' | 'speed' | 'ultraSpeed'
 
 type ServiceInfoDialogProps = {
@@ -23,8 +20,6 @@ type ServiceInfoDialogProps = {
 
 function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps) {
   const { t } = useTranslation()
-  const [selectedPlanType, setSelectedPlanType] = useState<PlanType | null>(null)
-  const [selectedSaaSPlan, setSelectedSaaSPlan] = useState<SaaSPlan | null>(null)
   const [selectedFullControlPlan, setSelectedFullControlPlan] = useState<FullControlPlan | null>(null)
   const [contactMethod, setContactMethod] = useState<'whatsapp' | 'email' | null>(null)
   const [formData, setFormData] = useState({
@@ -94,36 +89,28 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
     ? possibleFeaturesRaw 
     : baseFeatures // Utiliser les features de base si possibleFeatures n'existe pas
 
-  // Récupérer les forfaits éligibles avec valeurs par défaut
-  // Par défaut, tous les services sont éligibles à tous les forfaits sauf indication contraire
+  // Forfaits Full Control éligibles (tous par défaut)
   const eligiblePlansRaw = t(`${serviceBaseKey}.eligiblePlans`, { returnObjects: true, defaultValue: null })
-  let eligiblePlans: { saas: string[], fullControl: string[] }
-  
-  if (eligiblePlansRaw && typeof eligiblePlansRaw === 'object' && 'saas' in eligiblePlansRaw) {
-    eligiblePlans = eligiblePlansRaw as { saas: string[], fullControl: string[] }
-  } else {
-    // Valeur par défaut : tous les forfaits disponibles
-    eligiblePlans = {
-      saas: ['goodDeal', 'pro', 'ultra'],
-      fullControl: ['normal', 'speed', 'ultraSpeed'],
-    }
-  }
+  let eligibleFullControl: string[] = ['normal', 'speed', 'ultraSpeed']
 
-  const hasSaaS = eligiblePlans.saas.length > 0
-  const hasFullControl = eligiblePlans.fullControl.length > 0
+  if (
+    eligiblePlansRaw &&
+    typeof eligiblePlansRaw === 'object' &&
+    'fullControl' in eligiblePlansRaw &&
+    Array.isArray((eligiblePlansRaw as { fullControl: string[] }).fullControl)
+  ) {
+    eligibleFullControl = (eligiblePlansRaw as { fullControl: string[] }).fullControl
+  }
 
   // Formater le message pour WhatsApp
   const formatWhatsAppMessage = () => {
     const serviceName = title
-    const planTypeName = selectedPlanType === 'saas' ? 'SaaS' : 'Full Control'
-    const planName = selectedPlanType === 'saas' 
-      ? t(`services.saas.${selectedSaaSPlan}.name`)
-      : t(`services.fullControl.${selectedFullControlPlan}.name`)
+    const planName = t(`services.fullControl.${selectedFullControlPlan}.name`)
     
     let message = `Bonjour,\n\n`
     message += `Je souhaite demander un devis pour le service : *${serviceName}*\n\n`
     message += `*Informations sur le forfait :*\n`
-    message += `- Type : ${planTypeName}\n`
+    message += `- Type : Full Control\n`
     message += `- Forfait : ${planName}\n\n`
     message += `*Mes informations :*\n`
     message += `- Nom : ${formData.name}\n`
@@ -143,15 +130,12 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
   // Formater le message pour Email
   const formatEmailMessage = () => {
     const serviceName = title
-    const planTypeName = selectedPlanType === 'saas' ? 'SaaS' : 'Full Control'
-    const planName = selectedPlanType === 'saas' 
-      ? t(`services.saas.${selectedSaaSPlan}.name`)
-      : t(`services.fullControl.${selectedFullControlPlan}.name`)
+    const planName = t(`services.fullControl.${selectedFullControlPlan}.name`)
     
     let message = `Bonjour,\n\n`
     message += `Je souhaite demander un devis pour le service : ${serviceName}\n\n`
     message += `Informations sur le forfait :\n`
-    message += `- Type : ${planTypeName}\n`
+    message += `- Type : Full Control\n`
     message += `- Forfait : ${planName}\n\n`
     message += `Mes informations :\n`
     message += `- Nom : ${formData.name}\n`
@@ -376,112 +360,36 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  {/* Choix du type de forfait */}
+                  {/* Forfait Full Control */}
                   <div className="bg-secondary-50 dark:bg-secondary-800/50 rounded-xl p-4 mb-4">
                     <label className="block text-sm font-semibold text-secondary-900 dark:text-white mb-3">
-                      Type de forfait *
+                      Sélectionnez votre forfait Full Control *
                     </label>
-                    <div className="flex gap-3">
-                      {hasSaaS && (
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setSelectedPlanType('saas')
-                            setSelectedFullControlPlan(null)
-                          }}
-                          className={`flex-1 px-4 py-4 rounded-xl border-2 transition-all ${
-                            selectedPlanType === 'saas'
-                              ? 'border-primary-500 bg-primary-500 text-white shadow-lg shadow-primary-500/30'
-                              : 'border-secondary-300 dark:border-secondary-600 bg-white dark:bg-secondary-800 text-secondary-700 dark:text-secondary-300 hover:border-primary-300 dark:hover:border-primary-600'
-                          }`}
-                        >
-                          <div className="flex flex-col items-center justify-center gap-2">
-                            <CloudIcon className={`w-6 h-6 ${selectedPlanType === 'saas' ? 'text-white' : 'text-primary-600 dark:text-primary-400'}`} />
-                            <span className="font-semibold">SaaS</span>
-                            <span className="text-xs opacity-80">Abonnement mensuel</span>
-                          </div>
-                        </button>
-                      )}
-                      {hasFullControl && (
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setSelectedPlanType('fullControl')
-                            setSelectedSaaSPlan(null)
-                          }}
-                          className={`flex-1 px-4 py-4 rounded-xl border-2 transition-all ${
-                            selectedPlanType === 'fullControl'
-                              ? 'border-primary-500 bg-primary-500 text-white shadow-lg shadow-primary-500/30'
-                              : 'border-secondary-300 dark:border-secondary-600 bg-white dark:bg-secondary-800 text-secondary-700 dark:text-secondary-300 hover:border-primary-300 dark:hover:border-primary-600'
-                          }`}
-                        >
-                          <div className="flex flex-col items-center justify-center gap-2">
-                            <CodeBracketIcon className={`w-6 h-6 ${selectedPlanType === 'fullControl' ? 'text-white' : 'text-primary-600 dark:text-primary-400'}`} />
-                            <span className="font-semibold">Full Control</span>
-                            <span className="text-xs opacity-80">Propriété complète</span>
-                          </div>
-                        </button>
-                      )}
+                    <div className="grid grid-cols-3 gap-3">
+                      {eligibleFullControl.map((plan) => {
+                        const planKey = plan === 'normal' ? 'normal' : plan === 'speed' ? 'speed' : 'ultraSpeed'
+                        const isSelected = selectedFullControlPlan === planKey
+                        return (
+                          <button
+                            key={plan}
+                            type="button"
+                            onClick={() => setSelectedFullControlPlan(planKey as FullControlPlan)}
+                            className={`px-4 py-3 rounded-xl border-2 text-sm font-medium transition-all ${
+                              isSelected
+                                ? 'border-primary-500 bg-primary-500 text-white shadow-lg shadow-primary-500/30'
+                                : 'border-secondary-300 dark:border-secondary-600 bg-white dark:bg-secondary-800 text-secondary-700 dark:text-secondary-300 hover:border-primary-300 dark:hover:border-primary-600'
+                            }`}
+                          >
+                            {t(`services.fullControl.${planKey}.name`)}
+                          </button>
+                        )
+                      })}
                     </div>
+                    <p className="mt-3 text-xs text-secondary-500 dark:text-secondary-400 flex items-center gap-1.5">
+                      <CodeBracketIcon className="w-4 h-4 text-primary-600 dark:text-primary-400" />
+                      Propriété complète du code et du projet
+                    </p>
                   </div>
-
-                  {/* Choix du forfait SaaS */}
-                  {selectedPlanType === 'saas' && hasSaaS && (
-                    <div className="bg-secondary-50 dark:bg-secondary-800/50 rounded-xl p-4 mb-4">
-                      <label className="block text-sm font-semibold text-secondary-900 dark:text-white mb-3">
-                        Sélectionnez votre forfait SaaS *
-                      </label>
-                      <div className="grid grid-cols-3 gap-3">
-                        {eligiblePlans.saas.map((plan) => {
-                          const planKey = plan === 'goodDeal' ? 'goodDeal' : plan === 'pro' ? 'pro' : 'ultra'
-                          const isSelected = selectedSaaSPlan === planKey
-                          return (
-                            <button
-                              key={plan}
-                              type="button"
-                              onClick={() => setSelectedSaaSPlan(planKey as SaaSPlan)}
-                              className={`px-4 py-3 rounded-xl border-2 text-sm font-medium transition-all ${
-                                isSelected
-                                  ? 'border-primary-500 bg-primary-500 text-white shadow-lg shadow-primary-500/30'
-                                  : 'border-secondary-300 dark:border-secondary-600 bg-white dark:bg-secondary-800 text-secondary-700 dark:text-secondary-300 hover:border-primary-300 dark:hover:border-primary-600'
-                              }`}
-                            >
-                              {t(`services.saas.${planKey}.name`)}
-                            </button>
-                          )
-                        })}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Choix du forfait Full Control */}
-                  {selectedPlanType === 'fullControl' && hasFullControl && (
-                    <div className="bg-secondary-50 dark:bg-secondary-800/50 rounded-xl p-4 mb-4">
-                      <label className="block text-sm font-semibold text-secondary-900 dark:text-white mb-3">
-                        Sélectionnez votre forfait Full Control *
-                      </label>
-                      <div className="grid grid-cols-3 gap-3">
-                        {eligiblePlans.fullControl.map((plan) => {
-                          const planKey = plan === 'normal' ? 'normal' : plan === 'speed' ? 'speed' : 'ultraSpeed'
-                          const isSelected = selectedFullControlPlan === planKey
-                          return (
-                            <button
-                              key={plan}
-                              type="button"
-                              onClick={() => setSelectedFullControlPlan(planKey as FullControlPlan)}
-                              className={`px-4 py-3 rounded-xl border-2 text-sm font-medium transition-all ${
-                                isSelected
-                                  ? 'border-primary-500 bg-primary-500 text-white shadow-lg shadow-primary-500/30'
-                                  : 'border-secondary-300 dark:border-secondary-600 bg-white dark:bg-secondary-800 text-secondary-700 dark:text-secondary-300 hover:border-primary-300 dark:hover:border-primary-600'
-                              }`}
-                            >
-                              {t(`services.fullControl.${planKey}.name`)}
-                            </button>
-                          )
-                        })}
-                      </div>
-                    </div>
-                  )}
 
                   {/* Choix de la méthode de contact */}
                   <div className="bg-gradient-to-br from-primary-50 to-accent-50 dark:from-primary-900/20 dark:to-accent-900/20 rounded-xl p-4 sm:p-6 border-2 border-primary-200 dark:border-primary-800 mb-4">
@@ -610,9 +518,7 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
                       type="submit"
                       disabled={
                         !contactMethod || 
-                        !selectedPlanType || 
-                        (selectedPlanType === 'saas' && !selectedSaaSPlan) || 
-                        (selectedPlanType === 'fullControl' && !selectedFullControlPlan) ||
+                        !selectedFullControlPlan ||
                         !formData.name ||
                         !formData.email ||
                         !formData.phone

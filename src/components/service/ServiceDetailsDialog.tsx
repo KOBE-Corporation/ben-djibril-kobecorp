@@ -3,10 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import {
   XMarkIcon,
-  CloudIcon,
   ShieldCheckIcon,
   InformationCircleIcon,
-  CurrencyDollarIcon,
   CheckCircleIcon,
   UserGroupIcon,
   KeyIcon,
@@ -18,16 +16,10 @@ import {
   ServerIcon,
   AcademicCapIcon,
   ExclamationTriangleIcon,
-  ChatBubbleLeftRightIcon,
-  CalendarDaysIcon,
-  ClockIcon,
 } from '@heroicons/react/24/outline'
 import { FaWhatsapp } from 'react-icons/fa6'
 
 export type PlanId =
-  | 'saas-goodDeal'
-  | 'saas-pro'
-  | 'saas-ultra'
   | 'full-ultraSpeed'
   | 'full-speed'
   | 'full-normal'
@@ -45,39 +37,22 @@ function ServiceDetailsDialog({ open, planId, onClose }: ServiceDetailsDialogPro
   if (!open || !planId) return null
 
   let baseKey = ''
-  let category: 'saas' | 'fullControl' = 'saas'
 
   switch (planId) {
-    case 'saas-goodDeal':
-      baseKey = 'services.saas.goodDeal'
-      category = 'saas'
-      break
-    case 'saas-pro':
-      baseKey = 'services.saas.pro'
-      category = 'saas'
-      break
-    case 'saas-ultra':
-      baseKey = 'services.saas.ultra'
-      category = 'saas'
-      break
     case 'full-ultraSpeed':
       baseKey = 'services.fullControl.ultraSpeed'
-      category = 'fullControl'
       break
     case 'full-speed':
       baseKey = 'services.fullControl.speed'
-      category = 'fullControl'
       break
     case 'full-normal':
       baseKey = 'services.fullControl.normal'
-      category = 'fullControl'
       break
   }
 
   const name = t(`${baseKey}.name`)
   const price = t(`${baseKey}.price`)
-  const priceUnit = category === 'saas' ? t(`${baseKey}.priceUnit`) : undefined
-  const deliveryTime = category === 'fullControl' ? t(`${baseKey}.deliveryTime`) : undefined
+  const deliveryTime = t(`${baseKey}.deliveryTime`)
   const description = t(`${baseKey}.description`)
   const buildFeatureList = (keyBase: string, max = 15) => {
     const list: string[] = []
@@ -92,24 +67,11 @@ function ServiceDetailsDialog({ open, planId, onClose }: ServiceDetailsDialogPro
   }
 
   const features = buildFeatureList(baseKey)
-
-  const detailsBaseKey =
-    category === 'saas' ? 'services.details.saas' : 'services.details.fullControl'
+  const detailsBaseKey = 'services.details.fullControl'
 
   const handleChooseService = () => {
     onClose()
-    if (category === 'fullControl') {
-      navigate('/contact')
-    } else {
-      navigate('/services')
-      // Scroll to services section after a short delay
-      setTimeout(() => {
-        const servicesSection = document.querySelector('[data-section="services"]')
-        if (servicesSection) {
-          servicesSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        }
-      }, 100)
-    }
+    navigate('/contact')
   }
 
   return (
@@ -134,17 +96,11 @@ function ServiceDetailsDialog({ open, planId, onClose }: ServiceDetailsDialogPro
             <div className="flex flex-col xs:flex-row items-start xs:items-center justify-between gap-2 xs:gap-3 sm:gap-4">
               <div className="flex items-center gap-2 xs:gap-3 sm:gap-4 flex-1 min-w-0 w-full xs:w-auto">
                 <div className="flex w-9 h-9 xs:w-10 xs:h-10 sm:w-12 sm:h-12 rounded-lg xs:rounded-xl sm:rounded-2xl bg-primary-600/90 text-white items-center justify-center shadow-lg flex-shrink-0">
-                  {category === 'saas' ? (
-                    <CloudIcon className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" />
-                  ) : (
-                    <ShieldCheckIcon className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" />
-                  )}
+                  <ShieldCheckIcon className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-[0.6rem] xs:text-[0.65rem] sm:text-xs uppercase tracking-[0.1em] xs:tracking-[0.15em] text-primary-600 dark:text-primary-400 mb-0.5 sm:mb-1">
-                    {category === 'saas'
-                      ? t('services.details.saas.label')
-                      : t('services.details.fullControl.label')}
+                    {t('services.details.fullControl.label')}
                   </p>
                   <h2 className="text-sm xs:text-base sm:text-xl md:text-2xl font-bold text-secondary-900 dark:text-white break-words leading-tight">
                     {name}
@@ -155,18 +111,11 @@ function ServiceDetailsDialog({ open, planId, onClose }: ServiceDetailsDialogPro
               <div className="flex items-center gap-1.5 xs:gap-2 sm:gap-3 flex-shrink-0 w-full xs:w-auto justify-end xs:justify-start">
                 <div className="inline-flex flex-col items-end px-2.5 xs:px-3 sm:px-4 py-1 xs:py-1.5 sm:py-2 rounded-lg xs:rounded-xl bg-primary-600 text-white shadow-lg min-w-[5.5rem] xs:min-w-[6rem] sm:min-w-[8rem]">
                   <span className="hidden sm:inline text-[0.65rem] sm:text-xs uppercase tracking-wide opacity-80 mb-0.5">
-                    {category === 'saas'
-                      ? t('services.details.saas.priceLabel')
-                      : t('services.details.fullControl.priceLabel')}
+                    {t('services.details.fullControl.priceLabel')}
                   </span>
                   <div className="flex flex-col items-end gap-0.5 xs:gap-1">
                     <div className="flex items-baseline gap-0.5 xs:gap-1 leading-tight">
                       <span className="text-sm xs:text-base sm:text-lg font-semibold">{price}</span>
-                      {priceUnit && (
-                        <span className="text-[0.65rem] xs:text-xs sm:text-sm opacity-90 font-normal">
-                          {priceUnit}
-                        </span>
-                      )}
                     </div>
                     {deliveryTime && (
                       <span className="text-[0.6rem] xs:text-[0.65rem] sm:text-xs opacity-80">
@@ -205,44 +154,12 @@ function ServiceDetailsDialog({ open, planId, onClose }: ServiceDetailsDialogPro
                   </p>
                 </div>
               </div>
-              {category === 'saas' && (
-                <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-primary-200/60 dark:border-primary-700/40 flex items-start gap-3">
-                  <CurrencyDollarIcon className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" />
-                  <p className="text-xs sm:text-sm text-secondary-700 dark:text-secondary-200 leading-relaxed">
-                    {t('services.details.saas.billingIntro')}
-                  </p>
-                </div>
-              )}
+
             </div>
 
-            {category === 'saas' && (
-              <div className="border border-emerald-200 dark:border-emerald-800 rounded-xl p-4 sm:p-5 md:p-6 bg-gradient-to-br from-emerald-50/80 to-emerald-100/40 dark:from-emerald-900/20 dark:to-emerald-800/10">
-                <div className="flex items-start gap-3 mb-3 sm:mb-4">
-                  <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-emerald-600/10 dark:bg-emerald-400/20 flex items-center justify-center">
-                    <CurrencyDollarIcon className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600 dark:text-emerald-400" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-sm sm:text-base md:text-lg font-bold text-secondary-900 dark:text-white mb-3">
-                      {t('services.details.saas.billingTitle')}
-                    </h3>
-                    <ul className="space-y-2.5 sm:space-y-3">
-                      <li className="flex items-start gap-3">
-                        <CheckCircleIcon className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" />
-                        <span className="text-xs sm:text-sm text-secondary-700 dark:text-secondary-200 leading-relaxed">{t(`${baseKey}.annualPrice`)}</span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <CheckCircleIcon className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" />
-                        <span className="text-xs sm:text-sm text-secondary-700 dark:text-secondary-200 leading-relaxed">{t(`${baseKey}.annualSaving`)}</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            )}
 
-            {category === 'fullControl' && (
-              <>
-                <div className="border border-primary-200 dark:border-primary-800 rounded-xl p-4 sm:p-5 md:p-6 bg-gradient-to-br from-primary-50/80 to-primary-100/40 dark:from-primary-900/20 dark:to-primary-800/10">
+
+            <div className="border border-primary-200 dark:border-primary-800 rounded-xl p-4 sm:p-5 md:p-6 bg-gradient-to-br from-primary-50/80 to-primary-100/40 dark:from-primary-900/20 dark:to-primary-800/10">
                   <div className="flex items-start gap-3 mb-3 sm:mb-4">
                     <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-primary-600/10 dark:bg-primary-400/20 flex items-center justify-center">
                       <CheckCircleIcon className="w-5 h-5 sm:w-6 sm:h-6 text-primary-600 dark:text-primary-400" />
@@ -540,8 +457,6 @@ function ServiceDetailsDialog({ open, planId, onClose }: ServiceDetailsDialogPro
                     </div>
                   </div>
                 </div>
-              </>
-            )}
 
             {/* Features */}
             <div className="border border-secondary-200 dark:border-secondary-700 rounded-xl p-4 sm:p-5 md:p-6 bg-secondary-50/40 dark:bg-secondary-800/20">
@@ -579,7 +494,7 @@ function ServiceDetailsDialog({ open, planId, onClose }: ServiceDetailsDialogPro
                                   {part}
                                 </span>
                                 <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-secondary-900 dark:bg-secondary-800 text-white text-xs rounded-lg shadow-xl opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity z-50 whitespace-normal w-64">
-                                  {t('services.saasComparison.mvpTooltip')}
+                                  {t('services.featureTooltips.mvp')}
                                 </span>
                               </span>
                             )
@@ -591,7 +506,7 @@ function ServiceDetailsDialog({ open, planId, onClose }: ServiceDetailsDialogPro
                                   {part}
                                 </span>
                                 <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-secondary-900 dark:bg-secondary-800 text-white text-xs rounded-lg shadow-xl opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity z-50 whitespace-normal w-64">
-                                  {t('services.saasComparison.mvpaTooltip')}
+                                  {t('services.featureTooltips.mvpa')}
                                 </span>
                               </span>
                             )
@@ -603,7 +518,7 @@ function ServiceDetailsDialog({ open, planId, onClose }: ServiceDetailsDialogPro
                                   {part}
                                 </span>
                                 <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-secondary-900 dark:bg-secondary-800 text-white text-xs rounded-lg shadow-xl opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity z-50 whitespace-normal w-64">
-                                  {t('services.saasComparison.crudTooltip')}
+                                  {t('services.featureTooltips.crud')}
                                 </span>
                               </span>
                             )
@@ -616,154 +531,6 @@ function ServiceDetailsDialog({ open, planId, onClose }: ServiceDetailsDialogPro
                 })}
               </ul>
             </div>
-
-            {/* Support & SLA */}
-            {category === 'saas' && (
-              <div className="border border-primary-200 dark:border-primary-800 rounded-xl p-4 sm:p-5 md:p-6 bg-gradient-to-br from-primary-50/80 to-primary-100/40 dark:from-primary-900/30 dark:to-primary-800/20">
-                <div className="flex items-start gap-3 mb-3 sm:mb-4">
-                  <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-primary-600/10 dark:bg-primary-400/20 flex items-center justify-center">
-                    <ClockIcon className="w-5 h-5 sm:w-6 sm:h-6 text-primary-600 dark:text-primary-400" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-sm sm:text-base md:text-lg font-bold text-secondary-900 dark:text-white mb-2">
-                      {t(`${baseKey}.supportLevel`)}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-secondary-700 dark:text-secondary-200 leading-relaxed mb-3">
-                      {t(`${baseKey}.supportSLA`)}
-                    </p>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 rounded-full bg-primary-500 dark:bg-primary-400 animate-pulse" />
-                      <span className="text-xs text-primary-700 dark:text-primary-300 font-medium">
-                        Disponible
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Next Evolutions Timeline */}
-            {category === 'saas' && (
-              <div className="border border-accent-200 dark:border-accent-800 rounded-xl p-4 sm:p-5 md:p-6 bg-gradient-to-br from-accent-50/80 to-accent-100/40 dark:from-accent-900/20 dark:to-accent-800/10">
-                <div className="flex items-start gap-3 mb-4">
-                  <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-accent-600/10 dark:bg-accent-400/20 flex items-center justify-center">
-                    <CalendarDaysIcon className="w-5 h-5 sm:w-6 sm:h-6 text-accent-600 dark:text-accent-400" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-sm sm:text-base md:text-lg font-bold text-secondary-900 dark:text-white mb-3">
-                      {t('services.saasComparison.nextEvolutions')}
-                    </h3>
-                    <div className="space-y-3">
-                      {planId === 'saas-goodDeal' && (
-                        <>
-                          <div className="flex items-start gap-3 p-3 bg-white/60 dark:bg-secondary-900/40 rounded-lg border border-accent-200/50 dark:border-accent-700/50">
-                            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-accent-100 dark:bg-accent-900/40 flex items-center justify-center text-xs font-semibold text-accent-700 dark:text-accent-300">
-                              Q1
-                            </div>
-                            <div>
-                              <p className="text-xs sm:text-sm font-semibold text-secondary-900 dark:text-white mb-1">
-                                Prochaine évolution incluse
-                              </p>
-                              <p className="text-xs text-secondary-600 dark:text-secondary-400">
-                                {t('services.saas.goodDeal.cadence')} - 1 nouvelle fonctionnalité
-                              </p>
-                            </div>
-                          </div>
-                          <div className="mt-3 p-3 bg-amber-50/60 dark:bg-amber-900/20 rounded-lg border border-amber-200/50 dark:border-amber-700/50">
-                            <p className="text-xs text-secondary-700 dark:text-secondary-300 leading-relaxed">
-                              {t('services.saasComparison.evolutionPeriodGood')}
-                            </p>
-                          </div>
-                        </>
-                      )}
-                      {planId === 'saas-pro' && (
-                        <>
-                          <div className="flex items-start gap-3 p-3 bg-white/60 dark:bg-secondary-900/40 rounded-lg border border-accent-200/50 dark:border-accent-700/50">
-                            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-accent-100 dark:bg-accent-900/40 flex items-center justify-center text-xs font-semibold text-accent-700 dark:text-accent-300">
-                              S1
-                            </div>
-                            <div>
-                              <p className="text-xs sm:text-sm font-semibold text-secondary-900 dark:text-white mb-1">
-                                Prochaine évolution incluse
-                              </p>
-                              <p className="text-xs text-secondary-600 dark:text-secondary-400">
-                                {t('services.saas.pro.cadence')} - 1 nouvelle fonctionnalité
-                              </p>
-                            </div>
-                          </div>
-                          <div className="mt-3 p-3 bg-amber-50/60 dark:bg-amber-900/20 rounded-lg border border-amber-200/50 dark:border-amber-700/50">
-                            <p className="text-xs text-secondary-700 dark:text-secondary-300 leading-relaxed">
-                              {t('services.saasComparison.evolutionPeriodPro')}
-                            </p>
-                          </div>
-                        </>
-                      )}
-                      {planId === 'saas-ultra' && (
-                        <>
-                          <div className="flex items-start gap-3 p-3 bg-white/60 dark:bg-secondary-900/40 rounded-lg border border-accent-200/50 dark:border-accent-700/50">
-                            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-accent-100 dark:bg-accent-900/40 flex items-center justify-center text-xs font-semibold text-accent-700 dark:text-accent-300">
-                              Q1
-                            </div>
-                            <div>
-                              <p className="text-xs sm:text-sm font-semibold text-secondary-900 dark:text-white mb-1">
-                                Prochaine évolution incluse
-                              </p>
-                              <p className="text-xs text-secondary-600 dark:text-secondary-400">
-                                {t('services.saas.ultra.cadence')} - 1 nouvelle fonctionnalité
-                              </p>
-                            </div>
-                          </div>
-                          <div className="mt-3 p-3 bg-amber-50/60 dark:bg-amber-900/20 rounded-lg border border-amber-200/50 dark:border-amber-700/50">
-                            <p className="text-xs text-secondary-700 dark:text-secondary-300 leading-relaxed">
-                              {t('services.saasComparison.evolutionPeriodUltra')}
-                            </p>
-                          </div>
-                        </>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Talk to Expert CTA */}
-            {category === 'saas' && (
-              <div className="border border-emerald-200 dark:border-emerald-800 rounded-xl p-4 sm:p-5 md:p-6 bg-gradient-to-br from-emerald-50/80 to-emerald-100/40 dark:from-emerald-900/20 dark:to-emerald-800/10">
-                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                  <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-emerald-600/10 dark:bg-emerald-400/20 flex items-center justify-center">
-                      <ChatBubbleLeftRightIcon className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600 dark:text-emerald-400" />
-                    </div>
-                    <div>
-                      <h3 className="text-sm sm:text-base md:text-lg font-bold text-secondary-900 dark:text-white mb-1">
-                        {t('services.saasComparison.talkToExpert')}
-                      </h3>
-                      <p className="text-xs sm:text-sm text-secondary-700 dark:text-secondary-200">
-                        Des questions ? Discutons de votre projet
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex gap-2 w-full sm:w-auto">
-                    <a
-                      href="https://wa.me/237655938501"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-lg transition-colors"
-                    >
-                      <FaWhatsapp className="w-5 h-5" />
-                      WhatsApp
-                    </a>
-                    <a
-                      href="mailto:bendjiril789@gmail.com"
-                      className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-secondary-600 hover:bg-secondary-700 text-white text-sm font-semibold rounded-lg transition-colors"
-                    >
-                      <InformationCircleIcon className="w-5 h-5" />
-                      Email
-                    </a>
-                  </div>
-                </div>
-              </div>
-            )}
 
             {/* Audience & ownership */}
             <div className="grid md:grid-cols-2 gap-4 sm:gap-5">
@@ -878,9 +645,7 @@ function ServiceDetailsDialog({ open, planId, onClose }: ServiceDetailsDialogPro
                 onClick={handleChooseService}
                 className="px-3 xs:px-4 sm:px-5 py-2 xs:py-2.5 sm:py-3 rounded-lg bg-primary-600 text-white text-[0.7rem] xs:text-xs sm:text-sm font-semibold hover:bg-primary-500 shadow-md hover:shadow-lg transition-all duration-200 whitespace-nowrap"
               >
-                {category === 'fullControl'
-                  ? t('services.details.requestQuoteCta')
-                  : t('services.details.chooseServiceCta')}
+                {t('services.details.requestQuoteCta')}
               </button>
             </div>
           </div>

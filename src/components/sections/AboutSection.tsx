@@ -267,11 +267,11 @@ function AboutSection() {
                 </div>
                 <div className="text-center p-2.5 sm:p-3 bg-white/60 dark:bg-secondary-800/60 rounded-lg border border-primary-100 dark:border-primary-800/50">
                   <p className="text-[10px] sm:text-xs font-semibold text-secondary-600 dark:text-secondary-400 mb-0.5 sm:mb-1">Frontend</p>
-                  <p className="text-xs sm:text-sm font-bold text-secondary-900 dark:text-white">React</p>
+                  <p className="text-xs sm:text-sm font-bold text-secondary-900 dark:text-white">React/Next</p>
                 </div>
                 <div className="text-center p-2.5 sm:p-3 bg-white/60 dark:bg-secondary-800/60 rounded-lg border border-primary-100 dark:border-primary-800/50">
                   <p className="text-[10px] sm:text-xs font-semibold text-secondary-600 dark:text-secondary-400 mb-0.5 sm:mb-1">DevOps</p>
-                  <p className="text-xs sm:text-sm font-bold text-secondary-900 dark:text-white">Docker</p>
+                  <p className="text-xs sm:text-sm font-bold text-secondary-900 dark:text-white">Docker/k8s</p>
                 </div>
               </div>
             </div>
