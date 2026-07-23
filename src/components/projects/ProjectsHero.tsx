@@ -8,11 +8,13 @@ import {
 } from '@heroicons/react/24/solid'
 import { Link } from 'react-router-dom'
 import { ArrowRightIcon } from '@heroicons/react/24/solid'
+import { useLocale } from '../../hooks/useLocale'
 
 const EASE_IN_OUT = [0.4, 0, 0.2, 1] as const
 
 function ProjectsHero() {
   const { t } = useTranslation()
+  const { lp } = useLocale()
 
   // Memoize variants to prevent re-creation on each render
   const containerVariants = useMemo(() => ({
@@ -171,7 +173,7 @@ function ProjectsHero() {
             className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-10 sm:mb-12"
           >
             <Link
-              to="/contact"
+              to={lp('/contact')}
               className="btn-primary text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-3.5 flex items-center gap-2 group w-full sm:w-auto justify-center shadow-lg hover:shadow-xl transition-all duration-200"
               aria-label={t('projects.ctaPrimary')}
             >

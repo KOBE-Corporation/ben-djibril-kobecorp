@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useNavigate } from 'react-router-dom'
 import {
   XMarkIcon,
   ShieldCheckIcon,
@@ -18,6 +17,7 @@ import {
   ExclamationTriangleIcon,
 } from '@heroicons/react/24/outline'
 import { FaWhatsapp } from 'react-icons/fa6'
+import { useLocale } from '../../hooks/useLocale'
 
 export type PlanId =
   | 'full-ultraSpeed'
@@ -32,7 +32,7 @@ type ServiceDetailsDialogProps = {
 
 function ServiceDetailsDialog({ open, planId, onClose }: ServiceDetailsDialogProps) {
   const { t } = useTranslation()
-  const navigate = useNavigate()
+  const { navigateLocalized } = useLocale()
 
   if (!open || !planId) return null
 
@@ -71,7 +71,7 @@ function ServiceDetailsDialog({ open, planId, onClose }: ServiceDetailsDialogPro
 
   const handleChooseService = () => {
     onClose()
-    navigate('/contact')
+    navigateLocalized('/contact')
   }
 
   return (

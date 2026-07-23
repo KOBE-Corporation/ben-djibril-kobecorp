@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom'
 import { CodeBracketIcon, RocketLaunchIcon, AcademicCapIcon, ArrowDownTrayIcon, ArrowRightIcon, GlobeAltIcon } from '@heroicons/react/24/solid'
 import profileImage from '../../assets/ben-djibirl/ben-djibril-official-no-glass-nbg.png'
 import { getCvDownload } from '../../utils/cv'
+import { useLocale } from '../../hooks/useLocale'
 
 function AboutSection() {
   const { t, i18n } = useTranslation()
+  const { lp } = useLocale()
   const cv = getCvDownload(i18n.language)
 
   return (
@@ -171,7 +173,7 @@ function AboutSection() {
                   <span>{t('home.about.downloadCV') || 'Télécharger mon CV'}</span>
                 </a>
                 <Link
-                  to="/about"
+                  to={lp('/about')}
                   className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl border-2 border-primary-600 dark:border-primary-500 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 font-semibold transition-all duration-300"
                 >
                   <span>{t('home.about.viewFullProfile') || 'Voir mon profil complet'}</span>
@@ -250,7 +252,7 @@ function AboutSection() {
                   </p>
                 </div>
                 <Link
-                  to="/about"
+                  to={lp('/about')}
                   className="inline-flex items-center justify-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg sm:rounded-xl bg-primary-600 hover:bg-primary-500 text-white text-xs sm:text-sm font-semibold shadow-md hover:shadow-lg transition-all whitespace-nowrap w-full sm:w-auto flex-shrink-0"
                 >
                   <span>{t('home.about.viewFullStack') || 'Voir le stack complet'}</span>

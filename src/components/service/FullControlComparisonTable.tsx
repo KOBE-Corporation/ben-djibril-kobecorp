@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useNavigate } from 'react-router-dom'
 import {
   CheckIcon,
   XMarkIcon,
@@ -16,6 +15,7 @@ import {
   ServerIcon,
   CpuChipIcon,
 } from '@heroicons/react/24/outline'
+import { useLocale } from '../../hooks/useLocale'
 
 type FullControlComparisonTableProps = {
   open: boolean
@@ -23,10 +23,10 @@ type FullControlComparisonTableProps = {
 
 function FullControlComparisonTable({ open }: FullControlComparisonTableProps) {
   const { t } = useTranslation()
-  const navigate = useNavigate()
+  const { navigateLocalized } = useLocale()
 
   const handleChooseService = () => {
-    navigate('/contact')
+    navigateLocalized('/contact')
   }
 
   const plans = [

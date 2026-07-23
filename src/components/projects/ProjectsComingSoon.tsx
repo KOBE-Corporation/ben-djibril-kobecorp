@@ -6,9 +6,11 @@ import {
   ClockIcon,
   SparklesIcon
 } from '@heroicons/react/24/solid'
+import { useLocale } from '../../hooks/useLocale'
 
 function ProjectsComingSoon() {
   const { t } = useTranslation()
+  const { lp } = useLocale()
 
   return (
     <section 
@@ -104,7 +106,7 @@ function ProjectsComingSoon() {
               whileTap={{ scale: 0.95 }}
             >
               <Link
-                to="/contact"
+                to={lp('/contact')}
                 className="inline-block btn-primary px-8 py-3 text-base sm:text-lg"
               >
                 {t('projects.comingSoon.contactButton', { defaultValue: 'Me contacter' })}

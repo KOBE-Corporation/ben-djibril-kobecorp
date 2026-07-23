@@ -6,9 +6,11 @@ import {
   ArrowRightIcon,
   StarIcon
 } from '@heroicons/react/24/solid'
+import { useLocale } from '../../hooks/useLocale'
 
 function HomeCTA() {
   const { t } = useTranslation()
+  const { lp } = useLocale()
   return (
     <section className="py-16 md:py-24 bg-gradient-to-br from-primary-600 via-primary-500 to-accent-500 relative overflow-hidden">
       {/* Background decoration */}
@@ -114,7 +116,7 @@ function HomeCTA() {
             className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
           >
             <Link
-              to="/contact"
+              to={lp('/contact')}
               className="group relative inline-flex items-center justify-center gap-3 bg-white text-primary-600 px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:bg-secondary-50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 w-full sm:w-auto"
             >
               <motion.div
@@ -128,7 +130,7 @@ function HomeCTA() {
             </Link>
 
             <Link
-              to="/projects"
+              to={lp('/projects')}
               className="group relative inline-flex items-center justify-center gap-3 bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:bg-white/20 hover:border-white/50 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 w-full sm:w-auto"
             >
               <span>{t('home.cta.projectsBtn') || 'Voir mes réalisations'}</span>

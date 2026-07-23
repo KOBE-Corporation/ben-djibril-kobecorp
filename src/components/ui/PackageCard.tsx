@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { CheckIcon, InformationCircleIcon } from '@heroicons/react/24/solid'
 import { motion } from 'framer-motion'
+import { useLocale } from '../../hooks/useLocale'
 
 type PackageCardProps = {
   name: string
@@ -47,6 +48,7 @@ function PackageCard({
   compareLabel,
 }: PackageCardProps) {
   const { t } = useTranslation()
+  const { lp } = useLocale()
   
   return (
     <motion.div
@@ -234,7 +236,7 @@ function PackageCard({
             {cta}
           </button>
         ) : (
-          <Link to={ctaLink} className="btn-primary w-full text-center block">
+          <Link to={lp(ctaLink)} className="btn-primary w-full text-center block">
             {cta}
           </Link>
         )}

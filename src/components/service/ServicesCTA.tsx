@@ -1,9 +1,11 @@
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { useLocale } from '../../hooks/useLocale'
 
 function ServicesCTA() {
   const { t } = useTranslation()
+  const { lp } = useLocale()
 
   return (
     <section className="py-16 md:py-20 bg-gradient-to-br from-primary-600 via-primary-500 to-accent-500">
@@ -22,7 +24,7 @@ function ServicesCTA() {
             {t('services.ctaSubtitle')}
           </p>
           <Link
-            to="/contact"
+            to={lp('/contact')}
             className="inline-block bg-white text-primary-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-secondary-50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105"
           >
             {t('services.ctaButton')}
@@ -34,5 +36,3 @@ function ServicesCTA() {
 }
 
 export default ServicesCTA
-
-

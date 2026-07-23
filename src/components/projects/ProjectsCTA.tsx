@@ -7,9 +7,11 @@ import {
   ArrowRightIcon,
   StarIcon
 } from '@heroicons/react/24/solid'
+import { useLocale } from '../../hooks/useLocale'
 
 function ProjectsCTA() {
   const { t } = useTranslation()
+  const { lp } = useLocale()
 
   // Memoize animation variants
   const floatingAnimation1 = useMemo(() => ({
@@ -121,7 +123,7 @@ function ProjectsCTA() {
             whileTap={{ scale: 0.95 }}
           >
             <Link
-              to="/contact"
+              to={lp('/contact')}
               className="inline-flex items-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 bg-white text-primary-600 rounded-xl font-semibold text-base sm:text-lg shadow-xl hover:shadow-2xl transition-all duration-200 group"
               aria-label={t('projects.cta.button')}
             >

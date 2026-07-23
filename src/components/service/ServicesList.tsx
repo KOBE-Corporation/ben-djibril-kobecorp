@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 import { useState, useMemo, lazy, Suspense, useEffect } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
+import { useLocale } from '../../hooks/useLocale'
 
 // Lazy load heavy component
 const ServiceInfoDialog = lazy(() => import('./ServiceInfoDialog'))
@@ -55,7 +56,7 @@ type Service = {
 
 function ServicesList() {
   const { t } = useTranslation()
-  const navigate = useNavigate()
+  const { navigateLocalized } = useLocale()
   const [searchParams, setSearchParams] = useSearchParams()
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<'all' | ServiceCategory>('all')
@@ -789,7 +790,7 @@ function ServicesList() {
                     <span className="inline-block group-hover:translate-x-1 transition-transform">→</span>
                   </button>
                   <button
-                    onClick={() => navigate(`/contact?service=${encodeURIComponent(service.id)}`)}
+                    onClick={() => navigateLocalized(`/contact?service=${encodeURIComponent(service.id)}`)}
                     className="inline-flex items-center justify-center gap-2 text-secondary-700 dark:text-secondary-200 hover:text-primary-600 dark:hover:text-primary-400 font-medium text-sm"
                   >
                     {t('services.actions.contact')}

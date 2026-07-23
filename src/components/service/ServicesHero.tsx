@@ -1,14 +1,14 @@
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 import { CodeBracketIcon } from '@heroicons/react/24/solid'
-import { useNavigate } from 'react-router-dom'
+import { useLocale } from '../../hooks/useLocale'
 
 function ServicesHero() {
   const { t } = useTranslation()
-  const navigate = useNavigate()
+  const { navigateLocalized } = useLocale()
   
   const scrollToSubSection = (subsectionId: string) => {
-    navigate('/services')
+    navigateLocalized('/services')
     setTimeout(() => {
       const section = document.querySelector(`[data-subsection="${subsectionId}"]`)
       if (section) {

@@ -4,9 +4,11 @@ import { motion } from 'framer-motion'
 import { ArrowRightIcon } from '@heroicons/react/24/solid'
 import CountUp from '../ui/CountUp'
 import { companies } from '../../data/companies'
+import { useLocale } from '../../hooks/useLocale'
 
 function HeroSection() {
   const { t } = useTranslation()
+  const { lp } = useLocale()
 
   const metrics = [
     { value: 4, label: t('home.metrics.clients'), suffix: '+' },
@@ -54,7 +56,7 @@ function HeroSection() {
           {/* Segmented CTAs: business vs individual */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mb-6 md:mb-8">
             <Link
-              to="/services?audience=business"
+              to={lp('/services?audience=business')}
               className="w-full sm:w-auto inline-flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-3 px-4 sm:px-6 py-3 sm:py-3.5 rounded-2xl bg-primary-600 hover:bg-primary-500 text-white shadow-lg hover:shadow-xl transition-all"
             >
               <span className="text-sm sm:text-base font-semibold text-left">
@@ -66,7 +68,7 @@ function HeroSection() {
               </span>
             </Link>
             <Link
-              to="/services?audience=individual"
+              to={lp('/services?audience=individual')}
               className="w-full sm:w-auto inline-flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-3 px-4 sm:px-6 py-3 sm:py-3.5 rounded-2xl bg-white/90 dark:bg-secondary-900/80 border border-secondary-200 dark:border-secondary-700 text-secondary-900 dark:text-secondary-50 shadow-sm hover:shadow-md transition-all"
             >
               <span className="text-sm sm:text-base font-semibold text-left">
@@ -107,7 +109,7 @@ function HeroSection() {
               </div>
               <div className="relative hidden sm:block">
                 <Link
-                  to="/about"
+                  to={lp('/about')}
                   className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-primary-700 dark:text-primary-300 hover:underline"
                 >
                   {t('home.videoTeaser.cta')}

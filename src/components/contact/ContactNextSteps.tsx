@@ -8,6 +8,7 @@ import {
   ChatBubbleLeftRightIcon
 } from '@heroicons/react/24/solid'
 import { Link } from 'react-router-dom'
+import { useLocale } from '../../hooks/useLocale'
 
 interface ContactNextStepsProps {
   preferredContact?: string
@@ -15,6 +16,7 @@ interface ContactNextStepsProps {
 
 function ContactNextSteps({ preferredContact = 'email' }: ContactNextStepsProps) {
   const { t } = useTranslation()
+  const { lp } = useLocale()
 
   const steps = [
     {
@@ -124,7 +126,7 @@ function ContactNextSteps({ preferredContact = 'email' }: ContactNextStepsProps)
             {selectedMethod.text}
           </a>
           <Link
-            to="/projects"
+            to={lp('/projects')}
             className="flex-1 btn-secondary flex items-center justify-center gap-2 py-3"
           >
             {t('contact.nextSteps.viewProjects')}

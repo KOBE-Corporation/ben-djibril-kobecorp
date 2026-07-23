@@ -8,9 +8,11 @@ import {
   ChatBubbleLeftRightIcon
 } from '@heroicons/react/24/solid'
 import { getCvDownload } from '../../utils/cv'
+import { useLocale } from '../../hooks/useLocale'
 
 function AboutCTAs() {
   const { t, i18n } = useTranslation()
+  const { lp } = useLocale()
   const cv = getCvDownload(i18n.language)
 
   const ctas = [
@@ -25,19 +27,19 @@ function AboutCTAs() {
       key: 'bookCall',
       icon: PhoneIcon,
       color: 'accent',
-      link: '/contact?subject=appel',
+      link: lp('/contact?subject=appel'),
     },
     {
       key: 'viewProjects',
       icon: FolderIcon,
       color: 'success',
-      link: '/projects',
+      link: lp('/projects'),
     },
     {
       key: 'contact',
       icon: ChatBubbleLeftRightIcon,
       color: 'warning',
-      link: '/contact',
+      link: lp('/contact'),
     }
   ] as const
 

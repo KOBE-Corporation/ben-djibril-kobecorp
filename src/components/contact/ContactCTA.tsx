@@ -6,9 +6,11 @@ import {
   ArrowRightIcon,
   CheckCircleIcon
 } from '@heroicons/react/24/solid'
+import { useLocale } from '../../hooks/useLocale'
 
 function ContactCTA() {
   const { t } = useTranslation()
+  const { lp } = useLocale()
 
   const benefits = [
     t('contact.cta.benefits.response'),
@@ -144,7 +146,7 @@ function ContactCTA() {
             className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
           >
             <Link
-              to="/projects"
+              to={lp('/projects')}
               className="group relative inline-flex items-center justify-center gap-3 bg-white text-primary-600 px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:bg-secondary-50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 w-full sm:w-auto"
             >
               <span>{t('contact.cta.viewProjects')}</span>
