@@ -88,10 +88,10 @@ export const projects: Project[] = [
       type: 'ngo',
       translations: {
         en: {
-          description: 'Multisite institutional portal bid response in progress (Mar - Aug 2026): bilingual FR/EN platform for multiple entities.'
+          description: 'Transboundary conservation alliance in the Congo Basin (Cameroon, Republic of the Congo, Gabon) — one programme, three national sites for news, protected areas and contacts.'
         },
         fr: {
-          description: 'Offre technique multisite en cours (Mars - Août 2026) : portail institutionnel bilingue FR/EN multi-entités.'
+          description: 'Alliance de conservation transfrontalière au cœur du bassin du Congo (Cameroun, République du Congo, Gabon) — un programme, trois sites nationaux pour actualités, aires protégées et contacts.'
         }
       }
     },
@@ -102,17 +102,17 @@ export const projects: Project[] = [
     translations: {
       en: {
         name: 'TRIDOM Multisite Portal (Technical Offer in Progress, Mar - Aug 2026)',
-        description: 'Bid response for a bilingual FR/EN institutional multisite portal for multiple entities.',
-        problem: 'The project requires a robust multisite architecture with strict quality constraints, including accessibility compliance and high performance standards across multiple environments and stakeholders.',
-        solution: 'Designed a decoupled architecture using Strapi v4 as headless CMS, Next.js 14 frontend, and PostgreSQL 15. Planned multi-environment deployment workflows with Docker, Nginx, and GitHub Actions CI/CD.',
-        impact: 'Provides a scalable and maintainable foundation aligned with WCAG 2.1 and Core Web Vitals requirements, reducing delivery risk for a complex institutional portal.'
+        description: 'Bilingual FR/EN institutional multisite portal for the TRIDOM programme: programme overview, national sites, news and protected-area catalogues across three corridor countries.',
+        problem: 'TRIDOM needed a shared digital presence to present the Congo Basin corridor programme — three countries, multiple entities, news, and a catalogue of about 12 protected areas covering roughly 4.4 million hectares — while keeping national sites coherent and bilingual.',
+        solution: 'Designed a multisite institutional portal: a programme-wide overview plus country spaces for news, inventories and contacts, with bilingual FR/EN content, protected-area catalogues (parks, reserves, sanctuaries) and sections for vision, news and contact.',
+        impact: 'Gives partners, communities and the public a clear view of the corridor (Cameroon, Congo, Gabon), strengthens visibility of biodiversity actions (anti-deforestation, monitoring, corridor restoration) and prepares a maintainable base for three national sites under one programme brand.'
       },
       fr: {
         name: 'Portail Multisite TRIDOM (Offre Technique en cours, Mars - Août 2026)',
-        description: 'Réponse à appel d\'offres pour un portail institutionnel bilingue FR/EN multi-entités.',
-        problem: 'Le projet nécessite une architecture multisite robuste avec des contraintes qualité élevées, notamment la conformité accessibilité et des exigences fortes de performance sur plusieurs environnements.',
-        solution: 'Conception d\'une architecture découplée avec Strapi v4 (CMS headless), Next.js 14 et PostgreSQL 15. Préparation des déploiements multi-environnements avec Docker, Nginx et pipelines GitHub Actions.',
-        impact: 'Mise en place d\'une base scalable et maintenable alignée avec WCAG 2.1 et Core Web Vitals, réduisant les risques de livraison pour un portail institutionnel complexe.'
+        description: 'Portail institutionnel bilingue FR/EN multisite pour le programme TRIDOM : vue d\'ensemble, sites nationaux, actualités et catalogues d\'aires protégées sur trois pays du corridor.',
+        problem: 'TRIDOM avait besoin d\'une présence digitale commune pour présenter le programme corridor du bassin du Congo — trois pays, plusieurs entités, actualités et un catalogue d\'environ 12 aires protégées (~4,4 millions d\'hectares) — tout en gardant des sites nationaux cohérents et bilingues.',
+        solution: 'Conception d\'un portail institutionnel multisite : une vue programme et des espaces pays pour actualités, inventaires et contacts, contenus bilingues FR/EN, catalogues d\'aires (parcs, réserves, sanctuaires) et rubriques vision, actualités et contact.',
+        impact: 'Offre aux partenaires, communautés et au public une lecture claire du corridor (Cameroun, Congo, Gabon), renforce la visibilité des actions biodiversité (déforestation, suivi écologique, restauration de corridors) et prépare une base maintenable pour trois sites nationaux sous une même identité programme.'
       }
     }
   },
@@ -126,10 +126,10 @@ export const projects: Project[] = [
       type: 'company',
       translations: {
         en: {
-          description: 'Private client engagement delivered as a one-month rapid, production-ready offer for football player identification.'
+          description: 'Private client — one-month rapid delivery for digital player licences and on-field QR access control in football competitions.'
         },
         fr: {
-          description: 'Commande privée livrée en offre d\'un mois, rapide et fonctionnelle, pour l\'identification des joueurs en compétition.'
+          description: 'Client privé — offre d\'un mois, rapide et fonctionnelle, pour licences joueurs et contrôle d\'accès QR sur le terrain en compétition de football.'
         }
       }
     },
@@ -140,17 +140,17 @@ export const projects: Project[] = [
     translations: {
       en: {
         name: 'ID Foot (Jun 2026 - Jul 2027)',
-        description: 'Web platform for digital player identification, licence cards and QR access control in football competitions.',
-        problem: 'Football competitions needed a digital way to manage and identify players reliably before and during matches.',
-        solution: 'Designed and built a web application to register clubs and players, generate licence cards with unique QR codes, and control pitch access by scanning.',
-        impact: 'Centralizes competition administration, speeds up entry checks on the field, and provides traceable licences for clubs and organizers — already used for events such as the Inter-Village Mafa Championship in Douala.'
+        description: 'Platform for player identification, licence-card generation and QR access control at football competitions — from tournament setup to pitch entry.',
+        problem: 'Organizers struggled to identify players reliably, produce licences and check access at the gate without paper chaos or slow manual controls.',
+        solution: 'Delivered ID FOOT: create a competition (name, year, venue, cover), register clubs and players with photos, export PDF licences with a unique QR per player, then scan at the gate to validate entry in seconds.',
+        impact: 'One place for competitions, clubs and licences. Already live for events such as the Inter-Village Mafa Championship in Douala (2026, 12 teams), with shareable public and admin links for organizers.'
       },
       fr: {
         name: 'ID Foot (Juin 2026 - Juillet 2027)',
-        description: 'Application web d\'identification des joueurs, de cartes licence et de contrôle d\'accès QR en compétition de football.',
-        problem: 'Besoin d\'une gestion numérique et d\'une identification fiable des joueurs pour une compétition de football.',
-        solution: 'Conception et réalisation d\'une application web de gestion de l\'identification des joueurs d\'une compétition de football.',
-        impact: 'Centralise l\'administration des compétitions, accélère le contrôle à l\'entrée du terrain via QR code et fournit des licences traçables pour clubs et organisateurs — déjà utilisée pour des tournois comme le Championnat Inter Village Mafa à Douala.'
+        description: 'Plateforme d\'identification des joueurs, de cartes licence et de contrôle d\'accès QR en compétition — de la création du tournoi jusqu\'à l\'entrée du terrain.',
+        problem: 'Les organisateurs peinaient à identifier les joueurs de façon fiable, produire les licences et contrôler l\'accès à l\'entrée sans paperasse ni contrôles manuels lents.',
+        solution: 'Livraison d\'ID FOOT : créer une compétition (nom, année, lieu, couverture), inscrire clubs et joueurs avec photo, exporter des cartes licence PDF avec QR unique, puis scanner à l\'entrée pour valider l\'accès en quelques secondes.',
+        impact: 'Un seul endroit pour compétitions, clubs et licences. Déjà utilisé pour des tournois comme le Championnat Inter Village Mafa à Douala (2026, 12 équipes), avec liens public et admin partageables pour les organisateurs.'
       }
     }
   },
@@ -164,10 +164,10 @@ export const projects: Project[] = [
       type: 'company',
       translations: {
         en: {
-          description: 'Private client engagement delivered as a one-month rapid, production-ready offer for an AI LinkedIn publishing console.'
+          description: 'Private client — one-month rapid delivery of an AI console for LinkedIn content teams (generate, review, schedule, publish).'
         },
         fr: {
-          description: 'Commande privée livrée en offre d\'un mois, rapide et fonctionnelle, pour une console de publication LinkedIn assistée par IA.'
+          description: 'Client privé — offre d\'un mois pour une console IA destinée aux équipes contenu LinkedIn (générer, relire, planifier, publier).'
         }
       }
     },
@@ -178,17 +178,17 @@ export const projects: Project[] = [
     translations: {
       en: {
         name: 'Revlut (Jun 2026 - Jul 2027)',
-        description: 'AI agent console that turns ideas into LinkedIn posts ready to generate, review, schedule and publish from the browser.',
-        problem: 'Content teams needed a single place to generate LinkedIn tips with AI, keep human review, and publish or schedule to personal profiles without juggling multiple tools.',
-        solution: 'Built Revlut Agent Console with multi-provider AI generation (Gemini, OpenAI, Anthropic), LinkedIn OAuth (apps and accounts), editable review workflow, auto-scheduling, and publication history in one iOS-like ops console.',
-        impact: 'Speeds up the path from draft to LinkedIn profile: one-click AI tips, controlled review, and scheduled publishing — so content teams ship more consistently with less friction.'
+        description: 'Agent console that turns ideas into LinkedIn posts ready to publish — generate, review and schedule from the browser, built for content teams.',
+        problem: 'Content teams juggled separate tools to draft tips, keep human review and publish or schedule to a LinkedIn profile, which slowed daily publishing.',
+        solution: 'Built Revlut: a clean ops console to generate short actionable LinkedIn tips with several AI providers, edit them with an “Awaiting review” status, connect LinkedIn profiles via secure OAuth (up to 3 developer apps), then publish now or schedule (daily, weekdays or custom days) with full history.',
+        impact: 'A frictionless path from draft to profile: one-click tips, controlled review, rhythm and timezone scheduling — so teams publish more consistently without leaving the browser.'
       },
       fr: {
         name: 'Revlut (Juin 2026 - Juillet 2027)',
-        description: 'Console agent IA qui transforme des idées en posts LinkedIn prêts à générer, relire, planifier et publier depuis le navigateur.',
-        problem: 'Les équipes contenu avaient besoin d\'un outil unique pour générer des tips LinkedIn avec l\'IA, conserver une relecture humaine, puis publier ou planifier sur le profil — sans multiplier les outils.',
-        solution: 'Conception et réalisation de Revlut Agent Console : génération multi-providers (Gemini, OpenAI, Anthropic), OAuth LinkedIn (apps et comptes), workflow de relecture éditable, planification automatique et historique des publications dans une console unifiée.',
-        impact: 'Accélère le passage du brouillon au profil LinkedIn : tips IA en un clic, contrôle humain avant envoi et publication planifiée — pour un rythme de contenu plus régulier et moins de friction opérationnelle.'
+        description: 'Console agent qui transforme des idées en posts LinkedIn prêts à publier — générer, relire et planifier depuis le navigateur, conçue pour les équipes contenu.',
+        problem: 'Les équipes contenu multipliaient les outils pour rédiger des tips, garder une relecture humaine puis publier ou planifier sur le profil LinkedIn, ce qui ralentissait le rythme quotidien.',
+        solution: 'Réalisation de Revlut : une console claire pour générer des tips LinkedIn courts et actionnables avec plusieurs providers IA, les modifier avec un statut « À relire », connecter le profil via OAuth sécurisé (jusqu\'à 3 apps Developers), puis publier immédiatement ou planifier (quotidien, semaine ou jours au choix) avec historique complet.',
+        impact: 'Un parcours sans friction du brouillon au profil : tip en un clic, texte sous contrôle, planning avec rythme et fuseau — pour publier plus régulièrement sans quitter le navigateur.'
       }
     }
   },
@@ -202,10 +202,10 @@ export const projects: Project[] = [
       type: 'company',
       translations: {
         en: {
-          description: 'Yaoundé, Cameroon - Client contracts. Custom web development, technical consulting, and integrations for SMEs and institutions.'
+          description: 'Yaoundé-based technology partner since 2025 — custom software, hosting, consulting and training for individuals, SMEs and large enterprises.'
         },
         fr: {
-          description: 'Yaoundé, Cameroun - Contrats clients. Développement web sur mesure, conseil technique et intégrations pour PME et institutions.'
+          description: 'Partenaire technologique basé à Yaoundé depuis 2025 — logiciels sur mesure, hébergement, conseil et formation pour particuliers, PME et grandes entreprises.'
         }
       }
     },
@@ -216,17 +216,17 @@ export const projects: Project[] = [
     translations: {
       en: {
         name: 'KOBE Corporation - Full-Stack Client Projects (Dec 2025 - Present)',
-        description: 'Custom full-stack web development, technical consulting, and integrations for SMEs and institutions.',
-        problem: 'Many local organizations needed reliable digital products and architecture guidance but lacked end-to-end delivery capabilities across product scoping, engineering, and operations.',
-        solution: 'Delivered full project cycles from requirements to maintenance: specifications, development, testing, deployment, and post-delivery support. Built and shipped client-ready web applications and integrations using Next.js, Spring Boot, Kotlin, Docker, PostgreSQL, and Strapi.',
-        impact: 'Enabled clients to accelerate digital transformation with production-ready platforms, clearer technical direction, and maintainable full-stack architectures aligned with business needs.'
+        description: 'End-to-end client delivery: turn ideas into software products, host them and support digital growth for individuals, SMEs and enterprises.',
+        problem: 'Clients needed a single partner to go from idea to production — strategy, design, build, hosting and support — without fragmented vendors or unclear ownership.',
+        solution: 'Accompanied projects through discovery & strategy, design & planning, agile delivery, secure deployment, then support and evolution. Scope covers custom software, hosting & infrastructure, consultation & audit, plus training programs for freelancers, students and open-source contributors.',
+        impact: 'Helps organizations secure critical operations, modernize tools for teams and clients, and measure continuous improvement — with human, responsive support from briefing to live product.'
       },
       fr: {
         name: 'KOBE Corporation - Projets Clients Full-Stack (Déc 2025 - présent)',
-        description: 'Développement web full-stack sur mesure, conseil technique et intégrations pour PME et institutions.',
-        problem: 'De nombreuses structures locales avaient besoin de solutions digitales fiables et d\'un accompagnement architectural, sans disposer d\'une capacité de livraison complète de bout en bout.',
-        solution: 'Réalisation du cycle complet projet : cahier des charges, développement, recette, déploiement, livraison et maintenance. Conception et mise en production d\'applications web et d\'intégrations clients avec Next.js, Spring Boot, Kotlin, Docker, PostgreSQL et Strapi.',
-        impact: 'Accélération de la transformation digitale des clients grâce à des plateformes prêtes pour la production, une direction technique plus claire et des architectures full-stack maintenables alignées sur les besoins métier.'
+        description: 'Livraison client de bout en bout : transformer des idées en produits logiciels, les héberger et accompagner la croissance digitale des particuliers, PME et entreprises.',
+        problem: 'Les clients avaient besoin d\'un partenaire unique pour aller de l\'idée à la production — stratégie, conception, réalisation, hébergement et support — sans multiplier les prestataires ni diluer la responsabilité.',
+        solution: 'Accompagnement sur tout le cycle : découverte & stratégie, conception & planification, livraisons agiles, mise en production sécurisée, puis support et évolution. Périmètre : logiciels sur mesure, hébergement & infra, conseil & audit, et programmes (freelances, étudiants, open source, networking).',
+        impact: 'Aide les organisations à sécuriser leurs opérations critiques, moderniser les outils pour équipes et clients, et ancrer une culture d\'amélioration continue — avec un suivi humain et réactif du brief au produit en ligne.'
       }
     }
   },
@@ -240,10 +240,10 @@ export const projects: Project[] = [
       type: 'startup',
       translations: {
         en: {
-          description: 'A content publishing and social networking SaaS platform focused on long-form content and community engagement.'
+          description: 'Internal SaaS product focused on long-form publishing, community engagement, subscriptions and secure creator onboarding.'
         },
         fr: {
-          description: 'Une plateforme SaaS de blogging et réseau social orientée publication de contenus longs et engagement communautaire.'
+          description: 'Produit SaaS interne orienté publication longue, engagement communautaire, abonnements et onboarding sécurisé des créateurs.'
         }
       }
     },
@@ -254,17 +254,17 @@ export const projects: Project[] = [
     translations: {
       en: {
         name: 'BlogPress - Blogging & Social Platform (Sep-Dec 2025)',
-        description: 'A SaaS platform for long-form content publishing with community features, subscriptions, and social sharing.',
-        problem: 'Creators and communities needed a single platform to publish rich long-form content, embed media, manage audience subscriptions, and keep secure user onboarding without juggling multiple disconnected tools.',
-        solution: 'Built BlogPress with a rich-text editor, Markdown support, embedded media, subscriptions, and sharing workflows. Implemented secure JWT authentication with OAuth2 providers (Google and GitHub), based on a headless API architecture with SSR for performance and SEO.',
-        impact: 'Delivered an integrated publishing and social experience from September to December 2025, reducing tooling fragmentation for creators and providing a scalable base for growth and community engagement.'
+        description: 'SaaS platform for long-form content with community features, subscriptions and social sharing for creators and audiences.',
+        problem: 'Creators and communities needed one place to publish rich long-form posts, embed media, manage audience subscriptions and onboard users securely — without juggling disconnected tools.',
+        solution: 'Delivered BlogPress with a rich writing experience (editor and Markdown), media embeds, subscriptions and sharing flows, plus secure sign-in via email/social providers so creators can publish and grow an audience in one product.',
+        impact: 'From September to December 2025, shipped an integrated publishing and social experience that reduces tool fragmentation for creators and lays a scalable base for community growth.'
       },
       fr: {
         name: 'BlogPress - Plateforme de Blogging & Réseau Social (Sept-Dec 2025)',
-        description: 'Une plateforme SaaS de publication de contenus longs avec fonctionnalités communautaires, abonnements et partage social.',
-        problem: 'Les créateurs et communautés avaient besoin d\'une plateforme unique pour publier du contenu long, embarquer des médias, gérer les abonnements et sécuriser l\'onboarding utilisateur, sans multiplier les outils séparés.',
-        solution: 'Développement de BlogPress avec éditeur rich-text, support Markdown, médias embarqués, système d\'abonnements et partage. Mise en place d\'une authentification sécurisée JWT + OAuth2 (Google et GitHub), avec architecture API headless et SSR pour la performance et le SEO.',
-        impact: 'Projet réalisé de septembre à décembre 2025 avec une expérience unifiée de publication et de réseau social, réduisant la fragmentation des outils côté créateurs et posant une base scalable pour la croissance de la communauté.'
+        description: 'Plateforme SaaS de contenus longs avec fonctionnalités communautaires, abonnements et partage social pour créateurs et audiences.',
+        problem: 'Les créateurs et communautés avaient besoin d\'un seul endroit pour publier du contenu long riche, embarquer des médias, gérer les abonnements et onboarder les utilisateurs en sécurité — sans multiplier les outils.',
+        solution: 'Livraison de BlogPress avec une expérience d\'écriture riche (éditeur et Markdown), médias embarqués, abonnements et partage, ainsi qu\'une connexion sécurisée (email / réseaux) pour publier et faire grandir une audience dans un seul produit.',
+        impact: 'De septembre à décembre 2025, expérience unifiée de publication et de réseau social, moins de fragmentation d\'outils côté créateurs et base scalable pour la croissance de la communauté.'
       }
     }
   },
@@ -292,15 +292,15 @@ export const projects: Project[] = [
         name: 'RH-SYSTEM - University HR & Payroll Management (2025 - Present)',
         description: 'An institutional platform for HR management and payroll automation serving around 1,000 agents.',
         problem: 'The university needed a reliable system to centralize HR operations and automate payroll while staying compliant with local regulations and ensuring controlled infrastructure access.',
-        solution: 'Built a payroll calculation engine aligned with Cameroonian regulations (CNPS, IRPFbis), added an HR analytics dashboard with PDF/Excel exports, and deployed a containerized stack on VPS with Nginx reverse proxy and SSL hardening.',
-        impact: 'Improved payroll reliability and processing consistency at institutional scale, while providing better HR visibility and secure operational deployment for restricted environments.'
+        solution: 'Delivered an HR & payroll platform aligned with Cameroonian payroll rules, with analytics dashboards and PDF/Excel exports, operated on-premise with restricted access for institutional staff.',
+        impact: 'Improved payroll reliability and HR visibility at institutional scale, with a secure operating model suited to on-premise university environments.'
       },
       fr: {
         name: 'RH-SYSTEM - Gestion RH & Paie Universitaire (2025 - présent)',
         description: 'Solution institutionnelle de gestion RH et d\'automatisation de la paie pour environ 1 000 agents.',
         problem: 'L\'université avait besoin d\'une solution fiable pour centraliser les processus RH et automatiser la paie, tout en respectant la réglementation locale et un cadre d\'accès restreint.',
-        solution: 'Mise en place d\'un moteur de calcul de paie conforme à la législation camerounaise (CNPS, IRPFbis), d\'un tableau de bord analytique RH avec exports PDF/Excel, et d\'un déploiement containerisé sur VPS avec Nginx reverse proxy et SSL.',
-        impact: 'Renforcement de la fiabilité du processus de paie et de la traçabilité RH à l\'échelle institutionnelle, avec une exploitation sécurisée adaptée aux environnements on-premise.'
+        solution: 'Livraison d\'une plateforme RH & paie alignée sur les règles camerounaises, avec tableaux de bord analytiques et exports PDF/Excel, exploitée on-premise avec accès restreint pour le personnel institutionnel.',
+        impact: 'Fiabilisation de la paie et meilleure visibilité RH à l\'échelle institutionnelle, avec un modèle d\'exploitation sécurisé adapté aux environnements universitaires on-premise.'
       }
     }
   }

@@ -173,7 +173,7 @@ function ProjectsGrid() {
       id="projects-grid"
       className="py-12 sm:py-16 md:py-20 lg:py-24 bg-white dark:bg-secondary-900"
     >
-      <div className="container mx-auto px-4 sm:px-6">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:max-w-[90rem]">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -263,7 +263,7 @@ function ProjectsGrid() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+                className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-1 2xl:grid-cols-2 gap-5 sm:gap-6 lg:gap-8 xl:gap-7"
               >
                 {[...Array(6)].map((_, index) => (
                   <ProjectCardSkeleton key={index} />
@@ -276,7 +276,7 @@ function ProjectsGrid() {
                 initial="hidden"
                 animate="visible"
                 exit="hidden"
-                className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+                className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-1 2xl:grid-cols-2 gap-5 sm:gap-6 lg:gap-8 xl:gap-7"
               >
                 {filteredProjects.map((project) => {
                   const projectData = getProjectByLang(project, currentLang)
