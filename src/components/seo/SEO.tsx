@@ -14,7 +14,7 @@ type SEOProps = {
   noIndex?: boolean
 }
 
-const KNOWN_ROUTES = new Set(['/', '/services', '/projects', '/about', '/contact'])
+const KNOWN_ROUTES = new Set(['/', '/services', '/projects', '/about', '/contact', '/legal', '/privacy'])
 const SITE_NAME = 'Ben Djibril | Kobe Corporation'
 const DEFAULT_OG_IMAGE = '/og-image.jpg'
 const CONTACT_EMAIL = 'kone.djibril@kobecorporation.com'
@@ -188,7 +188,7 @@ function SEO({
       '@id': `${baseUrl}/#person`,
       name: 'Kone Djibril Benjamin',
       alternateName: ['Ben Djibril', 'Benjamin Kone Djibril', 'Djibril Benjamin', 'Kone Djibril'],
-      jobTitle: 'Founder & CEO',
+      jobTitle: ['Founder & CEO', 'Developer', 'Computer Engineer'],
       description: metaDescription,
       url: `${baseUrl}/`,
       image: absoluteOgImage,
@@ -208,10 +208,11 @@ function SEO({
         'https://www.kobecorporation.com',
       ],
       knowsAbout: [
-        'Entrepreneurship',
-        'Digital Products',
+        'Software Engineering',
         'Web Development',
         'Mobile Development',
+        'Entrepreneurship',
+        'Digital Products',
         'E-commerce',
         'Backend Development',
         'DevOps',

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 import { EnvelopeIcon, CheckCircleIcon, ExclamationCircleIcon } from '@heroicons/react/24/solid'
 import emailjs from '@emailjs/browser'
 import { EMAILJS_CONFIG, isEmailJSConfigured } from '../../config/emailjs'
@@ -174,13 +175,13 @@ function FooterNewsletter() {
             viewport={{ once: true }}
             transition={{ duration: 0.3, delay: 0.4 }}
           >
-            <span
-              className="text-secondary-400 dark:text-secondary-500 text-sm cursor-not-allowed inline-flex items-center gap-2"
-              title={t('footer.comingSoon')}
+            <Link
+              to="/legal"
+              className="text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 text-sm transition-colors inline-flex items-center gap-2"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-secondary-300 dark:bg-secondary-600" />
+              <span className="w-1.5 h-1.5 rounded-full bg-primary-500 opacity-60" />
               {t('footer.legal')}
-            </span>
+            </Link>
           </motion.li>
           <motion.li
             initial={{ opacity: 0 }}
@@ -188,13 +189,13 @@ function FooterNewsletter() {
             viewport={{ once: true }}
             transition={{ duration: 0.3, delay: 0.5 }}
           >
-            <span
-              className="text-secondary-400 dark:text-secondary-500 text-sm cursor-not-allowed inline-flex items-center gap-2"
-              title={t('footer.comingSoon')}
+            <Link
+              to="/privacy"
+              className="text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 text-sm transition-colors inline-flex items-center gap-2"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-secondary-300 dark:bg-secondary-600" />
+              <span className="w-1.5 h-1.5 rounded-full bg-primary-500 opacity-60" />
               {t('footer.privacy')}
-            </span>
+            </Link>
           </motion.li>
         </ul>
       </div>

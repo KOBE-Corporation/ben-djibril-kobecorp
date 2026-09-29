@@ -55,7 +55,7 @@ function HeroEngagementSection() {
             </Link>
           </motion.div>
 
-          {/* Video teaser */}
+          {/* Profile teaser */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -63,36 +63,31 @@ function HeroEngagementSection() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="max-w-xl mx-auto"
           >
-            <div className="relative overflow-hidden rounded-2xl border border-secondary-200/80 dark:border-secondary-700/80 bg-white/80 dark:bg-secondary-900/80 backdrop-blur-sm px-4 py-3 sm:px-5 sm:py-4 flex items-center gap-3 sm:gap-4 shadow-sm hover:shadow-lg transition-shadow">
+            <Link
+              to="/about"
+              className="relative block overflow-hidden rounded-2xl border border-secondary-200/80 dark:border-secondary-700/80 bg-white/80 dark:bg-secondary-900/80 backdrop-blur-sm px-4 py-3 sm:px-5 sm:py-4 shadow-sm hover:shadow-lg transition-shadow"
+            >
               <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-primary-500/5 via-transparent to-accent-500/5" />
-              <div className="relative flex-shrink-0">
-                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-primary-600/90 dark:bg-primary-500 flex items-center justify-center shadow-md">
-                  <span className="inline-block w-3 h-3 sm:w-3.5 sm:h-3.5 border-l-[9px] border-l-white border-y-[6px] border-y-transparent translate-x-[1px]" />
+              <div className="relative flex items-center gap-3 sm:gap-4">
+                <div className="flex-1 text-left">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-primary-100 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300 uppercase tracking-wide">
+                      {t('home.videoTeaser.badge')}
+                    </span>
+                  </div>
+                  <p className="text-sm sm:text-base font-semibold text-secondary-900 dark:text-white mb-0.5">
+                    {t('home.videoTeaser.title')}
+                  </p>
+                  <p className="text-[11px] sm:text-xs text-secondary-600 dark:text-secondary-300 hidden sm:block">
+                    {t('home.videoTeaser.subtitle')}
+                  </p>
                 </div>
-              </div>
-              <div className="relative flex-1 text-left">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-primary-100 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300 uppercase tracking-wide">
-                    {t('home.videoTeaser.badge')}
-                  </span>
-                </div>
-                <p className="text-sm sm:text-base font-semibold text-secondary-900 dark:text-white mb-0.5">
-                  {t('home.videoTeaser.title')}
-                </p>
-                <p className="text-[11px] sm:text-xs text-secondary-600 dark:text-secondary-300 hidden sm:block">
-                  {t('home.videoTeaser.subtitle')}
-                </p>
-              </div>
-              <div className="relative hidden sm:block">
-                <Link
-                  to="/about"
-                  className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-primary-700 dark:text-primary-300 hover:underline"
-                >
+                <span className="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-semibold text-primary-700 dark:text-primary-300 shrink-0">
                   {t('home.videoTeaser.cta')}
                   <ArrowRightIcon className="w-4 h-4" />
-                </Link>
+                </span>
               </div>
-            </div>
+            </Link>
           </motion.div>
 
           {/* Metrics */}

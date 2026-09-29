@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import TechStack from '../components/ui/TechStack'
 import TechStackFilterable from '../components/about/TechStackFilterable'
 import CertificationsSection from '../components/sections/CertificationsSection'
+import AboutStory from '../components/about/AboutStory'
 import AboutTimeline from '../components/about/AboutTimeline'
 import AboutGallery from '../components/about/AboutGallery'
 import AboutCTAs from '../components/about/AboutCTAs'
@@ -430,6 +431,8 @@ function About() {
           </div>
         </div>
       </section>
+
+      <AboutStory />
 
       {/* Certifications Section */}
       <section className="py-16 md:py-20 bg-secondary-50 dark:bg-secondary-800/50">

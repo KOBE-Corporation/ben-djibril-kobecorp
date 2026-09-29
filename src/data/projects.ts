@@ -122,7 +122,7 @@ export const projects: Project[] = [
     visibility: 'public',
     stack: ['React', 'Spring Boot', 'Kotlin', 'Docker', 'PostgreSQL', 'Strapi'],
     client: {
-      name: 'KOBE Corporation',
+      name: 'Kobe Corporation',
       type: 'company',
       translations: {
         en: {
@@ -139,14 +139,14 @@ export const projects: Project[] = [
     images: [],
     translations: {
       en: {
-        name: 'KOBE Corporation - Full-Stack Client Projects (Dec 2025 - Present)',
+        name: 'Kobe Corporation - Full-Stack Client Projects (Dec 2025 - Present)',
         description: 'Custom full-stack web development, technical consulting, and integrations for SMEs and institutions.',
         problem: 'Many local organizations needed reliable digital products and architecture guidance but lacked end-to-end delivery capabilities across product scoping, engineering, and operations.',
         solution: 'Delivered full project cycles from requirements to maintenance: specifications, development, testing, deployment, and post-delivery support. Built and shipped client-ready web applications and integrations using Next.js, Spring Boot, Kotlin, Docker, PostgreSQL, and Strapi.',
         impact: 'Enabled clients to accelerate digital transformation with production-ready platforms, clearer technical direction, and maintainable full-stack architectures aligned with business needs.'
       },
       fr: {
-        name: 'KOBE Corporation - Projets Clients Full-Stack (Déc 2025 - présent)',
+        name: 'Kobe Corporation - Projets Clients Full-Stack (Déc 2025 - présent)',
         description: 'Développement web full-stack sur mesure, conseil technique et intégrations pour PME et institutions.',
         problem: 'De nombreuses structures locales avaient besoin de solutions digitales fiables et d\'un accompagnement architectural, sans disposer d\'une capacité de livraison complète de bout en bout.',
         solution: 'Réalisation du cycle complet projet : cahier des charges, développement, recette, déploiement, livraison et maintenance. Conception et mise en production d\'applications web et d\'intégrations clients avec Next.js, Spring Boot, Kotlin, Docker, PostgreSQL et Strapi.',

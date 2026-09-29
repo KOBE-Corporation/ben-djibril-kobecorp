@@ -28,7 +28,7 @@ export const resources = {
       },
       footer: {
         brand: 'Ben Djibril',
-        tagline: 'Founder & CEO of Kobe Corporation — I help businesses grow with digital products that deliver.',
+        tagline: 'Founder & CEO of Kobe Corporation — developer and computer engineer building digital products that deliver.',
         pagesTitle: 'Pages',
         servicesTitle: 'Services',
         viewAllServices: 'View all services',
@@ -47,6 +47,22 @@ export const resources = {
         rights: 'All rights reserved.',
         copyright: '© {{year}} {{brand}}. All rights reserved.',
         motto: 'build your own legacy',
+        legalPage: {
+          title: 'Legal notice',
+          updated: 'Last updated: September 29, 2026',
+          publisher: 'This website is published by Kone Djibril Benjamin (Ben Djibril), Founder & CEO of Kobe Corporation.',
+          contact: 'Contact: kone.djibril@kobecorporation.com — Yaoundé, Cameroon.',
+          hosting: 'The site is hosted by the infrastructure used for kobecorporation.com.',
+          ip: 'All content on this site (texts, visuals, brand) remains the property of its author unless otherwise stated.',
+        },
+        privacyPage: {
+          title: 'Privacy policy',
+          updated: 'Last updated: September 29, 2026',
+          intro: 'I only collect the information you voluntarily send (contact form, newsletter).',
+          usage: 'This data is used solely to answer your requests and is never sold to third parties.',
+          retention: 'Messages are kept as long as needed to handle your request, then deleted or archived securely.',
+          rights: 'You can ask to access, correct or delete your data by emailing kone.djibril@kobecorporation.com.',
+        },
       },
       errors: {
         title: 'Something went wrong',
@@ -58,8 +74,8 @@ export const resources = {
       home: {
         title: 'Founder & CEO',
         brand: 'Kone Djibril',
-        roleTag: 'Kobe Corporation',
-        subtitle: 'I help businesses grow with clear digital products — websites, apps and business tools that deliver results.',
+        roleTag: 'Developer & Computer Engineer',
+        subtitle: 'I help businesses grow with clear digital products — websites, apps and business tools. Founder of Kobe Corporation, developer and computer engineer with 5 years of hands-on delivery.',
         trustBar: {
           experience: '5 years',
           experienceLabel: 'Experience',
@@ -112,22 +128,22 @@ export const resources = {
         metrics: { clients: 'Clients', projects: 'Projects', satisfaction: 'Satisfaction', delivery: 'Avg Delivery' },
         about: {
           title: 'About Me',
-          subtitle: 'Founder & CEO of Kobe Corporation · Entrepreneur · 5 years of experience',
-          bio: 'Hi, I\'m Kone Djibril Benjamin — also known as Ben Djibril. I am an entrepreneur, Founder and CEO of Kobe Corporation. For 5 years I have helped companies and individuals turn ideas into digital products that work: websites, mobile apps and business tools. I combine a builder mindset with a founder\'s vision to deliver results that move your business forward.',
-          bioExtended: 'Beyond building products for clients, I lead Kobe Corporation as Founder & CEO. That entrepreneurial experience shapes how I work: clear priorities, realistic timelines, and solutions designed for growth — not just for launch day. I stay hands-on on delivery when needed, while keeping the conversation focused on your business goals, not on jargon.',
+          subtitle: 'Founder & CEO of Kobe Corporation · Developer & Computer Engineer · 5 years of experience',
+          bio: 'Hi, I\'m Kone Djibril Benjamin — also known as Ben Djibril. I am a developer and computer engineer, and the Founder & CEO of Kobe Corporation. For 5 years I have helped companies and individuals turn ideas into digital products that work: websites, mobile apps and business tools. I combine engineering rigor with a founder\'s vision to deliver results that move your business forward.',
+          bioExtended: 'Beyond building products for clients, I lead Kobe Corporation as Founder & CEO. My background as a developer and computer engineer keeps me hands-on when it matters, while the founder role keeps priorities clear: realistic timelines, solutions designed for growth, and conversations focused on your business goals — not on jargon.',
           languages: 'Languages',
           languagesDesc: 'Native French speaker, intermediate English level',
           realName: 'Full Name',
           publicName: 'Public Name',
           experience: 'Experience',
           level: 'Role',
-          levelValue: 'CEO',
+          levelValue: 'Developer · CEO',
           company: 'Company',
           companyValue: 'Kobe Corporation',
           specialties: 'Specialties',
           specialtiesDesc: 'Backend, Mobile, Web & Cloud — built for your business',
-          experienceDesc: '5 years helping companies and entrepreneurs grow',
-          companyDesc: 'Founder & CEO of Kobe Corporation',
+          experienceDesc: '5 years as developer & computer engineer helping companies grow',
+          companyDesc: 'Founder & CEO of Kobe Corporation · Developer & Computer Engineer',
           techStack: 'Technology Stack',
           techStackDesc: 'Technologies and tools I master and use daily',
           certifications: 'Certifications',
@@ -148,16 +164,16 @@ export const resources = {
           // New sections
           story: {
             title: 'My Story',
-            subtitle: 'A journey passionate about technology and innovation',
-            content: 'My journey in software development began with a passion for solving complex problems. Graduated in software engineering, I quickly evolved towards DevOps, attracted by the systemic aspect and process optimization. My international experience and ability to work with multicultural teams make me an adaptable and versatile developer.',
-            whyDevOps: 'Why DevOps?',
-            whyDevOpsContent: 'DevOps represents for me the perfect convergence between development and operations. I love creating solutions that not only work, but are also deployable, maintainable, and scalable. This approach allows me to deliver value quickly while maintaining high quality.',
-            whyInternational: 'Why international?',
-            whyInternationalContent: 'Working with clients from around the world allows me to discover different cultures, methodologies, and technical challenges. This diversity enriches my approach and enables me to bring innovative solutions adapted to each context.'
+            subtitle: 'From builder to founder — and why that matters for your project',
+            content: 'I started as a developer and computer engineer building digital products for clients. Along the way I founded Kobe Corporation, which I now lead as CEO. That dual role — engineering delivery and business ownership — shapes how I work with you: clear priorities, realistic timelines, and solutions designed to grow with your company.',
+            whyDevOps: 'Why Kobe Corporation?',
+            whyDevOpsContent: 'Kobe Corporation exists to turn business ideas into working digital products — websites, apps and tools that teams actually use. As founder, CEO, developer and computer engineer, I stay close to delivery while keeping the conversation focused on your outcomes.',
+            whyInternational: 'Why work with clients worldwide?',
+            whyInternationalContent: 'Working across cultures and time zones taught me to communicate simply, document clearly, and deliver products that fit real business contexts — whether you are local or remote.'
           },
           identity: {
             role: 'Role',
-            roleValue: 'Founder & CEO — Kobe Corporation',
+            roleValue: 'Founder & CEO · Developer & Computer Engineer',
             location: 'Location',
             locationValue: 'Yaoundé, Cameroon',
             timezone: 'Timezone',
@@ -827,15 +843,15 @@ export const resources = {
       },
       seo: {
         default: {
-          title: 'Kone Djibril (Ben Djibril) - Founder & CEO of Kobe Corporation | Portfolio',
-          description: 'Kone Djibril (Ben Djibril) — Founder & CEO of Kobe Corporation. I help businesses grow with websites, apps and digital tools. Free quotes, worldwide.',
-          keywords: 'Kone Djibril, Ben Djibril, Kobe Corporation, Founder CEO, web development, mobile apps, e-commerce, digital products, Cameroon, portfolio'
+          title: 'Kone Djibril (Ben Djibril) - Founder & CEO · Developer & Computer Engineer | Portfolio',
+          description: 'Kone Djibril (Ben Djibril) — Founder & CEO of Kobe Corporation, developer and computer engineer. Websites, apps and digital tools for businesses. Free quotes.',
+          keywords: 'Kone Djibril, Ben Djibril, Kobe Corporation, Founder CEO, developer, computer engineer, web development, mobile apps, e-commerce, Cameroon, portfolio'
         },
-        ogImageAlt: 'Kone Djibril (Ben Djibril) — Founder & CEO of Kobe Corporation',
+        ogImageAlt: 'Kone Djibril (Ben Djibril) — Founder & CEO, Developer & Computer Engineer',
         home: {
-          title: 'Kone Djibril (Ben Djibril) - Founder & CEO of Kobe Corporation | Portfolio',
-          description: 'Kone Djibril (Ben Djibril) — Founder & CEO of Kobe Corporation. Entrepreneur with 5 years helping businesses grow with websites, apps and digital tools.',
-          keywords: 'Kone Djibril, Ben Djibril, Kobe Corporation, Founder CEO, entrepreneur, web development, mobile apps, e-commerce, digital products, portfolio'
+          title: 'Kone Djibril (Ben Djibril) - Founder & CEO · Developer & Computer Engineer | Portfolio',
+          description: 'Kone Djibril (Ben Djibril) — Founder & CEO of Kobe Corporation. Developer and computer engineer with 5 years helping businesses grow with websites, apps and digital tools.',
+          keywords: 'Kone Djibril, Ben Djibril, Kobe Corporation, Founder CEO, developer, computer engineer, entrepreneur, web development, mobile apps, portfolio'
         },
         services: {
           title: 'Services - Kone Djibril (Ben Djibril) | Web, Mobile & Business Tools',
@@ -849,9 +865,9 @@ export const resources = {
           keywords: 'Ben Djibril projects, Kone Djibril portfolio, web applications, mobile apps, e-commerce, case studies'
         },
         about: {
-          title: 'About - Kone Djibril (Ben Djibril) | Founder & CEO Profile',
-          description: 'Meet Kone Djibril (Ben Djibril), Founder & CEO of Kobe Corporation. 5 years helping businesses with digital products, stack, certifications and approach.',
-          keywords: 'about Ben Djibril, Kone Djibril Benjamin, Founder CEO Kobe Corporation, developer profile, certifications, experience'
+          title: 'About - Kone Djibril (Ben Djibril) | Developer, Computer Engineer & Founder',
+          description: 'Meet Kone Djibril (Ben Djibril): developer and computer engineer, Founder & CEO of Kobe Corporation. 5 years of experience, stack, certifications and approach.',
+          keywords: 'about Ben Djibril, Kone Djibril Benjamin, developer, computer engineer, Founder CEO Kobe Corporation, certifications, experience'
         },
         contact: {
           title: 'Contact - Kone Djibril (Ben Djibril) | Free Quote in 24h',
@@ -873,7 +889,7 @@ export const resources = {
       },
       footer: {
         brand: 'Ben Djibril',
-        tagline: 'Fondateur & CEO de Kobe Corporation — j\'aide les entreprises à grandir avec des produits digitaux concrets.',
+        tagline: 'Fondateur & CEO de Kobe Corporation — développeur et ingénieur informaticien, je construis des produits digitaux concrets.',
         pagesTitle: 'Pages',
         servicesTitle: 'Services',
         viewAllServices: 'Voir tous les services',
@@ -892,6 +908,22 @@ export const resources = {
         rights: 'Tous droits réservés.',
         copyright: '© {{year}} {{brand}}. Tous droits réservés.',
         motto: 'build your own legacy',
+        legalPage: {
+          title: 'Mentions légales',
+          updated: 'Dernière mise à jour : 29 septembre 2026',
+          publisher: 'Ce site est édité par Kone Djibril Benjamin (Ben Djibril), Fondateur & CEO de Kobe Corporation.',
+          contact: 'Contact : kone.djibril@kobecorporation.com — Yaoundé, Cameroun.',
+          hosting: 'Le site est hébergé sur l’infrastructure utilisée pour kobecorporation.com.',
+          ip: 'L’ensemble des contenus (textes, visuels, marque) reste la propriété de son auteur sauf mention contraire.',
+        },
+        privacyPage: {
+          title: 'Politique de confidentialité',
+          updated: 'Dernière mise à jour : 29 septembre 2026',
+          intro: 'Je ne collecte que les informations que vous envoyez volontairement (formulaire de contact, newsletter).',
+          usage: 'Ces données servent uniquement à répondre à vos demandes et ne sont jamais vendues à des tiers.',
+          retention: 'Les messages sont conservés le temps nécessaire au traitement, puis supprimés ou archivés de façon sécurisée.',
+          rights: 'Vous pouvez demander l’accès, la correction ou la suppression de vos données à kone.djibril@kobecorporation.com.',
+        },
       },
       errors: {
         title: 'Une erreur est survenue',
@@ -903,8 +935,8 @@ export const resources = {
       home: {
         title: 'Fondateur & CEO',
         brand: 'Kone Djibril',
-        roleTag: 'Kobe Corporation',
-        subtitle: 'J\'aide les entreprises à grandir avec des produits digitaux clairs — sites, applications et outils métier qui apportent des résultats.',
+        roleTag: 'Développeur & Ingénieur informaticien',
+        subtitle: 'J\'aide les entreprises à grandir avec des produits digitaux clairs — sites, applications et outils métier. Fondateur de Kobe Corporation, développeur et ingénieur informaticien avec 5 ans de livraison concrète.',
         card1: { title: 'Applications Mobile', desc: 'Des apps iOS & Android que vos clients utilisent vraiment.' },
         card2: { title: 'Apps web', desc: 'Des outils métier qui simplifient votre quotidien.' },
         card3: { title: 'E‑commerce', desc: 'Des boutiques en ligne pensées pour convertir et grandir.' },
@@ -957,22 +989,22 @@ export const resources = {
         metrics: { clients: 'Clients', projects: 'Projets', satisfaction: 'Satisfaction', delivery: 'Délai moyen' },
         about: {
           title: 'À propos de moi',
-          subtitle: 'Fondateur & CEO de Kobe Corporation · Entrepreneur · 5 ans d\'expérience',
-          bio: 'Bonjour, je suis Kone Djibril Benjamin — aussi connu sous le nom de Ben Djibril. Je suis entrepreneur, Fondateur et CEO de Kobe Corporation. Depuis 5 ans, j\'aide les entreprises et les particuliers à transformer leurs idées en produits digitaux concrets : sites web, applications mobiles et outils métier. Je combine l\'esprit du bâtisseur et la vision du fondateur pour livrer des résultats qui font avancer votre activité.',
-          bioExtended: 'Au-delà des projets clients, je dirige Kobe Corporation en tant que Fondateur & CEO. Cette expérience d\'entrepreneur façonne ma façon de travailler : des priorités claires, des délais réalistes, et des solutions pensées pour grandir — pas seulement pour le jour du lancement. Je reste opérationnel quand il le faut, tout en gardant la conversation centrée sur vos objectifs business, pas sur le jargon technique.',
+          subtitle: 'Fondateur & CEO de Kobe Corporation · Développeur & Ingénieur informaticien · 5 ans d\'expérience',
+          bio: 'Bonjour, je suis Kone Djibril Benjamin — aussi connu sous le nom de Ben Djibril. Je suis développeur et ingénieur informaticien, et Fondateur & CEO de Kobe Corporation. Depuis 5 ans, j\'aide les entreprises et les particuliers à transformer leurs idées en produits digitaux concrets : sites web, applications mobiles et outils métier. Je combine la rigueur de l\'ingénieur et la vision du fondateur pour livrer des résultats qui font avancer votre activité.',
+          bioExtended: 'Au-delà des projets clients, je dirige Kobe Corporation en tant que Fondateur & CEO. Mon parcours de développeur et d\'ingénieur informaticien me garde opérationnel quand il le faut, tandis que le rôle de fondateur clarifie les priorités : des délais réalistes, des solutions pensées pour grandir, et une conversation centrée sur vos objectifs business — pas sur le jargon.',
           languages: 'Langues',
           languagesDesc: 'Français natif, anglais niveau intermédiaire',
           realName: 'Nom complet',
           publicName: 'Nom public',
           experience: 'Expérience',
-          level: 'Niveau',
-          levelValue: 'CEO',
+          level: 'Rôle',
+          levelValue: 'Développeur · CEO',
           company: 'Entreprise',
           companyValue: 'Kobe Corporation',
           specialties: 'Spécialités',
           specialtiesDesc: 'Backend, Mobile, Web & Cloud — au service de votre business',
-          experienceDesc: '5 ans à accompagner entreprises et entrepreneurs',
-          companyDesc: 'Fondateur & CEO de Kobe Corporation',
+          experienceDesc: '5 ans comme développeur & ingénieur informaticien au service des entreprises',
+          companyDesc: 'Fondateur & CEO de Kobe Corporation · Développeur & Ingénieur informaticien',
           techStack: 'Stack Technologique',
           techStackDesc: 'Technologies et outils que je maîtrise et utilise au quotidien',
           certifications: 'Certifications',
@@ -993,16 +1025,16 @@ export const resources = {
           // Nouvelles sections
           story: {
             title: 'Mon Histoire',
-            subtitle: 'Un parcours passionné par la technologie et l\'innovation',
-            content: 'Mon parcours dans le développement logiciel a commencé par une passion pour la résolution de problèmes complexes. Diplômé en génie logiciel, j\'ai rapidement évolué vers le DevOps, attiré par l\'aspect systémique et l\'optimisation des processus. Mon expérience internationale et ma capacité à travailler avec des équipes multiculturelles font de moi un développeur adaptable et polyvalent.',
-            whyDevOps: 'Pourquoi DevOps ?',
-            whyDevOpsContent: 'Le DevOps représente pour moi la convergence parfaite entre le développement et les opérations. J\'aime créer des solutions qui non seulement fonctionnent, mais qui sont également déployables, maintenables et scalables. Cette approche me permet de livrer de la valeur rapidement tout en maintenant une qualité élevée.',
-            whyInternational: 'Pourquoi l\'international ?',
-            whyInternationalContent: 'Travailler avec des clients du monde entier me permet de découvrir différentes cultures, méthodologies et défis techniques. Cette diversité enrichit mon approche et me permet d\'apporter des solutions innovantes adaptées à chaque contexte.'
+            subtitle: 'Du bâtisseur au fondateur — et pourquoi ça compte pour votre projet',
+            content: 'J\'ai commencé comme développeur et ingénieur informaticien en construisant des produits digitaux pour des clients. En chemin, j\'ai fondé Kobe Corporation, que je dirige aujourd\'hui en tant que CEO. Ce double rôle — livraison technique et vision d\'entreprise — façonne ma façon de travailler avec vous : des priorités claires, des délais réalistes, et des solutions pensées pour grandir avec votre activité.',
+            whyDevOps: 'Pourquoi Kobe Corporation ?',
+            whyDevOpsContent: 'Kobe Corporation existe pour transformer des idées business en produits digitaux concrets — sites, apps et outils que vos équipes utilisent vraiment. En tant que fondateur, CEO, développeur et ingénieur informaticien, je reste proche de la livraison tout en gardant la conversation centrée sur vos résultats.',
+            whyInternational: 'Pourquoi travailler avec des clients du monde entier ?',
+            whyInternationalContent: 'Travailler à travers les cultures et les fuseaux m\'a appris à communiquer simplement, documenter clairement, et livrer des produits adaptés à de vrais contextes business — en local comme à distance.'
           },
           identity: {
             role: 'Rôle',
-            roleValue: 'Fondateur & CEO — Kobe Corporation',
+            roleValue: 'Fondateur & CEO · Développeur & Ingénieur informaticien',
             location: 'Localisation',
             locationValue: 'Yaoundé, Cameroun',
             timezone: 'Fuseau horaire',
@@ -1673,15 +1705,15 @@ export const resources = {
       },
       seo: {
         default: {
-          title: 'Kone Djibril (Ben Djibril) - Fondateur & CEO de Kobe Corporation | Portfolio',
-          description: 'Kone Djibril (Ben Djibril) — Fondateur & CEO de Kobe Corporation. J\'aide les entreprises à grandir avec des sites, apps et outils digitaux. Devis gratuits.',
-          keywords: 'Kone Djibril, Ben Djibril, Kobe Corporation, Fondateur CEO, développement web, applications mobiles, e-commerce, produits digitaux, Cameroun, portfolio'
+          title: 'Kone Djibril (Ben Djibril) - Fondateur & CEO · Développeur & Ingénieur informaticien | Portfolio',
+          description: 'Kone Djibril (Ben Djibril) — Fondateur & CEO de Kobe Corporation, développeur et ingénieur informaticien. Sites, apps et outils digitaux pour les entreprises. Devis gratuits.',
+          keywords: 'Kone Djibril, Ben Djibril, Kobe Corporation, Fondateur CEO, développeur, ingénieur informaticien, développement web, apps mobiles, e-commerce, Cameroun, portfolio'
         },
-        ogImageAlt: 'Kone Djibril (Ben Djibril) — Fondateur & CEO de Kobe Corporation',
+        ogImageAlt: 'Kone Djibril (Ben Djibril) — Fondateur & CEO, Développeur & Ingénieur informaticien',
         home: {
-          title: 'Kone Djibril (Ben Djibril) - Fondateur & CEO de Kobe Corporation | Portfolio',
-          description: 'Kone Djibril (Ben Djibril) — Fondateur & CEO de Kobe Corporation. Entrepreneur avec 5 ans d\'expérience, j\'aide les entreprises à grandir grâce à des sites, apps et outils digitaux.',
-          keywords: 'Kone Djibril, Ben Djibril, Kobe Corporation, Fondateur CEO, entrepreneur, développement web, applications mobiles, e-commerce, produits digitaux, portfolio'
+          title: 'Kone Djibril (Ben Djibril) - Fondateur & CEO · Développeur & Ingénieur informaticien | Portfolio',
+          description: 'Kone Djibril (Ben Djibril) — Fondateur & CEO de Kobe Corporation. Développeur et ingénieur informaticien avec 5 ans d\'expérience, j\'aide les entreprises à grandir grâce à des sites, apps et outils digitaux.',
+          keywords: 'Kone Djibril, Ben Djibril, Kobe Corporation, Fondateur CEO, développeur, ingénieur informaticien, entrepreneur, développement web, apps mobiles, portfolio'
         },
         services: {
           title: 'Services - Kone Djibril (Ben Djibril) | Web, Mobile & Outils Métier',
@@ -1695,9 +1727,9 @@ export const resources = {
           keywords: 'projets Ben Djibril, portfolio Kone Djibril, applications web, apps mobiles, e-commerce, études de cas'
         },
         about: {
-          title: 'À propos - Kone Djibril (Ben Djibril) | Profil Fondateur & CEO',
-          description: 'Découvrez Kone Djibril (Ben Djibril), Fondateur & CEO de Kobe Corporation. 5 ans à accompagner les entreprises avec des produits digitaux, stack et certifications.',
-          keywords: 'à propos Ben Djibril, Kone Djibril Benjamin, Fondateur CEO Kobe Corporation, profil développeur, certifications, expérience'
+          title: 'À propos - Kone Djibril (Ben Djibril) | Développeur, Ingénieur informaticien & Fondateur',
+          description: 'Découvrez Kone Djibril (Ben Djibril) : développeur et ingénieur informaticien, Fondateur & CEO de Kobe Corporation. 5 ans d\'expérience, stack, certifications et approche.',
+          keywords: 'à propos Ben Djibril, Kone Djibril Benjamin, développeur, ingénieur informaticien, Fondateur CEO Kobe Corporation, certifications, expérience'
         },
         contact: {
           title: 'Contact - Kone Djibril (Ben Djibril) | Devis gratuit sous 24h',

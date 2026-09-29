@@ -20,9 +20,9 @@ export const companies: Company[] = [
     website: 'https://www.ens-yaounde.cm', // À confirmer
   },
   {
-    name: 'Kobe Corp',
+    name: 'Kobe Corporation',
     logo: kobeCorpLogo,
-    website: 'https://www.kobecorporation.com', // À confirmer
+    website: 'https://www.kobecorporation.com',
   },
 ]
 
