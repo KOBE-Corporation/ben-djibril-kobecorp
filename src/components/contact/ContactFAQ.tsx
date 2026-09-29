@@ -84,11 +84,11 @@ function ContactFAQ() {
               {t('contact.faq.stillHaveQuestions')}
             </p>
             <a
-              href="mailto:bendjiril789@gmail.com"
+              href="mailto:kone.djibril@kobecorporation.com"
               className="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-semibold transition-colors"
             >
               {t('contact.faq.contactDirectly')}
-              <span>→</span>
+              <span>â†’</span>
             </a>
           </motion.div>
         </motion.div>

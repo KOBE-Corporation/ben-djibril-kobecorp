@@ -86,7 +86,7 @@ function AboutSection() {
                 whileHover={{ scale: 1.05, y: -2 }}
                 className="card p-4 bg-gradient-to-br from-primary-50 to-primary-100 dark:from-primary-900/20 dark:to-primary-800/20 border border-primary-200 dark:border-primary-700"
               >
-                <div className="text-3xl md:text-4xl font-bold gradient-text mb-1">4</div>
+                <div className="text-3xl md:text-4xl font-bold gradient-text mb-1">{t('home.trustBar.experience')}</div>
                 <div className="text-xs sm:text-sm text-secondary-600 dark:text-secondary-400 font-medium">{t('home.about.experience')}</div>
               </motion.div>
               <motion.div
@@ -294,7 +294,7 @@ function AboutSection() {
               </motion.div>
               <h3 className="text-xl font-semibold mb-2 text-secondary-900 dark:text-white">{t('home.about.experience')}</h3>
               <p className="text-secondary-600 dark:text-secondary-300 text-sm">
-                4 ans d'expérience en développement backend et mobile
+                5 ans d'expérience en développement backend et mobile
               </p>
             </motion.div>
 

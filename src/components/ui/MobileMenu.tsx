@@ -44,27 +44,6 @@ function MobileMenu({ onNavigate }: MobileMenuProps) {
     })
   }
 
-  const scrollToSubSection = (sectionId: string, path: string = '/services') => {
-    handleNavigation(() => {
-      navigate(path)
-      // Utiliser requestAnimationFrame pour une meilleure synchronisation
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          const section = document.querySelector(`[data-subsection="${sectionId}"]`)
-          if (section) {
-            const offset = 80
-            const elementPosition = section.getBoundingClientRect().top
-            const offsetPosition = elementPosition + window.pageYOffset - offset
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: 'smooth'
-            })
-          }
-        })
-      })
-    })
-  }
-
   const handleNavLinkClick = () => {
     setIsSubMenuOpen(false)
     onNavigate?.()
@@ -74,18 +53,6 @@ function MobileMenu({ onNavigate }: MobileMenuProps) {
     { 
       onClick: () => scrollToSection('services'),
       label: t('nav.services')
-    },
-    { 
-      onClick: () => scrollToSection('packages'),
-      label: 'Forfaits'
-    },
-    { 
-      onClick: () => scrollToSubSection('saas'),
-      label: 'Good Deal (SaaS)'
-    },
-    { 
-      onClick: () => scrollToSubSection('fullControl'),
-      label: 'Full Control'
     },
   ]
 

@@ -217,7 +217,7 @@ function About() {
                     className="card text-center p-3 sm:p-4 min-h-[104px] sm:min-h-[120px] flex flex-col items-center justify-center bg-gradient-to-br from-primary-50 to-primary-100 dark:from-primary-900/20 dark:to-primary-800/20 border border-primary-200 dark:border-primary-700"
                   >
                     <div className="text-2xl sm:text-3xl md:text-4xl font-bold gradient-text leading-none mb-1">
-                      4
+                      {t('home.trustBar.experience')}
                     </div>
                     <div className="text-[11px] sm:text-xs md:text-sm text-secondary-600 dark:text-secondary-400 font-medium leading-tight">
                       {t('home.about.experience')}

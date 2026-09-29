@@ -1,10 +1,13 @@
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
+import { ArrowDownTrayIcon } from '@heroicons/react/24/solid'
 import { companies } from '../../data/companies'
 import profileImage from '../../assets/ben-djibirl/ben-djibril-official-no-glass-nbg.png'
+import { getCvDownload } from '../../utils/cv'
 
 function HeroSection() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const cv = getCvDownload(i18n.language)
 
   return (
     <section className="relative pt-4 sm:pt-6 md:pt-8 pb-10 md:pb-14 overflow-visible">
@@ -56,38 +59,54 @@ function HeroSection() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.38 }}
-                className="w-full max-w-md mx-auto lg:mx-0 grid grid-cols-3 gap-0 border-t border-secondary-200/80 dark:border-secondary-700/80 pt-5 sm:pt-6"
+                className="w-full max-w-md mx-auto lg:mx-0"
               >
-                {[
-                  {
-                    value: t('home.trustBar.experience'),
-                    label: t('home.trustBar.experienceLabel'),
-                  },
-                  {
-                    value: t('home.trustBar.satisfaction'),
-                    label: t('home.trustBar.satisfactionLabel'),
-                  },
-                  {
-                    value: t('home.trustBar.responseTime'),
-                    label: t('home.trustBar.responseTimeLabel'),
-                  },
-                ].map((item, i) => (
-                  <div
-                    key={item.label}
-                    className={`px-2 sm:px-3 text-center lg:text-left ${
-                      i > 0
-                        ? 'border-l border-secondary-200/80 dark:border-secondary-700/80'
-                        : ''
-                    }`}
-                  >
-                    <div className="text-lg sm:text-xl font-bold text-secondary-900 dark:text-white tabular-nums">
-                      {item.value}
+                <div className="grid grid-cols-3 gap-0 border-t border-secondary-200/80 dark:border-secondary-700/80 pt-5 sm:pt-6">
+                  {[
+                    {
+                      value: t('home.trustBar.experience'),
+                      label: t('home.trustBar.experienceLabel'),
+                    },
+                    {
+                      value: t('home.trustBar.satisfaction'),
+                      label: t('home.trustBar.satisfactionLabel'),
+                    },
+                    {
+                      value: t('home.trustBar.responseTime'),
+                      label: t('home.trustBar.responseTimeLabel'),
+                    },
+                  ].map((item, i) => (
+                    <div
+                      key={item.label}
+                      className={`px-2 sm:px-3 text-center lg:text-left ${
+                        i > 0
+                          ? 'border-l border-secondary-200/80 dark:border-secondary-700/80'
+                          : ''
+                      }`}
+                    >
+                      <div className="text-lg sm:text-xl font-bold text-secondary-900 dark:text-white tabular-nums">
+                        {item.value}
+                      </div>
+                      <div className="mt-0.5 text-[10px] sm:text-xs uppercase tracking-wider text-secondary-500 dark:text-secondary-400">
+                        {item.label}
+                      </div>
                     </div>
-                    <div className="mt-0.5 text-[10px] sm:text-xs uppercase tracking-wider text-secondary-500 dark:text-secondary-400">
-                      {item.label}
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
+
+                <motion.a
+                  href={cv.href}
+                  download={cv.filename}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.45, delay: 0.48 }}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="mt-5 sm:mt-6 inline-flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-2.5 rounded-xl bg-primary-600 hover:bg-primary-500 text-white text-sm font-semibold shadow-md shadow-primary-600/20 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-secondary-900"
+                >
+                  <ArrowDownTrayIcon className="w-5 h-5" />
+                  <span>{t('home.about.downloadCV')}</span>
+                </motion.a>
               </motion.div>
             </motion.div>
 

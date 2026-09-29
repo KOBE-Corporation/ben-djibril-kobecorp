@@ -29,7 +29,7 @@ function FooterBrand() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="text-secondary-600 dark:text-secondary-300 text-sm leading-relaxed"
         >
-          Ingénieur DevOps spécialisé en backend et mobile, créant des solutions digitales performantes pour entreprises internationales.
+          IngÃ©nieur DevOps spÃ©cialisÃ© en backend et mobile, crÃ©ant des solutions digitales performantes pour entreprises internationales.
         </motion.p>
       </div>
       
@@ -65,11 +65,11 @@ function FooterBrand() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4, delay: 0.2 }}
-          href="mailto:bendjiril789@gmail.com" 
+          href="mailto:kone.djibril@kobecorporation.com" 
           className="flex items-start gap-3 text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors group"
         >
           <EnvelopeIcon className="w-5 h-5 flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
-          <span className="text-sm">bendjiril789@gmail.com</span>
+          <span className="text-sm">kone.djibril@kobecorporation.com</span>
         </motion.a>
         
         <motion.div
@@ -80,7 +80,7 @@ function FooterBrand() {
           className="flex items-start gap-3 text-secondary-600 dark:text-secondary-300"
         >
           <MapPinIcon className="w-5 h-5 flex-shrink-0 mt-0.5" />
-          <span className="text-sm">Yaoundé, Cameroun</span>
+          <span className="text-sm">YaoundÃ©, Cameroun</span>
         </motion.div>
       </div>
 

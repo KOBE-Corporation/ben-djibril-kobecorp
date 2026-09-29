@@ -4,16 +4,10 @@ import { motion, AnimatePresence } from 'framer-motion'
 import {
   XMarkIcon,
   CheckCircleIcon,
-  CloudIcon,
-  CodeBracketIcon,
   InformationCircleIcon,
   EnvelopeIcon,
 } from '@heroicons/react/24/outline'
 import { FaWhatsapp } from 'react-icons/fa6'
-
-type PlanType = 'saas' | 'fullControl'
-type SaaSPlan = 'goodDeal' | 'pro' | 'ultra'
-type FullControlPlan = 'normal' | 'speed' | 'ultraSpeed'
 
 type ServiceInfoDialogProps = {
   open: boolean
@@ -23,9 +17,6 @@ type ServiceInfoDialogProps = {
 
 function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps) {
   const { t } = useTranslation()
-  const [selectedPlanType, setSelectedPlanType] = useState<PlanType | null>(null)
-  const [selectedSaaSPlan, setSelectedSaaSPlan] = useState<SaaSPlan | null>(null)
-  const [selectedFullControlPlan, setSelectedFullControlPlan] = useState<FullControlPlan | null>(null)
   const [contactMethod, setContactMethod] = useState<'whatsapp' | 'email' | null>(null)
   const [formData, setFormData] = useState({
     name: '',
@@ -37,7 +28,7 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
 
   if (!open || !serviceId) return null
 
-  // Mapping des IDs de services vers les clés de traduction
+  // Mapping des IDs de services vers les clÃ©s de traduction
   const serviceKeyMap: Record<string, string> = {
     'web-dev': 'serviceWebDev',
     'showcase': 'serviceShowcase',
@@ -74,13 +65,13 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
   const serviceKey = serviceKeyMap[serviceId] || serviceId
   const serviceBaseKey = `services.${serviceKey}`
 
-  // Récupérer les informations du service
+  // RÃ©cupÃ©rer les informations du service
   const title = t(`${serviceBaseKey}.title`)
   const description = t(`${serviceBaseKey}.desc`)
   const detailedDescription = t(`${serviceBaseKey}.detailedDescription`, { defaultValue: description })
   const valueProposition = t(`${serviceBaseKey}.valueProposition`, { defaultValue: '' })
   
-  // Récupérer les fonctionnalités de base (feature1-4)
+  // RÃ©cupÃ©rer les fonctionnalitÃ©s de base (feature1-4)
   const baseFeatures = [
     t(`${serviceBaseKey}.feature1`, { defaultValue: '' }),
     t(`${serviceBaseKey}.feature2`, { defaultValue: '' }),
@@ -88,47 +79,21 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
     t(`${serviceBaseKey}.feature4`, { defaultValue: '' }),
   ].filter(f => f !== '')
   
-  // Récupérer les fonctionnalités possibles (liste étendue)
+  // RÃ©cupÃ©rer les fonctionnalitÃ©s possibles (liste Ã©tendue)
   const possibleFeaturesRaw = t(`${serviceBaseKey}.possibleFeatures`, { returnObjects: true, defaultValue: [] }) as string[]
   const possibleFeatures = Array.isArray(possibleFeaturesRaw) && possibleFeaturesRaw.length > 0 
     ? possibleFeaturesRaw 
     : baseFeatures // Utiliser les features de base si possibleFeatures n'existe pas
 
-  // Récupérer les forfaits éligibles avec valeurs par défaut
-  // Par défaut, tous les services sont éligibles à tous les forfaits sauf indication contraire
-  const eligiblePlansRaw = t(`${serviceBaseKey}.eligiblePlans`, { returnObjects: true, defaultValue: null })
-  let eligiblePlans: { saas: string[], fullControl: string[] }
-  
-  if (eligiblePlansRaw && typeof eligiblePlansRaw === 'object' && 'saas' in eligiblePlansRaw) {
-    eligiblePlans = eligiblePlansRaw as { saas: string[], fullControl: string[] }
-  } else {
-    // Valeur par défaut : tous les forfaits disponibles
-    eligiblePlans = {
-      saas: ['goodDeal', 'pro', 'ultra'],
-      fullControl: ['normal', 'speed', 'ultraSpeed'],
-    }
-  }
-
-  const hasSaaS = eligiblePlans.saas.length > 0
-  const hasFullControl = eligiblePlans.fullControl.length > 0
 
   // Formater le message pour WhatsApp
   const formatWhatsAppMessage = () => {
-    const serviceName = title
-    const planTypeName = selectedPlanType === 'saas' ? 'SaaS' : 'Full Control'
-    const planName = selectedPlanType === 'saas' 
-      ? t(`services.saas.${selectedSaaSPlan}.name`)
-      : t(`services.fullControl.${selectedFullControlPlan}.name`)
-    
     let message = `Bonjour,\n\n`
-    message += `Je souhaite demander un devis pour le service : *${serviceName}*\n\n`
-    message += `*Informations sur le forfait :*\n`
-    message += `- Type : ${planTypeName}\n`
-    message += `- Forfait : ${planName}\n\n`
+    message += `Je souhaite demander un devis pour le service : *${title}*\n\n`
     message += `*Mes informations :*\n`
     message += `- Nom : ${formData.name}\n`
     message += `- Email : ${formData.email}\n`
-    message += `- Téléphone : ${formData.phone}\n`
+    message += `- TÃ©lÃ©phone : ${formData.phone}\n`
     if (formData.company) {
       message += `- Entreprise : ${formData.company}\n`
     }
@@ -142,21 +107,12 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
 
   // Formater le message pour Email
   const formatEmailMessage = () => {
-    const serviceName = title
-    const planTypeName = selectedPlanType === 'saas' ? 'SaaS' : 'Full Control'
-    const planName = selectedPlanType === 'saas' 
-      ? t(`services.saas.${selectedSaaSPlan}.name`)
-      : t(`services.fullControl.${selectedFullControlPlan}.name`)
-    
     let message = `Bonjour,\n\n`
-    message += `Je souhaite demander un devis pour le service : ${serviceName}\n\n`
-    message += `Informations sur le forfait :\n`
-    message += `- Type : ${planTypeName}\n`
-    message += `- Forfait : ${planName}\n\n`
+    message += `Je souhaite demander un devis pour le service : ${title}\n\n`
     message += `Mes informations :\n`
     message += `- Nom : ${formData.name}\n`
     message += `- Email : ${formData.email}\n`
-    message += `- Téléphone : ${formData.phone}\n`
+    message += `- TÃ©lÃ©phone : ${formData.phone}\n`
     if (formData.company) {
       message += `- Entreprise : ${formData.company}\n`
     }
@@ -181,11 +137,11 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
     } else if (contactMethod === 'email') {
       const subject = encodeURIComponent(`Demande de devis - ${title}`)
       const body = encodeURIComponent(formatEmailMessage())
-      const emailUrl = `mailto:bendjiril789@gmail.com?subject=${subject}&body=${body}`
+      const emailUrl = `mailto:kone.djibril@kobecorporation.com?subject=${subject}&body=${body}`
       window.location.href = emailUrl
     }
     
-    // Fermer le dialogue après soumission
+    // Fermer le dialogue aprÃ¨s soumission
     onClose()
   }
 
@@ -230,9 +186,9 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
 
             {/* Content */}
             <div className="px-3 xs:px-4 sm:px-6 md:px-8 py-4 xs:py-5 sm:py-6 md:py-7 max-h-[calc(95vh-140px)] xs:max-h-[calc(90vh-160px)] sm:max-h-[calc(90vh-180px)] overflow-y-auto bg-white dark:bg-secondary-900 scrollbar-thin scrollbar-thumb-secondary-300 dark:scrollbar-thumb-secondary-600 scrollbar-track-transparent">
-              {/* Section principale - Description détaillée */}
+              {/* Section principale - Description dÃ©taillÃ©e */}
               <div className="space-y-6 mb-8">
-                {/* Description détaillée - Mise en avant */}
+                {/* Description dÃ©taillÃ©e - Mise en avant */}
                 <div className="bg-gradient-to-br from-secondary-50 to-white dark:from-secondary-800/50 dark:to-secondary-900/50 rounded-2xl p-6 sm:p-8 border border-secondary-200 dark:border-secondary-700 shadow-sm">
                   <div className="flex items-start gap-4">
                     <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary-100 dark:bg-primary-900/40 flex items-center justify-center">
@@ -240,7 +196,7 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
                     </div>
                     <div className="flex-1">
                       <h3 className="text-xl font-bold text-secondary-900 dark:text-white mb-3">
-                        À propos de ce service
+                        Ã€ propos de ce service
                       </h3>
                       <p className="text-base text-secondary-700 dark:text-secondary-300 leading-relaxed">
                         {detailedDescription}
@@ -249,7 +205,7 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
                   </div>
                 </div>
 
-                {/* Features de base - Toujours affichées */}
+                {/* Features de base - Toujours affichÃ©es */}
                 {baseFeatures.length > 0 && (
                   <div className="bg-white dark:bg-secondary-800 rounded-2xl p-6 sm:p-8 border border-secondary-200 dark:border-secondary-700 shadow-sm">
                     <div className="flex items-center gap-3 mb-4">
@@ -258,10 +214,10 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
                       </div>
                       <div>
                         <h3 className="text-xl font-bold text-secondary-900 dark:text-white">
-                          Fonctionnalités principales
+                          FonctionnalitÃ©s principales
                         </h3>
                         <p className="text-sm text-secondary-600 dark:text-secondary-400 mt-1">
-                          Les fonctionnalités clés incluses dans ce service
+                          Les fonctionnalitÃ©s clÃ©s incluses dans ce service
                         </p>
                       </div>
                     </div>
@@ -280,7 +236,7 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
                   </div>
                 )}
 
-                {/* Plus-value - Mise en évidence */}
+                {/* Plus-value - Mise en Ã©vidence */}
                 {valueProposition && (
                   <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-primary-500 to-primary-600 p-6 sm:p-8 text-white shadow-lg">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
@@ -302,7 +258,7 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
                   </div>
                 )}
 
-                {/* Fonctionnalités possibles - Design amélioré */}
+                {/* FonctionnalitÃ©s possibles - Design amÃ©liorÃ© */}
                 {possibleFeatures.length > 0 && (
                   <div className="bg-white dark:bg-secondary-800 rounded-2xl p-6 sm:p-8 border border-secondary-200 dark:border-secondary-700 shadow-sm">
                     <div className="flex items-center gap-3 mb-6">
@@ -311,10 +267,10 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
                       </div>
                       <div>
                         <h3 className="text-xl font-bold text-secondary-900 dark:text-white">
-                          Fonctionnalités pouvant être développées
+                          FonctionnalitÃ©s pouvant Ãªtre dÃ©veloppÃ©es
                         </h3>
                         <p className="text-sm text-secondary-600 dark:text-secondary-400 mt-1">
-                          Liste exhaustive des fonctionnalités disponibles pour ce service
+                          Liste exhaustive des fonctionnalitÃ©s disponibles pour ce service
                         </p>
                       </div>
                     </div>
@@ -347,7 +303,7 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
                         Stack technique
                       </h3>
                       <p className="text-sm text-secondary-600 dark:text-secondary-400 mt-1">
-                        Technologies et outils utilisés pour développer ce service
+                        Technologies et outils utilisÃ©s pour dÃ©velopper ce service
                       </p>
                     </div>
                   </div>
@@ -371,119 +327,12 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
                     Demander un devis
                   </h3>
                   <p className="text-sm text-secondary-600 dark:text-secondary-400">
-                    Remplissez le formulaire ci-dessous pour recevoir un devis personnalisé pour ce service
+                    Remplissez le formulaire ci-dessous pour recevoir un devis personnalisÃ© pour ce service
                   </p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  {/* Choix du type de forfait */}
-                  <div className="bg-secondary-50 dark:bg-secondary-800/50 rounded-xl p-4 mb-4">
-                    <label className="block text-sm font-semibold text-secondary-900 dark:text-white mb-3">
-                      Type de forfait *
-                    </label>
-                    <div className="flex gap-3">
-                      {hasSaaS && (
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setSelectedPlanType('saas')
-                            setSelectedFullControlPlan(null)
-                          }}
-                          className={`flex-1 px-4 py-4 rounded-xl border-2 transition-all ${
-                            selectedPlanType === 'saas'
-                              ? 'border-primary-500 bg-primary-500 text-white shadow-lg shadow-primary-500/30'
-                              : 'border-secondary-300 dark:border-secondary-600 bg-white dark:bg-secondary-800 text-secondary-700 dark:text-secondary-300 hover:border-primary-300 dark:hover:border-primary-600'
-                          }`}
-                        >
-                          <div className="flex flex-col items-center justify-center gap-2">
-                            <CloudIcon className={`w-6 h-6 ${selectedPlanType === 'saas' ? 'text-white' : 'text-primary-600 dark:text-primary-400'}`} />
-                            <span className="font-semibold">SaaS</span>
-                            <span className="text-xs opacity-80">Abonnement mensuel</span>
-                          </div>
-                        </button>
-                      )}
-                      {hasFullControl && (
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setSelectedPlanType('fullControl')
-                            setSelectedSaaSPlan(null)
-                          }}
-                          className={`flex-1 px-4 py-4 rounded-xl border-2 transition-all ${
-                            selectedPlanType === 'fullControl'
-                              ? 'border-primary-500 bg-primary-500 text-white shadow-lg shadow-primary-500/30'
-                              : 'border-secondary-300 dark:border-secondary-600 bg-white dark:bg-secondary-800 text-secondary-700 dark:text-secondary-300 hover:border-primary-300 dark:hover:border-primary-600'
-                          }`}
-                        >
-                          <div className="flex flex-col items-center justify-center gap-2">
-                            <CodeBracketIcon className={`w-6 h-6 ${selectedPlanType === 'fullControl' ? 'text-white' : 'text-primary-600 dark:text-primary-400'}`} />
-                            <span className="font-semibold">Full Control</span>
-                            <span className="text-xs opacity-80">Propriété complète</span>
-                          </div>
-                        </button>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Choix du forfait SaaS */}
-                  {selectedPlanType === 'saas' && hasSaaS && (
-                    <div className="bg-secondary-50 dark:bg-secondary-800/50 rounded-xl p-4 mb-4">
-                      <label className="block text-sm font-semibold text-secondary-900 dark:text-white mb-3">
-                        Sélectionnez votre forfait SaaS *
-                      </label>
-                      <div className="grid grid-cols-3 gap-3">
-                        {eligiblePlans.saas.map((plan) => {
-                          const planKey = plan === 'goodDeal' ? 'goodDeal' : plan === 'pro' ? 'pro' : 'ultra'
-                          const isSelected = selectedSaaSPlan === planKey
-                          return (
-                            <button
-                              key={plan}
-                              type="button"
-                              onClick={() => setSelectedSaaSPlan(planKey as SaaSPlan)}
-                              className={`px-4 py-3 rounded-xl border-2 text-sm font-medium transition-all ${
-                                isSelected
-                                  ? 'border-primary-500 bg-primary-500 text-white shadow-lg shadow-primary-500/30'
-                                  : 'border-secondary-300 dark:border-secondary-600 bg-white dark:bg-secondary-800 text-secondary-700 dark:text-secondary-300 hover:border-primary-300 dark:hover:border-primary-600'
-                              }`}
-                            >
-                              {t(`services.saas.${planKey}.name`)}
-                            </button>
-                          )
-                        })}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Choix du forfait Full Control */}
-                  {selectedPlanType === 'fullControl' && hasFullControl && (
-                    <div className="bg-secondary-50 dark:bg-secondary-800/50 rounded-xl p-4 mb-4">
-                      <label className="block text-sm font-semibold text-secondary-900 dark:text-white mb-3">
-                        Sélectionnez votre forfait Full Control *
-                      </label>
-                      <div className="grid grid-cols-3 gap-3">
-                        {eligiblePlans.fullControl.map((plan) => {
-                          const planKey = plan === 'normal' ? 'normal' : plan === 'speed' ? 'speed' : 'ultraSpeed'
-                          const isSelected = selectedFullControlPlan === planKey
-                          return (
-                            <button
-                              key={plan}
-                              type="button"
-                              onClick={() => setSelectedFullControlPlan(planKey as FullControlPlan)}
-                              className={`px-4 py-3 rounded-xl border-2 text-sm font-medium transition-all ${
-                                isSelected
-                                  ? 'border-primary-500 bg-primary-500 text-white shadow-lg shadow-primary-500/30'
-                                  : 'border-secondary-300 dark:border-secondary-600 bg-white dark:bg-secondary-800 text-secondary-700 dark:text-secondary-300 hover:border-primary-300 dark:hover:border-primary-600'
-                              }`}
-                            >
-                              {t(`services.fullControl.${planKey}.name`)}
-                            </button>
-                          )
-                        })}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Choix de la méthode de contact */}
+                  {/* Choix de la mÃ©thode de contact */}
                   <div className="bg-gradient-to-br from-primary-50 to-accent-50 dark:from-primary-900/20 dark:to-accent-900/20 rounded-xl p-4 sm:p-6 border-2 border-primary-200 dark:border-primary-800 mb-4">
                     <label className="block text-sm font-semibold text-secondary-900 dark:text-white mb-3">
                       Comment souhaitez-vous nous contacter ? *
@@ -559,7 +408,7 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
-                          Téléphone *
+                          TÃ©lÃ©phone *
                         </label>
                         <input
                           type="tel"
@@ -593,7 +442,7 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         className="w-full px-4 py-3 rounded-lg border border-secondary-300 dark:border-secondary-600 bg-white dark:bg-secondary-900 text-secondary-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all resize-none"
-                        placeholder="Décrivez brièvement vos besoins ou questions..."
+                        placeholder="DÃ©crivez briÃ¨vement vos besoins ou questions..."
                       />
                     </div>
                   </div>
@@ -609,10 +458,7 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
                     <button
                       type="submit"
                       disabled={
-                        !contactMethod || 
-                        !selectedPlanType || 
-                        (selectedPlanType === 'saas' && !selectedSaaSPlan) || 
-                        (selectedPlanType === 'fullControl' && !selectedFullControlPlan) ||
+                        !contactMethod ||
                         !formData.name ||
                         !formData.email ||
                         !formData.phone
