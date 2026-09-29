@@ -270,7 +270,7 @@ function AboutSection() {
               </motion.div>
               <h3 className="text-xl font-semibold mb-2 text-secondary-900 dark:text-white">{t('home.about.specialties')}</h3>
               <p className="text-secondary-600 dark:text-secondary-300 text-sm">
-                Backend, Mobile, Web & Cloud — au service de votre business
+                {t('home.about.specialtiesDesc')}
               </p>
             </motion.div>
 
@@ -297,7 +297,7 @@ function AboutSection() {
               </motion.div>
               <h3 className="text-xl font-semibold mb-2 text-secondary-900 dark:text-white">{t('home.about.experience')}</h3>
               <p className="text-secondary-600 dark:text-secondary-300 text-sm">
-                5 ans à accompagner entreprises et entrepreneurs
+                {t('home.about.experienceDesc')}
               </p>
             </motion.div>
 
@@ -324,7 +324,7 @@ function AboutSection() {
               </motion.div>
               <h3 className="text-xl font-semibold mb-2 text-secondary-900 dark:text-white">{t('home.about.company')}</h3>
               <p className="text-secondary-600 dark:text-secondary-300 text-sm">
-                Fondateur & CEO de Kobe Corporation
+                {t('home.about.companyDesc')}
               </p>
             </motion.div>
           </div>

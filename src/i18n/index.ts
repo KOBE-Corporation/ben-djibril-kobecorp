@@ -5,8 +5,16 @@ import { saasTranslations } from './saas'
 import { servicesTranslations } from './services'
 
 const savedLang = localStorage.getItem('lang')
+const urlLang = new URLSearchParams(window.location.search).get('lang')
 const browserLang = navigator.language?.toLowerCase() || 'fr'
-const initialLang = savedLang || (browserLang.startsWith('fr') ? 'fr' : 'en')
+const initialLang =
+  urlLang === 'fr' || urlLang === 'en'
+    ? urlLang
+    : savedLang || (browserLang.startsWith('fr') ? 'fr' : 'en')
+
+if (urlLang === 'fr' || urlLang === 'en') {
+  localStorage.setItem('lang', urlLang)
+}
 
 export const resources = {
   en: {
@@ -114,9 +122,14 @@ export const resources = {
           company: 'Company',
           companyValue: 'Kobe Corporation',
           specialties: 'Specialties',
+          specialtiesDesc: 'Backend, Mobile, Web & Cloud — built for your business',
+          experienceDesc: '5 years helping companies and entrepreneurs grow',
+          companyDesc: 'Founder & CEO of Kobe Corporation',
           techStack: 'Technology Stack',
           techStackDesc: 'Technologies and tools I master and use daily',
           certifications: 'Certifications',
+          certificationsDesc: 'Professional certifications validating my skills in DevOps and Cloud',
+          continuousLearning: 'Continuously learning to stay up to date with the latest technologies',
           contactMe: 'Interested in my profile?',
           contactDesc: 'Let\'s discuss your project and see how I can help you',
           contactBtn: 'Contact Me',
@@ -949,9 +962,14 @@ export const resources = {
           company: 'Entreprise',
           companyValue: 'Kobe Corporation',
           specialties: 'Spécialités',
+          specialtiesDesc: 'Backend, Mobile, Web & Cloud — au service de votre business',
+          experienceDesc: '5 ans à accompagner entreprises et entrepreneurs',
+          companyDesc: 'Fondateur & CEO de Kobe Corporation',
           techStack: 'Stack Technologique',
           techStackDesc: 'Technologies et outils que je maîtrise et utilise au quotidien',
           certifications: 'Certifications',
+          certificationsDesc: 'Certifications professionnelles validant mes compétences en DevOps et Cloud',
+          continuousLearning: 'Continuellement en formation pour rester à jour avec les dernières technologies',
           contactMe: 'Intéressé par mon profil ?',
           contactDesc: 'Discutons de votre projet et voyons comment je peux vous aider',
           contactBtn: 'Me contacter',

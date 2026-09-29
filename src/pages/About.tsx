@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
-import SEO from '../components/seo/SEO'
 import TechStack from '../components/ui/TechStack'
 import TechStackFilterable from '../components/about/TechStackFilterable'
 import CertificationsSection from '../components/sections/CertificationsSection'
@@ -38,7 +37,6 @@ function About() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-secondary-900">
-      <SEO />
       {/* Hero Section */}
       <section className="py-16 md:py-24 bg-gradient-to-br from-primary-50 via-white to-accent-50 dark:from-secondary-900 dark:via-secondary-900 dark:to-secondary-800 relative overflow-hidden">
         {/* Background decoration */}
@@ -447,7 +445,7 @@ function About() {
               {t('home.about.certifications')}
             </h2>
             <p className="text-lg text-secondary-600 dark:text-secondary-300">
-              Certifications professionnelles validant mes compétences
+              {t('home.about.certificationsDesc')}
             </p>
           </motion.div>
           <CertificationsSection />

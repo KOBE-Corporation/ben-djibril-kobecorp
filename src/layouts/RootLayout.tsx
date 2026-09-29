@@ -5,6 +5,7 @@ import { XMarkIcon } from '@heroicons/react/24/solid'
 import Navbar from '../shared/Navbar'
 import Footer from '../shared/Footer'
 import Loading from '../components/ui/Loading'
+import SEO from '../components/seo/SEO'
 import { usePrefetch } from '../hooks/usePrefetch'
 import { useHoverPrefetch } from '../hooks/useHoverPrefetch'
 import { usePreloadRoutes } from '../hooks/usePreloadRoutes'
@@ -14,8 +15,8 @@ import profileImage from '../assets/bendjibril.jpg'
 
 function RootLayout() {
   usePrefetch()
-  useHoverPrefetch() // Préchargement au survol des liens
-  usePreloadRoutes() // Préchargement agressif des chunks JS
+  useHoverPrefetch()
+  usePreloadRoutes()
   useScrollToTop()
   const { isLoading, progress, loadingStage } = useProgressiveLoading()
   const [isProfileImageOpen, setIsProfileImageOpen] = useState(false)
@@ -78,6 +79,7 @@ function RootLayout() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-primary-50 to-secondary-100 dark:from-secondary-900 dark:to-secondary-800">
+      <SEO />
       <Loading 
         isLoading={isLoading} 
         progress={progress} 

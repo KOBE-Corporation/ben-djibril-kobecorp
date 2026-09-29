@@ -60,7 +60,7 @@ function FooterServices() {
               className="text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 text-sm transition-colors inline-flex items-center gap-2 group"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-primary-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-              {t(`services.types.${service.type}`)}
+              {t(`projects.types.${service.type}`)}
             </Link>
           </motion.li>
         ))}

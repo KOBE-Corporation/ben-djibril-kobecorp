@@ -11,6 +11,30 @@ type SEOProps = {
   ogImage?: string
   ogUrl?: string
   twitterCard?: 'summary' | 'summary_large_image'
+  noIndex?: boolean
+}
+
+const KNOWN_ROUTES = new Set(['/', '/services', '/projects', '/about', '/contact'])
+const SITE_NAME = 'Ben Djibril | Kobe Corporation'
+const DEFAULT_OG_IMAGE = '/og-image.jpg'
+const CONTACT_EMAIL = 'kone.djibril@kobecorporation.com'
+const CONTACT_PHONE = '+237-655-938-501'
+
+function clampDescription(text: string, max = 160) {
+  const cleaned = text.replace(/\s+/g, ' ').trim()
+  if (cleaned.length <= max) return cleaned
+  return `${cleaned.slice(0, max - 1).trimEnd()}…`
+}
+
+function upsertJsonLd(id: string, data: Record<string, unknown>) {
+  let script = document.getElementById(id) as HTMLScriptElement | null
+  if (!script) {
+    script = document.createElement('script')
+    script.id = id
+    script.type = 'application/ld+json'
+    document.head.appendChild(script)
+  }
+  script.textContent = JSON.stringify(data)
 }
 
 function SEO({
@@ -19,43 +43,52 @@ function SEO({
   keywords,
   ogTitle,
   ogDescription,
-  ogImage = '/favicon.png',
+  ogImage = DEFAULT_OG_IMAGE,
   ogUrl,
-  twitterCard = 'summary',
+  twitterCard = 'summary_large_image',
+  noIndex,
 }: SEOProps) {
   const { t, i18n } = useTranslation()
   const location = useLocation()
 
   useEffect(() => {
-    const lang = i18n.language
+    const lang = i18n.language?.startsWith('fr') ? 'fr' : 'en'
     const baseUrl = window.location.origin
-    // URL canonique sans paramètres de requête pour éviter les pages en double
-    const canonicalUrl = `${baseUrl}${location.pathname}`
-    // URL complète avec paramètres pour Open Graph et autres
-    const currentUrl = `${baseUrl}${location.pathname}${location.search}`
-    
-    // Update document title avec variations du nom
-    if (title) {
-      document.title = title
-    } else {
-      // Default title based on route avec variations du nom
-      const routeTitles: Record<string, string> = {
-        '/': t('seo.home.title') as string,
-        '/services': t('seo.services.title') as string,
-        '/projects': t('seo.projects.title') as string,
-        '/about': t('seo.about.title') as string,
-        '/contact': t('seo.contact.title') as string,
-      }
-      const baseTitle = routeTitles[location.pathname] || 'Ben Djibril - Portfolio Professionnel'
-      // S'assurer que les deux noms sont présents dans le titre
-      if (!baseTitle.includes('Kone Djibril Benjamin') && !baseTitle.includes('Kone')) {
-        document.title = `${baseTitle} | Kone Djibril Benjamin`
-      } else {
-        document.title = baseTitle
-      }
+    const canonicalUrl = `${baseUrl}${location.pathname === '/' ? '/' : location.pathname}`
+    const isKnownRoute = KNOWN_ROUTES.has(location.pathname)
+    const shouldNoIndex = noIndex ?? !isKnownRoute
+
+    const routeTitles: Record<string, string> = {
+      '/': t('seo.home.title'),
+      '/services': t('seo.services.title'),
+      '/projects': t('seo.projects.title'),
+      '/about': t('seo.about.title'),
+      '/contact': t('seo.contact.title'),
+    }
+    const routeDescriptions: Record<string, string> = {
+      '/': t('seo.home.description'),
+      '/services': t('seo.services.description'),
+      '/projects': t('seo.projects.description'),
+      '/about': t('seo.about.description'),
+      '/contact': t('seo.contact.description'),
+    }
+    const routeKeywords: Record<string, string> = {
+      '/': t('seo.home.keywords'),
+      '/services': t('seo.services.keywords'),
+      '/projects': t('seo.projects.keywords'),
+      '/about': t('seo.about.keywords'),
+      '/contact': t('seo.contact.keywords'),
     }
 
-    // Update or create meta tags
+    const pageTitle = title || routeTitles[location.pathname] || t('seo.default.title')
+    document.title = pageTitle
+
+    const metaDescription = clampDescription(
+      description || routeDescriptions[location.pathname] || t('seo.default.description')
+    )
+    const metaKeywords =
+      keywords || routeKeywords[location.pathname] || t('seo.default.keywords')
+
     const updateMetaTag = (name: string, content: string, attribute: 'name' | 'property' = 'name') => {
       let meta = document.querySelector(`meta[${attribute}="${name}"]`)
       if (!meta) {
@@ -66,170 +99,106 @@ function SEO({
       meta.setAttribute('content', content)
     }
 
-    // Description avec variations du nom
-    const baseDescription = description || (() => {
-      const routeDescriptions: Record<string, string> = {
-        '/': t('seo.home.description') as string,
-        '/services': t('seo.services.description') as string,
-        '/projects': t('seo.projects.description') as string,
-        '/about': t('seo.about.description') as string,
-        '/contact': t('seo.contact.description') as string,
-      }
-      return routeDescriptions[location.pathname] || t('seo.default.description') as string
-    })()
-    // Enrichir la description avec les deux noms si pas déjà présents
-    let metaDescription = baseDescription
-    if (!baseDescription.includes('Kone Djibril Benjamin') && !baseDescription.includes('Ben Djibril')) {
-      metaDescription = `${baseDescription} | Ben Djibril (Kone Djibril Benjamin) - Portfolio professionnel.`
-    } else if (!baseDescription.includes('Kone Djibril Benjamin')) {
-      metaDescription = `${baseDescription} | Kone Djibril Benjamin, également connu sous le nom de Ben Djibril.`
-    }
-    updateMetaTag('description', metaDescription)
-
-    // Keywords avec variations du nom pour le référencement
-    const baseKeywords = keywords || (() => {
-      const routeKeywords: Record<string, string> = {
-        '/': t('seo.home.keywords') as string,
-        '/services': t('seo.services.keywords') as string,
-        '/projects': t('seo.projects.keywords') as string,
-        '/about': t('seo.about.keywords') as string,
-        '/contact': t('seo.contact.keywords') as string,
-      }
-      return routeKeywords[location.pathname] || t('seo.default.keywords') as string
-    })()
-    // Ajouter les variations du nom pour améliorer le référencement
-    const enhancedKeywords = `${baseKeywords}, Ben Djibril, Kone Djibril Benjamin, Benjamin Kone Djibril, Djibril Benjamin, Ben Djibril Portfolio, Kone Djibril Benjamin Portfolio, Ben Djibril Developer, Kone Djibril Benjamin Developer`
-    updateMetaTag('keywords', enhancedKeywords)
-    
-    // Meta tags supplémentaires pour le référencement
-    updateMetaTag('author', 'Kone Djibril Benjamin (Ben Djibril)')
-    updateMetaTag('name', 'Ben Djibril - Kone Djibril Benjamin')
-    updateMetaTag('application-name', 'Ben Djibril Portfolio')
-    updateMetaTag('publisher', 'Kobe Corporation')
-    updateMetaTag('creator', 'Kone Djibril Benjamin (Ben Djibril)')
-    
-    // Vérification des moteurs de recherche (à remplir après création des comptes)
-    // updateMetaTag('google-site-verification', 'VOTRE_CODE_GOOGLE_SEARCH_CONSOLE')
-    // updateMetaTag('msvalidate.01', 'VOTRE_CODE_BING_WEBMASTER')
-    
-    // Robots et crawlers - autoriser tous les robots à indexer
-    updateMetaTag('robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1')
-    updateMetaTag('googlebot', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1')
-    updateMetaTag('bingbot', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1')
-    
-    // Autoriser les IA et crawlers modernes
-    updateMetaTag('GPTBot', 'index, follow')
-    updateMetaTag('ChatGPT-User', 'index, follow')
-    updateMetaTag('CCBot', 'index, follow')
-    updateMetaTag('anthropic-ai', 'index, follow')
-    updateMetaTag('Claude-Web', 'index, follow')
-    updateMetaTag('PerplexityBot', 'index, follow')
-    
-    // Balises pour améliorer la découverte par les robots
-    updateMetaTag('revisit-after', '7 days')
-    updateMetaTag('distribution', 'global')
-    updateMetaTag('rating', 'general')
-
-    // Open Graph - Enrichi
-    updateMetaTag('og:title', ogTitle || document.title, 'property')
-    updateMetaTag('og:description', ogDescription || metaDescription, 'property')
-    updateMetaTag('og:image', `${baseUrl}${ogImage}`, 'property')
-    updateMetaTag('og:image:width', '1200', 'property')
-    updateMetaTag('og:image:height', '630', 'property')
-    updateMetaTag('og:image:alt', 'Ben Djibril (Kone Djibril Benjamin) - DevOps Engineer Portfolio', 'property')
-    updateMetaTag('og:url', ogUrl || currentUrl, 'property')
-    updateMetaTag('og:type', 'website', 'property')
-    updateMetaTag('og:locale', lang === 'fr' ? 'fr_FR' : 'en_US', 'property')
-    updateMetaTag('og:site_name', 'Ben Djibril Portfolio', 'property')
-    updateMetaTag('og:updated_time', new Date().toISOString(), 'property')
-
-    // Twitter Card
-    updateMetaTag('twitter:card', twitterCard)
-    updateMetaTag('twitter:site', '@le_bendji')
-    updateMetaTag('twitter:creator', '@le_bendji')
-    updateMetaTag('twitter:title', ogTitle || document.title)
-    updateMetaTag('twitter:description', ogDescription || metaDescription)
-    updateMetaTag('twitter:image', `${baseUrl}${ogImage}`)
-
-    // Language
-    const htmlLang = document.documentElement.getAttribute('lang')
-    if (htmlLang !== lang) {
-      document.documentElement.setAttribute('lang', lang)
-    }
-
-    // Fonction helper pour les balises link
-    const updateLinkTag = (rel: string, href: string) => {
-      let link = document.querySelector(`link[rel="${rel}"]`)
+    const updateLinkTag = (rel: string, href: string, extra: Record<string, string> = {}) => {
+      const selector = Object.entries(extra).reduce(
+        (acc, [key, value]) => `${acc}[${key}="${value}"]`,
+        `link[rel="${rel}"]`
+      )
+      let link = document.querySelector(selector) as HTMLLinkElement | null
       if (!link) {
         link = document.createElement('link')
         link.setAttribute('rel', rel)
+        Object.entries(extra).forEach(([key, value]) => link!.setAttribute(key, value))
         document.head.appendChild(link)
       }
       link.setAttribute('href', href)
     }
 
-    // Canonical URL - Toujours sans paramètres de requête pour éviter les pages en double
-    // Google utilisera cette URL comme version principale
+    updateMetaTag('description', metaDescription)
+    updateMetaTag('keywords', metaKeywords)
+    updateMetaTag('author', 'Kone Djibril Benjamin (Ben Djibril)')
+    updateMetaTag('application-name', SITE_NAME)
+    updateMetaTag('publisher', 'Kobe Corporation')
+    updateMetaTag('creator', 'Kone Djibril Benjamin (Ben Djibril)')
+    updateMetaTag('contact', CONTACT_EMAIL)
+    updateMetaTag('reply-to', CONTACT_EMAIL)
+
+    const robotsContent = shouldNoIndex
+      ? 'noindex, nofollow'
+      : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
+    updateMetaTag('robots', robotsContent)
+    updateMetaTag('googlebot', robotsContent)
+
+    const absoluteOgImage = ogImage.startsWith('http') ? ogImage : `${baseUrl}${ogImage}`
+    const shareTitle = ogTitle || pageTitle
+    const shareDescription = clampDescription(ogDescription || metaDescription)
+    const shareUrl = ogUrl || canonicalUrl
+
+    updateMetaTag('og:title', shareTitle, 'property')
+    updateMetaTag('og:description', shareDescription, 'property')
+    updateMetaTag('og:image', absoluteOgImage, 'property')
+    updateMetaTag('og:image:width', '1200', 'property')
+    updateMetaTag('og:image:height', '630', 'property')
+    updateMetaTag(
+      'og:image:alt',
+      t('seo.ogImageAlt'),
+      'property'
+    )
+    updateMetaTag('og:url', shareUrl, 'property')
+    updateMetaTag('og:type', location.pathname === '/about' ? 'profile' : 'website', 'property')
+    updateMetaTag('og:locale', lang === 'fr' ? 'fr_FR' : 'en_US', 'property')
+    updateMetaTag('og:locale:alternate', lang === 'fr' ? 'en_US' : 'fr_FR', 'property')
+    updateMetaTag('og:site_name', SITE_NAME, 'property')
+
+    updateMetaTag('twitter:card', twitterCard)
+    updateMetaTag('twitter:site', '@le_bendji')
+    updateMetaTag('twitter:creator', '@le_bendji')
+    updateMetaTag('twitter:title', shareTitle)
+    updateMetaTag('twitter:description', shareDescription)
+    updateMetaTag('twitter:image', absoluteOgImage)
+    updateMetaTag('twitter:image:alt', t('seo.ogImageAlt'))
+
+    document.documentElement.setAttribute('lang', lang)
     updateLinkTag('canonical', canonicalUrl)
-    
-    // Sitemap reference
-    updateLinkTag('sitemap', `${baseUrl}/sitemap.xml`)
-    
-    // Preconnect pour améliorer les performances
-    const preconnectUrls = [
-      'https://fonts.googleapis.com',
-      'https://fonts.gstatic.com'
-    ]
-    
-    preconnectUrls.forEach(url => {
-      let preconnect = document.querySelector(`link[rel="preconnect"][href="${url}"]`)
-      if (!preconnect) {
-        preconnect = document.createElement('link')
-        preconnect.setAttribute('rel', 'preconnect')
-        preconnect.setAttribute('href', url)
-        if (url.includes('fonts.gstatic.com')) {
-          preconnect.setAttribute('crossorigin', 'anonymous')
-        }
-        document.head.appendChild(preconnect)
-      }
+
+    document.querySelectorAll('link[rel="alternate"][hreflang]').forEach((link) => link.remove())
+    const hreflangEntries =
+      location.pathname === '/'
+        ? [
+            { code: 'x-default', href: `${baseUrl}/` },
+            { code: 'fr', href: `${baseUrl}/?lang=fr` },
+            { code: 'en', href: `${baseUrl}/?lang=en` },
+          ]
+        : [
+            { code: 'x-default', href: canonicalUrl },
+            { code: 'fr', href: `${canonicalUrl}?lang=fr` },
+            { code: 'en', href: `${canonicalUrl}?lang=en` },
+          ]
+    hreflangEntries.forEach(({ code, href }) => {
+      const link = document.createElement('link')
+      link.setAttribute('rel', 'alternate')
+      link.setAttribute('hreflang', code)
+      link.setAttribute('href', href)
+      document.head.appendChild(link)
     })
 
-    // Alternate languages - Important pour éviter les pages en double
-    const alternateLinks = document.querySelectorAll('link[rel="alternate"][hreflang]')
-    alternateLinks.forEach(link => link.remove())
-    
-    // Ajouter x-default pour indiquer la version par défaut (canonique)
-    const defaultLink = document.createElement('link')
-    defaultLink.setAttribute('rel', 'alternate')
-    defaultLink.setAttribute('hreflang', 'x-default')
-    defaultLink.setAttribute('href', canonicalUrl)
-    document.head.appendChild(defaultLink)
-    
-    // Ajouter les versions linguistiques
-    const languages = ['fr', 'en']
-    languages.forEach(langCode => {
-      const alternateLink = document.createElement('link')
-      alternateLink.setAttribute('rel', 'alternate')
-      alternateLink.setAttribute('hreflang', langCode)
-      alternateLink.setAttribute('href', `${baseUrl}${location.pathname}?lang=${langCode}`)
-      document.head.appendChild(alternateLink)
-    })
-
-    // Structured Data (JSON-LD) pour améliorer le référencement
-    // Supprimer tous les scripts JSON-LD existants
-    const existingJsonLd = document.querySelectorAll('script[type="application/ld+json"]')
-    existingJsonLd.forEach(script => script.remove())
-    
-    // Person Schema - Principal
     const personSchema = {
       '@context': 'https://schema.org',
       '@type': 'Person',
+      '@id': `${baseUrl}/#person`,
       name: 'Kone Djibril Benjamin',
-      alternateName: ['Ben Djibril', 'Benjamin Kone Djibril', 'Djibril Benjamin', 'Ben Djibril Developer', 'Kone Djibril Benjamin Developer'],
-      jobTitle: 'DevOps Engineer',
+      alternateName: ['Ben Djibril', 'Benjamin Kone Djibril', 'Djibril Benjamin', 'Kone Djibril'],
+      jobTitle: 'Founder & CEO',
       description: metaDescription,
-      url: canonicalUrl,
-      image: `${baseUrl}${ogImage}`,
+      url: `${baseUrl}/`,
+      image: absoluteOgImage,
+      email: CONTACT_EMAIL,
+      telephone: CONTACT_PHONE,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Yaoundé',
+        addressCountry: 'CM',
+      },
       sameAs: [
         'https://www.facebook.com/share/1apyznqNgf/',
         'https://www.instagram.com/le_bendji',
@@ -239,79 +208,34 @@ function SEO({
         'https://www.kobecorporation.com',
       ],
       knowsAbout: [
-        'DevOps',
-        'Backend Development',
+        'Entrepreneurship',
+        'Digital Products',
+        'Web Development',
         'Mobile Development',
+        'E-commerce',
+        'Backend Development',
+        'DevOps',
         'Spring Boot',
         'Kotlin',
         'React',
-        'Full Stack Development',
-        'Web Development',
-        'E-commerce',
-        'API Development',
-        'Cloud Services'
       ],
       alumniOf: [
-        {
-          '@type': 'Organization',
-          name: 'ENS Y',
-          url: 'https://www.ens-yaounde.cm'
-        },
-        {
-          '@type': 'Organization',
-          name: 'UY2 SOA',
-          url: 'https://www.univ-yaounde2.cm'
-        }
+        { '@type': 'CollegeOrUniversity', name: 'ENS Yaoundé' },
+        { '@type': 'CollegeOrUniversity', name: 'Université de Yaoundé II — SOA' },
       ],
-      worksFor: {
-        '@type': 'Organization',
-        name: 'Kobe Corporation',
-        url: 'https://www.kobecorporation.com'
-      },
-      // Ajouter des informations pour améliorer la découverte
-      identifier: {
-        '@type': 'PropertyValue',
-        name: 'Portfolio Website',
-        value: canonicalUrl
-      }
+      worksFor: { '@id': `${baseUrl}/#organization` },
     }
-    
-    // Website Schema - Pour améliorer la découverte du site
-    const websiteSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'WebSite',
-      name: 'Ben Djibril - Portfolio Professionnel',
-      alternateName: ['Kone Djibril Benjamin Portfolio', 'Ben Djibril Developer Portfolio'],
-      url: baseUrl,
-      description: metaDescription,
-      author: {
-        '@type': 'Person',
-        name: 'Kone Djibril Benjamin',
-        alternateName: 'Ben Djibril'
-      },
-      publisher: {
-        '@type': 'Organization',
-        name: 'Kobe Corporation',
-        url: 'https://www.kobecorporation.com'
-      },
-      inLanguage: ['fr', 'en'],
-      potentialAction: {
-        '@type': 'SearchAction',
-        target: {
-          '@type': 'EntryPoint',
-          urlTemplate: `${baseUrl}/?q={search_term_string}`
-        },
-        'query-input': 'required name=search_term_string'
-      }
-    }
-    
-    // Organization Schema - Pour Kobe Corporation
+
     const organizationSchema = {
       '@context': 'https://schema.org',
       '@type': 'Organization',
+      '@id': `${baseUrl}/#organization`,
       name: 'Kobe Corporation',
       url: 'https://www.kobecorporation.com',
       logo: `${baseUrl}/favicon.png`,
+      founder: { '@id': `${baseUrl}/#person` },
+      email: CONTACT_EMAIL,
+      telephone: CONTACT_PHONE,
       sameAs: [
         'https://www.facebook.com/share/1apyznqNgf/',
         'https://www.instagram.com/le_bendji',
@@ -321,77 +245,125 @@ function SEO({
       ],
       contactPoint: {
         '@type': 'ContactPoint',
-        telephone: '+237-655-938-501',
-        contactType: 'Customer Service',
+        telephone: CONTACT_PHONE,
+        email: CONTACT_EMAIL,
+        contactType: 'customer service',
         areaServed: 'Worldwide',
-        availableLanguage: ['fr', 'en']
-      }
+        availableLanguage: ['fr', 'en'],
+      },
     }
-    
-    // Breadcrumb Schema - Pour améliorer la navigation
+
+    const websiteSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      '@id': `${baseUrl}/#website`,
+      name: SITE_NAME,
+      alternateName: ['Ben Djibril Portfolio', 'Kone Djibril Benjamin Portfolio'],
+      url: `${baseUrl}/`,
+      description: metaDescription,
+      inLanguage: ['fr', 'en'],
+      publisher: { '@id': `${baseUrl}/#organization` },
+      author: { '@id': `${baseUrl}/#person` },
+    }
+
+    const breadcrumbItems: Array<{
+      '@type': 'ListItem'
+      position: number
+      name: string
+      item: string
+    }> = [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: t('nav.home'),
+        item: `${baseUrl}/`,
+      },
+    ]
+    if (location.pathname !== '/' && isKnownRoute) {
+      const routeKey = location.pathname.slice(1)
+      breadcrumbItems.push({
+        '@type': 'ListItem',
+        position: 2,
+        name: t(`nav.${routeKey}`),
+        item: canonicalUrl,
+      })
+    }
+
     const breadcrumbSchema = {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Accueil',
-          item: baseUrl
-        },
-        ...(location.pathname !== '/' ? [{
-          '@type': 'ListItem',
-          position: 2,
-          name: document.title.split(' - ')[0] || document.title,
-          item: canonicalUrl
-        }] : [])
-      ]
+      itemListElement: breadcrumbItems,
     }
-    
-    // ProfessionalService Schema - Pour les services
-    const professionalServiceSchema = location.pathname === '/services' ? {
-      '@context': 'https://schema.org',
-      '@type': 'ProfessionalService',
-      name: 'Ben Djibril - Services de Développement',
-      alternateName: 'Kone Djibril Benjamin - Development Services',
-      description: metaDescription,
-      url: canonicalUrl,
-      provider: {
-        '@type': 'Person',
-        name: 'Kone Djibril Benjamin',
-        alternateName: 'Ben Djibril',
-        jobTitle: 'DevOps Engineer'
-      },
-      areaServed: {
-        '@type': 'Country',
-        name: 'Worldwide'
-      },
-      serviceType: [
-        'Web Development',
-        'Mobile Development',
-        'DevOps',
-        'Backend Development',
-        'E-commerce',
-        'API Development'
-      ]
-    } : null
-    
-    // Créer et ajouter tous les scripts JSON-LD
-    const schemas = [
-      personSchema,
-      websiteSchema,
-      organizationSchema,
-      breadcrumbSchema,
-      ...(professionalServiceSchema ? [professionalServiceSchema] : [])
-    ]
-    
-    schemas.forEach(schema => {
-      const script = document.createElement('script')
-      script.type = 'application/ld+json'
-      script.textContent = JSON.stringify(schema)
-      document.head.appendChild(script)
-    })
-  }, [title, description, keywords, ogTitle, ogDescription, ogImage, ogUrl, twitterCard, location, t, i18n.language])
+
+    upsertJsonLd('ld-person', personSchema)
+    upsertJsonLd('ld-organization', organizationSchema)
+    upsertJsonLd('ld-website', websiteSchema)
+    upsertJsonLd('ld-breadcrumb', breadcrumbSchema)
+
+    const pageSpecific = document.getElementById('ld-page')
+    if (pageSpecific) pageSpecific.remove()
+
+    if (location.pathname === '/services') {
+      upsertJsonLd('ld-page', {
+        '@context': 'https://schema.org',
+        '@type': 'ProfessionalService',
+        name: t('seo.services.schemaName'),
+        description: metaDescription,
+        url: canonicalUrl,
+        image: absoluteOgImage,
+        provider: { '@id': `${baseUrl}/#person` },
+        areaServed: 'Worldwide',
+        serviceType: [
+          'Web Development',
+          'Mobile Development',
+          'E-commerce',
+          'Business Software',
+          'Backend Development',
+          'DevOps',
+        ],
+      })
+    } else if (location.pathname === '/contact') {
+      upsertJsonLd('ld-page', {
+        '@context': 'https://schema.org',
+        '@type': 'ContactPage',
+        name: pageTitle,
+        description: metaDescription,
+        url: canonicalUrl,
+        mainEntity: { '@id': `${baseUrl}/#person` },
+      })
+    } else if (location.pathname === '/about') {
+      upsertJsonLd('ld-page', {
+        '@context': 'https://schema.org',
+        '@type': 'ProfilePage',
+        name: pageTitle,
+        description: metaDescription,
+        url: canonicalUrl,
+        mainEntity: { '@id': `${baseUrl}/#person` },
+      })
+    } else if (location.pathname === '/projects') {
+      upsertJsonLd('ld-page', {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: pageTitle,
+        description: metaDescription,
+        url: canonicalUrl,
+        about: { '@id': `${baseUrl}/#person` },
+      })
+    }
+  }, [
+    title,
+    description,
+    keywords,
+    ogTitle,
+    ogDescription,
+    ogImage,
+    ogUrl,
+    twitterCard,
+    noIndex,
+    location.pathname,
+    t,
+    i18n.language,
+  ])
 
   return null
 }
