@@ -50,10 +50,10 @@ export const resources = {
           individualSubtext: 'Free quote under 24h',
         },
         videoTeaser: {
-          badge: 'New',
-          title: 'Discover my profile in 30 seconds',
-          subtitle: 'Understand how I work, the type of projects I take on, and what you can expect from our collaboration.',
-          cta: 'Watch the short intro',
+          badge: 'Profile',
+          title: 'Discover how I work with my clients',
+          subtitle: 'Clear communication, realistic timelines, and products built for your business goals.',
+          cta: 'View my profile',
         },
         services: {
           title: 'My Services',
@@ -824,10 +824,10 @@ export const resources = {
           responseTimeLabel: 'Réponse',
         },
         videoTeaser: {
-          badge: 'Nouveau',
-          title: 'Découvre mon profil en 30 secondes',
-          subtitle: 'Comprends rapidement comment je travaille, les types de projets que je prends et ce que tu peux attendre de notre collaboration.',
-          cta: 'Voir la courte présentation',
+          badge: 'Profil',
+          title: 'Découvrez comment je travaille avec mes clients',
+          subtitle: 'Communication claire, délais réalistes, et produits pensés pour vos objectifs business.',
+          cta: 'Voir mon profil',
         },
         services: {
           title: 'Mes Services',

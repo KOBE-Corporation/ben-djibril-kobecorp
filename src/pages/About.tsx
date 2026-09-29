@@ -264,19 +264,19 @@ function About() {
                   </div>
                   <div className="flex flex-wrap gap-2">
                     <span className="px-4 py-2 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-lg text-sm font-semibold">
-                      Backend (Spring Boot)
+                      Entrepreneuriat
                     </span>
                     <span className="px-4 py-2 bg-accent-100 dark:bg-accent-900/30 text-accent-700 dark:text-accent-300 rounded-lg text-sm font-semibold">
-                      Mobile (Kotlin Multiplatform)
+                      Sites & Apps
                     </span>
                     <span className="px-4 py-2 bg-secondary-100 dark:bg-secondary-800 text-secondary-700 dark:text-secondary-300 rounded-lg text-sm font-semibold">
-                      Front-end (React)
+                      E-commerce
                     </span>
                     <span className="px-4 py-2 bg-success-100 dark:bg-success-900/30 text-success-700 dark:text-success-300 rounded-lg text-sm font-semibold">
-                      DevOps
+                      Outils métier
                     </span>
                     <span className="px-4 py-2 bg-warning-100 dark:bg-warning-900/30 text-warning-700 dark:text-warning-300 rounded-lg text-sm font-semibold">
-                      Full-Stack
+                      Cloud & DevOps
                     </span>
                   </div>
                 </div>

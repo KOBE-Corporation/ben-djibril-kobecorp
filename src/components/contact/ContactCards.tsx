@@ -57,7 +57,7 @@ function ContactCard({ icon, title, description, action, href, color, delay = 0 
             animate={{ x: [0, 5, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
           >
-            â†’
+            →
           </motion.span>
         </span>
       </div>
@@ -101,7 +101,7 @@ function ContactCards() {
       title: t('contact.cards.location.title'),
       description: t('contact.cards.location.description'),
       action: t('contact.cards.location.action'),
-      href: 'https://maps.google.com/?q=YaoundÃ©,Cameroun',
+      href: 'https://maps.google.com/?q=Yaoundé,Cameroun',
       color: 'from-accent-500 to-accent-600',
       delay: 0.3
     },
