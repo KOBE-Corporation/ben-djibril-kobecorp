@@ -1,16 +1,14 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   XMarkIcon,
   CheckCircleIcon,
-  CodeBracketIcon,
   InformationCircleIcon,
   EnvelopeIcon,
+  CodeBracketIcon,
 } from '@heroicons/react/24/outline'
 import { FaWhatsapp } from 'react-icons/fa6'
-
-type FullControlPlan = 'normal' | 'speed' | 'ultraSpeed'
 
 type ServiceInfoDialogProps = {
   open: boolean
@@ -20,7 +18,6 @@ type ServiceInfoDialogProps = {
 
 function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps) {
   const { t } = useTranslation()
-  const [selectedFullControlPlan, setSelectedFullControlPlan] = useState<FullControlPlan | null>(null)
   const [contactMethod, setContactMethod] = useState<'whatsapp' | 'email' | null>(null)
   const [formData, setFormData] = useState({
     name: '',
@@ -89,87 +86,53 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
     ? possibleFeaturesRaw 
     : baseFeatures // Utiliser les features de base si possibleFeatures n'existe pas
 
-  // Forfaits Full Control éligibles (tous par défaut)
-  const eligiblePlansRaw = t(`${serviceBaseKey}.eligiblePlans`, { returnObjects: true, defaultValue: null })
-  let eligibleFullControl: string[] = ['normal', 'speed', 'ultraSpeed']
 
-  if (
-    eligiblePlansRaw &&
-    typeof eligiblePlansRaw === 'object' &&
-    'fullControl' in eligiblePlansRaw &&
-    Array.isArray((eligiblePlansRaw as { fullControl: string[] }).fullControl)
-  ) {
-    eligibleFullControl = (eligiblePlansRaw as { fullControl: string[] }).fullControl
-  }
-
-  // Formater le message pour WhatsApp
   const formatWhatsAppMessage = () => {
-    const serviceName = title
-    const planName = t(`services.fullControl.${selectedFullControlPlan}.name`)
-    
-    let message = `Bonjour,\n\n`
-    message += `Je souhaite demander un devis pour le service : *${serviceName}*\n\n`
-    message += `*Informations sur le forfait :*\n`
-    message += `- Type : Full Control\n`
-    message += `- Forfait : ${planName}\n\n`
-    message += `*Mes informations :*\n`
-    message += `- Nom : ${formData.name}\n`
-    message += `- Email : ${formData.email}\n`
-    message += `- Téléphone : ${formData.phone}\n`
+    let message = t('services.infoDialog.waIntro', { service: title })
+    message += t('services.infoDialog.waName', { name: formData.name })
+    message += t('services.infoDialog.waEmail', { email: formData.email })
+    message += t('services.infoDialog.waPhone', { phone: formData.phone })
     if (formData.company) {
-      message += `- Entreprise : ${formData.company}\n`
+      message += t('services.infoDialog.waCompany', { company: formData.company })
     }
     if (formData.message) {
-      message += `\n*Message :*\n${formData.message}\n`
+      message += t('services.infoDialog.waMessage', { message: formData.message })
     }
-    message += `\nMerci de me recontacter pour discuter de ce projet.`
-    
+    message += t('services.infoDialog.waClosing')
     return encodeURIComponent(message)
   }
 
-  // Formater le message pour Email
   const formatEmailMessage = () => {
-    const serviceName = title
-    const planName = t(`services.fullControl.${selectedFullControlPlan}.name`)
-    
-    let message = `Bonjour,\n\n`
-    message += `Je souhaite demander un devis pour le service : ${serviceName}\n\n`
-    message += `Informations sur le forfait :\n`
-    message += `- Type : Full Control\n`
-    message += `- Forfait : ${planName}\n\n`
-    message += `Mes informations :\n`
-    message += `- Nom : ${formData.name}\n`
-    message += `- Email : ${formData.email}\n`
-    message += `- Téléphone : ${formData.phone}\n`
+    let message = t('services.infoDialog.emailIntro', { service: title })
+    message += t('services.infoDialog.emailName', { name: formData.name })
+    message += t('services.infoDialog.emailEmail', { email: formData.email })
+    message += t('services.infoDialog.emailPhone', { phone: formData.phone })
     if (formData.company) {
-      message += `- Entreprise : ${formData.company}\n`
+      message += t('services.infoDialog.emailCompany', { company: formData.company })
     }
     if (formData.message) {
-      message += `\nMessage :\n${formData.message}\n`
+      message += t('services.infoDialog.emailMessage', { message: formData.message })
     }
-    message += `\nMerci de me recontacter pour discuter de ce projet.\n\n`
-    message += `Cordialement,\n${formData.name}`
-    
+    message += t('services.infoDialog.emailClosing')
     return message
   }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     if (!contactMethod) return
-    
+
     if (contactMethod === 'whatsapp') {
       const message = formatWhatsAppMessage()
       const whatsappUrl = `https://wa.me/237655938501?text=${message}`
       window.open(whatsappUrl, '_blank')
     } else if (contactMethod === 'email') {
-      const subject = encodeURIComponent(`Demande de devis - ${title}`)
+      const subject = encodeURIComponent(t('services.infoDialog.emailSubject', { service: title }))
       const body = encodeURIComponent(formatEmailMessage())
-      const emailUrl = `mailto:bendjiril789@gmail.com?subject=${subject}&body=${body}`
+      const emailUrl = `mailto:kone.djibril@kobecorporation.com?subject=${subject}&body=${body}`
       window.location.href = emailUrl
     }
-    
-    // Fermer le dialogue après soumission
+
     onClose()
   }
 
@@ -224,7 +187,7 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
                     </div>
                     <div className="flex-1">
                       <h3 className="text-xl font-bold text-secondary-900 dark:text-white mb-3">
-                        À propos de ce service
+                        {t('services.infoDialog.aboutService')}
                       </h3>
                       <p className="text-base text-secondary-700 dark:text-secondary-300 leading-relaxed">
                         {detailedDescription}
@@ -242,10 +205,10 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
                       </div>
                       <div>
                         <h3 className="text-xl font-bold text-secondary-900 dark:text-white">
-                          Fonctionnalités principales
+                          {t('services.infoDialog.mainFeatures')}
                         </h3>
                         <p className="text-sm text-secondary-600 dark:text-secondary-400 mt-1">
-                          Les fonctionnalités clés incluses dans ce service
+                          {t('services.infoDialog.mainFeaturesDesc')}
                         </p>
                       </div>
                     </div>
@@ -276,7 +239,7 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
                           </svg>
                         </div>
                         <h3 className="text-xl font-bold">
-                          Plus-value du projet
+                          {t('services.infoDialog.valueProposition')}
                         </h3>
                       </div>
                       <p className="text-primary-50 leading-relaxed text-base">
@@ -295,10 +258,10 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
                       </div>
                       <div>
                         <h3 className="text-xl font-bold text-secondary-900 dark:text-white">
-                          Fonctionnalités pouvant être développées
+                          {t('services.infoDialog.possibleFeatures')}
                         </h3>
                         <p className="text-sm text-secondary-600 dark:text-secondary-400 mt-1">
-                          Liste exhaustive des fonctionnalités disponibles pour ce service
+                          {t('services.infoDialog.possibleFeaturesDesc')}
                         </p>
                       </div>
                     </div>
@@ -328,10 +291,10 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
                     </div>
                     <div>
                       <h3 className="text-xl font-bold text-secondary-900 dark:text-white">
-                        Stack technique
+                        {t('services.infoDialog.techStack')}
                       </h3>
                       <p className="text-sm text-secondary-600 dark:text-secondary-400 mt-1">
-                        Technologies et outils utilisés pour développer ce service
+                        {t('services.infoDialog.techStackDesc')}
                       </p>
                     </div>
                   </div>
@@ -352,49 +315,18 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
               <div className="mt-8 pt-8 border-t-2 border-secondary-200 dark:border-secondary-700">
                 <div className="mb-6">
                   <h3 className="text-2xl font-bold text-secondary-900 dark:text-white mb-2">
-                    Demander un devis
+                    {t('services.infoDialog.requestQuote')}
                   </h3>
                   <p className="text-sm text-secondary-600 dark:text-secondary-400">
-                    Remplissez le formulaire ci-dessous pour recevoir un devis personnalisé pour ce service
+                    {t('services.infoDialog.requestQuoteDesc')}
                   </p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  {/* Forfait Full Control */}
-                  <div className="bg-secondary-50 dark:bg-secondary-800/50 rounded-xl p-4 mb-4">
-                    <label className="block text-sm font-semibold text-secondary-900 dark:text-white mb-3">
-                      Sélectionnez votre forfait Full Control *
-                    </label>
-                    <div className="grid grid-cols-3 gap-3">
-                      {eligibleFullControl.map((plan) => {
-                        const planKey = plan === 'normal' ? 'normal' : plan === 'speed' ? 'speed' : 'ultraSpeed'
-                        const isSelected = selectedFullControlPlan === planKey
-                        return (
-                          <button
-                            key={plan}
-                            type="button"
-                            onClick={() => setSelectedFullControlPlan(planKey as FullControlPlan)}
-                            className={`px-4 py-3 rounded-xl border-2 text-sm font-medium transition-all ${
-                              isSelected
-                                ? 'border-primary-500 bg-primary-500 text-white shadow-lg shadow-primary-500/30'
-                                : 'border-secondary-300 dark:border-secondary-600 bg-white dark:bg-secondary-800 text-secondary-700 dark:text-secondary-300 hover:border-primary-300 dark:hover:border-primary-600'
-                            }`}
-                          >
-                            {t(`services.fullControl.${planKey}.name`)}
-                          </button>
-                        )
-                      })}
-                    </div>
-                    <p className="mt-3 text-xs text-secondary-500 dark:text-secondary-400 flex items-center gap-1.5">
-                      <CodeBracketIcon className="w-4 h-4 text-primary-600 dark:text-primary-400" />
-                      Propriété complète du code et du projet
-                    </p>
-                  </div>
-
                   {/* Choix de la méthode de contact */}
                   <div className="bg-gradient-to-br from-primary-50 to-accent-50 dark:from-primary-900/20 dark:to-accent-900/20 rounded-xl p-4 sm:p-6 border-2 border-primary-200 dark:border-primary-800 mb-4">
                     <label className="block text-sm font-semibold text-secondary-900 dark:text-white mb-3">
-                      Comment souhaitez-vous nous contacter ? *
+                      {t('services.infoDialog.contactPreference')}
                     </label>
                     <div className="grid sm:grid-cols-2 gap-3">
                       <button
@@ -409,7 +341,7 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
                         <FaWhatsapp className={`w-6 h-6 ${contactMethod === 'whatsapp' ? 'text-white' : 'text-success-600 dark:text-success-400'}`} />
                         <div className="text-left">
                           <div className="font-semibold">WhatsApp</div>
-                          <div className="text-xs opacity-80">Contact rapide</div>
+                          <div className="text-xs opacity-80">{t('services.infoDialog.whatsappFast')}</div>
                         </div>
                       </button>
                       <button
@@ -424,7 +356,7 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
                         <EnvelopeIcon className={`w-6 h-6 ${contactMethod === 'email' ? 'text-white' : 'text-primary-600 dark:text-primary-400'}`} />
                         <div className="text-left">
                           <div className="font-semibold">Email</div>
-                          <div className="text-xs opacity-80">Contact formel</div>
+                          <div className="text-xs opacity-80">{t('services.infoDialog.emailFormal')}</div>
                         </div>
                       </button>
                     </div>
@@ -436,12 +368,12 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
                       <svg className="w-5 h-5 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                       </svg>
-                      Vos informations
+                      {t('services.infoDialog.yourInfo')}
                     </h4>
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
-                          Nom complet *
+                          {t('services.infoDialog.fullName')}
                         </label>
                         <input
                           type="text"
@@ -449,12 +381,12 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           className="w-full px-4 py-3 rounded-lg border border-secondary-300 dark:border-secondary-600 bg-white dark:bg-secondary-900 text-secondary-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
-                          placeholder="Votre nom complet"
+                          placeholder={t('services.infoDialog.fullNamePlaceholder')}
                         />
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
-                          Email *
+                          {t('services.infoDialog.email')}
                         </label>
                         <input
                           type="email"
@@ -467,7 +399,7 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
-                          Téléphone *
+                          {t('services.infoDialog.phone')}
                         </label>
                         <input
                           type="tel"
@@ -480,28 +412,28 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
-                          Entreprise <span className="text-xs text-secondary-500">(optionnel)</span>
+                          {t('services.infoDialog.company')} <span className="text-xs text-secondary-500">{t('services.infoDialog.companyOptional')}</span>
                         </label>
                         <input
                           type="text"
                           value={formData.company}
                           onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                           className="w-full px-4 py-3 rounded-lg border border-secondary-300 dark:border-secondary-600 bg-white dark:bg-secondary-900 text-secondary-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
-                          placeholder="Nom de votre entreprise (optionnel)"
+                          placeholder={t('services.infoDialog.companyPlaceholder')}
                         />
                       </div>
                     </div>
 
                     <div className="mt-4">
                       <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
-                        Message <span className="text-xs text-secondary-500">(optionnel)</span>
+                        {t('services.infoDialog.message')} <span className="text-xs text-secondary-500">{t('services.infoDialog.messageOptional')}</span>
                       </label>
                       <textarea
                         rows={4}
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         className="w-full px-4 py-3 rounded-lg border border-secondary-300 dark:border-secondary-600 bg-white dark:bg-secondary-900 text-secondary-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all resize-none"
-                        placeholder="Décrivez brièvement vos besoins ou questions..."
+                        placeholder={t('services.infoDialog.messagePlaceholder')}
                       />
                     </div>
                   </div>
@@ -512,13 +444,12 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
                       onClick={onClose}
                       className="sm:flex-1 px-4 py-3 rounded-lg border-2 border-secondary-300 dark:border-secondary-600 bg-white dark:bg-secondary-800 text-secondary-700 dark:text-secondary-300 hover:bg-secondary-50 dark:hover:bg-secondary-700 transition-colors font-medium"
                     >
-                      Annuler
+                      {t('services.infoDialog.cancel')}
                     </button>
                     <button
                       type="submit"
                       disabled={
-                        !contactMethod || 
-                        !selectedFullControlPlan ||
+                        !contactMethod ||
                         !formData.name ||
                         !formData.email ||
                         !formData.phone
@@ -527,7 +458,9 @@ function ServiceInfoDialog({ open, serviceId, onClose }: ServiceInfoDialogProps)
                     >
                       {contactMethod === 'whatsapp' && <FaWhatsapp className="w-5 h-5" />}
                       {contactMethod === 'email' && <EnvelopeIcon className="w-5 h-5" />}
-                      Envoyer via {contactMethod === 'whatsapp' ? 'WhatsApp' : contactMethod === 'email' ? 'Email' : '...'}
+                      {t('services.infoDialog.sendVia', {
+                        method: contactMethod === 'whatsapp' ? 'WhatsApp' : contactMethod === 'email' ? 'Email' : '...',
+                      })}
                     </button>
                   </div>
                 </form>

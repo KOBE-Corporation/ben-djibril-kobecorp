@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
-import SEO from '../components/seo/SEO'
 import TechStack from '../components/ui/TechStack'
 import TechStackFilterable from '../components/about/TechStackFilterable'
 import CertificationsSection from '../components/sections/CertificationsSection'
+import AboutStory from '../components/about/AboutStory'
 import AboutTimeline from '../components/about/AboutTimeline'
 import AboutGallery from '../components/about/AboutGallery'
 import AboutCTAs from '../components/about/AboutCTAs'
@@ -38,7 +38,6 @@ function About() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-secondary-900">
-      <SEO />
       {/* Hero Section */}
       <section className="py-16 md:py-24 bg-gradient-to-br from-primary-50 via-white to-accent-50 dark:from-secondary-900 dark:via-secondary-900 dark:to-secondary-800 relative overflow-hidden">
         {/* Background decoration */}
@@ -202,7 +201,7 @@ function About() {
                   <div className="flex items-start gap-3 mb-4">
                     <UserIcon className="w-6 h-6 text-primary-600 dark:text-primary-400 flex-shrink-0 mt-1" />
                     <div>
-                      <h3 className="text-xl font-bold mb-3 text-secondary-900 dark:text-white">Mon parcours</h3>
+                      <h3 className="text-xl font-bold mb-3 text-secondary-900 dark:text-white">{t('home.about.story.title')}</h3>
                       <p className="text-base text-secondary-700 dark:text-secondary-300 leading-relaxed">
                         {t('home.about.bioExtended')}
                       </p>
@@ -217,7 +216,7 @@ function About() {
                     className="card text-center p-3 sm:p-4 min-h-[104px] sm:min-h-[120px] flex flex-col items-center justify-center bg-gradient-to-br from-primary-50 to-primary-100 dark:from-primary-900/20 dark:to-primary-800/20 border border-primary-200 dark:border-primary-700"
                   >
                     <div className="text-2xl sm:text-3xl md:text-4xl font-bold gradient-text leading-none mb-1">
-                      4
+                      {t('home.trustBar.experience')}
                     </div>
                     <div className="text-[11px] sm:text-xs md:text-sm text-secondary-600 dark:text-secondary-400 font-medium leading-tight">
                       {t('home.about.experience')}
@@ -228,10 +227,10 @@ function About() {
                     className="card text-center p-3 sm:p-4 min-h-[104px] sm:min-h-[120px] flex flex-col items-center justify-center bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-900/20 dark:to-accent-800/20 border border-accent-200 dark:border-accent-700"
                   >
                     <div className="text-base sm:text-lg md:text-xl font-bold gradient-text leading-tight mb-1">
-                      {t('home.about.level')}
+                      {t('home.about.levelValue')}
                     </div>
                     <div className="text-[11px] sm:text-xs md:text-sm text-secondary-600 dark:text-secondary-400 font-medium leading-tight">
-                      Médior
+                      {t('home.about.companyValue')}
                     </div>
                   </motion.div>
                   <motion.div
@@ -264,19 +263,19 @@ function About() {
                   </div>
                   <div className="flex flex-wrap gap-2">
                     <span className="px-4 py-2 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-lg text-sm font-semibold">
-                      Backend (Spring Boot)
+                      Entrepreneuriat
                     </span>
                     <span className="px-4 py-2 bg-accent-100 dark:bg-accent-900/30 text-accent-700 dark:text-accent-300 rounded-lg text-sm font-semibold">
-                      Mobile (Kotlin Multiplatform)
+                      Sites & Apps
                     </span>
                     <span className="px-4 py-2 bg-secondary-100 dark:bg-secondary-800 text-secondary-700 dark:text-secondary-300 rounded-lg text-sm font-semibold">
-                      Front-end (React)
+                      E-commerce
                     </span>
                     <span className="px-4 py-2 bg-success-100 dark:bg-success-900/30 text-success-700 dark:text-success-300 rounded-lg text-sm font-semibold">
-                      DevOps
+                      Outils métier
                     </span>
                     <span className="px-4 py-2 bg-warning-100 dark:bg-warning-900/30 text-warning-700 dark:text-warning-300 rounded-lg text-sm font-semibold">
-                      Full-Stack
+                      Cloud & DevOps
                     </span>
                   </div>
                 </div>
@@ -433,6 +432,8 @@ function About() {
         </div>
       </section>
 
+      <AboutStory />
+
       {/* Certifications Section */}
       <section className="py-16 md:py-20 bg-secondary-50 dark:bg-secondary-800/50">
         <div className="container mx-auto px-4">
@@ -447,7 +448,7 @@ function About() {
               {t('home.about.certifications')}
             </h2>
             <p className="text-lg text-secondary-600 dark:text-secondary-300">
-              Certifications professionnelles validant mes compétences
+              {t('home.about.certificationsDesc')}
             </p>
           </motion.div>
           <CertificationsSection />

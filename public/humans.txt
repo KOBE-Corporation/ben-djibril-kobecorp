@@ -3,10 +3,10 @@
 
 # TEAM
 
-    Kone Djibril Benjamin (Ben Djibril) -- DevOps Engineer -- @kobecorporation
+    Kone Djibril Benjamin (Ben Djibril) -- Founder & CEO, Kobe Corporation -- @le_bendji
     Site: https://ben-djibril.kobecorporation.com
-    Email: contact@kobecorporation.com
-    Location: Cameroon
+    Email: kone.djibril@kobecorporation.com
+    Location: Yaoundé, Cameroon
 
 # THANKS
 
@@ -17,22 +17,17 @@
 # TECHNOLOGY COLOPHON
 
     HTML5, CSS3, JavaScript (ES6+)
-    React 19.2.0
+    React 19
     TypeScript
     Vite
     Tailwind CSS
     Framer Motion
     React Router
-    i18next (Internationalization)
+    i18next
     EmailJS
-    Nginx
-    Docker
-    Traefik
 
 # SITE
 
-    Last update: 2024/12/19
+    Last update: 2026/09/29
     Standards: HTML5, CSS3, JavaScript ES6+
-    Components: React, TypeScript
-    Software: Vite, Node.js, Docker
     Language: French, English

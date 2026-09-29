@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 
 function FooterBottom() {
+  const { t } = useTranslation()
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -11,7 +14,11 @@ function FooterBottom() {
     >
       <div className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-4 text-sm">
         <p className="text-secondary-600 dark:text-secondary-300 text-center md:text-left">
-          © 2025 <span className="font-semibold text-primary-600 dark:text-primary-400">KOBE Corporation</span>. Tous droits réservés.
+          © {new Date().getFullYear()}{' '}
+          <span className="font-semibold text-primary-600 dark:text-primary-400">
+            Kobe Corporation
+          </span>
+          . {t('footer.rights')}
         </p>
         <motion.p
           initial={{ opacity: 0 }}
@@ -20,7 +27,7 @@ function FooterBottom() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-secondary-500 dark:text-secondary-400 text-center md:text-right font-medium italic"
         >
-          build your own legacy
+          {t('footer.motto')}
         </motion.p>
       </div>
     </motion.div>
@@ -28,4 +35,3 @@ function FooterBottom() {
 }
 
 export default FooterBottom
-

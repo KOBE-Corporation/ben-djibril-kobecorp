@@ -2,9 +2,9 @@
 
 Portfolio professionnel moderne d'un Ingénieur DevOps spécialisé en développement backend, mobile et DevOps. Site web avec support multilingue (FR/EN), thème clair/sombre, et design responsive optimisé pour la vente de services internationaux.
 
-## 👨‍💻 À propos
+## ðŸ‘¨â€ðŸ’» À propos
 
-**Ben Djibril** (Kone Djibril Benjamin) est un développeur médior avec 4 ans d'expérience en développement backend et mobile. Spécialisé en DevOps, backend (Spring Boot) et mobile (Kotlin), il offre des services de développement web, applications mobiles, APIs et DevOps à l'international.
+**Ben Djibril** (Kone Djibril Benjamin) est un développeur médior avec 5 ans d'expérience en développement backend et mobile. Spécialisé en DevOps, backend (Spring Boot) et mobile (Kotlin), il offre des services de développement web, applications mobiles, APIs et DevOps Ã  l'international.
 
 ### Spécialités
 - **Backend** : Spring Boot (Java/Kotlin)
@@ -14,10 +14,10 @@ Portfolio professionnel moderne d'un Ingénieur DevOps spécialisé en développ
 - **Cloud** : AWS, Hostinger, Vercel
 
 ### Certifications
-- ✅ Docker Certified Associate (DCA)
-- ✅ AWS Certified Cloud Practitioner
+- âœ… Docker Certified Associate (DCA)
+- âœ… AWS Certified Cloud Practitioner
 
-## 🚀 Technologies
+## ðŸš€ Technologies
 
 ### Stack Principal
 - **React 19** + **TypeScript** - Framework frontend
@@ -69,15 +69,15 @@ Portfolio professionnel moderne d'un Ingénieur DevOps spécialisé en développ
 #### Versioning
 - Git & GitHub
 
-## 📋 Pages Disponibles
+## ðŸ“‹ Pages Disponibles
 
 - **Home** (`/`) - Page d'accueil avec Hero, À propos, Services, Certifications, Témoignages
 - **Services** (`/services`) - Liste détaillée des services avec packages et pricing
 - **Projects** (`/projects`) - Portfolio de projets réalisés
-- **About** (`/about`) - Page détaillée à propos avec stack technique complète
+- **About** (`/about`) - Page détaillée Ã  propos avec stack technique complète
 - **Contact** (`/contact`) - Formulaire de contact avec EmailJS
 
-## 🎨 Palette de Couleurs
+## ðŸŽ¨ Palette de Couleurs
 
 ### Mode Clair
 - **Primary** : Indigo (#6366f1) - Couleur principale
@@ -90,7 +90,7 @@ Portfolio professionnel moderne d'un Ingénieur DevOps spécialisé en développ
 ### Mode Sombre
 Même palette avec ajustements automatiques pour contraste optimal et lisibilité.
 
-## 📱 Responsivité
+## ðŸ“± Responsivité
 
 Le site est entièrement responsive et optimisé pour :
 - **Mobile** (< 640px) - Smartphones
@@ -100,7 +100,7 @@ Le site est entièrement responsive et optimisé pour :
 
 Breakpoints Tailwind utilisés : `sm:`, `md:`, `lg:`, `xl:`
 
-## 🛠️ Développement
+## ðŸ› ï¸ Développement
 
 ### Prérequis
 - Node.js 18+ et npm
@@ -139,77 +139,77 @@ npm run preview
 npm run lint
 ```
 
-## 📁 Structure du Projet
+## ðŸ“ Structure du Projet
 
 ```
 ben-djibril/
-├── public/                 # Fichiers statiques et SEO
-│   ├── favicon.png        # Favicon du site
-│   ├── sitemap.xml        # Plan du site XML pour le référencement
-│   ├── robots.txt         # Instructions pour les robots d'indexation
-│   ├── manifest.json      # Web App Manifest (PWA)
-│   ├── google-site-verification.html  # Vérification Google Search Console
-│   ├── humans.txt         # Informations sur le site et l'équipe
-│   └── .well-known/       # Fichiers de sécurité
-│       └── security.txt   # Politique de sécurité
-├── src/
-│   ├── assets/            # Assets (images, etc.)
-│   │   ├── ben-djibirl/   # Images de profil et portfolio
-│   │   └── trust-company/ # Logos des entreprises de confiance
-│   ├── components/        # Composants réutilisables
-│   │   ├── ui/            # Composants UI de base
-│   │   │   ├── TechStack.tsx
-│   │   │   ├── CountUp.tsx
-│   │   │   ├── LazyImage.tsx
-│   │   │   ├── PackageCard.tsx
-│   │   │   ├── ProjectCard.tsx
-│   │   │   ├── TestimonialCard.tsx
-│   │   │   ├── CertificationCard.tsx
-│   │   │   └── MobileMenu.tsx
-│   │   ├── seo/           # Composants SEO
-│   │   │   └── SEO.tsx    # Composant SEO avec données structurées JSON-LD
-│   │   └── sections/     # Sections de pages
-│   │       ├── HeroSection.tsx
-│   │       ├── AboutSection.tsx
-│   │       ├── CertificationsSection.tsx
-│   │       └── TestimonialsSection.tsx
-│   ├── pages/             # Pages de l'application
-│   │   ├── Home.tsx
-│   │   ├── Services.tsx
-│   │   ├── Projects.tsx
-│   │   ├── About.tsx
-│   │   ├── Contact.tsx
-│   │   └── NotFound.tsx
-│   ├── layouts/           # Layouts partagés
-│   │   └── RootLayout.tsx
-│   ├── shared/            # Composants partagés
-│   │   ├── Navbar.tsx
-│   │   ├── Footer.tsx
-│   │   ├── ThemeToggle.tsx
-│   │   ├── LanguageSwitcher.tsx
-│   │   └── ErrorBoundary.tsx
-│   ├── theme/             # Gestion du thème
-│   │   └── ThemeProvider.tsx
-│   ├── i18n/              # Configuration i18n
-│   │   └── index.ts       # Traductions FR/EN
-│   ├── hooks/             # Hooks personnalisés
-│   │   └── usePrefetch.ts # Prefetch des routes
-│   ├── data/              # Données statiques
-│   │   ├── techStack.ts
-│   │   ├── companies.ts
-│   │   ├── certifications.ts
-│   │   └── mockData.ts
-│   ├── App.tsx            # Composant racine avec routes
-│   ├── main.tsx           # Point d'entrée
-│   └── index.css          # Styles globaux
-├── index.html             # Template HTML
-├── tailwind.config.js     # Configuration Tailwind
-├── vite.config.ts         # Configuration Vite
-├── tsconfig.json          # Configuration TypeScript
-└── package.json           # Dépendances
+â”œâ”€â”€ public/                 # Fichiers statiques et SEO
+â”‚   â”œâ”€â”€ favicon.png        # Favicon du site
+â”‚   â”œâ”€â”€ sitemap.xml        # Plan du site XML pour le référencement
+â”‚   â”œâ”€â”€ robots.txt         # Instructions pour les robots d'indexation
+â”‚   â”œâ”€â”€ manifest.json      # Web App Manifest (PWA)
+â”‚   â”œâ”€â”€ google-site-verification.html  # Vérification Google Search Console
+â”‚   â”œâ”€â”€ humans.txt         # Informations sur le site et l'équipe
+â”‚   â””â”€â”€ .well-known/       # Fichiers de sécurité
+â”‚       â””â”€â”€ security.txt   # Politique de sécurité
+â”œâ”€â”€ src/
+â”‚   â”œâ”€â”€ assets/            # Assets (images, etc.)
+â”‚   â”‚   â”œâ”€â”€ ben-djibirl/   # Images de profil et portfolio
+â”‚   â”‚   â””â”€â”€ trust-company/ # Logos des entreprises de confiance
+â”‚   â”œâ”€â”€ components/        # Composants réutilisables
+â”‚   â”‚   â”œâ”€â”€ ui/            # Composants UI de base
+â”‚   â”‚   â”‚   â”œâ”€â”€ TechStack.tsx
+â”‚   â”‚   â”‚   â”œâ”€â”€ CountUp.tsx
+â”‚   â”‚   â”‚   â”œâ”€â”€ LazyImage.tsx
+â”‚   â”‚   â”‚   â”œâ”€â”€ PackageCard.tsx
+â”‚   â”‚   â”‚   â”œâ”€â”€ ProjectCard.tsx
+â”‚   â”‚   â”‚   â”œâ”€â”€ TestimonialCard.tsx
+â”‚   â”‚   â”‚   â”œâ”€â”€ CertificationCard.tsx
+â”‚   â”‚   â”‚   â””â”€â”€ MobileMenu.tsx
+â”‚   â”‚   â”œâ”€â”€ seo/           # Composants SEO
+â”‚   â”‚   â”‚   â””â”€â”€ SEO.tsx    # Composant SEO avec données structurées JSON-LD
+â”‚   â”‚   â””â”€â”€ sections/     # Sections de pages
+â”‚   â”‚       â”œâ”€â”€ HeroSection.tsx
+â”‚   â”‚       â”œâ”€â”€ AboutSection.tsx
+â”‚   â”‚       â”œâ”€â”€ CertificationsSection.tsx
+â”‚   â”‚       â””â”€â”€ TestimonialsSection.tsx
+â”‚   â”œâ”€â”€ pages/             # Pages de l'application
+â”‚   â”‚   â”œâ”€â”€ Home.tsx
+â”‚   â”‚   â”œâ”€â”€ Services.tsx
+â”‚   â”‚   â”œâ”€â”€ Projects.tsx
+â”‚   â”‚   â”œâ”€â”€ About.tsx
+â”‚   â”‚   â”œâ”€â”€ Contact.tsx
+â”‚   â”‚   â””â”€â”€ NotFound.tsx
+â”‚   â”œâ”€â”€ layouts/           # Layouts partagés
+â”‚   â”‚   â””â”€â”€ RootLayout.tsx
+â”‚   â”œâ”€â”€ shared/            # Composants partagés
+â”‚   â”‚   â”œâ”€â”€ Navbar.tsx
+â”‚   â”‚   â”œâ”€â”€ Footer.tsx
+â”‚   â”‚   â”œâ”€â”€ ThemeToggle.tsx
+â”‚   â”‚   â”œâ”€â”€ LanguageSwitcher.tsx
+â”‚   â”‚   â””â”€â”€ ErrorBoundary.tsx
+â”‚   â”œâ”€â”€ theme/             # Gestion du thème
+â”‚   â”‚   â””â”€â”€ ThemeProvider.tsx
+â”‚   â”œâ”€â”€ i18n/              # Configuration i18n
+â”‚   â”‚   â””â”€â”€ index.ts       # Traductions FR/EN
+â”‚   â”œâ”€â”€ hooks/             # Hooks personnalisés
+â”‚   â”‚   â””â”€â”€ usePrefetch.ts # Prefetch des routes
+â”‚   â”œâ”€â”€ data/              # Données statiques
+â”‚   â”‚   â”œâ”€â”€ techStack.ts
+â”‚   â”‚   â”œâ”€â”€ companies.ts
+â”‚   â”‚   â”œâ”€â”€ certifications.ts
+â”‚   â”‚   â””â”€â”€ mockData.ts
+â”‚   â”œâ”€â”€ App.tsx            # Composant racine avec routes
+â”‚   â”œâ”€â”€ main.tsx           # Point d'entrée
+â”‚   â””â”€â”€ index.css          # Styles globaux
+â”œâ”€â”€ index.html             # Template HTML
+â”œâ”€â”€ tailwind.config.js     # Configuration Tailwind
+â”œâ”€â”€ vite.config.ts         # Configuration Vite
+â”œâ”€â”€ tsconfig.json          # Configuration TypeScript
+â””â”€â”€ package.json           # Dépendances
 ```
 
-## 🌐 Internationalisation
+## ðŸŒ Internationalisation
 
 Le site supporte **Français** (par défaut) et **Anglais**.
 
@@ -221,24 +221,24 @@ Le site supporte **Français** (par défaut) et **Anglais**.
 
 Les traductions sont dans `src/i18n/index.ts`.
 
-## 🎯 Fonctionnalités Principales
+## ðŸŽ¯ Fonctionnalités Principales
 
-- ✅ **Routing multi-pages** - Navigation fluide avec React Router
-- ✅ **Thème clair/sombre** - Persistance avec `localStorage`
-- ✅ **Multilingue (FR/EN)** - Détection navigateur automatique
-- ✅ **Design responsive** - Optimisé pour tous les écrans
-- ✅ **Animations fluides** - Framer Motion pour les interactions
-- ✅ **Formulaire de contact** - Intégration EmailJS
-- ✅ **SEO-friendly** - Meta tags optimisés, sitemap.xml, robots.txt, données structurées JSON-LD
-- ✅ **Performance optimisée** - Lazy loading, prefetch, images optimisées
-- ✅ **Accessibilité** - Composants Headless UI
-- ✅ **Error Boundary** - Gestion d'erreurs globale
-- ✅ **Tech Stack visuel** - Affichage des technologies avec logos officiels
-- ✅ **Certifications** - Section dédiée aux certifications professionnelles
-- ✅ **Témoignages** - Carrousel de témoignages clients
-- ✅ **Métriques animées** - Compteurs animés pour les statistiques
+- âœ… **Routing multi-pages** - Navigation fluide avec React Router
+- âœ… **Thème clair/sombre** - Persistance avec `localStorage`
+- âœ… **Multilingue (FR/EN)** - Détection navigateur automatique
+- âœ… **Design responsive** - Optimisé pour tous les écrans
+- âœ… **Animations fluides** - Framer Motion pour les interactions
+- âœ… **Formulaire de contact** - Intégration EmailJS
+- âœ… **SEO-friendly** - Meta tags optimisés, sitemap.xml, robots.txt, données structurées JSON-LD
+- âœ… **Performance optimisée** - Lazy loading, prefetch, images optimisées
+- âœ… **Accessibilité** - Composants Headless UI
+- âœ… **Error Boundary** - Gestion d'erreurs globale
+- âœ… **Tech Stack visuel** - Affichage des technologies avec logos officiels
+- âœ… **Certifications** - Section dédiée aux certifications professionnelles
+- âœ… **Témoignages** - Carrousel de témoignages clients
+- âœ… **Métriques animées** - Compteurs animés pour les statistiques
 
-## 📊 Services Disponibles
+## ðŸ“Š Services Disponibles
 
 1. **Développement Web** - Sites web modernes et responsives
 2. **Sites Vitrines** - Sites professionnels pour entreprises
@@ -251,9 +251,9 @@ Les traductions sont dans `src/i18n/index.ts`.
 9. **DevOps & Cloud** - Infrastructure et déploiement
 10. **Consulting** - Conseil et audits techniques
 
-## 📞 Contact
+## ðŸ“ž Contact
 
-- **Email** : bendjiril789@gmail.com
+- **Email** : kone.djibril@kobecorporation.com
 - **Téléphone** : +237 655 938 501
 - **Localisation** : Yaoundé, Cameroun
 - **WhatsApp** : [Contacter via WhatsApp](https://wa.me/237655938501)
@@ -263,13 +263,13 @@ Les traductions sont dans `src/i18n/index.ts`.
 - **LinkedIn** : [Ben-Djibril](https://www.linkedin.com/in/Ben-Djibril)
 - **GitHub** : [azerty-78](https://github.com/azerty-78)
 
-## 🏢 Clients & Partenaires
+## ðŸ¢ Clients & Partenaires
 
 - **UY2 SOA** - Université de Yaoundé 2
 - **ENS Y** - École Normale Supérieure de Yaoundé
 - **Kobe Corp** - Kobe Corporation
 
-## 📝 Configuration EmailJS
+## ðŸ“ Configuration EmailJS
 
 Pour activer le formulaire de contact, configurez vos clés EmailJS dans `src/pages/Contact.tsx` :
 
@@ -279,15 +279,15 @@ const SERVICE_ID = 'votre-service-id'
 const TEMPLATE_ID = 'votre-template-id'
 ```
 
-## 🚀 Déploiement
+## ðŸš€ Déploiement
 
 ### Production
 Le site est déployé sur **ben-djibril.kobecorporation.com** avec :
-- ✅ HTTPS/SSL (Let's Encrypt)
-- ✅ Nginx reverse proxy
-- ✅ Support des fichiers SEO (sitemap.xml, robots.txt, manifest.json)
-- ✅ HSTS activé
-- ✅ Cache des assets statiques
+- âœ… HTTPS/SSL (Let's Encrypt)
+- âœ… Nginx reverse proxy
+- âœ… Support des fichiers SEO (sitemap.xml, robots.txt, manifest.json)
+- âœ… HSTS activé
+- âœ… Cache des assets statiques
 
 ### Build et déploiement
 ```bash
@@ -310,25 +310,25 @@ npm run build
 ### Autres plateformes
 Le build génère un dossier `dist/` statique qui peut être déployé sur n'importe quel hébergeur statique.
 
-## 🔍 Référencement (SEO)
+## ðŸ” Référencement (SEO)
 
 Le site est optimisé pour le référencement avec :
 
 ### Fichiers SEO
-- ✅ **sitemap.xml** - Plan du site XML avec toutes les pages importantes
+- âœ… **sitemap.xml** - Plan du site XML avec toutes les pages importantes
   - Format conforme sitemap.org 0.9
   - Support multilingue (hreflang FR/EN)
-  - Dates `lastmod` à jour
+  - Dates `lastmod` Ã  jour
   - Priorités et fréquences définies
   - URL : `https://ben-djibril.kobecorporation.com/sitemap.xml`
 
-- ✅ **robots.txt** - Instructions pour les robots d'indexation
+- âœ… **robots.txt** - Instructions pour les robots d'indexation
   - Autorisation de tous les robots de recherche
   - Référence au sitemap
   - Support des robots d'IA modernes (GPTBot, ChatGPT-User, etc.)
   - URL : `https://ben-djibril.kobecorporation.com/robots.txt`
 
-- ✅ **manifest.json** - Web App Manifest (PWA)
+- âœ… **manifest.json** - Web App Manifest (PWA)
   - Métadonnées complètes pour PWA
   - Icônes configurées (192x192, 512x512)
   - URL : `https://ben-djibril.kobecorporation.com/manifest.json`
@@ -366,12 +366,12 @@ curl -I https://ben-djibril.kobecorporation.com/robots.txt
 # Utiliser Google Rich Results Test : https://search.google.com/test/rich-results
 ```
 
-## 📄 Licence
+## ðŸ“„ Licence
 
-Propriétaire - Tous droits réservés © 2024-2026 Ben Djibril (Kone Djibril Benjamin)
+Propriétaire - Tous droits réservés Â© 2024-2026 Ben Djibril (Kone Djibril Benjamin)
 
 ---
 
-**Développé avec ❤️ par Ben Djibril (Kone Djibril Benjamin)**
+**Développé avec â¤ï¸ par Ben Djibril (Kone Djibril Benjamin)**
 
 **Site web** : https://ben-djibril.kobecorporation.com

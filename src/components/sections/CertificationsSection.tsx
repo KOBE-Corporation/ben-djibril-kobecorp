@@ -62,7 +62,7 @@ function CertificationsSection() {
             </h2>
           </motion.div>
           <p className="text-base sm:text-lg md:text-xl text-secondary-600 dark:text-secondary-300 max-w-2xl mx-auto px-2 leading-relaxed">
-            Certifications professionnelles validant mes compétences en DevOps et Cloud
+            {t('home.about.certificationsDesc')}
           </p>
         </motion.div>
 
@@ -140,7 +140,7 @@ function CertificationsSection() {
           className="text-center mt-8 sm:mt-12"
         >
           <p className="text-xs sm:text-sm text-secondary-500 dark:text-secondary-400 px-4">
-            Continuellement en formation pour rester à jour avec les dernières technologies
+            {t('home.about.continuousLearning')}
           </p>
         </motion.div>
       </div>

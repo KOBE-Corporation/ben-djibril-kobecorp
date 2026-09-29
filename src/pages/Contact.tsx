@@ -1,4 +1,3 @@
-import SEO from '../components/seo/SEO'
 import ContactHero from '../components/contact/ContactHero'
 import ContactAvailability from '../components/contact/ContactAvailability'
 import ContactStats from '../components/contact/ContactStats'
@@ -14,11 +13,10 @@ import ScrollToTop from '../components/ui/ScrollToTop'
 function Contact() {
   return (
     <div className="min-h-screen bg-white dark:bg-secondary-900">
-      <SEO />
       <ContactHero />
       <div className="container mx-auto px-4 sm:px-6">
         <ContactAvailability />
-          </div>
+      </div>
       <ContactStats />
       <ContactWhyChoose />
       <ContactForm />

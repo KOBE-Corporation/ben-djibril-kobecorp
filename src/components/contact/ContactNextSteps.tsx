@@ -43,7 +43,7 @@ function ContactNextSteps({ preferredContact = 'email' }: ContactNextStepsProps)
     email: {
       icon: <EnvelopeIcon className="w-5 h-5" />,
       text: t('contact.nextSteps.contactMethods.email'),
-      href: 'mailto:bendjiril789@gmail.com'
+      href: 'mailto:kone.djibril@kobecorporation.com'
     },
     phone: {
       icon: <PhoneIcon className="w-5 h-5" />,
@@ -58,7 +58,7 @@ function ContactNextSteps({ preferredContact = 'email' }: ContactNextStepsProps)
     any: {
       icon: <EnvelopeIcon className="w-5 h-5" />,
       text: t('contact.nextSteps.contactMethods.any'),
-      href: 'mailto:bendjiril789@gmail.com'
+      href: 'mailto:kone.djibril@kobecorporation.com'
     }
   }
 

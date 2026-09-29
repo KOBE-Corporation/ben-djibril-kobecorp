@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { 
   GlobeAltIcon, 
   DevicePhoneMobileIcon, 
@@ -8,14 +8,13 @@ import {
   SparklesIcon,
   FireIcon,
 } from '@heroicons/react/24/solid'
-import { useLocale } from '../../hooks/useLocale'
 
 function HomeServices() {
   const { t } = useTranslation()
-  const { lp, navigateLocalized } = useLocale()
+  const navigate = useNavigate()
   
   const scrollToServiceSection = (serviceType: string) => {
-    navigateLocalized(`/services?type=${serviceType}`)
+    navigate(`/services?type=${serviceType}`)
     // Use a longer timeout to ensure the page has loaded
     setTimeout(() => {
       // Scroll to services list section
@@ -55,8 +54,8 @@ function HomeServices() {
       color: 'from-accent-500 to-accent-600',
       bgColor: 'bg-accent-100 dark:bg-accent-900/30',
       textColor: 'text-accent-600 dark:text-accent-400',
-      link: '/services?type=web-app',
-      serviceType: 'web-app',
+      link: '/services?type=web-dev',
+      serviceType: 'web-dev',
       tag: 'new' as const,
       tagLabel: t('home.services.newTag') || 'New',
     },
@@ -177,7 +176,7 @@ function HomeServices() {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <Link to={lp('/services#services')} className="btn-primary text-lg px-8 py-3 inline-block">
+          <Link to="/services" className="btn-primary text-lg px-8 py-3 inline-block">
             {t('home.services.viewAll') || 'Voir tous les services'}
           </Link>
         </motion.div>

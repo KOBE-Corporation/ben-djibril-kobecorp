@@ -74,7 +74,7 @@ function ContactCards() {
       title: t('contact.cards.email.title'),
       description: t('contact.cards.email.description'),
       action: t('contact.cards.email.action'),
-      href: 'mailto:bendjiril789@gmail.com',
+      href: 'mailto:kone.djibril@kobecorporation.com',
       color: 'from-primary-500 to-primary-600',
       delay: 0
     },

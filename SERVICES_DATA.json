@@ -4,7 +4,7 @@
     "date": "2024",
     "author": "Ben Djibril (Kone Djibril Benjamin)",
     "contact": "contact@kobecorporation.com",
-    "description": "Données complètes de tous les services pour recréer la page Services"
+    "description": "DonnÃ©es complÃ¨tes de tous les services pour recrÃ©er la page Services"
   },
   "services": [
     {
@@ -12,7 +12,7 @@
       "icon": "GlobeAltIcon",
       "category": "web",
       "sector": {
-        "fr": "Général",
+        "fr": "GÃ©nÃ©ral",
         "en": "Generic"
       },
       "colors": {
@@ -22,7 +22,7 @@
       },
       "translations": {
         "fr": {
-          "title": "Développement Web",
+          "title": "DÃ©veloppement Web",
           "description": "Sites web modernes et responsives",
           "features": [
             "Design responsive",
@@ -51,7 +51,7 @@
       "icon": "DocumentTextIcon",
       "category": "web",
       "sector": {
-        "fr": "Général",
+        "fr": "GÃ©nÃ©ral",
         "en": "Generic"
       },
       "colors": {
@@ -65,7 +65,7 @@
           "description": "Sites vitrines professionnels",
           "features": [
             "Design sur mesure",
-            "SEO optimisé",
+            "SEO optimisÃ©",
             "Formulaires de contact",
             "Performance optimale"
           ]
@@ -103,10 +103,10 @@
           "title": "Portfolio",
           "description": "Portfolios personnels ou professionnels",
           "features": [
-            "Design créatif",
-            "Présentation de projets",
-            "Intégration CV",
-            "Liens réseaux sociaux"
+            "Design crÃ©atif",
+            "PrÃ©sentation de projets",
+            "IntÃ©gration CV",
+            "Liens rÃ©seaux sociaux"
           ]
         },
         "en": {
@@ -141,22 +141,22 @@
         "fr": {
           "title": "E-commerce",
           "description": "Boutiques en ligne qui convertissent",
-          "detailedDescription": "Solution e-commerce complète pour lancer et gérer votre boutique en ligne. Du catalogue produits à la gestion des commandes, du traitement des paiements à la relation client, nous vous proposons une solution clé en main adaptée à vos besoins métier.",
-          "valueProposition": "Augmentez vos ventes avec une boutique en ligne professionnelle, accessible 24/7, avec des solutions de paiement intégrées et une expérience client optimisée.",
+          "detailedDescription": "Solution e-commerce complÃ¨te pour lancer et gÃ©rer votre boutique en ligne. Du catalogue produits Ã  la gestion des commandes, du traitement des paiements Ã  la relation client, nous vous proposons une solution clÃ© en main adaptÃ©e Ã  vos besoins mÃ©tier.",
+          "valueProposition": "Augmentez vos ventes avec une boutique en ligne professionnelle, accessible 24/7, avec des solutions de paiement intÃ©grÃ©es et une expÃ©rience client optimisÃ©e.",
           "features": [
-            "Intégration paiement",
+            "IntÃ©gration paiement",
             "Gestion des stocks",
             "Panier d'achat",
             "Tableau de bord admin"
           ],
           "possibleFeatures": [
-            "Catalogue produits avec catégories et filtres",
+            "Catalogue produits avec catÃ©gories et filtres",
             "Panier d'achat et processus de commande",
-            "Intégration paiement (cartes, mobile money)",
+            "IntÃ©gration paiement (cartes, mobile money)",
             "Gestion et suivi des commandes",
             "Compte client et historique des commandes",
             "Gestion des stocks avec alertes",
-            "Système de coupons et promotions",
+            "SystÃ¨me de coupons et promotions",
             "Avis et notes produits",
             "Marketplace multi-vendeurs (optionnel)",
             "Application mobile (optionnel)"
@@ -207,12 +207,12 @@
       "translations": {
         "fr": {
           "title": "Applications Web",
-          "description": "Solutions métier sur mesure",
+          "description": "Solutions mÃ©tier sur mesure",
           "features": [
-            "Fonctionnalités personnalisées",
+            "FonctionnalitÃ©s personnalisÃ©es",
             "Authentification utilisateur",
-            "Intégration base de données",
-            "Développement API"
+            "IntÃ©gration base de donnÃ©es",
+            "DÃ©veloppement API"
           ]
         },
         "en": {
@@ -289,7 +289,7 @@
           "features": [
             "Cross-platform",
             "Interface native",
-            "Intégration système",
+            "IntÃ©gration systÃ¨me",
             "Mode hors ligne"
           ]
         },
@@ -313,7 +313,7 @@
       "icon": "ServerIcon",
       "category": "apps",
       "sector": {
-        "fr": "APIs & Intégrations",
+        "fr": "APIs & IntÃ©grations",
         "en": "Backend"
       },
       "colors": {
@@ -323,13 +323,13 @@
       },
       "translations": {
         "fr": {
-          "title": "Développement API",
+          "title": "DÃ©veloppement API",
           "description": "APIs RESTful et GraphQL",
           "features": [
             "API REST",
             "GraphQL",
             "Documentation",
-            "Sécurité & Auth"
+            "SÃ©curitÃ© & Auth"
           ]
         },
         "en": {
@@ -363,11 +363,11 @@
       "translations": {
         "fr": {
           "title": "DevOps & Cloud",
-          "description": "Infrastructure et déploiement",
+          "description": "Infrastructure et dÃ©ploiement",
           "features": [
             "Pipelines CI/CD",
             "Docker & Kubernetes",
-            "Déploiement cloud",
+            "DÃ©ploiement cloud",
             "Monitoring & Logs"
           ]
         },
@@ -441,26 +441,26 @@
       "translations": {
         "fr": {
           "title": "Gestion de Stock",
-          "description": "Système complet de gestion de stock pour votre entreprise",
-          "detailedDescription": "Système complet de gestion de stock pour suivre vos produits en temps réel, gérer les entrées et sorties, générer des rapports et optimiser vos niveaux de stock. Idéal pour les magasins de détail, entrepôts et centres de distribution.",
-          "valueProposition": "Réduisez les ruptures de stock et les surstocks, optimisez vos coûts de stockage et gagnez du temps avec une gestion automatisée des stocks.",
+          "description": "SystÃ¨me complet de gestion de stock pour votre entreprise",
+          "detailedDescription": "SystÃ¨me complet de gestion de stock pour suivre vos produits en temps rÃ©el, gÃ©rer les entrÃ©es et sorties, gÃ©nÃ©rer des rapports et optimiser vos niveaux de stock. IdÃ©al pour les magasins de dÃ©tail, entrepÃ´ts et centres de distribution.",
+          "valueProposition": "RÃ©duisez les ruptures de stock et les surstocks, optimisez vos coÃ»ts de stockage et gagnez du temps avec une gestion automatisÃ©e des stocks.",
           "features": [
-            "Suivi de stock en temps réel",
+            "Suivi de stock en temps rÃ©el",
             "Alertes de stock faible",
-            "Catégorisation des produits",
+            "CatÃ©gorisation des produits",
             "Rapports et analyses de stock"
           ],
           "possibleFeatures": [
-            "Suivi de stock en temps réel",
-            "Gestion des entrées et sorties de produits",
+            "Suivi de stock en temps rÃ©el",
+            "Gestion des entrÃ©es et sorties de produits",
             "Alertes de stock faible",
-            "Catégorisation et recherche de produits",
+            "CatÃ©gorisation et recherche de produits",
             "Rapports et analyses de stock",
             "Scan de codes-barres (optionnel)",
-            "Gestion multi-entrepôts (optionnel)",
+            "Gestion multi-entrepÃ´ts (optionnel)",
             "Gestion des fournisseurs",
             "Gestion des commandes d'achat",
-            "Valorisation des stocks et intégration comptable"
+            "Valorisation des stocks et intÃ©gration comptable"
           ]
         },
         "en": {
@@ -508,25 +508,25 @@
       "translations": {
         "fr": {
           "title": "Gestion de Restaurant",
-          "description": "Solution complète pour restaurants et établissements de restauration",
-          "detailedDescription": "Solution complète de gestion de restaurant pour optimiser vos opérations de la prise de commande à la livraison. Gérez votre menu, réservations, commandes, affichage cuisine et paiements en un seul endroit.",
-          "valueProposition": "Améliorez votre rapidité de service, réduisez les erreurs et augmentez la satisfaction client avec un système de gestion de restaurant intégré.",
+          "description": "Solution complÃ¨te pour restaurants et Ã©tablissements de restauration",
+          "detailedDescription": "Solution complÃ¨te de gestion de restaurant pour optimiser vos opÃ©rations de la prise de commande Ã  la livraison. GÃ©rez votre menu, rÃ©servations, commandes, affichage cuisine et paiements en un seul endroit.",
+          "valueProposition": "AmÃ©liorez votre rapiditÃ© de service, rÃ©duisez les erreurs et augmentez la satisfaction client avec un systÃ¨me de gestion de restaurant intÃ©grÃ©.",
           "features": [
             "Gestion des menus",
-            "Système de réservation de tables",
+            "SystÃ¨me de rÃ©servation de tables",
             "Suivi des commandes",
             "Affichage cuisine"
           ],
           "possibleFeatures": [
-            "Gestion des menus avec catégories et prix",
-            "Système de réservation de tables",
-            "Prise de commande (sur place, à emporter, livraison)",
+            "Gestion des menus avec catÃ©gories et prix",
+            "SystÃ¨me de rÃ©servation de tables",
+            "Prise de commande (sur place, Ã  emporter, livraison)",
             "Affichage cuisine",
-            "Suivi des commandes et mises à jour de statut",
-            "Traitement des paiements (espèces, carte, mobile money)",
-            "Programme de fidélité (optionnel)",
-            "Intégration gestion de livraison",
-            "Gestion des stocks d'ingrédients",
+            "Suivi des commandes et mises Ã  jour de statut",
+            "Traitement des paiements (espÃ¨ces, carte, mobile money)",
+            "Programme de fidÃ©litÃ© (optionnel)",
+            "IntÃ©gration gestion de livraison",
+            "Gestion des stocks d'ingrÃ©dients",
             "Rapports de ventes et analyses"
           ]
         },
@@ -564,7 +564,7 @@
       "icon": "CalculatorIcon",
       "category": "business",
       "sector": {
-        "fr": "Finance & Comptabilité",
+        "fr": "Finance & ComptabilitÃ©",
         "en": "Finance"
       },
       "colors": {
@@ -575,26 +575,26 @@
       "translations": {
         "fr": {
           "title": "Logiciel de Facturation",
-          "description": "Système professionnel de facturation et de factures",
-          "detailedDescription": "Logiciel professionnel de facturation pour créer, envoyer et suivre vos factures. Gérez vos clients, suivez les paiements, gérez les taxes et générez des rapports financiers.",
-          "valueProposition": "Gagnez du temps sur les tâches administratives, améliorez votre gestion de trésorerie et maintenez des factures professionnelles conformes aux réglementations locales.",
+          "description": "SystÃ¨me professionnel de facturation et de factures",
+          "detailedDescription": "Logiciel professionnel de facturation pour crÃ©er, envoyer et suivre vos factures. GÃ©rez vos clients, suivez les paiements, gÃ©rez les taxes et gÃ©nÃ©rez des rapports financiers.",
+          "valueProposition": "Gagnez du temps sur les tÃ¢ches administratives, amÃ©liorez votre gestion de trÃ©sorerie et maintenez des factures professionnelles conformes aux rÃ©glementations locales.",
           "features": [
-            "Génération de factures",
+            "GÃ©nÃ©ration de factures",
             "Suivi des paiements",
             "Gestion des taxes",
             "Rapports financiers"
           ],
           "possibleFeatures": [
-            "Création et personnalisation de factures",
-            "Numérotation automatique des factures",
-            "Gestion de la base de données clients",
+            "CrÃ©ation et personnalisation de factures",
+            "NumÃ©rotation automatique des factures",
+            "Gestion de la base de donnÃ©es clients",
             "Suivi des paiements et rappels",
             "Calcul et gestion des taxes",
-            "Méthodes de paiement multiples",
-            "Modèles de factures",
-            "Rapports financiers (ventes, impayés)",
+            "MÃ©thodes de paiement multiples",
+            "ModÃ¨les de factures",
+            "Rapports financiers (ventes, impayÃ©s)",
             "Export PDF et Excel",
-            "Intégration avec logiciels comptables (optionnel)"
+            "IntÃ©gration avec logiciels comptables (optionnel)"
           ]
         },
         "en": {
@@ -631,7 +631,7 @@
       "icon": "ClipboardDocumentListIcon",
       "category": "business",
       "sector": {
-        "fr": "Opérations",
+        "fr": "OpÃ©rations",
         "en": "Operations"
       },
       "colors": {
@@ -642,10 +642,10 @@
       "translations": {
         "fr": {
           "title": "Gestion de Commandes",
-          "description": "Système efficace de traitement et suivi des commandes",
+          "description": "SystÃ¨me efficace de traitement et suivi des commandes",
           "features": [
-            "Création et suivi des commandes",
-            "Mises à jour de statut",
+            "CrÃ©ation et suivi des commandes",
+            "Mises Ã  jour de statut",
             "Notifications clients",
             "Historique des commandes"
           ]
@@ -681,9 +681,9 @@
       "translations": {
         "fr": {
           "title": "Point de Vente (PDV)",
-          "description": "Système complet de point de vente pour commerces",
+          "description": "SystÃ¨me complet de point de vente pour commerces",
           "features": [
-            "Intégration caisse enregistreuse",
+            "IntÃ©gration caisse enregistreuse",
             "Traitement des paiements",
             "Impression de tickets",
             "Rapports de ventes"
@@ -720,9 +720,9 @@
       "translations": {
         "fr": {
           "title": "Gestion de Clients",
-          "description": "Système de gestion de la relation client",
+          "description": "SystÃ¨me de gestion de la relation client",
           "features": [
-            "Base de données clients",
+            "Base de donnÃ©es clients",
             "Gestion des contacts",
             "Historique des interactions",
             "Analyses clients"
@@ -759,11 +759,11 @@
       "translations": {
         "fr": {
           "title": "Gestion de Livraison",
-          "description": "Système de suivi et gestion des livraisons",
+          "description": "SystÃ¨me de suivi et gestion des livraisons",
           "features": [
             "Planification des livraisons",
-            "Optimisation des itinéraires",
-            "Suivi en temps réel",
+            "Optimisation des itinÃ©raires",
+            "Suivi en temps rÃ©el",
             "Notifications de livraison"
           ]
         },
@@ -797,13 +797,13 @@
       },
       "translations": {
         "fr": {
-          "title": "Système de Réservation",
-          "description": "Système de réservation et prise de rendez-vous en ligne",
+          "title": "SystÃ¨me de RÃ©servation",
+          "description": "SystÃ¨me de rÃ©servation et prise de rendez-vous en ligne",
           "features": [
-            "Intégration calendrier",
-            "Gestion des disponibilités",
+            "IntÃ©gration calendrier",
+            "Gestion des disponibilitÃ©s",
             "Notifications par email",
-            "Confirmation de réservation"
+            "Confirmation de rÃ©servation"
           ]
         },
         "en": {
@@ -826,7 +826,7 @@
       "icon": "BeakerIcon",
       "category": "vertical",
       "sector": {
-        "fr": "Santé",
+        "fr": "SantÃ©",
         "en": "Health"
       },
       "colors": {
@@ -837,11 +837,11 @@
       "translations": {
         "fr": {
           "title": "Gestion de Pharmacie",
-          "description": "Système complet de gestion de pharmacie",
+          "description": "SystÃ¨me complet de gestion de pharmacie",
           "features": [
-            "Suivi des médicaments",
+            "Suivi des mÃ©dicaments",
             "Gestion des ordonnances",
-            "Alertes de péremption",
+            "Alertes de pÃ©remption",
             "Dossiers patients"
           ]
         },
@@ -876,7 +876,7 @@
       "translations": {
         "fr": {
           "title": "Gestion de Salle de Sport",
-          "description": "Système de gestion de salle de sport et fitness",
+          "description": "SystÃ¨me de gestion de salle de sport et fitness",
           "features": [
             "Gestion des membres",
             "Suivi des abonnements",
@@ -904,7 +904,7 @@
       "icon": "ScissorsIcon",
       "category": "vertical",
       "sector": {
-        "fr": "Beauté & Bien-être",
+        "fr": "BeautÃ© & Bien-Ãªtre",
         "en": "Beauty"
       },
       "colors": {
@@ -914,10 +914,10 @@
       },
       "translations": {
         "fr": {
-          "title": "Gestion de Salon & Beauté",
-          "description": "Système de gestion de salon de beauté et spa",
-          "detailedDescription": "Solution complète de gestion pour salons de beauté et spas. Gérez les rendez-vous, services, planning du personnel, historique clients et paiements dans un système intégré.",
-          "valueProposition": "Optimisez vos opérations de salon, réduisez les rendez-vous manqués, améliorez la satisfaction client et augmentez vos revenus avec une gestion automatisée des rendez-vous et suivi client.",
+          "title": "Gestion de Salon & BeautÃ©",
+          "description": "SystÃ¨me de gestion de salon de beautÃ© et spa",
+          "detailedDescription": "Solution complÃ¨te de gestion pour salons de beautÃ© et spas. GÃ©rez les rendez-vous, services, planning du personnel, historique clients et paiements dans un systÃ¨me intÃ©grÃ©.",
+          "valueProposition": "Optimisez vos opÃ©rations de salon, rÃ©duisez les rendez-vous manquÃ©s, amÃ©liorez la satisfaction client et augmentez vos revenus avec une gestion automatisÃ©e des rendez-vous et suivi client.",
           "features": [
             "Planification des rendez-vous",
             "Catalogue de services",
@@ -925,12 +925,12 @@
             "Historique clients"
           ],
           "possibleFeatures": [
-            "Système de réservation en ligne",
+            "SystÃ¨me de rÃ©servation en ligne",
             "Catalogue de services avec tarifs",
             "Planification et gestion du personnel",
-            "Base de données clients et historique",
-            "Programme de fidélité et récompenses",
-            "Traitement des paiements (espèces, carte, mobile money)",
+            "Base de donnÃ©es clients et historique",
+            "Programme de fidÃ©litÃ© et rÃ©compenses",
+            "Traitement des paiements (espÃ¨ces, carte, mobile money)",
             "Rappels par SMS et email",
             "Gestion des stocks produits",
             "Rapports de ventes et analyses",
@@ -982,10 +982,10 @@
       "translations": {
         "fr": {
           "title": "Gestion de Transport",
-          "description": "Système de gestion de transport et logistique",
+          "description": "SystÃ¨me de gestion de transport et logistique",
           "features": [
-            "Suivi des véhicules",
-            "Planification des itinéraires",
+            "Suivi des vÃ©hicules",
+            "Planification des itinÃ©raires",
             "Gestion des chauffeurs",
             "Gestion du carburant"
           ]
@@ -1021,10 +1021,10 @@
       "translations": {
         "fr": {
           "title": "Gestion de Location",
-          "description": "Gestion de location de biens et équipements",
+          "description": "Gestion de location de biens et Ã©quipements",
           "features": [
             "Liste des biens",
-            "Gestion des réservations",
+            "Gestion des rÃ©servations",
             "Suivi des paiements",
             "Gestion des contrats"
           ]
@@ -1049,7 +1049,7 @@
       "icon": "BanknotesIcon",
       "category": "business",
       "sector": {
-        "fr": "Finance & Comptabilité",
+        "fr": "Finance & ComptabilitÃ©",
         "en": "Finance"
       },
       "colors": {
@@ -1059,13 +1059,13 @@
       },
       "translations": {
         "fr": {
-          "title": "Logiciel de Comptabilité",
-          "description": "Comptabilité et gestion financière complète",
+          "title": "Logiciel de ComptabilitÃ©",
+          "description": "ComptabilitÃ© et gestion financiÃ¨re complÃ¨te",
           "features": [
-            "Grand livre général",
+            "Grand livre gÃ©nÃ©ral",
             "Comptes clients/fournisseurs",
-            "États financiers",
-            "Conformité fiscale"
+            "Ã‰tats financiers",
+            "ConformitÃ© fiscale"
           ]
         },
         "en": {
@@ -1099,12 +1099,12 @@
       "translations": {
         "fr": {
           "title": "Gestion de Paie",
-          "description": "Système de gestion de paie et RH",
+          "description": "SystÃ¨me de gestion de paie et RH",
           "features": [
             "Calcul des salaires",
-            "Déductions fiscales",
-            "Génération de bulletins",
-            "Dossiers employés"
+            "DÃ©ductions fiscales",
+            "GÃ©nÃ©ration de bulletins",
+            "Dossiers employÃ©s"
           ]
         },
         "en": {
@@ -1127,7 +1127,7 @@
       "icon": "WalletIcon",
       "category": "vertical",
       "sector": {
-        "fr": "Finance & Comptabilité",
+        "fr": "Finance & ComptabilitÃ©",
         "en": "Finance"
       },
       "colors": {
@@ -1137,8 +1137,8 @@
       },
       "translations": {
         "fr": {
-          "title": "Intégration Mobile Money",
-          "description": "Intégration des paiements mobile money (Orange Money, MTN Mobile Money)",
+          "title": "IntÃ©gration Mobile Money",
+          "description": "IntÃ©gration des paiements mobile money (Orange Money, MTN Mobile Money)",
           "features": [
             "Passerelle de paiement",
             "Suivi des transactions",
@@ -1176,13 +1176,13 @@
       },
       "translations": {
         "fr": {
-          "title": "Gestion de Marché",
-          "description": "Système de gestion de marché et vendeurs",
+          "title": "Gestion de MarchÃ©",
+          "description": "SystÃ¨me de gestion de marchÃ© et vendeurs",
           "features": [
             "Enregistrement des vendeurs",
             "Gestion des stands",
             "Collecte des frais",
-            "Analyses du marché"
+            "Analyses du marchÃ©"
           ]
         },
         "en": {
@@ -1205,7 +1205,7 @@
       "icon": "BuildingOfficeIcon",
       "category": "vertical",
       "sector": {
-        "fr": "Mobilité & Parking",
+        "fr": "MobilitÃ© & Parking",
         "en": "Mobility"
       },
       "colors": {
@@ -1216,11 +1216,11 @@
       "translations": {
         "fr": {
           "title": "Gestion de Parking",
-          "description": "Système de gestion de parking et espaces",
+          "description": "SystÃ¨me de gestion de parking et espaces",
           "features": [
             "Allocation des espaces",
             "Traitement des paiements",
-            "Contrôle d'accès",
+            "ContrÃ´le d'accÃ¨s",
             "Suivi des revenus"
           ]
         },
@@ -1244,7 +1244,7 @@
       "icon": "AcademicCapIcon",
       "category": "vertical",
       "sector": {
-        "fr": "Éducation",
+        "fr": "Ã‰ducation",
         "en": "Education"
       },
       "colors": {
@@ -1255,9 +1255,9 @@
       "translations": {
         "fr": {
           "title": "Gestion Scolaire",
-          "description": "Système de gestion d'établissement scolaire",
+          "description": "SystÃ¨me de gestion d'Ã©tablissement scolaire",
           "features": [
-            "Gestion des élèves",
+            "Gestion des Ã©lÃ¨ves",
             "Suivi des notes",
             "Gestion des frais",
             "Bulletins de notes"
@@ -1283,7 +1283,7 @@
       "icon": "BuildingLibraryIcon",
       "category": "vertical",
       "sector": {
-        "fr": "Santé",
+        "fr": "SantÃ©",
         "en": "Health"
       },
       "colors": {
@@ -1293,13 +1293,13 @@
       },
       "translations": {
         "fr": {
-          "title": "Gestion Hospitalière",
-          "description": "Système de gestion d'établissement de santé",
+          "title": "Gestion HospitaliÃ¨re",
+          "description": "SystÃ¨me de gestion d'Ã©tablissement de santÃ©",
           "features": [
             "Dossiers patients",
             "Planification des rendez-vous",
-            "Facturation médicale",
-            "Intégration pharmacie"
+            "Facturation mÃ©dicale",
+            "IntÃ©gration pharmacie"
           ]
         },
         "en": {
@@ -1340,13 +1340,13 @@
       "en": "Business"
     },
     "vertical": {
-      "fr": "Métiers spécifiques",
+      "fr": "MÃ©tiers spÃ©cifiques",
       "en": "Vertical"
     }
   },
   "sectors": {
     "generic": {
-      "fr": "Général",
+      "fr": "GÃ©nÃ©ral",
       "en": "Generic"
     },
     "personal": {
@@ -1366,7 +1366,7 @@
       "en": "Internal"
     },
     "backend": {
-      "fr": "APIs & Intégrations",
+      "fr": "APIs & IntÃ©grations",
       "en": "Backend"
     },
     "infrastructure": {
@@ -1378,11 +1378,11 @@
       "en": "Consulting"
     },
     "finance": {
-      "fr": "Finance & Comptabilité",
+      "fr": "Finance & ComptabilitÃ©",
       "en": "Finance"
     },
     "operations": {
-      "fr": "Opérations",
+      "fr": "OpÃ©rations",
       "en": "Operations"
     },
     "crm": {
@@ -1398,7 +1398,7 @@
       "en": "Services"
     },
     "health": {
-      "fr": "Santé",
+      "fr": "SantÃ©",
       "en": "Health"
     },
     "sport": {
@@ -1406,7 +1406,7 @@
       "en": "Sport"
     },
     "beauty": {
-      "fr": "Beauté & Bien-être",
+      "fr": "BeautÃ© & Bien-Ãªtre",
       "en": "Beauty"
     },
     "realEstate": {
@@ -1422,11 +1422,11 @@
       "en": "Marketplace"
     },
     "mobility": {
-      "fr": "Mobilité & Parking",
+      "fr": "MobilitÃ© & Parking",
       "en": "Mobility"
     },
     "education": {
-      "fr": "Éducation",
+      "fr": "Ã‰ducation",
       "en": "Education"
     },
     "restaurant": {
@@ -1437,11 +1437,11 @@
   "uiTexts": {
     "fr": {
       "allServicesTitle": "Tous nos Services",
-      "allServicesSubtitle": "Des solutions complètes pour tous vos besoins digitaux",
+      "allServicesSubtitle": "Des solutions complÃ¨tes pour tous vos besoins digitaux",
       "searchPlaceholder": "Rechercher un service...",
       "searchResults": {
-        "found": "service trouvé",
-        "foundPlural": "services trouvés"
+        "found": "service trouvÃ©",
+        "foundPlural": "services trouvÃ©s"
       },
       "actions": {
         "more": "En savoir plus",
@@ -1476,8 +1476,8 @@
       "url": "https://wa.me/237655938501"
     },
     "email": {
-      "address": "bendjiril789@gmail.com",
-      "url": "mailto:bendjiril789@gmail.com"
+      "address": "kone.djibril@kobecorporation.com",
+      "url": "mailto:kone.djibril@kobecorporation.com"
     }
   }
 }

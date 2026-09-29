@@ -1,31 +1,32 @@
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { useLocale } from '../../hooks/useLocale'
 
 const popularServices = [
-  { key: 'ecommerce', link: '/services?type=ecommerce' },
-  { key: 'inventory', link: '/services?type=inventory' },
-  { key: 'restaurant', link: '/services?type=restaurant' },
-  { key: 'billing', link: '/services?type=billing' },
-  { key: 'pos', link: '/services?type=pos' },
-  { key: 'crm', link: '/services?type=crm' },
-  { key: 'mobile', link: '/services?type=mobile' },
-  { key: 'webApp', link: '/services?type=web-app' },
+  { type: 'ecommerce', link: '/services?type=ecommerce' },
+  { type: 'inventory', link: '/services?type=inventory' },
+  { type: 'restaurant', link: '/services?type=restaurant' },
+  { type: 'billing', link: '/services?type=billing' },
+  { type: 'pos', link: '/services?type=pos' },
+  { type: 'crm', link: '/services?type=crm' },
+  { type: 'mobile', link: '/services?type=mobile' },
+  { type: 'web-app', link: '/services?type=web-app' },
 ] as const
 
 function FooterServices() {
   const { t } = useTranslation()
-  const { lp, navigateLocalized } = useLocale()
+  const navigate = useNavigate()
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
     e.preventDefault()
-    navigateLocalized(path)
+    navigate(path)
+    window.scrollTo(0, 0)
   }
 
   const handleViewAllServices = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
-    navigateLocalized('/services#services')
+    navigate('/services')
+    window.scrollTo(0, 0)
   }
 
   return (
@@ -47,19 +48,19 @@ function FooterServices() {
       <ul className="space-y-2.5">
         {popularServices.map((service, index) => (
           <motion.li
-            key={service.key}
+            key={service.type}
             initial={{ opacity: 0, x: -10 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.3, delay: index * 0.05 }}
           >
             <Link
-              to={lp(service.link)}
+              to={service.link}
               onClick={(e) => handleLinkClick(e, service.link)}
               className="text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 text-sm transition-colors inline-flex items-center gap-2 group"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-primary-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-              {t(`footer.popular.${service.key}`)}
+              {t(`projects.types.${service.type}`)}
             </Link>
           </motion.li>
         ))}
@@ -71,7 +72,7 @@ function FooterServices() {
           className="pt-2"
         >
           <Link
-            to={lp('/services#services')}
+            to="/services"
             onClick={handleViewAllServices}
             className="text-primary-600 dark:text-primary-400 hover:underline text-sm font-medium inline-flex items-center gap-1 group"
           >

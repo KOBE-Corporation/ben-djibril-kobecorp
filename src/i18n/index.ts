@@ -1,59 +1,104 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import { fullControlTranslations } from './fullControl'
+import { saasTranslations } from './saas'
 import { servicesTranslations } from './services'
 
 const savedLang = localStorage.getItem('lang')
-const initialLang = savedLang || 'en'
+const urlLang = new URLSearchParams(window.location.search).get('lang')
+const browserLang = navigator.language?.toLowerCase() || 'fr'
+const initialLang =
+  urlLang === 'fr' || urlLang === 'en'
+    ? urlLang
+    : savedLang || (browserLang.startsWith('fr') ? 'fr' : 'en')
+
+if (urlLang === 'fr' || urlLang === 'en') {
+  localStorage.setItem('lang', urlLang)
+}
 
 export const resources = {
   en: {
     translation: {
       nav: {
         home: 'Home', services: 'Services', projects: 'Projects', about: 'About', contact: 'Contact',
-        servicesOffers: 'Full Control offers',
-        servicesCatalog: 'All services',
-        requestQuote: 'Request a quote',
         serviceWeb: 'Web Development', serviceEcom: 'E-commerce', serviceApp: 'Web Apps', serviceConsult: 'Consulting'
       },
+      ui: {
+        lightboxHint: 'Press Esc or tap outside to close',
+      },
       footer: {
-        legal: 'Legal notice', privacy: 'Privacy policy', rights: 'All rights reserved.',
+        brand: 'Ben Djibril',
+        tagline: 'Founder & CEO of Kobe Corporation — developer and computer engineer building digital products that deliver.',
+        pagesTitle: 'Pages',
         servicesTitle: 'Services',
         viewAllServices: 'View all services',
-        popular: {
-          ecommerce: 'E-commerce',
-          inventory: 'Inventory management',
-          restaurant: 'Restaurant management',
-          billing: 'Billing software',
-          pos: 'Point of Sale (POS)',
-          crm: 'CRM',
-          mobile: 'Mobile apps',
-          webApp: 'Web apps',
+        newsletterTitle: 'Newsletter',
+        newsletterDesc: 'Get the latest news, tips and case studies straight to your inbox.',
+        newsletterPlaceholder: 'Your email',
+        newsletterSubscribe: 'Subscribe',
+        newsletterSending: 'Sending...',
+        newsletterSuccess: 'Subscribed!',
+        newsletterThanks: 'Thanks for subscribing!',
+        newsletterInvalidEmail: 'Please enter a valid email address',
+        newsletterError: 'Something went wrong. Please try again later.',
+        comingSoon: 'Coming soon',
+        legal: 'Legal notice',
+        privacy: 'Privacy policy',
+        rights: 'All rights reserved.',
+        copyright: '© {{year}} {{brand}}. All rights reserved.',
+        motto: 'build your own legacy',
+        legalPage: {
+          title: 'Legal notice',
+          updated: 'Last updated: September 29, 2026',
+          publisher: 'This website is published by Kone Djibril Benjamin (Ben Djibril), Founder & CEO of Kobe Corporation.',
+          contact: 'Contact: kone.djibril@kobecorporation.com — Yaoundé, Cameroon.',
+          hosting: 'The site is hosted by the infrastructure used for kobecorporation.com.',
+          ip: 'All content on this site (texts, visuals, brand) remains the property of its author unless otherwise stated.',
+        },
+        privacyPage: {
+          title: 'Privacy policy',
+          updated: 'Last updated: September 29, 2026',
+          intro: 'I only collect the information you voluntarily send (contact form, newsletter).',
+          usage: 'This data is used solely to answer your requests and is never sold to third parties.',
+          retention: 'Messages are kept as long as needed to handle your request, then deleted or archived securely.',
+          rights: 'You can ask to access, correct or delete your data by emailing kone.djibril@kobecorporation.com.',
         },
       },
+      errors: {
+        title: 'Something went wrong',
+        description: 'An unexpected error occurred. You can try again or return to the home page.',
+        retry: 'Try again',
+        home: 'Back to home',
+        details: 'Technical details',
+      },
       home: {
-        title: 'DevOps Engineer',
-        subtitle: 'I help companies build performant, international digital products with a focus on backend, mobile, and DevOps.',
-        card1: { title: 'Mobile Applications', desc: 'Cross-platform apps with Kotlin Multiplatform.' },
-        card2: { title: 'Web apps', desc: 'Scalable, secure, business‑oriented.' },
-        card3: { title: 'E‑commerce', desc: 'Conversion, performance, internationalization.' },
+        title: 'Founder & CEO',
+        brand: 'Kone Djibril',
+        roleTag: 'Developer & Computer Engineer',
+        subtitle: 'I help businesses grow with clear digital products — websites, apps and business tools. Founder of Kobe Corporation, developer and computer engineer with 5 years of hands-on delivery.',
+        trustBar: {
+          experience: '5 years',
+          experienceLabel: 'Experience',
+          satisfaction: '100%',
+          satisfactionLabel: 'Satisfaction',
+          responseTime: '< 24h',
+          responseTimeLabel: 'Response',
+        },
+        card1: { title: 'Mobile Applications', desc: 'Apps for iOS & Android that your customers actually use.' },
+        card2: { title: 'Web apps', desc: 'Business tools that simplify your daily operations.' },
+        card3: { title: 'E‑commerce', desc: 'Online stores built to convert and grow with you.' },
         ctaPrimary: 'Get Started', ctaSecondary: 'View Projects',
         segmentedCta: {
           business: 'I am a company / organization',
           businessSubtext: 'Custom services & offers',
-          individual: 'I am an individual / freelancer',
-          individualSubtext: 'Portfolio, personal sites, small structures',
-        },
-        trustBar: {
-          experience: '4+ years of experience',
-          satisfaction: '100% client satisfaction',
-          responseTime: 'Response under 24h',
+          individual: 'I want to discuss a project',
+          individualSubtext: 'Free quote under 24h',
         },
         videoTeaser: {
-          badge: 'New',
-          title: 'Discover my profile in 30 seconds',
-          subtitle: 'Understand how I work, the type of projects I take on, and what you can expect from our collaboration.',
-          cta: 'Watch the short intro',
+          badge: 'Profile',
+          title: 'Discover how I work with my clients',
+          subtitle: 'Clear communication, realistic timelines, and products built for your business goals.',
+          cta: 'View my profile',
         },
         services: {
           title: 'My Services',
@@ -83,19 +128,27 @@ export const resources = {
         metrics: { clients: 'Clients', projects: 'Projects', satisfaction: 'Satisfaction', delivery: 'Avg Delivery' },
         about: {
           title: 'About Me',
-          subtitle: 'Medior Developer | 4 Years of Experience | DevOps Engineer',
-          bio: 'Hi, I\'m Kone Djibril Benjamin, but you can call me Ben Djibril. I\'m a Medior Developer with 4 years of experience, specializing in backend development with Spring Boot and mobile development with Kotlin (not just native). I\'m passionate about creating robust, scalable digital solutions that help businesses thrive in the digital age.',
-          bioExtended: 'As a DevOps Engineer, I excel in backend and mobile development, with solid frontend skills that make me a complete full-stack developer. My expertise spans from building RESTful APIs with Spring Boot to crafting cross-platform mobile applications with Kotlin Multiplatform. I also integrate AI into products and automate workflows to improve reliability, speed, and delivery quality. I work extensively with modern cloud technologies, containerization, and CI/CD pipelines to deliver high-quality solutions.',
+          subtitle: 'Founder & CEO of Kobe Corporation · Developer & Computer Engineer · 5 years of experience',
+          bio: 'Hi, I\'m Kone Djibril Benjamin — also known as Ben Djibril. I am a developer and computer engineer, and the Founder & CEO of Kobe Corporation. For 5 years I have helped companies and individuals turn ideas into digital products that work: websites, mobile apps and business tools. I combine engineering rigor with a founder\'s vision to deliver results that move your business forward.',
+          bioExtended: 'Beyond building products for clients, I lead Kobe Corporation as Founder & CEO. My background as a developer and computer engineer keeps me hands-on when it matters, while the founder role keeps priorities clear: realistic timelines, solutions designed for growth, and conversations focused on your business goals — not on jargon.',
           languages: 'Languages',
           languagesDesc: 'Native French speaker, intermediate English level',
           realName: 'Full Name',
           publicName: 'Public Name',
           experience: 'Experience',
-          level: 'Level',
+          level: 'Role',
+          levelValue: 'Developer · CEO',
+          company: 'Company',
+          companyValue: 'Kobe Corporation',
           specialties: 'Specialties',
+          specialtiesDesc: 'Backend, Mobile, Web & Cloud — built for your business',
+          experienceDesc: '5 years as developer & computer engineer helping companies grow',
+          companyDesc: 'Founder & CEO of Kobe Corporation · Developer & Computer Engineer',
           techStack: 'Technology Stack',
           techStackDesc: 'Technologies and tools I master and use daily',
           certifications: 'Certifications',
+          certificationsDesc: 'Professional certifications validating my skills in DevOps and Cloud',
+          continuousLearning: 'Continuously learning to stay up to date with the latest technologies',
           contactMe: 'Interested in my profile?',
           contactDesc: 'Let\'s discuss your project and see how I can help you',
           contactBtn: 'Contact Me',
@@ -111,16 +164,16 @@ export const resources = {
           // New sections
           story: {
             title: 'My Story',
-            subtitle: 'A journey passionate about technology and innovation',
-            content: 'My journey in software development began with a passion for solving complex problems. Graduated in software engineering, I quickly evolved towards DevOps, attracted by the systemic aspect and process optimization. My international experience and ability to work with multicultural teams make me an adaptable and versatile developer.',
-            whyDevOps: 'Why DevOps?',
-            whyDevOpsContent: 'DevOps represents for me the perfect convergence between development and operations. I love creating solutions that not only work, but are also deployable, maintainable, and scalable. This approach allows me to deliver value quickly while maintaining high quality.',
-            whyInternational: 'Why international?',
-            whyInternationalContent: 'Working with clients from around the world allows me to discover different cultures, methodologies, and technical challenges. This diversity enriches my approach and enables me to bring innovative solutions adapted to each context.'
+            subtitle: 'From builder to founder — and why that matters for your project',
+            content: 'I started as a developer and computer engineer building digital products for clients. Along the way I founded Kobe Corporation, which I now lead as CEO. That dual role — engineering delivery and business ownership — shapes how I work with you: clear priorities, realistic timelines, and solutions designed to grow with your company.',
+            whyDevOps: 'Why Kobe Corporation?',
+            whyDevOpsContent: 'Kobe Corporation exists to turn business ideas into working digital products — websites, apps and tools that teams actually use. As founder, CEO, developer and computer engineer, I stay close to delivery while keeping the conversation focused on your outcomes.',
+            whyInternational: 'Why work with clients worldwide?',
+            whyInternationalContent: 'Working across cultures and time zones taught me to communicate simply, document clearly, and deliver products that fit real business contexts — whether you are local or remote.'
           },
           identity: {
             role: 'Role',
-            roleValue: 'DevOps Engineer / Full-Stack Developer',
+            roleValue: 'Founder & CEO · Developer & Computer Engineer',
             location: 'Location',
             locationValue: 'Yaoundé, Cameroon',
             timezone: 'Timezone',
@@ -269,17 +322,41 @@ export const resources = {
       },
       services: {
         ...fullControlTranslations.en,
+        ...saasTranslations.en,
         title: 'Services',
         subtitle: 'Tailored solutions for your digital needs',
-        heroDescription: 'Full Control gives you complete ownership of your project: source code, infrastructure choices, and long-term independence — built and delivered for you.',
+        heroDescription: 'Websites, mobile apps, e-commerce and business tools — built to support your growth, with clear communication from day one.',
+        heroCtaServices: 'Browse services',
+        heroHighlightsTitle: 'What I can build for you',
+        heroCtaSaas: 'View SaaS offers',
         heroCtaFull: 'View Full Control offers',
-        packagesTitle: 'Our Offers',
-        packagesSubtitle: 'Full Control packages adapted to how you want to own and manage your project',
-        featureTooltips: {
-          mvp: 'MVP: Minimum Viable Product - A basic version with essential features to launch quickly',
-          mvpa: 'MVPA: Minimum Vital Product Advanced - An enhanced version with more features and capabilities',
-          crud: 'CRUD: Create, Read, Update, Delete - The 4 basic operations for managing data',
+        heroCompare: {
+          title: 'Which model is best for you?',
+          rows: {
+            ownership: {
+              label: 'Code & project ownership',
+              saas: 'I manage the infrastructure and code',
+              full: 'You fully own the code and project'
+            },
+            billing: {
+              label: 'Billing',
+              saas: 'Monthly subscription',
+              full: 'One-time project fee'
+            },
+            hosting: {
+              label: 'Hosting & maintenance',
+              saas: 'Included and fully managed',
+              full: 'You choose where and how to host'
+            },
+            ideal: {
+              label: 'Ideal for',
+              saas: 'Startups & flexible budgets',
+              full: 'Long-term projects & full control'
+            }
+          }
         },
+        packagesTitle: 'Our Offers',
+        packagesSubtitle: 'Two billing models adapted to how you want to manage your project',
         allServicesTitle: 'All Our Services',
         allServicesSubtitle: 'Complete solutions for all your digital needs',
         filters: {
@@ -320,7 +397,53 @@ export const resources = {
         packageStarter: 'Starter', packagePro: 'Professional', packageEnterprise: 'Enterprise',
         features: 'Features', getStarted: 'Get Started', mostPopular: 'Most Popular', bestValue: 'Best value',
         idealForLabel: 'Ideal for',
+        infoDialog: {
+          aboutService: 'About this service',
+          mainFeatures: 'Key features',
+          mainFeaturesDesc: 'The core features included in this service',
+          valueProposition: 'Project value',
+          possibleFeatures: 'Features that can be developed',
+          possibleFeaturesDesc: 'Full list of features available for this service',
+          techStack: 'Tech stack',
+          techStackDesc: 'Technologies and tools used to build this service',
+          requestQuote: 'Request a quote',
+          requestQuoteDesc: 'Fill out the form below to receive a personalized quote for this service',
+          contactPreference: 'How would you like to contact us? *',
+          whatsappFast: 'Quick contact',
+          emailFormal: 'Formal contact',
+          yourInfo: 'Your information',
+          fullName: 'Full name *',
+          fullNamePlaceholder: 'Your full name',
+          email: 'Email *',
+          phone: 'Phone *',
+          company: 'Company',
+          companyOptional: '(optional)',
+          companyPlaceholder: 'Your company name (optional)',
+          message: 'Message',
+          messageOptional: '(optional)',
+          messagePlaceholder: 'Briefly describe your needs or questions...',
+          cancel: 'Cancel',
+          sendVia: 'Send via {{method}}',
+          waIntro: 'Hello,\n\nI would like to request a quote for the service: *{{service}}*\n\n*My details:*\n',
+          waName: '- Name: {{name}}\n',
+          waEmail: '- Email: {{email}}\n',
+          waPhone: '- Phone: {{phone}}\n',
+          waCompany: '- Company: {{company}}\n',
+          waMessage: '\n*Message:*\n{{message}}\n',
+          waClosing: '\nPlease get back to me to discuss this project.',
+          emailIntro: 'Hello,\n\nI would like to request a quote for the service: {{service}}\n\nMy details:\n',
+          emailName: '- Name: {{name}}\n',
+          emailEmail: '- Email: {{email}}\n',
+          emailPhone: '- Phone: {{phone}}\n',
+          emailCompany: '- Company: {{company}}\n',
+          emailMessage: '\nMessage:\n{{message}}\n',
+          emailClosing: '\nPlease get back to me to discuss this project.',
+          emailSubject: 'Quote request — {{service}}',
+        },
         details: {
+          saas: {
+            ...saasTranslations.en.details.saas,
+          },
           fullControl: {
             ...fullControlTranslations.en.details.fullControl,
           },
@@ -572,7 +695,7 @@ export const resources = {
             },
             pricing: {
               question: 'How do you price your projects?',
-              answer: 'Pricing depends on the scope, complexity, and timeline of your project. I offer Full Control packages with a one-time payment and complete ownership of your project. Contact me for a free, personalized quote.'
+              answer: 'Pricing depends on the scope, complexity and timeline of your project. Every quote is personalized — contact me for a free estimate with no obligation.'
             },
             process: {
               question: 'What is your development process?',
@@ -638,11 +761,11 @@ export const resources = {
             },
             pricing: {
               title: 'Transparent Pricing',
-              description: 'Clear, upfront pricing with no hidden fees. Full Control packages with a one-time payment that fit your budget.'
+              description: 'Clear, upfront pricing with no hidden fees. A personalized quote adapted to your budget and goals.'
             },
             experience: {
-              title: '4+ Years Experience',
-              description: 'With 4 years of experience in backend, mobile, and DevOps, I bring expertise to every project.'
+              title: '5 Years Experience',
+              description: 'With 5 years of experience in backend, mobile, and DevOps, I bring expertise to every project.'
             },
             remote: {
               title: 'Remote Collaboration',
@@ -720,34 +843,36 @@ export const resources = {
       },
       seo: {
         default: {
-          title: 'Ben Djibril (Kone Djibril Benjamin) - DevOps Engineer | Professional Portfolio',
-          description: 'Professional portfolio of Ben Djibril (Kone Djibril Benjamin) - DevOps Engineer specialized in backend, mobile, and DevOps development. International quality services.',
-          keywords: 'Ben Djibril, Kone Djibril Benjamin, Benjamin Kone Djibril, Djibril Benjamin, Ben Djibril Portfolio, Kone Djibril Benjamin Portfolio, Ben Djibril Developer, Kone Djibril Benjamin Developer, DevOps, Backend, Mobile, Kotlin, Spring Boot, React, Portfolio, Developer, Full Stack'
+          title: 'Kone Djibril (Ben Djibril) - Founder & CEO · Developer & Computer Engineer | Portfolio',
+          description: 'Kone Djibril (Ben Djibril) — Founder & CEO of Kobe Corporation, developer and computer engineer. Websites, apps and digital tools for businesses. Free quotes.',
+          keywords: 'Kone Djibril, Ben Djibril, Kobe Corporation, Founder CEO, developer, computer engineer, web development, mobile apps, e-commerce, Cameroon, portfolio'
         },
+        ogImageAlt: 'Kone Djibril (Ben Djibril) — Founder & CEO, Developer & Computer Engineer',
         home: {
-          title: 'Ben Djibril (Kone Djibril Benjamin) - DevOps Engineer | Professional Portfolio',
-          description: 'Ben Djibril (Kone Djibril Benjamin) - DevOps Engineer with 4 years of experience. Specialized in backend development with Spring Boot and mobile development with Kotlin Multiplatform. Creating robust, scalable digital solutions.',
-          keywords: 'Ben Djibril, Kone Djibril Benjamin, Benjamin Kone Djibril, Djibril Benjamin, Ben Djibril Portfolio, Kone Djibril Benjamin Portfolio, Ben Djibril Developer, Kone Djibril Benjamin Developer, DevOps Engineer, Backend Developer, Mobile Developer, Spring Boot, Kotlin, Full Stack Developer, Portfolio'
+          title: 'Kone Djibril (Ben Djibril) - Founder & CEO · Developer & Computer Engineer | Portfolio',
+          description: 'Kone Djibril (Ben Djibril) — Founder & CEO of Kobe Corporation. Developer and computer engineer with 5 years helping businesses grow with websites, apps and digital tools.',
+          keywords: 'Kone Djibril, Ben Djibril, Kobe Corporation, Founder CEO, developer, computer engineer, entrepreneur, web development, mobile apps, portfolio'
         },
         services: {
-          title: 'Services - Ben Djibril (Kone Djibril Benjamin) | Web, Mobile & DevOps Solutions',
-          description: 'Ben Djibril (Kone Djibril Benjamin) - Professional development services: Web applications, Mobile apps, E-commerce, APIs, DevOps & Cloud. Full Control packages with complete project ownership. Free quotes available.',
-          keywords: 'Ben Djibril Services, Kone Djibril Benjamin Services, Ben Djibril Developer Services, Kone Djibril Benjamin Developer Services, Web Development, Mobile Apps, E-commerce, API Development, DevOps, Cloud Services, Full Control, Full Stack Development'
+          title: 'Services - Kone Djibril (Ben Djibril) | Web, Mobile & Business Tools',
+          description: 'Custom websites, mobile apps, e-commerce and business software by Kone Djibril — Founder & CEO of Kobe Corporation. Free quotes available.',
+          keywords: 'Ben Djibril services, Kone Djibril services, web development, mobile apps, e-commerce, business software, Kobe Corporation',
+          schemaName: 'Kone Djibril — Digital product development services'
         },
         projects: {
-          title: 'Projects - Ben Djibril (Kone Djibril Benjamin) | Portfolio of Realized Projects',
-          description: 'Ben Djibril (Kone Djibril Benjamin) - Discover my portfolio of completed projects: web applications, mobile apps, e-commerce platforms, and DevOps solutions. Real client testimonials included.',
-          keywords: 'Ben Djibril Projects, Kone Djibril Benjamin Projects, Ben Djibril Portfolio, Kone Djibril Benjamin Portfolio, Portfolio, Projects, Web Applications, Mobile Apps, E-commerce, Case Studies, Client Testimonials'
+          title: 'Projects - Kone Djibril (Ben Djibril) | Real Client Work',
+          description: 'Explore projects by Kone Djibril (Ben Djibril): web apps, mobile apps, e-commerce and business tools delivered for real companies.',
+          keywords: 'Ben Djibril projects, Kone Djibril portfolio, web applications, mobile apps, e-commerce, case studies'
         },
         about: {
-          title: 'About - Ben Djibril (Kone Djibril Benjamin) | DevOps Engineer Profile',
-          description: 'Learn more about Ben Djibril (Kone Djibril Benjamin): Medior Developer with 4 years of experience, specialized in backend and mobile development. Technology stack, certifications, and expertise.',
-          keywords: 'Ben Djibril About, Kone Djibril Benjamin About, Ben Djibril Profile, Kone Djibril Benjamin Profile, About, Developer Profile, DevOps Engineer, Technology Stack, Certifications, Experience, Skills'
+          title: 'About - Kone Djibril (Ben Djibril) | Developer, Computer Engineer & Founder',
+          description: 'Meet Kone Djibril (Ben Djibril): developer and computer engineer, Founder & CEO of Kobe Corporation. 5 years of experience, stack, certifications and approach.',
+          keywords: 'about Ben Djibril, Kone Djibril Benjamin, developer, computer engineer, Founder CEO Kobe Corporation, certifications, experience'
         },
         contact: {
-          title: 'Contact - Ben Djibril (Kone Djibril Benjamin) | Get in Touch',
-          description: 'Contact Ben Djibril (Kone Djibril Benjamin) for your development projects. Free quotes, 24h response time. Available worldwide. Discuss your web, mobile, or DevOps project.',
-          keywords: 'Ben Djibril Contact, Kone Djibril Benjamin Contact, Contact Ben Djibril, Contact Kone Djibril Benjamin, Contact, Quote, Development Services, Consultation, Project Discussion, Get in Touch'
+          title: 'Contact - Kone Djibril (Ben Djibril) | Free Quote in 24h',
+          description: 'Contact Kone Djibril (Ben Djibril) for your next digital project. Free quotes, reply within 24h. Available worldwide for web, mobile and business tools.',
+          keywords: 'contact Ben Djibril, contact Kone Djibril, free quote, Kobe Corporation, web mobile project'
         }
       },
       notFound: { title: 'Page not found', back: 'Back to home' },
@@ -757,49 +882,84 @@ export const resources = {
     translation: {
       nav: {
         home: 'Accueil', services: 'Services', projects: 'Projets', about: 'À propos', contact: 'Contact',
-        servicesOffers: 'Offres Full Control',
-        servicesCatalog: 'Tous les services',
-        requestQuote: 'Demander un devis',
         serviceWeb: 'Développement Web', serviceEcom: 'E-commerce', serviceApp: 'Applications Web', serviceConsult: 'Conseil'
       },
+      ui: {
+        lightboxHint: 'Échap ou clic à l’extérieur pour fermer',
+      },
       footer: {
-        legal: 'Mentions légales', privacy: 'Politique de confidentialité', rights: 'Tous droits réservés.',
+        brand: 'Ben Djibril',
+        tagline: 'Fondateur & CEO de Kobe Corporation — développeur et ingénieur informaticien, je construis des produits digitaux concrets.',
+        pagesTitle: 'Pages',
         servicesTitle: 'Services',
         viewAllServices: 'Voir tous les services',
-        popular: {
-          ecommerce: 'E-commerce',
-          inventory: 'Gestion de Stock',
-          restaurant: 'Gestion de Restaurant',
-          billing: 'Logiciel de Facturation',
-          pos: 'Point de Vente (PDV)',
-          crm: 'Gestion de Clients',
-          mobile: 'Applications Mobile',
-          webApp: 'Applications Web',
+        newsletterTitle: 'Newsletter',
+        newsletterDesc: 'Recevez les dernières actualités, conseils et études de cas directement dans votre boîte mail.',
+        newsletterPlaceholder: 'Votre email',
+        newsletterSubscribe: "S'abonner",
+        newsletterSending: 'Envoi...',
+        newsletterSuccess: 'Abonné !',
+        newsletterThanks: 'Merci pour votre abonnement !',
+        newsletterInvalidEmail: 'Veuillez entrer une adresse email valide',
+        newsletterError: 'Une erreur est survenue. Veuillez réessayer plus tard.',
+        comingSoon: 'Bientôt disponible',
+        legal: 'Mentions légales',
+        privacy: 'Politique de confidentialité',
+        rights: 'Tous droits réservés.',
+        copyright: '© {{year}} {{brand}}. Tous droits réservés.',
+        motto: 'build your own legacy',
+        legalPage: {
+          title: 'Mentions légales',
+          updated: 'Dernière mise à jour : 29 septembre 2026',
+          publisher: 'Ce site est édité par Kone Djibril Benjamin (Ben Djibril), Fondateur & CEO de Kobe Corporation.',
+          contact: 'Contact : kone.djibril@kobecorporation.com — Yaoundé, Cameroun.',
+          hosting: 'Le site est hébergé sur l’infrastructure utilisée pour kobecorporation.com.',
+          ip: 'L’ensemble des contenus (textes, visuels, marque) reste la propriété de son auteur sauf mention contraire.',
+        },
+        privacyPage: {
+          title: 'Politique de confidentialité',
+          updated: 'Dernière mise à jour : 29 septembre 2026',
+          intro: 'Je ne collecte que les informations que vous envoyez volontairement (formulaire de contact, newsletter).',
+          usage: 'Ces données servent uniquement à répondre à vos demandes et ne sont jamais vendues à des tiers.',
+          retention: 'Les messages sont conservés le temps nécessaire au traitement, puis supprimés ou archivés de façon sécurisée.',
+          rights: 'Vous pouvez demander l’accès, la correction ou la suppression de vos données à kone.djibril@kobecorporation.com.',
         },
       },
+      errors: {
+        title: 'Une erreur est survenue',
+        description: 'Une erreur inattendue s’est produite. Vous pouvez réessayer ou revenir à l’accueil.',
+        retry: 'Réessayer',
+        home: 'Retour à l’accueil',
+        details: 'Détails techniques',
+      },
       home: {
-        title: 'Ingénieur DevOps',
-        subtitle: 'J\'aide les entreprises à concevoir des produits digitaux performants et internationaux. Spécialisé en DevOps, backend et mobile, je maîtrise également le frontend pour une approche full-stack complète.',
-        card1: { title: 'Applications Mobile', desc: 'Applications cross-platform avec Kotlin Multiplatform.' },
-        card2: { title: 'Apps web', desc: 'Scalables, sécurisées, orientées business.' },
-        card3: { title: 'E‑commerce', desc: 'Conversion, performance, internationalisation.' },
+        title: 'Fondateur & CEO',
+        brand: 'Kone Djibril',
+        roleTag: 'Développeur & Ingénieur informaticien',
+        subtitle: 'J\'aide les entreprises à grandir avec des produits digitaux clairs — sites, applications et outils métier. Fondateur de Kobe Corporation, développeur et ingénieur informaticien avec 5 ans de livraison concrète.',
+        card1: { title: 'Applications Mobile', desc: 'Des apps iOS & Android que vos clients utilisent vraiment.' },
+        card2: { title: 'Apps web', desc: 'Des outils métier qui simplifient votre quotidien.' },
+        card3: { title: 'E‑commerce', desc: 'Des boutiques en ligne pensées pour convertir et grandir.' },
         ctaPrimary: 'Commencer', ctaSecondary: 'Voir les projets',
         segmentedCta: {
           business: 'Je suis une entreprise / organisation',
           businessSubtext: 'Services & offres sur mesure',
-          individual: 'Je suis un particulier / freelance',
-          individualSubtext: 'Portfolio, sites persos, petites structures',
+          individual: 'Je veux discuter d\'un projet',
+          individualSubtext: 'Devis gratuit sous 24h',
         },
         trustBar: {
-          experience: '4+ ans d’expérience',
-          satisfaction: '100% de satisfaction client',
-          responseTime: 'Réponse sous 24h',
+          experience: '5 ans',
+          experienceLabel: 'Expérience',
+          satisfaction: '100%',
+          satisfactionLabel: 'Satisfaction',
+          responseTime: '< 24h',
+          responseTimeLabel: 'Réponse',
         },
         videoTeaser: {
-          badge: 'Nouveau',
-          title: 'Découvre mon profil en 30 secondes',
-          subtitle: 'Comprends rapidement comment je travaille, les types de projets que je prends et ce que tu peux attendre de notre collaboration.',
-          cta: 'Voir la courte présentation',
+          badge: 'Profil',
+          title: 'Découvrez comment je travaille avec mes clients',
+          subtitle: 'Communication claire, délais réalistes, et produits pensés pour vos objectifs business.',
+          cta: 'Voir mon profil',
         },
         services: {
           title: 'Mes Services',
@@ -829,19 +989,27 @@ export const resources = {
         metrics: { clients: 'Clients', projects: 'Projets', satisfaction: 'Satisfaction', delivery: 'Délai moyen' },
         about: {
           title: 'À propos de moi',
-          subtitle: 'Développeur Médior | 4 ans d\'expérience | Ingénieur DevOps',
-          bio: 'Bonjour, je suis Kone Djibril Benjamin, mais vous pouvez m\'appeler Ben Djibril. Je suis un développeur Médior avec 4 ans d\'expérience, spécialisé en développement backend avec Spring Boot et en développement mobile avec Kotlin (pas que du natif). Je suis passionné par la création de solutions digitales robustes et scalables qui aident les entreprises à prospérer à l\'ère du numérique.',
-          bioExtended: 'En tant qu\'ingénieur DevOps, j\'excelle en développement backend et mobile, avec des compétences frontend solides qui font de moi un développeur full-stack complet. Mon expertise s\'étend de la création d\'APIs RESTful avec Spring Boot au développement d\'applications mobiles cross-platform avec Kotlin Multiplatform. J\'intègre aussi l\'IA dans les produits et j\'automatise les workflows pour améliorer la fiabilité, la vitesse et la qualité de livraison. Je travaille beaucoup avec les technologies cloud modernes, la conteneurisation et les pipelines CI/CD pour livrer des solutions de haute qualité.',
+          subtitle: 'Fondateur & CEO de Kobe Corporation · Développeur & Ingénieur informaticien · 5 ans d\'expérience',
+          bio: 'Bonjour, je suis Kone Djibril Benjamin — aussi connu sous le nom de Ben Djibril. Je suis développeur et ingénieur informaticien, et Fondateur & CEO de Kobe Corporation. Depuis 5 ans, j\'aide les entreprises et les particuliers à transformer leurs idées en produits digitaux concrets : sites web, applications mobiles et outils métier. Je combine la rigueur de l\'ingénieur et la vision du fondateur pour livrer des résultats qui font avancer votre activité.',
+          bioExtended: 'Au-delà des projets clients, je dirige Kobe Corporation en tant que Fondateur & CEO. Mon parcours de développeur et d\'ingénieur informaticien me garde opérationnel quand il le faut, tandis que le rôle de fondateur clarifie les priorités : des délais réalistes, des solutions pensées pour grandir, et une conversation centrée sur vos objectifs business — pas sur le jargon.',
           languages: 'Langues',
           languagesDesc: 'Français natif, anglais niveau intermédiaire',
           realName: 'Nom complet',
           publicName: 'Nom public',
           experience: 'Expérience',
-          level: 'Niveau',
+          level: 'Rôle',
+          levelValue: 'Développeur · CEO',
+          company: 'Entreprise',
+          companyValue: 'Kobe Corporation',
           specialties: 'Spécialités',
+          specialtiesDesc: 'Backend, Mobile, Web & Cloud — au service de votre business',
+          experienceDesc: '5 ans comme développeur & ingénieur informaticien au service des entreprises',
+          companyDesc: 'Fondateur & CEO de Kobe Corporation · Développeur & Ingénieur informaticien',
           techStack: 'Stack Technologique',
           techStackDesc: 'Technologies et outils que je maîtrise et utilise au quotidien',
           certifications: 'Certifications',
+          certificationsDesc: 'Certifications professionnelles validant mes compétences en DevOps et Cloud',
+          continuousLearning: 'Continuellement en formation pour rester à jour avec les dernières technologies',
           contactMe: 'Intéressé par mon profil ?',
           contactDesc: 'Discutons de votre projet et voyons comment je peux vous aider',
           contactBtn: 'Me contacter',
@@ -857,16 +1025,16 @@ export const resources = {
           // Nouvelles sections
           story: {
             title: 'Mon Histoire',
-            subtitle: 'Un parcours passionné par la technologie et l\'innovation',
-            content: 'Mon parcours dans le développement logiciel a commencé par une passion pour la résolution de problèmes complexes. Diplômé en génie logiciel, j\'ai rapidement évolué vers le DevOps, attiré par l\'aspect systémique et l\'optimisation des processus. Mon expérience internationale et ma capacité à travailler avec des équipes multiculturelles font de moi un développeur adaptable et polyvalent.',
-            whyDevOps: 'Pourquoi DevOps ?',
-            whyDevOpsContent: 'Le DevOps représente pour moi la convergence parfaite entre le développement et les opérations. J\'aime créer des solutions qui non seulement fonctionnent, mais qui sont également déployables, maintenables et scalables. Cette approche me permet de livrer de la valeur rapidement tout en maintenant une qualité élevée.',
-            whyInternational: 'Pourquoi l\'international ?',
-            whyInternationalContent: 'Travailler avec des clients du monde entier me permet de découvrir différentes cultures, méthodologies et défis techniques. Cette diversité enrichit mon approche et me permet d\'apporter des solutions innovantes adaptées à chaque contexte.'
+            subtitle: 'Du bâtisseur au fondateur — et pourquoi ça compte pour votre projet',
+            content: 'J\'ai commencé comme développeur et ingénieur informaticien en construisant des produits digitaux pour des clients. En chemin, j\'ai fondé Kobe Corporation, que je dirige aujourd\'hui en tant que CEO. Ce double rôle — livraison technique et vision d\'entreprise — façonne ma façon de travailler avec vous : des priorités claires, des délais réalistes, et des solutions pensées pour grandir avec votre activité.',
+            whyDevOps: 'Pourquoi Kobe Corporation ?',
+            whyDevOpsContent: 'Kobe Corporation existe pour transformer des idées business en produits digitaux concrets — sites, apps et outils que vos équipes utilisent vraiment. En tant que fondateur, CEO, développeur et ingénieur informaticien, je reste proche de la livraison tout en gardant la conversation centrée sur vos résultats.',
+            whyInternational: 'Pourquoi travailler avec des clients du monde entier ?',
+            whyInternationalContent: 'Travailler à travers les cultures et les fuseaux m\'a appris à communiquer simplement, documenter clairement, et livrer des produits adaptés à de vrais contextes business — en local comme à distance.'
           },
           identity: {
             role: 'Rôle',
-            roleValue: 'Ingénieur DevOps / Développeur Full-Stack',
+            roleValue: 'Fondateur & CEO · Développeur & Ingénieur informaticien',
             location: 'Localisation',
             locationValue: 'Yaoundé, Cameroun',
             timezone: 'Fuseau horaire',
@@ -1015,17 +1183,41 @@ export const resources = {
       },
       services: {
         ...fullControlTranslations.fr,
+        ...saasTranslations.fr,
         title: 'Services',
         subtitle: 'Solutions sur mesure pour vos besoins digitaux',
-        heroDescription: 'Full Control vous donne la propriété complète de votre projet : code source, choix d’infrastructure et indépendance à long terme — conçu et livré pour vous.',
+        heroDescription: 'Sites web, applications mobiles, e-commerce et outils métier — conçus pour soutenir votre croissance, avec une communication claire dès le premier jour.',
+        heroCtaServices: 'Voir les services',
+        heroHighlightsTitle: 'Ce que je peux construire pour vous',
+        heroCtaSaas: 'Voir les offres SaaS',
         heroCtaFull: 'Voir les offres Full Control',
-        packagesTitle: 'Nos Offres',
-        packagesSubtitle: 'Des forfaits Full Control adaptés à la façon dont vous voulez posséder et gérer votre projet',
-        featureTooltips: {
-          mvp: 'MVP : Minimum Vital Product - Version de base avec les fonctionnalités essentielles pour lancer rapidement',
-          mvpa: 'MVPA : Minimum Vital Product Advanced - Version améliorée avec plus de fonctionnalités et capacités',
-          crud: 'CRUD : Create, Read, Update, Delete - Les 4 opérations de base pour gérer les données',
+        heroCompare: {
+          title: 'Quel modèle est fait pour vous ?',
+          rows: {
+            ownership: {
+              label: 'Propriété du code & du projet',
+              saas: 'Je gère l’infrastructure et le code',
+              full: 'Vous possédez totalement le code et le projet'
+            },
+            billing: {
+              label: 'Facturation',
+              saas: 'Abonnement mensuel',
+              full: 'Paiement unique de projet'
+            },
+            hosting: {
+              label: 'Hébergement & maintenance',
+              saas: 'Inclus et entièrement géré',
+              full: 'Vous choisissez où et comment héberger'
+            },
+            ideal: {
+              label: 'Idéal pour',
+              saas: 'Startups & budgets flexibles',
+              full: 'Projets long terme & contrôle total'
+            }
+          }
         },
+        packagesTitle: 'Nos Offres',
+        packagesSubtitle: 'Deux modèles de facturation selon la façon dont vous voulez gérer votre projet',
         allServicesTitle: 'Tous nos Services',
         allServicesSubtitle: 'Des solutions complètes pour tous vos besoins digitaux',
         filters: {
@@ -1066,7 +1258,53 @@ export const resources = {
         packageStarter: 'Starter', packagePro: 'Professionnel', packageEnterprise: 'Enterprise',
         features: 'Fonctionnalités', getStarted: 'Commencer', mostPopular: 'Le plus populaire', bestValue: 'Meilleur rapport qualité / prix',
         idealForLabel: 'Idéal pour',
+        infoDialog: {
+          aboutService: 'À propos de ce service',
+          mainFeatures: 'Fonctionnalités principales',
+          mainFeaturesDesc: 'Les fonctionnalités clés incluses dans ce service',
+          valueProposition: 'Plus-value du projet',
+          possibleFeatures: 'Fonctionnalités pouvant être développées',
+          possibleFeaturesDesc: 'Liste exhaustive des fonctionnalités disponibles pour ce service',
+          techStack: 'Stack technique',
+          techStackDesc: 'Technologies et outils utilisés pour développer ce service',
+          requestQuote: 'Demander un devis',
+          requestQuoteDesc: 'Remplissez le formulaire ci-dessous pour recevoir un devis personnalisé pour ce service',
+          contactPreference: 'Comment souhaitez-vous nous contacter ? *',
+          whatsappFast: 'Contact rapide',
+          emailFormal: 'Contact formel',
+          yourInfo: 'Vos informations',
+          fullName: 'Nom complet *',
+          fullNamePlaceholder: 'Votre nom complet',
+          email: 'Email *',
+          phone: 'Téléphone *',
+          company: 'Entreprise',
+          companyOptional: '(optionnel)',
+          companyPlaceholder: 'Nom de votre entreprise (optionnel)',
+          message: 'Message',
+          messageOptional: '(optionnel)',
+          messagePlaceholder: 'Décrivez brièvement vos besoins ou questions...',
+          cancel: 'Annuler',
+          sendVia: 'Envoyer via {{method}}',
+          waIntro: 'Bonjour,\n\nJe souhaite demander un devis pour le service : *{{service}}*\n\n*Mes informations :*\n',
+          waName: '- Nom : {{name}}\n',
+          waEmail: '- Email : {{email}}\n',
+          waPhone: '- Téléphone : {{phone}}\n',
+          waCompany: '- Entreprise : {{company}}\n',
+          waMessage: '\n*Message :*\n{{message}}\n',
+          waClosing: '\nMerci de me recontacter pour discuter de ce projet.',
+          emailIntro: 'Bonjour,\n\nJe souhaite demander un devis pour le service : {{service}}\n\nMes informations :\n',
+          emailName: '- Nom : {{name}}\n',
+          emailEmail: '- Email : {{email}}\n',
+          emailPhone: '- Téléphone : {{phone}}\n',
+          emailCompany: '- Entreprise : {{company}}\n',
+          emailMessage: '\nMessage :\n{{message}}\n',
+          emailClosing: '\nMerci de me recontacter pour discuter de ce projet.',
+          emailSubject: 'Demande de devis — {{service}}',
+        },
         details: {
+          saas: {
+            ...saasTranslations.fr.details.saas,
+          },
           fullControl: {
             ...fullControlTranslations.fr.details.fullControl,
           },
@@ -1318,7 +1556,7 @@ export const resources = {
             },
             pricing: {
               question: 'Comment tarifiez-vous vos projets ?',
-              answer: 'Le tarif dépend de la portée, de la complexité et du délai de votre projet. Je propose des forfaits Full Control avec paiement unique et propriété complète de votre projet. Contactez-moi pour un devis gratuit et personnalisé.'
+              answer: 'Le tarif dépend de la portée, de la complexité et du délai de votre projet. Chaque devis est personnalisé — contactez-moi pour une estimation gratuite et sans engagement.'
             },
             process: {
               question: 'Quel est votre processus de développement ?',
@@ -1384,11 +1622,11 @@ export const resources = {
             },
             pricing: {
               title: 'Tarification Transparente',
-              description: 'Tarification claire et transparente sans frais cachés. Des forfaits Full Control en paiement unique adaptés à votre budget.'
+              description: 'Tarification claire et transparente sans frais cachés. Un devis personnalisé adapté à votre budget et à vos objectifs.'
             },
             experience: {
-              title: '4+ Ans d\'Expérience',
-              description: 'Avec 4 ans d\'expérience en backend, mobile et DevOps, j\'apporte de l\'expertise à chaque projet.'
+              title: '5 Ans d\'Expérience',
+              description: 'Avec 5 ans d\'expérience en backend, mobile et DevOps, j\'apporte de l\'expertise à chaque projet.'
             },
             remote: {
               title: 'Collaboration à Distance',
@@ -1467,34 +1705,36 @@ export const resources = {
       },
       seo: {
         default: {
-          title: 'Ben Djibril (Kone Djibril Benjamin) - Ingénieur DevOps | Portfolio Professionnel',
-          description: 'Portfolio professionnel de Ben Djibril (Kone Djibril Benjamin) - Ingénieur DevOps spécialisé en développement backend, mobile et DevOps. Services internationaux de qualité.',
-          keywords: 'Ben Djibril, Kone Djibril Benjamin, Benjamin Kone Djibril, Djibril Benjamin, Ben Djibril Portfolio, Kone Djibril Benjamin Portfolio, Ben Djibril Développeur, Kone Djibril Benjamin Développeur, DevOps, Backend, Mobile, Kotlin, Spring Boot, React, Portfolio, Développeur, Full Stack'
+          title: 'Kone Djibril (Ben Djibril) - Fondateur & CEO · Développeur & Ingénieur informaticien | Portfolio',
+          description: 'Kone Djibril (Ben Djibril) — Fondateur & CEO de Kobe Corporation, développeur et ingénieur informaticien. Sites, apps et outils digitaux pour les entreprises. Devis gratuits.',
+          keywords: 'Kone Djibril, Ben Djibril, Kobe Corporation, Fondateur CEO, développeur, ingénieur informaticien, développement web, apps mobiles, e-commerce, Cameroun, portfolio'
         },
+        ogImageAlt: 'Kone Djibril (Ben Djibril) — Fondateur & CEO, Développeur & Ingénieur informaticien',
         home: {
-          title: 'Ben Djibril (Kone Djibril Benjamin) - Ingénieur DevOps | Portfolio Professionnel',
-          description: 'Ben Djibril (Kone Djibril Benjamin) - Ingénieur DevOps avec 4 ans d\'expérience. Spécialisé en développement backend avec Spring Boot et développement mobile avec Kotlin Multiplatform. Création de solutions digitales robustes et scalables.',
-          keywords: 'Ben Djibril, Kone Djibril Benjamin, Benjamin Kone Djibril, Djibril Benjamin, Ben Djibril Portfolio, Kone Djibril Benjamin Portfolio, Ben Djibril Développeur, Kone Djibril Benjamin Développeur, Ingénieur DevOps, Développeur Backend, Développeur Mobile, Spring Boot, Kotlin, Développeur Full Stack, Portfolio'
+          title: 'Kone Djibril (Ben Djibril) - Fondateur & CEO · Développeur & Ingénieur informaticien | Portfolio',
+          description: 'Kone Djibril (Ben Djibril) — Fondateur & CEO de Kobe Corporation. Développeur et ingénieur informaticien avec 5 ans d\'expérience, j\'aide les entreprises à grandir grâce à des sites, apps et outils digitaux.',
+          keywords: 'Kone Djibril, Ben Djibril, Kobe Corporation, Fondateur CEO, développeur, ingénieur informaticien, entrepreneur, développement web, apps mobiles, portfolio'
         },
         services: {
-          title: 'Services - Ben Djibril (Kone Djibril Benjamin) | Solutions Web, Mobile & DevOps',
-          description: 'Ben Djibril (Kone Djibril Benjamin) - Services de développement professionnels : Applications web, Apps mobiles, E-commerce, APIs, DevOps & Cloud. Forfaits Full Control avec propriété complète du projet. Devis gratuits disponibles.',
-          keywords: 'Ben Djibril Services, Kone Djibril Benjamin Services, Ben Djibril Développeur Services, Kone Djibril Benjamin Développeur Services, Développement Web, Applications Mobiles, E-commerce, Développement API, DevOps, Services Cloud, Full Control, Développement Full Stack'
+          title: 'Services - Kone Djibril (Ben Djibril) | Web, Mobile & Outils Métier',
+          description: 'Sites web, apps mobiles, e-commerce et logiciels métier par Kone Djibril — Fondateur & CEO de Kobe Corporation. Devis gratuits disponibles.',
+          keywords: 'services Ben Djibril, services Kone Djibril, développement web, apps mobiles, e-commerce, logiciels métier, Kobe Corporation',
+          schemaName: 'Kone Djibril — Services de développement de produits digitaux'
         },
         projects: {
-          title: 'Projets - Ben Djibril (Kone Djibril Benjamin) | Portfolio de Projets Réalisés',
-          description: 'Ben Djibril (Kone Djibril Benjamin) - Découvrez mon portfolio de projets réalisés : applications web, apps mobiles, plateformes e-commerce et solutions DevOps. Témoignages clients inclus.',
-          keywords: 'Ben Djibril Projets, Kone Djibril Benjamin Projets, Ben Djibril Portfolio, Kone Djibril Benjamin Portfolio, Portfolio, Projets, Applications Web, Applications Mobiles, E-commerce, Études de Cas, Témoignages Clients'
+          title: 'Projets - Kone Djibril (Ben Djibril) | Réalisations Clients',
+          description: 'Découvrez les projets de Kone Djibril (Ben Djibril) : applications web, apps mobiles, e-commerce et outils métier livrés pour de vraies entreprises.',
+          keywords: 'projets Ben Djibril, portfolio Kone Djibril, applications web, apps mobiles, e-commerce, études de cas'
         },
         about: {
-          title: 'À propos - Ben Djibril (Kone Djibril Benjamin) | Profil Ingénieur DevOps',
-          description: 'En savoir plus sur Ben Djibril (Kone Djibril Benjamin) : Développeur Medior avec 4 ans d\'expérience, spécialisé en développement backend et mobile. Stack technologique, certifications et expertise.',
-          keywords: 'Ben Djibril À propos, Kone Djibril Benjamin À propos, Ben Djibril Profil, Kone Djibril Benjamin Profil, À propos, Profil Développeur, Ingénieur DevOps, Stack Technologique, Certifications, Expérience, Compétences'
+          title: 'À propos - Kone Djibril (Ben Djibril) | Développeur, Ingénieur informaticien & Fondateur',
+          description: 'Découvrez Kone Djibril (Ben Djibril) : développeur et ingénieur informaticien, Fondateur & CEO de Kobe Corporation. 5 ans d\'expérience, stack, certifications et approche.',
+          keywords: 'à propos Ben Djibril, Kone Djibril Benjamin, développeur, ingénieur informaticien, Fondateur CEO Kobe Corporation, certifications, expérience'
         },
         contact: {
-          title: 'Contact - Ben Djibril (Kone Djibril Benjamin) | Me Contacter',
-          description: 'Contactez Ben Djibril (Kone Djibril Benjamin) pour vos projets de développement. Devis gratuits, réponse sous 24h. Disponible dans le monde entier. Discutez de votre projet web, mobile ou DevOps.',
-          keywords: 'Ben Djibril Contact, Kone Djibril Benjamin Contact, Contacter Ben Djibril, Contacter Kone Djibril Benjamin, Contact, Devis, Services de Développement, Consultation, Discussion de Projet, Me Contacter'
+          title: 'Contact - Kone Djibril (Ben Djibril) | Devis gratuit sous 24h',
+          description: 'Contactez Kone Djibril (Ben Djibril) pour votre prochain projet digital. Devis gratuits, réponse sous 24h. Disponible dans le monde entier.',
+          keywords: 'contacter Ben Djibril, contacter Kone Djibril, devis gratuit, Kobe Corporation, projet web mobile'
         }
       },
       notFound: { title: 'Page introuvable', back: 'Retour à l\'accueil' },
@@ -1507,7 +1747,7 @@ i18n
   .init({
     resources,
     lng: initialLang,
-    fallbackLng: 'en',
+    fallbackLng: 'fr',
     interpolation: { escapeValue: false },
   })
 

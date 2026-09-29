@@ -8,11 +8,9 @@ import {
   ChatBubbleLeftRightIcon
 } from '@heroicons/react/24/solid'
 import { getCvDownload } from '../../utils/cv'
-import { useLocale } from '../../hooks/useLocale'
 
 function AboutCTAs() {
   const { t, i18n } = useTranslation()
-  const { lp } = useLocale()
   const cv = getCvDownload(i18n.language)
 
   const ctas = [
@@ -22,26 +20,30 @@ function AboutCTAs() {
       color: 'primary',
       link: cv.href,
       download: cv.filename,
+      external: true
     },
     {
       key: 'bookCall',
       icon: PhoneIcon,
       color: 'accent',
-      link: lp('/contact?subject=appel'),
+      link: '/contact?subject=appel',
+      external: false
     },
     {
       key: 'viewProjects',
       icon: FolderIcon,
       color: 'success',
-      link: lp('/projects'),
+      link: '/projects',
+      external: false
     },
     {
       key: 'contact',
       icon: ChatBubbleLeftRightIcon,
       color: 'warning',
-      link: lp('/contact'),
+      link: '/contact',
+      external: false
     }
-  ] as const
+  ]
 
   const colorClasses = {
     primary: 'bg-primary-600 hover:bg-primary-500 text-white border-primary-600',
@@ -72,7 +74,7 @@ function AboutCTAs() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
             {ctas.map((cta, index) => {
               const Icon = cta.icon
-              const colorClass = colorClasses[cta.color]
+              const colorClass = colorClasses[cta.color as keyof typeof colorClasses]
 
               const buttonContent = (
                 <motion.div
@@ -104,8 +106,12 @@ function AboutCTAs() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                 >
-                  {cta.key === 'downloadCV' ? (
-                    <a href={cta.link} download={cta.download} className="block">
+                  {cta.external ? (
+                    <a
+                      href={cta.link}
+                      {...(cta.download ? { download: cta.download } : { target: '_blank', rel: 'noopener noreferrer' })}
+                      className="block"
+                    >
                       {buttonContent}
                     </a>
                   ) : (

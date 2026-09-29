@@ -1,30 +1,28 @@
 import i18n from '../i18n'
 import { useTranslation } from 'react-i18next'
-import { useNavigate, useLocation } from 'react-router-dom'
-import { localizePath, stripLocaleFromPath, type Locale } from '../i18n/routing'
+import { useSearchParams } from 'react-router-dom'
 
 function LanguageSwitcher() {
   const { i18n: i18nInstance } = useTranslation()
-  const navigate = useNavigate()
-  const location = useLocation()
+  const [searchParams, setSearchParams] = useSearchParams()
   const current = i18n.language || i18nInstance.language
 
-  const setLang = (lng: Locale) => {
+  const setLang = (lng: 'fr' | 'en') => {
     i18n.changeLanguage(lng)
     localStorage.setItem('lang', lng)
     document.documentElement.lang = lng
-    const bare = stripLocaleFromPath(location.pathname)
-    navigate(localizePath(`${bare}${location.search}${location.hash}`, lng))
+    const next = new URLSearchParams(searchParams)
+    next.set('lang', lng)
+    setSearchParams(next, { replace: true })
   }
 
   const toggleLanguage = () => {
-    const newLang: Locale = current.startsWith('fr') ? 'en' : 'fr'
+    const newLang = current.startsWith('fr') ? 'en' : 'fr'
     setLang(newLang)
   }
 
   return (
     <>
-      {/* Version mobile : icône seule qui bascule */}
       <button
         onClick={toggleLanguage}
         className="md:hidden px-3 py-2 rounded-lg text-sm bg-secondary-100 dark:bg-secondary-700 text-secondary-700 dark:text-white hover:bg-secondary-200 dark:hover:bg-secondary-600 transition-colors font-semibold"
@@ -34,7 +32,6 @@ function LanguageSwitcher() {
         {current.startsWith('fr') ? 'FR' : 'EN'}
       </button>
 
-      {/* Version desktop : deux boutons */}
       <div className="hidden md:flex items-center gap-2">
         <button
           onClick={() => setLang('fr')}
