@@ -202,7 +202,7 @@ function About() {
                   <div className="flex items-start gap-3 mb-4">
                     <UserIcon className="w-6 h-6 text-primary-600 dark:text-primary-400 flex-shrink-0 mt-1" />
                     <div>
-                      <h3 className="text-xl font-bold mb-3 text-secondary-900 dark:text-white">Mon parcours</h3>
+                      <h3 className="text-xl font-bold mb-3 text-secondary-900 dark:text-white">{t('home.about.story.title')}</h3>
                       <p className="text-base text-secondary-700 dark:text-secondary-300 leading-relaxed">
                         {t('home.about.bioExtended')}
                       </p>

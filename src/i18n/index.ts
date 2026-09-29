@@ -16,8 +16,26 @@ export const resources = {
         serviceWeb: 'Web Development', serviceEcom: 'E-commerce', serviceApp: 'Web Apps', serviceConsult: 'Consulting'
       },
       footer: {
-        legal: 'Legal notice', privacy: 'Privacy policy', rights: 'All rights reserved.',
+        brand: 'Ben Djibril',
         tagline: 'Founder & CEO of Kobe Corporation — I help businesses grow with digital products that deliver.',
+        pagesTitle: 'Pages',
+        servicesTitle: 'Services',
+        viewAllServices: 'View all services',
+        newsletterTitle: 'Newsletter',
+        newsletterDesc: 'Get the latest news, tips and case studies straight to your inbox.',
+        newsletterPlaceholder: 'Your email',
+        newsletterSubscribe: 'Subscribe',
+        newsletterSending: 'Sending...',
+        newsletterSuccess: 'Subscribed!',
+        newsletterThanks: 'Thanks for subscribing!',
+        newsletterInvalidEmail: 'Please enter a valid email address',
+        newsletterError: 'Something went wrong. Please try again later.',
+        comingSoon: 'Coming soon',
+        legal: 'Legal notice',
+        privacy: 'Privacy policy',
+        rights: 'All rights reserved.',
+        copyright: '© {{year}} {{brand}}. All rights reserved.',
+        motto: 'build your own legacy',
       },
       errors: {
         title: 'Something went wrong',
@@ -750,13 +768,13 @@ export const resources = {
       },
       seo: {
         default: {
-          title: 'Ben Djibril (Kone Djibril Benjamin) - DevOps Engineer | Professional Portfolio',
+          title: 'Kone Djibril (Ben Djibril) - Founder & CEO of Kobe Corporation | Portfolio',
           description: 'Professional portfolio of Ben Djibril (Kone Djibril Benjamin) - DevOps Engineer specialized in backend, mobile, and DevOps development. International quality services.',
           keywords: 'Ben Djibril, Kone Djibril Benjamin, Benjamin Kone Djibril, Djibril Benjamin, Ben Djibril Portfolio, Kone Djibril Benjamin Portfolio, Ben Djibril Developer, Kone Djibril Benjamin Developer, DevOps, Backend, Mobile, Kotlin, Spring Boot, React, Portfolio, Developer, Full Stack'
         },
         home: {
-          title: 'Ben Djibril (Kone Djibril Benjamin) - DevOps Engineer | Professional Portfolio',
-          description: 'Ben Djibril (Kone Djibril Benjamin) - DevOps Engineer with 5 years of experience. Specialized in backend development with Spring Boot and mobile development with Kotlin Multiplatform. Creating robust, scalable digital solutions.',
+          title: 'Kone Djibril (Ben Djibril) - Founder & CEO of Kobe Corporation | Portfolio',
+          description: 'Kone Djibril (Ben Djibril) — Founder & CEO of Kobe Corporation. Entrepreneur with 5 years of experience helping businesses grow with websites, apps and digital tools.',
           keywords: 'Ben Djibril, Kone Djibril Benjamin, Benjamin Kone Djibril, Djibril Benjamin, Ben Djibril Portfolio, Kone Djibril Benjamin Portfolio, Ben Djibril Developer, Kone Djibril Benjamin Developer, DevOps Engineer, Backend Developer, Mobile Developer, Spring Boot, Kotlin, Full Stack Developer, Portfolio'
         },
         services: {
@@ -790,8 +808,26 @@ export const resources = {
         serviceWeb: 'Développement Web', serviceEcom: 'E-commerce', serviceApp: 'Applications Web', serviceConsult: 'Conseil'
       },
       footer: {
-        legal: 'Mentions légales', privacy: 'Politique de confidentialité', rights: 'Tous droits réservés.',
+        brand: 'Ben Djibril',
         tagline: 'Fondateur & CEO de Kobe Corporation — j\'aide les entreprises à grandir avec des produits digitaux concrets.',
+        pagesTitle: 'Pages',
+        servicesTitle: 'Services',
+        viewAllServices: 'Voir tous les services',
+        newsletterTitle: 'Newsletter',
+        newsletterDesc: 'Recevez les dernières actualités, conseils et études de cas directement dans votre boîte mail.',
+        newsletterPlaceholder: 'Votre email',
+        newsletterSubscribe: "S'abonner",
+        newsletterSending: 'Envoi...',
+        newsletterSuccess: 'Abonné !',
+        newsletterThanks: 'Merci pour votre abonnement !',
+        newsletterInvalidEmail: 'Veuillez entrer une adresse email valide',
+        newsletterError: 'Une erreur est survenue. Veuillez réessayer plus tard.',
+        comingSoon: 'Bientôt disponible',
+        legal: 'Mentions légales',
+        privacy: 'Politique de confidentialité',
+        rights: 'Tous droits réservés.',
+        copyright: '© {{year}} {{brand}}. Tous droits réservés.',
+        motto: 'build your own legacy',
       },
       errors: {
         title: 'Une erreur est survenue',
@@ -1525,13 +1561,13 @@ export const resources = {
       },
       seo: {
         default: {
-          title: 'Ben Djibril (Kone Djibril Benjamin) - Ingénieur DevOps | Portfolio Professionnel',
+          title: 'Kone Djibril (Ben Djibril) - Fondateur & CEO de Kobe Corporation | Portfolio',
           description: 'Portfolio professionnel de Ben Djibril (Kone Djibril Benjamin) - Ingénieur DevOps spécialisé en développement backend, mobile et DevOps. Services internationaux de qualité.',
           keywords: 'Ben Djibril, Kone Djibril Benjamin, Benjamin Kone Djibril, Djibril Benjamin, Ben Djibril Portfolio, Kone Djibril Benjamin Portfolio, Ben Djibril Développeur, Kone Djibril Benjamin Développeur, DevOps, Backend, Mobile, Kotlin, Spring Boot, React, Portfolio, Développeur, Full Stack'
         },
         home: {
-          title: 'Ben Djibril (Kone Djibril Benjamin) - Ingénieur DevOps | Portfolio Professionnel',
-          description: 'Ben Djibril (Kone Djibril Benjamin) - Ingénieur DevOps avec 5 ans d\'expérience. Spécialisé en développement backend avec Spring Boot et développement mobile avec Kotlin Multiplatform. Création de solutions digitales robustes et scalables.',
+          title: 'Kone Djibril (Ben Djibril) - Fondateur & CEO de Kobe Corporation | Portfolio',
+          description: 'Kone Djibril (Ben Djibril) — Fondateur & CEO de Kobe Corporation. Entrepreneur avec 5 ans d\'expérience, j\'aide les entreprises à grandir grâce à des sites, apps et outils digitaux.',
           keywords: 'Ben Djibril, Kone Djibril Benjamin, Benjamin Kone Djibril, Djibril Benjamin, Ben Djibril Portfolio, Kone Djibril Benjamin Portfolio, Ben Djibril Développeur, Kone Djibril Benjamin Développeur, Ingénieur DevOps, Développeur Backend, Développeur Mobile, Spring Boot, Kotlin, Développeur Full Stack, Portfolio'
         },
         services: {
