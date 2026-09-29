@@ -10,7 +10,7 @@ function HeroEngagementSection() {
   const metrics = [
     { value: 4, label: t('home.metrics.clients'), suffix: '+' },
     { value: 5, label: t('home.metrics.projects'), suffix: '+' },
-    { value: 95, label: t('home.metrics.satisfaction'), suffix: '%' },
+    { value: 100, label: t('home.metrics.satisfaction'), suffix: '%' },
     { value: '4-12', label: t('home.metrics.delivery'), suffix: '' },
   ]
 
@@ -31,7 +31,7 @@ function HeroEngagementSection() {
             className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4"
           >
             <Link
-              to="/services?audience=business"
+              to="/services"
               className="w-full sm:w-auto sm:min-w-[280px] inline-flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-3 px-4 sm:px-6 py-3 sm:py-3.5 rounded-2xl bg-primary-600 hover:bg-primary-500 text-white shadow-lg hover:shadow-xl transition-all"
             >
               <span className="text-sm sm:text-base font-semibold text-left">
@@ -43,7 +43,7 @@ function HeroEngagementSection() {
               </span>
             </Link>
             <Link
-              to="/services?audience=individual"
+              to="/contact"
               className="w-full sm:w-auto sm:min-w-[280px] inline-flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-3 px-4 sm:px-6 py-3 sm:py-3.5 rounded-2xl bg-white/90 dark:bg-secondary-900/80 border border-secondary-200 dark:border-secondary-700 text-secondary-900 dark:text-secondary-50 shadow-sm hover:shadow-md transition-all"
             >
               <span className="text-sm sm:text-base font-semibold text-left">

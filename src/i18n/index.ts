@@ -16,7 +16,8 @@ export const resources = {
         serviceWeb: 'Web Development', serviceEcom: 'E-commerce', serviceApp: 'Web Apps', serviceConsult: 'Consulting'
       },
       footer: {
-        legal: 'Legal notice', privacy: 'Privacy policy', rights: 'All rights reserved.'
+        legal: 'Legal notice', privacy: 'Privacy policy', rights: 'All rights reserved.',
+        tagline: 'Founder & CEO of Kobe Corporation — I help businesses grow with digital products that deliver.',
       },
       errors: {
         title: 'Something went wrong',
@@ -26,10 +27,10 @@ export const resources = {
         details: 'Technical details',
       },
       home: {
-        title: 'DevOps Engineer',
+        title: 'Founder & CEO',
         brand: 'Kone Djibril',
-        roleTag: 'Entrepreneur',
-        subtitle: 'I design digital products that scale — for startups and established teams.',
+        roleTag: 'Kobe Corporation',
+        subtitle: 'I help businesses grow with clear digital products — websites, apps and business tools that deliver results.',
         trustBar: {
           experience: '5 years',
           experienceLabel: 'Experience',
@@ -38,15 +39,15 @@ export const resources = {
           responseTime: '< 24h',
           responseTimeLabel: 'Response',
         },
-        card1: { title: 'Mobile Applications', desc: 'Cross-platform apps with Kotlin Multiplatform.' },
-        card2: { title: 'Web apps', desc: 'Scalable, secure, business‑oriented.' },
-        card3: { title: 'E‑commerce', desc: 'Conversion, performance, internationalization.' },
+        card1: { title: 'Mobile Applications', desc: 'Apps for iOS & Android that your customers actually use.' },
+        card2: { title: 'Web apps', desc: 'Business tools that simplify your daily operations.' },
+        card3: { title: 'E‑commerce', desc: 'Online stores built to convert and grow with you.' },
         ctaPrimary: 'Get Started', ctaSecondary: 'View Projects',
         segmentedCta: {
           business: 'I am a company / organization',
           businessSubtext: 'Custom services & offers',
-          individual: 'I am an individual / freelancer',
-          individualSubtext: 'Portfolio, personal sites, small structures',
+          individual: 'I want to discuss a project',
+          individualSubtext: 'Free quote under 24h',
         },
         videoTeaser: {
           badge: 'New',
@@ -82,15 +83,18 @@ export const resources = {
         metrics: { clients: 'Clients', projects: 'Projects', satisfaction: 'Satisfaction', delivery: 'Avg Delivery' },
         about: {
           title: 'About Me',
-          subtitle: 'Medior Developer | 5 Years of Experience | DevOps Engineer',
-          bio: 'Hi, I\'m Kone Djibril Benjamin, but you can call me Ben Djibril. I\'m a Medior Developer with 5 years of experience, specializing in backend development with Spring Boot and mobile development with Kotlin (not just native). I\'m passionate about creating robust, scalable digital solutions that help businesses thrive in the digital age.',
-          bioExtended: 'As a DevOps Engineer, I excel in backend and mobile development, with solid frontend skills that make me a complete full-stack developer. My expertise spans from building RESTful APIs with Spring Boot to crafting cross-platform mobile applications with Kotlin Multiplatform. I also integrate AI into products and automate workflows to improve reliability, speed, and delivery quality. I work extensively with modern cloud technologies, containerization, and CI/CD pipelines to deliver high-quality solutions.',
+          subtitle: 'Founder & CEO of Kobe Corporation · Entrepreneur · 5 years of experience',
+          bio: 'Hi, I\'m Kone Djibril Benjamin — also known as Ben Djibril. I am an entrepreneur, Founder and CEO of Kobe Corporation. For 5 years I have helped companies and individuals turn ideas into digital products that work: websites, mobile apps and business tools. I combine a builder mindset with a founder\'s vision to deliver results that move your business forward.',
+          bioExtended: 'Beyond building products for clients, I lead Kobe Corporation as Founder & CEO. That entrepreneurial experience shapes how I work: clear priorities, realistic timelines, and solutions designed for growth — not just for launch day. I stay hands-on on delivery when needed, while keeping the conversation focused on your business goals, not on jargon.',
           languages: 'Languages',
           languagesDesc: 'Native French speaker, intermediate English level',
           realName: 'Full Name',
           publicName: 'Public Name',
           experience: 'Experience',
-          level: 'Level',
+          level: 'Role',
+          levelValue: 'CEO',
+          company: 'Company',
+          companyValue: 'Kobe Corporation',
           specialties: 'Specialties',
           techStack: 'Technology Stack',
           techStackDesc: 'Technologies and tools I master and use daily',
@@ -119,7 +123,7 @@ export const resources = {
           },
           identity: {
             role: 'Role',
-            roleValue: 'DevOps Engineer / Full-Stack Developer',
+            roleValue: 'Founder & CEO — Kobe Corporation',
             location: 'Location',
             locationValue: 'Yaoundé, Cameroon',
             timezone: 'Timezone',
@@ -271,7 +275,7 @@ export const resources = {
         ...saasTranslations.en,
         title: 'Services',
         subtitle: 'Tailored solutions for your digital needs',
-        heroDescription: 'Web, mobile, e-commerce, APIs and DevOps — tailored solutions to ship products that scale.',
+        heroDescription: 'Websites, mobile apps, e-commerce and business tools — built to support your growth, with clear communication from day one.',
         heroCtaServices: 'Browse services',
         heroHighlightsTitle: 'What I can build for you',
         heroCtaSaas: 'View SaaS offers',
@@ -598,7 +602,7 @@ export const resources = {
             },
             pricing: {
               question: 'How do you price your projects?',
-              answer: 'Pricing depends on the scope, complexity, and timeline of your project. I offer both SaaS (subscription-based) and Full Control (one-time payment) models. Contact me for a free, personalized quote.'
+              answer: 'Pricing depends on the scope, complexity and timeline of your project. Every quote is personalized — contact me for a free estimate with no obligation.'
             },
             process: {
               question: 'What is your development process?',
@@ -664,7 +668,7 @@ export const resources = {
             },
             pricing: {
               title: 'Transparent Pricing',
-              description: 'Clear, upfront pricing with no hidden fees. Choose between SaaS or Full Control models that fit your budget.'
+              description: 'Clear, upfront pricing with no hidden fees. A personalized quote adapted to your budget and goals.'
             },
             experience: {
               title: '5 Years Experience',
@@ -757,7 +761,7 @@ export const resources = {
         },
         services: {
           title: 'Services - Ben Djibril (Kone Djibril Benjamin) | Web, Mobile & DevOps Solutions',
-          description: 'Ben Djibril (Kone Djibril Benjamin) - Professional development services: Web applications, Mobile apps, E-commerce, APIs, DevOps & Cloud. SaaS and Full Control billing models. Free quotes available.',
+          description: 'Kone Djibril (Ben Djibril) — Founder & CEO of Kobe Corporation. Websites, mobile apps, e-commerce and business tools for companies. Free quotes available.',
           keywords: 'Ben Djibril Services, Kone Djibril Benjamin Services, Ben Djibril Developer Services, Kone Djibril Benjamin Developer Services, Web Development, Mobile Apps, E-commerce, API Development, DevOps, Cloud Services, SaaS, Full Stack Development'
         },
         projects: {
@@ -786,7 +790,8 @@ export const resources = {
         serviceWeb: 'Développement Web', serviceEcom: 'E-commerce', serviceApp: 'Applications Web', serviceConsult: 'Conseil'
       },
       footer: {
-        legal: 'Mentions légales', privacy: 'Politique de confidentialité', rights: 'Tous droits réservés.'
+        legal: 'Mentions légales', privacy: 'Politique de confidentialité', rights: 'Tous droits réservés.',
+        tagline: 'Fondateur & CEO de Kobe Corporation — j\'aide les entreprises à grandir avec des produits digitaux concrets.',
       },
       errors: {
         title: 'Une erreur est survenue',
@@ -796,19 +801,19 @@ export const resources = {
         details: 'Détails techniques',
       },
       home: {
-        title: 'Ingénieur DevOps',
+        title: 'Fondateur & CEO',
         brand: 'Kone Djibril',
-        roleTag: 'Entrepreneur',
-        subtitle: 'Je conçois des produits digitaux qui scalent — pour startups et équipes établies.',
-        card1: { title: 'Applications Mobile', desc: 'Applications cross-platform avec Kotlin Multiplatform.' },
-        card2: { title: 'Apps web', desc: 'Scalables, sécurisées, orientées business.' },
-        card3: { title: 'E‑commerce', desc: 'Conversion, performance, internationalisation.' },
+        roleTag: 'Kobe Corporation',
+        subtitle: 'J\'aide les entreprises à grandir avec des produits digitaux clairs — sites, applications et outils métier qui apportent des résultats.',
+        card1: { title: 'Applications Mobile', desc: 'Des apps iOS & Android que vos clients utilisent vraiment.' },
+        card2: { title: 'Apps web', desc: 'Des outils métier qui simplifient votre quotidien.' },
+        card3: { title: 'E‑commerce', desc: 'Des boutiques en ligne pensées pour convertir et grandir.' },
         ctaPrimary: 'Commencer', ctaSecondary: 'Voir les projets',
         segmentedCta: {
           business: 'Je suis une entreprise / organisation',
           businessSubtext: 'Services & offres sur mesure',
-          individual: 'Je suis un particulier / freelance',
-          individualSubtext: 'Portfolio, sites persos, petites structures',
+          individual: 'Je veux discuter d\'un projet',
+          individualSubtext: 'Devis gratuit sous 24h',
         },
         trustBar: {
           experience: '5 ans',
@@ -852,15 +857,18 @@ export const resources = {
         metrics: { clients: 'Clients', projects: 'Projets', satisfaction: 'Satisfaction', delivery: 'Délai moyen' },
         about: {
           title: 'À propos de moi',
-          subtitle: 'Développeur Médior | 5 ans d\'expérience | Ingénieur DevOps',
-          bio: 'Bonjour, je suis Kone Djibril Benjamin, mais vous pouvez m\'appeler Ben Djibril. Je suis un développeur Médior avec 5 ans d\'expérience, spécialisé en développement backend avec Spring Boot et en développement mobile avec Kotlin (pas que du natif). Je suis passionné par la création de solutions digitales robustes et scalables qui aident les entreprises à prospérer à l\'ère du numérique.',
-          bioExtended: 'En tant qu\'ingénieur DevOps, j\'excelle en développement backend et mobile, avec des compétences frontend solides qui font de moi un développeur full-stack complet. Mon expertise s\'étend de la création d\'APIs RESTful avec Spring Boot au développement d\'applications mobiles cross-platform avec Kotlin Multiplatform. J\'intègre aussi l\'IA dans les produits et j\'automatise les workflows pour améliorer la fiabilité, la vitesse et la qualité de livraison. Je travaille beaucoup avec les technologies cloud modernes, la conteneurisation et les pipelines CI/CD pour livrer des solutions de haute qualité.',
+          subtitle: 'Fondateur & CEO de Kobe Corporation · Entrepreneur · 5 ans d\'expérience',
+          bio: 'Bonjour, je suis Kone Djibril Benjamin — aussi connu sous le nom de Ben Djibril. Je suis entrepreneur, Fondateur et CEO de Kobe Corporation. Depuis 5 ans, j\'aide les entreprises et les particuliers à transformer leurs idées en produits digitaux concrets : sites web, applications mobiles et outils métier. Je combine l\'esprit du bâtisseur et la vision du fondateur pour livrer des résultats qui font avancer votre activité.',
+          bioExtended: 'Au-delà des projets clients, je dirige Kobe Corporation en tant que Fondateur & CEO. Cette expérience d\'entrepreneur façonne ma façon de travailler : des priorités claires, des délais réalistes, et des solutions pensées pour grandir — pas seulement pour le jour du lancement. Je reste opérationnel quand il le faut, tout en gardant la conversation centrée sur vos objectifs business, pas sur le jargon technique.',
           languages: 'Langues',
           languagesDesc: 'Français natif, anglais niveau intermédiaire',
           realName: 'Nom complet',
           publicName: 'Nom public',
           experience: 'Expérience',
           level: 'Niveau',
+          levelValue: 'CEO',
+          company: 'Entreprise',
+          companyValue: 'Kobe Corporation',
           specialties: 'Spécialités',
           techStack: 'Stack Technologique',
           techStackDesc: 'Technologies et outils que je maîtrise et utilise au quotidien',
@@ -889,7 +897,7 @@ export const resources = {
           },
           identity: {
             role: 'Rôle',
-            roleValue: 'Ingénieur DevOps / Développeur Full-Stack',
+            roleValue: 'Fondateur & CEO — Kobe Corporation',
             location: 'Localisation',
             locationValue: 'Yaoundé, Cameroun',
             timezone: 'Fuseau horaire',
@@ -1041,7 +1049,7 @@ export const resources = {
         ...saasTranslations.fr,
         title: 'Services',
         subtitle: 'Solutions sur mesure pour vos besoins digitaux',
-        heroDescription: 'Web, mobile, e-commerce, APIs et DevOps — des solutions sur mesure pour livrer des produits qui scalent.',
+        heroDescription: 'Sites web, applications mobiles, e-commerce et outils métier — conçus pour soutenir votre croissance, avec une communication claire dès le premier jour.',
         heroCtaServices: 'Voir les services',
         heroHighlightsTitle: 'Ce que je peux construire pour vous',
         heroCtaSaas: 'Voir les offres SaaS',
@@ -1368,7 +1376,7 @@ export const resources = {
             },
             pricing: {
               question: 'Comment tarifiez-vous vos projets ?',
-              answer: 'Le tarif dépend de la portée, de la complexité et du délai de votre projet. Je propose deux modèles : SaaS (abonnement mensuel) et Full Control (paiement unique). Contactez-moi pour un devis gratuit et personnalisé.'
+              answer: 'Le tarif dépend de la portée, de la complexité et du délai de votre projet. Chaque devis est personnalisé — contactez-moi pour une estimation gratuite et sans engagement.'
             },
             process: {
               question: 'Quel est votre processus de développement ?',
@@ -1434,7 +1442,7 @@ export const resources = {
             },
             pricing: {
               title: 'Tarification Transparente',
-              description: 'Tarification claire et transparente sans frais cachés. Choisissez entre les modèles SaaS ou Full Control qui correspondent à votre budget.'
+              description: 'Tarification claire et transparente sans frais cachés. Un devis personnalisé adapté à votre budget et à vos objectifs.'
             },
             experience: {
               title: '5 Ans d\'Expérience',
@@ -1528,7 +1536,7 @@ export const resources = {
         },
         services: {
           title: 'Services - Ben Djibril (Kone Djibril Benjamin) | Solutions Web, Mobile & DevOps',
-          description: 'Ben Djibril (Kone Djibril Benjamin) - Services de développement professionnels : Applications web, Apps mobiles, E-commerce, APIs, DevOps & Cloud. Modèles de facturation SaaS et Full Control. Devis gratuits disponibles.',
+          description: 'Kone Djibril (Ben Djibril) — Fondateur & CEO de Kobe Corporation. Sites web, apps mobiles, e-commerce et outils métier pour les entreprises. Devis gratuits disponibles.',
           keywords: 'Ben Djibril Services, Kone Djibril Benjamin Services, Ben Djibril Développeur Services, Kone Djibril Benjamin Développeur Services, Développement Web, Applications Mobiles, E-commerce, Développement API, DevOps, Services Cloud, SaaS, Développement Full Stack'
         },
         projects: {

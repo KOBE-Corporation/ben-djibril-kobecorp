@@ -2,9 +2,11 @@ import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { CodeBracketIcon, RocketLaunchIcon, AcademicCapIcon, ArrowDownTrayIcon, ArrowRightIcon, GlobeAltIcon } from '@heroicons/react/24/solid'
+import { getCvDownload } from '../../utils/cv'
 
 function AboutSection() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const cv = getCvDownload(i18n.language)
 
   return (
     <section id="about" data-section="about" className="py-16 md:py-20 bg-gradient-to-br from-white via-primary-50/30 to-accent-50/20 dark:from-secondary-900 dark:via-secondary-900 dark:to-secondary-800 relative overflow-hidden">
@@ -69,10 +71,10 @@ function AboutSection() {
               </div>
               <div className="card p-4 bg-gradient-to-br from-accent-50 to-accent-100/50 dark:from-accent-900/30 dark:to-accent-800/20 border border-accent-200 dark:border-accent-700">
                 <h3 className="text-xs font-semibold text-secondary-500 dark:text-secondary-400 mb-1.5 uppercase tracking-wide">
-                  {t('home.about.publicName')}
+                  {t('home.about.company')}
                 </h3>
                 <p className="text-base md:text-lg font-semibold text-primary-600 dark:text-primary-400">
-                  Ben Djibril
+                  {t('home.about.companyValue')}
                 </p>
               </div>
             </div>
@@ -93,8 +95,8 @@ function AboutSection() {
                 whileHover={{ scale: 1.05, y: -2 }}
                 className="card p-4 bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-900/20 dark:to-accent-800/20 border border-accent-200 dark:border-accent-700"
               >
-                <div className="text-xl md:text-2xl font-bold gradient-text mb-1">{t('home.about.level')}</div>
-                <div className="text-xs sm:text-sm text-secondary-600 dark:text-secondary-400 font-medium">Médior</div>
+                <div className="text-xl md:text-2xl font-bold gradient-text mb-1">{t('home.about.levelValue')}</div>
+                <div className="text-xs sm:text-sm text-secondary-600 dark:text-secondary-400 font-medium">{t('home.about.level')}</div>
               </motion.div>
             </div>
 

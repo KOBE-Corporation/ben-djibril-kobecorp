@@ -1,9 +1,12 @@
+import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 import { EnvelopeIcon, MapPinIcon, PhoneIcon } from '@heroicons/react/24/solid'
 import { FaWhatsapp } from 'react-icons/fa6'
 import FooterSocialLinks from './FooterSocialLinks'
 
 function FooterBrand() {
+  const { t } = useTranslation()
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -29,7 +32,7 @@ function FooterBrand() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="text-secondary-600 dark:text-secondary-300 text-sm leading-relaxed"
         >
-          IngÃ©nieur DevOps spÃ©cialisÃ© en backend et mobile, crÃ©ant des solutions digitales performantes pour entreprises internationales.
+          {t('footer.tagline')}
         </motion.p>
       </div>
       
@@ -52,9 +55,9 @@ function FooterBrand() {
             href="https://wa.me/237655938501"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Contactez-moi sur WhatsApp"
+            aria-label="WhatsApp"
             className="h-8 w-8 rounded-full bg-success-500 hover:bg-success-600 text-white flex items-center justify-center transition-all duration-200 shadow-md hover:shadow-lg flex-shrink-0 hover:scale-110"
-            title="Contacter sur WhatsApp"
+            title="WhatsApp"
           >
             <FaWhatsapp className="w-4 h-4" />
           </a>
@@ -69,7 +72,7 @@ function FooterBrand() {
           className="flex items-start gap-3 text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors group"
         >
           <EnvelopeIcon className="w-5 h-5 flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
-          <span className="text-sm">kone.djibril@kobecorporation.com</span>
+          <span className="text-sm break-all">kone.djibril@kobecorporation.com</span>
         </motion.a>
         
         <motion.div
@@ -80,7 +83,7 @@ function FooterBrand() {
           className="flex items-start gap-3 text-secondary-600 dark:text-secondary-300"
         >
           <MapPinIcon className="w-5 h-5 flex-shrink-0 mt-0.5" />
-          <span className="text-sm">YaoundÃ©, Cameroun</span>
+          <span className="text-sm">{t('home.about.identity.locationValue')}</span>
         </motion.div>
       </div>
 
@@ -90,4 +93,3 @@ function FooterBrand() {
 }
 
 export default FooterBrand
-
