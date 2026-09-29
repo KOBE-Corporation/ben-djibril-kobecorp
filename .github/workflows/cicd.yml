@@ -441,9 +441,15 @@ jobs:
             docker pull "$FRONT_IMAGE"
 
             echo "==> Docker Compose pull/up"
-            docker compose -p "${COMPOSE_PROJECT_NAME:-ben-djibril}" -f compose.yaml pull
-            docker compose -p "${COMPOSE_PROJECT_NAME:-ben-djibril}" -f compose.yaml up -d --force-recreate
-            docker compose -p "${COMPOSE_PROJECT_NAME:-ben-djibril}" -f compose.yaml ps
+            PROJECT="${COMPOSE_PROJECT_NAME:-ben-djibril}"
+            docker compose -p "$PROJECT" -f compose.yaml pull
+            # Conteneur orphelin hors projet Compose → conflit de nom sur --force-recreate
+            if docker ps -a --format '{{.Names}}' | grep -qx 'ben-djibril-site'; then
+              echo "==> Remove existing container ben-djibril-site before recreate"
+              docker rm -f ben-djibril-site
+            fi
+            docker compose -p "$PROJECT" -f compose.yaml up -d --force-recreate
+            docker compose -p "$PROJECT" -f compose.yaml ps
 
             # Remettre l'autre site sur le réseau s'il tourne (évite 502 croisés)
             if docker ps --format '{{.Names}}' | grep -qx 'kobecorporation-web'; then
