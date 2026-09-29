@@ -129,13 +129,14 @@ function AboutSection() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="mt-6 flex flex-col sm:flex-row gap-3 justify-center sm:justify-start"
             >
-              <Link
-                to="/about"
+              <a
+                href={cv.href}
+                download={cv.filename}
                 className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-primary-600 hover:bg-primary-500 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group"
               >
                 <ArrowDownTrayIcon className="w-5 h-5 group-hover:translate-y-0.5 transition-transform" />
                 <span>{t('home.about.downloadCV') || 'Télécharger mon CV'}</span>
-              </Link>
+              </a>
               <Link
                 to="/about"
                 className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl border-2 border-primary-600 dark:border-primary-500 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 font-semibold transition-all duration-300"
@@ -269,7 +270,7 @@ function AboutSection() {
               </motion.div>
               <h3 className="text-xl font-semibold mb-2 text-secondary-900 dark:text-white">{t('home.about.specialties')}</h3>
               <p className="text-secondary-600 dark:text-secondary-300 text-sm">
-                Backend (Spring Boot), Mobile (Kotlin), DevOps & Full-Stack
+                Backend, Mobile, Web & Cloud — au service de votre business
               </p>
             </motion.div>
 
@@ -296,7 +297,7 @@ function AboutSection() {
               </motion.div>
               <h3 className="text-xl font-semibold mb-2 text-secondary-900 dark:text-white">{t('home.about.experience')}</h3>
               <p className="text-secondary-600 dark:text-secondary-300 text-sm">
-                5 ans d'expérience en développement backend et mobile
+                5 ans à accompagner entreprises et entrepreneurs
               </p>
             </motion.div>
 
@@ -321,9 +322,9 @@ function AboutSection() {
                   <AcademicCapIcon className="w-8 h-8 text-success-600 dark:text-success-400" />
                 </motion.div>
               </motion.div>
-              <h3 className="text-xl font-semibold mb-2 text-secondary-900 dark:text-white">{t('home.about.languages')}</h3>
+              <h3 className="text-xl font-semibold mb-2 text-secondary-900 dark:text-white">{t('home.about.company')}</h3>
               <p className="text-secondary-600 dark:text-secondary-300 text-sm">
-                Français (Natif), Anglais (B1)
+                Fondateur & CEO de Kobe Corporation
               </p>
             </motion.div>
           </div>

@@ -7,17 +7,20 @@ import {
   FolderIcon,
   ChatBubbleLeftRightIcon
 } from '@heroicons/react/24/solid'
+import { getCvDownload } from '../../utils/cv'
 
 function AboutCTAs() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const cv = getCvDownload(i18n.language)
 
   const ctas = [
     {
       key: 'downloadCV',
       icon: ArrowDownTrayIcon,
       color: 'primary',
-      link: '#', // TODO: Ajouter le lien vers le CV
-      external: false
+      link: cv.href,
+      download: cv.filename,
+      external: true
     },
     {
       key: 'bookCall',
@@ -106,8 +109,7 @@ function AboutCTAs() {
                   {cta.external ? (
                     <a
                       href={cta.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      {...(cta.download ? { download: cta.download } : { target: '_blank', rel: 'noopener noreferrer' })}
                       className="block"
                     >
                       {buttonContent}

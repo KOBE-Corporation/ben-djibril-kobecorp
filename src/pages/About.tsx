@@ -228,10 +228,10 @@ function About() {
                     className="card text-center p-3 sm:p-4 min-h-[104px] sm:min-h-[120px] flex flex-col items-center justify-center bg-gradient-to-br from-accent-50 to-accent-100 dark:from-accent-900/20 dark:to-accent-800/20 border border-accent-200 dark:border-accent-700"
                   >
                     <div className="text-base sm:text-lg md:text-xl font-bold gradient-text leading-tight mb-1">
-                      {t('home.about.level')}
+                      {t('home.about.levelValue')}
                     </div>
                     <div className="text-[11px] sm:text-xs md:text-sm text-secondary-600 dark:text-secondary-400 font-medium leading-tight">
-                      Médior
+                      {t('home.about.companyValue')}
                     </div>
                   </motion.div>
                   <motion.div
