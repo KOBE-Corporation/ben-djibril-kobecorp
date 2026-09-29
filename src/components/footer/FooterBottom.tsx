@@ -14,10 +14,11 @@ function FooterBottom() {
     >
       <div className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-4 text-sm">
         <p className="text-secondary-600 dark:text-secondary-300 text-center md:text-left">
-          {t('footer.copyright', {
-            year: new Date().getFullYear(),
-            brand: 'Kobe Corporation',
-          })}
+          © {new Date().getFullYear()}{' '}
+          <span className="font-semibold text-primary-600 dark:text-primary-400">
+            Kobe Corporation
+          </span>
+          . {t('footer.rights')}
         </p>
         <motion.p
           initial={{ opacity: 0 }}
