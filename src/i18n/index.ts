@@ -23,6 +23,9 @@ export const resources = {
         home: 'Home', services: 'Services', projects: 'Projects', about: 'About', contact: 'Contact',
         serviceWeb: 'Web Development', serviceEcom: 'E-commerce', serviceApp: 'Web Apps', serviceConsult: 'Consulting'
       },
+      ui: {
+        lightboxHint: 'Press Esc or tap outside to close',
+      },
       footer: {
         brand: 'Ben Djibril',
         tagline: 'Founder & CEO of Kobe Corporation — I help businesses grow with digital products that deliver.',
@@ -825,33 +828,35 @@ export const resources = {
       seo: {
         default: {
           title: 'Kone Djibril (Ben Djibril) - Founder & CEO of Kobe Corporation | Portfolio',
-          description: 'Professional portfolio of Ben Djibril (Kone Djibril Benjamin) - DevOps Engineer specialized in backend, mobile, and DevOps development. International quality services.',
-          keywords: 'Ben Djibril, Kone Djibril Benjamin, Benjamin Kone Djibril, Djibril Benjamin, Ben Djibril Portfolio, Kone Djibril Benjamin Portfolio, Ben Djibril Developer, Kone Djibril Benjamin Developer, DevOps, Backend, Mobile, Kotlin, Spring Boot, React, Portfolio, Developer, Full Stack'
+          description: 'Kone Djibril (Ben Djibril) — Founder & CEO of Kobe Corporation. I help businesses grow with websites, apps and digital tools. Free quotes, worldwide.',
+          keywords: 'Kone Djibril, Ben Djibril, Kobe Corporation, Founder CEO, web development, mobile apps, e-commerce, digital products, Cameroon, portfolio'
         },
+        ogImageAlt: 'Kone Djibril (Ben Djibril) — Founder & CEO of Kobe Corporation',
         home: {
           title: 'Kone Djibril (Ben Djibril) - Founder & CEO of Kobe Corporation | Portfolio',
-          description: 'Kone Djibril (Ben Djibril) — Founder & CEO of Kobe Corporation. Entrepreneur with 5 years of experience helping businesses grow with websites, apps and digital tools.',
-          keywords: 'Ben Djibril, Kone Djibril Benjamin, Benjamin Kone Djibril, Djibril Benjamin, Ben Djibril Portfolio, Kone Djibril Benjamin Portfolio, Ben Djibril Developer, Kone Djibril Benjamin Developer, DevOps Engineer, Backend Developer, Mobile Developer, Spring Boot, Kotlin, Full Stack Developer, Portfolio'
+          description: 'Kone Djibril (Ben Djibril) — Founder & CEO of Kobe Corporation. Entrepreneur with 5 years helping businesses grow with websites, apps and digital tools.',
+          keywords: 'Kone Djibril, Ben Djibril, Kobe Corporation, Founder CEO, entrepreneur, web development, mobile apps, e-commerce, digital products, portfolio'
         },
         services: {
-          title: 'Services - Ben Djibril (Kone Djibril Benjamin) | Web, Mobile & DevOps Solutions',
-          description: 'Kone Djibril (Ben Djibril) — Founder & CEO of Kobe Corporation. Websites, mobile apps, e-commerce and business tools for companies. Free quotes available.',
-          keywords: 'Ben Djibril Services, Kone Djibril Benjamin Services, Ben Djibril Developer Services, Kone Djibril Benjamin Developer Services, Web Development, Mobile Apps, E-commerce, API Development, DevOps, Cloud Services, SaaS, Full Stack Development'
+          title: 'Services - Kone Djibril (Ben Djibril) | Web, Mobile & Business Tools',
+          description: 'Custom websites, mobile apps, e-commerce and business software by Kone Djibril — Founder & CEO of Kobe Corporation. Free quotes available.',
+          keywords: 'Ben Djibril services, Kone Djibril services, web development, mobile apps, e-commerce, business software, Kobe Corporation',
+          schemaName: 'Kone Djibril — Digital product development services'
         },
         projects: {
-          title: 'Projects - Ben Djibril (Kone Djibril Benjamin) | Portfolio of Realized Projects',
-          description: 'Ben Djibril (Kone Djibril Benjamin) - Discover my portfolio of completed projects: web applications, mobile apps, e-commerce platforms, and DevOps solutions. Real client testimonials included.',
-          keywords: 'Ben Djibril Projects, Kone Djibril Benjamin Projects, Ben Djibril Portfolio, Kone Djibril Benjamin Portfolio, Portfolio, Projects, Web Applications, Mobile Apps, E-commerce, Case Studies, Client Testimonials'
+          title: 'Projects - Kone Djibril (Ben Djibril) | Real Client Work',
+          description: 'Explore projects by Kone Djibril (Ben Djibril): web apps, mobile apps, e-commerce and business tools delivered for real companies.',
+          keywords: 'Ben Djibril projects, Kone Djibril portfolio, web applications, mobile apps, e-commerce, case studies'
         },
         about: {
-          title: 'About - Ben Djibril (Kone Djibril Benjamin) | DevOps Engineer Profile',
-          description: 'Learn more about Ben Djibril (Kone Djibril Benjamin): Medior Developer with 5 years of experience, specialized in backend and mobile development. Technology stack, certifications, and expertise.',
-          keywords: 'Ben Djibril About, Kone Djibril Benjamin About, Ben Djibril Profile, Kone Djibril Benjamin Profile, About, Developer Profile, DevOps Engineer, Technology Stack, Certifications, Experience, Skills'
+          title: 'About - Kone Djibril (Ben Djibril) | Founder & CEO Profile',
+          description: 'Meet Kone Djibril (Ben Djibril), Founder & CEO of Kobe Corporation. 5 years helping businesses with digital products, stack, certifications and approach.',
+          keywords: 'about Ben Djibril, Kone Djibril Benjamin, Founder CEO Kobe Corporation, developer profile, certifications, experience'
         },
         contact: {
-          title: 'Contact - Ben Djibril (Kone Djibril Benjamin) | Get in Touch',
-          description: 'Contact Ben Djibril (Kone Djibril Benjamin) for your development projects. Free quotes, 24h response time. Available worldwide. Discuss your web, mobile, or DevOps project.',
-          keywords: 'Ben Djibril Contact, Kone Djibril Benjamin Contact, Contact Ben Djibril, Contact Kone Djibril Benjamin, Contact, Quote, Development Services, Consultation, Project Discussion, Get in Touch'
+          title: 'Contact - Kone Djibril (Ben Djibril) | Free Quote in 24h',
+          description: 'Contact Kone Djibril (Ben Djibril) for your next digital project. Free quotes, reply within 24h. Available worldwide for web, mobile and business tools.',
+          keywords: 'contact Ben Djibril, contact Kone Djibril, free quote, Kobe Corporation, web mobile project'
         }
       },
       notFound: { title: 'Page not found', back: 'Back to home' },
@@ -862,6 +867,9 @@ export const resources = {
       nav: {
         home: 'Accueil', services: 'Services', projects: 'Projets', about: 'À propos', contact: 'Contact',
         serviceWeb: 'Développement Web', serviceEcom: 'E-commerce', serviceApp: 'Applications Web', serviceConsult: 'Conseil'
+      },
+      ui: {
+        lightboxHint: 'Échap ou clic à l’extérieur pour fermer',
       },
       footer: {
         brand: 'Ben Djibril',
@@ -1666,33 +1674,35 @@ export const resources = {
       seo: {
         default: {
           title: 'Kone Djibril (Ben Djibril) - Fondateur & CEO de Kobe Corporation | Portfolio',
-          description: 'Portfolio professionnel de Ben Djibril (Kone Djibril Benjamin) - Ingénieur DevOps spécialisé en développement backend, mobile et DevOps. Services internationaux de qualité.',
-          keywords: 'Ben Djibril, Kone Djibril Benjamin, Benjamin Kone Djibril, Djibril Benjamin, Ben Djibril Portfolio, Kone Djibril Benjamin Portfolio, Ben Djibril Développeur, Kone Djibril Benjamin Développeur, DevOps, Backend, Mobile, Kotlin, Spring Boot, React, Portfolio, Développeur, Full Stack'
+          description: 'Kone Djibril (Ben Djibril) — Fondateur & CEO de Kobe Corporation. J\'aide les entreprises à grandir avec des sites, apps et outils digitaux. Devis gratuits.',
+          keywords: 'Kone Djibril, Ben Djibril, Kobe Corporation, Fondateur CEO, développement web, applications mobiles, e-commerce, produits digitaux, Cameroun, portfolio'
         },
+        ogImageAlt: 'Kone Djibril (Ben Djibril) — Fondateur & CEO de Kobe Corporation',
         home: {
           title: 'Kone Djibril (Ben Djibril) - Fondateur & CEO de Kobe Corporation | Portfolio',
           description: 'Kone Djibril (Ben Djibril) — Fondateur & CEO de Kobe Corporation. Entrepreneur avec 5 ans d\'expérience, j\'aide les entreprises à grandir grâce à des sites, apps et outils digitaux.',
-          keywords: 'Ben Djibril, Kone Djibril Benjamin, Benjamin Kone Djibril, Djibril Benjamin, Ben Djibril Portfolio, Kone Djibril Benjamin Portfolio, Ben Djibril Développeur, Kone Djibril Benjamin Développeur, Ingénieur DevOps, Développeur Backend, Développeur Mobile, Spring Boot, Kotlin, Développeur Full Stack, Portfolio'
+          keywords: 'Kone Djibril, Ben Djibril, Kobe Corporation, Fondateur CEO, entrepreneur, développement web, applications mobiles, e-commerce, produits digitaux, portfolio'
         },
         services: {
-          title: 'Services - Ben Djibril (Kone Djibril Benjamin) | Solutions Web, Mobile & DevOps',
-          description: 'Kone Djibril (Ben Djibril) — Fondateur & CEO de Kobe Corporation. Sites web, apps mobiles, e-commerce et outils métier pour les entreprises. Devis gratuits disponibles.',
-          keywords: 'Ben Djibril Services, Kone Djibril Benjamin Services, Ben Djibril Développeur Services, Kone Djibril Benjamin Développeur Services, Développement Web, Applications Mobiles, E-commerce, Développement API, DevOps, Services Cloud, SaaS, Développement Full Stack'
+          title: 'Services - Kone Djibril (Ben Djibril) | Web, Mobile & Outils Métier',
+          description: 'Sites web, apps mobiles, e-commerce et logiciels métier par Kone Djibril — Fondateur & CEO de Kobe Corporation. Devis gratuits disponibles.',
+          keywords: 'services Ben Djibril, services Kone Djibril, développement web, apps mobiles, e-commerce, logiciels métier, Kobe Corporation',
+          schemaName: 'Kone Djibril — Services de développement de produits digitaux'
         },
         projects: {
-          title: 'Projets - Ben Djibril (Kone Djibril Benjamin) | Portfolio de Projets Réalisés',
-          description: 'Ben Djibril (Kone Djibril Benjamin) - Découvrez mon portfolio de projets réalisés : applications web, apps mobiles, plateformes e-commerce et solutions DevOps. Témoignages clients inclus.',
-          keywords: 'Ben Djibril Projets, Kone Djibril Benjamin Projets, Ben Djibril Portfolio, Kone Djibril Benjamin Portfolio, Portfolio, Projets, Applications Web, Applications Mobiles, E-commerce, Études de Cas, Témoignages Clients'
+          title: 'Projets - Kone Djibril (Ben Djibril) | Réalisations Clients',
+          description: 'Découvrez les projets de Kone Djibril (Ben Djibril) : applications web, apps mobiles, e-commerce et outils métier livrés pour de vraies entreprises.',
+          keywords: 'projets Ben Djibril, portfolio Kone Djibril, applications web, apps mobiles, e-commerce, études de cas'
         },
         about: {
-          title: 'À propos - Ben Djibril (Kone Djibril Benjamin) | Profil Ingénieur DevOps',
-          description: 'En savoir plus sur Ben Djibril (Kone Djibril Benjamin) : Développeur Medior avec 5 ans d\'expérience, spécialisé en développement backend et mobile. Stack technologique, certifications et expertise.',
-          keywords: 'Ben Djibril À propos, Kone Djibril Benjamin À propos, Ben Djibril Profil, Kone Djibril Benjamin Profil, À propos, Profil Développeur, Ingénieur DevOps, Stack Technologique, Certifications, Expérience, Compétences'
+          title: 'À propos - Kone Djibril (Ben Djibril) | Profil Fondateur & CEO',
+          description: 'Découvrez Kone Djibril (Ben Djibril), Fondateur & CEO de Kobe Corporation. 5 ans à accompagner les entreprises avec des produits digitaux, stack et certifications.',
+          keywords: 'à propos Ben Djibril, Kone Djibril Benjamin, Fondateur CEO Kobe Corporation, profil développeur, certifications, expérience'
         },
         contact: {
-          title: 'Contact - Ben Djibril (Kone Djibril Benjamin) | Me Contacter',
-          description: 'Contactez Ben Djibril (Kone Djibril Benjamin) pour vos projets de développement. Devis gratuits, réponse sous 24h. Disponible dans le monde entier. Discutez de votre projet web, mobile ou DevOps.',
-          keywords: 'Ben Djibril Contact, Kone Djibril Benjamin Contact, Contacter Ben Djibril, Contacter Kone Djibril Benjamin, Contact, Devis, Services de Développement, Consultation, Discussion de Projet, Me Contacter'
+          title: 'Contact - Kone Djibril (Ben Djibril) | Devis gratuit sous 24h',
+          description: 'Contactez Kone Djibril (Ben Djibril) pour votre prochain projet digital. Devis gratuits, réponse sous 24h. Disponible dans le monde entier.',
+          keywords: 'contacter Ben Djibril, contacter Kone Djibril, devis gratuit, Kobe Corporation, projet web mobile'
         }
       },
       notFound: { title: 'Page introuvable', back: 'Retour à l\'accueil' },
