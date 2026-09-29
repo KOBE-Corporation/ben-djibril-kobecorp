@@ -18,9 +18,26 @@ export const resources = {
       footer: {
         legal: 'Legal notice', privacy: 'Privacy policy', rights: 'All rights reserved.'
       },
+      errors: {
+        title: 'Something went wrong',
+        description: 'An unexpected error occurred. You can try again or return to the home page.',
+        retry: 'Try again',
+        home: 'Back to home',
+        details: 'Technical details',
+      },
       home: {
         title: 'DevOps Engineer',
-        subtitle: 'I help companies build performant, international digital products with a focus on backend, mobile, and DevOps.',
+        brand: 'Ben Djibril',
+        roleTag: 'Entrepreneur',
+        subtitle: 'I design digital products that scale — for startups and established teams.',
+        trustBar: {
+          experience: '4+ years',
+          experienceLabel: 'Experience',
+          satisfaction: '100%',
+          satisfactionLabel: 'Satisfaction',
+          responseTime: '< 24h',
+          responseTimeLabel: 'Response',
+        },
         card1: { title: 'Mobile Applications', desc: 'Cross-platform apps with Kotlin Multiplatform.' },
         card2: { title: 'Web apps', desc: 'Scalable, secure, business‑oriented.' },
         card3: { title: 'E‑commerce', desc: 'Conversion, performance, internationalization.' },
@@ -30,11 +47,6 @@ export const resources = {
           businessSubtext: 'Custom services & offers',
           individual: 'I am an individual / freelancer',
           individualSubtext: 'Portfolio, personal sites, small structures',
-        },
-        trustBar: {
-          experience: '4+ years of experience',
-          satisfaction: '100% client satisfaction',
-          responseTime: 'Response under 24h',
         },
         videoTeaser: {
           badge: 'New',
@@ -774,9 +786,18 @@ export const resources = {
       footer: {
         legal: 'Mentions légales', privacy: 'Politique de confidentialité', rights: 'Tous droits réservés.'
       },
+      errors: {
+        title: 'Une erreur est survenue',
+        description: 'Une erreur inattendue s’est produite. Vous pouvez réessayer ou revenir à l’accueil.',
+        retry: 'Réessayer',
+        home: 'Retour à l’accueil',
+        details: 'Détails techniques',
+      },
       home: {
         title: 'Ingénieur DevOps',
-        subtitle: 'J\'aide les entreprises à concevoir des produits digitaux performants et internationaux. Spécialisé en DevOps, backend et mobile, je maîtrise également le frontend pour une approche full-stack complète.',
+        brand: 'Ben Djibril',
+        roleTag: 'Entrepreneur',
+        subtitle: 'Je conçois des produits digitaux qui scalent — pour startups et équipes établies.',
         card1: { title: 'Applications Mobile', desc: 'Applications cross-platform avec Kotlin Multiplatform.' },
         card2: { title: 'Apps web', desc: 'Scalables, sécurisées, orientées business.' },
         card3: { title: 'E‑commerce', desc: 'Conversion, performance, internationalisation.' },
@@ -788,9 +809,12 @@ export const resources = {
           individualSubtext: 'Portfolio, sites persos, petites structures',
         },
         trustBar: {
-          experience: '4+ ans d’expérience',
-          satisfaction: '100% de satisfaction client',
-          responseTime: 'Réponse sous 24h',
+          experience: '4+ ans',
+          experienceLabel: 'Expérience',
+          satisfaction: '100%',
+          satisfactionLabel: 'Satisfaction',
+          responseTime: '< 24h',
+          responseTimeLabel: 'Réponse',
         },
         videoTeaser: {
           badge: 'Nouveau',

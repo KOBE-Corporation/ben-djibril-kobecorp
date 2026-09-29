@@ -1,36 +1,49 @@
 import { Component } from 'react'
 import type { ReactNode } from 'react'
+import ErrorFallback from '../components/ui/ErrorFallback'
 
-type Props = { children: ReactNode }
-type State = { hasError: boolean; error?: unknown }
+type Props = {
+  children: ReactNode
+  fallbackVariant?: 'page' | 'section' | 'inline'
+  onReset?: () => void
+}
+
+type State = {
+  hasError: boolean
+  error?: unknown
+}
 
 class ErrorBoundary extends Component<Props, State> {
   state: State = { hasError: false }
 
-  static getDerivedStateFromError(error: unknown) {
+  static getDerivedStateFromError(error: unknown): State {
     return { hasError: true, error }
   }
 
   componentDidCatch(error: unknown, info: unknown) {
-    // TODO: hook to monitoring/logging if needed
     console.error('UI Error:', error, info)
+  }
+
+  private handleRetry = () => {
+    this.props.onReset?.()
+    this.setState({ hasError: false, error: undefined })
   }
 
   render() {
     if (this.state.hasError) {
       return (
-        <div className="container mx-auto px-4 py-10">
-          <div className="card">
-            <h1 className="text-2xl font-semibold mb-2">Une erreur est survenue</h1>
-            <p className="text-secondary-600 dark:text-secondary-300">Veuillez rafraîchir la page ou revenir plus tard.</p>
-          </div>
+        <div className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-100 dark:from-secondary-900 dark:to-secondary-800">
+          <ErrorFallback
+            variant={this.props.fallbackVariant ?? 'page'}
+            error={this.state.error}
+            onRetry={this.handleRetry}
+          />
         </div>
       )
     }
+
     return this.props.children
   }
 }
 
 export default ErrorBoundary
-
-
