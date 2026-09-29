@@ -523,7 +523,7 @@ function ServiceDetailsDialog({ open, planId, onClose }: ServiceDetailsDialogPro
                       </p>
                       <ul className="space-y-2 text-xs sm:text-sm text-secondary-700 dark:text-secondary-200">
                         <li className="flex items-start gap-2">
-                          <span className="text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5">â€¢</span>
+                          <span className="text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5">•</span>
                           <span>
                             {planId === 'full-ultraSpeed'
                               ? t('services.details.fullControl.limitsUltra')
@@ -533,7 +533,7 @@ function ServiceDetailsDialog({ open, planId, onClose }: ServiceDetailsDialogPro
                           </span>
                         </li>
                         <li className="flex items-start gap-2">
-                          <span className="text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5">â€¢</span>
+                          <span className="text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5">•</span>
                           <span>{t('services.details.fullControl.limitsCommon')}</span>
                         </li>
                       </ul>
@@ -662,10 +662,10 @@ function ServiceDetailsDialog({ open, planId, onClose }: ServiceDetailsDialogPro
                             </div>
                             <div>
                               <p className="text-xs sm:text-sm font-semibold text-secondary-900 dark:text-white mb-1">
-                                Prochaine Ã©volution incluse
+                                Prochaine évolution incluse
                               </p>
                               <p className="text-xs text-secondary-600 dark:text-secondary-400">
-                                {t('services.saas.goodDeal.cadence')} - 1 nouvelle fonctionnalitÃ©
+                                {t('services.saas.goodDeal.cadence')} - 1 nouvelle fonctionnalité
                               </p>
                             </div>
                           </div>
@@ -684,10 +684,10 @@ function ServiceDetailsDialog({ open, planId, onClose }: ServiceDetailsDialogPro
                             </div>
                             <div>
                               <p className="text-xs sm:text-sm font-semibold text-secondary-900 dark:text-white mb-1">
-                                Prochaine Ã©volution incluse
+                                Prochaine évolution incluse
                               </p>
                               <p className="text-xs text-secondary-600 dark:text-secondary-400">
-                                {t('services.saas.pro.cadence')} - 1 nouvelle fonctionnalitÃ©
+                                {t('services.saas.pro.cadence')} - 1 nouvelle fonctionnalité
                               </p>
                             </div>
                           </div>
@@ -706,10 +706,10 @@ function ServiceDetailsDialog({ open, planId, onClose }: ServiceDetailsDialogPro
                             </div>
                             <div>
                               <p className="text-xs sm:text-sm font-semibold text-secondary-900 dark:text-white mb-1">
-                                Prochaine Ã©volution incluse
+                                Prochaine évolution incluse
                               </p>
                               <p className="text-xs text-secondary-600 dark:text-secondary-400">
-                                {t('services.saas.ultra.cadence')} - 1 nouvelle fonctionnalitÃ©
+                                {t('services.saas.ultra.cadence')} - 1 nouvelle fonctionnalité
                               </p>
                             </div>
                           </div>

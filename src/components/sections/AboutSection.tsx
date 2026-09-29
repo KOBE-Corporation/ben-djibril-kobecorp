@@ -44,7 +44,7 @@ function AboutSection() {
             >
               <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse" />
               <span className="text-[10px] xs:text-xs sm:text-sm font-medium text-primary-700 dark:text-primary-300">
-                À propos de moi
+                {t('home.about.title')}
               </span>
             </motion.div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-secondary-900 dark:text-white">{t('home.about.title')}</h2>
