@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
+import { DEFAULT_LOCALE, LOCALES, stripLocaleFromPath } from '../../i18n/routing'
 
 type SEOProps = {
   title?: string
@@ -15,6 +16,7 @@ type SEOProps = {
 }
 
 const KNOWN_ROUTES = new Set(['/', '/services', '/projects', '/about', '/contact', '/legal', '/privacy'])
+const SITE_ORIGIN = 'https://ben-djibril.kobecorporation.com'
 const SITE_NAME = 'Ben Djibril | Kobe Corporation'
 const DEFAULT_OG_IMAGE = '/og-image.jpg'
 const CONTACT_EMAIL = 'kone.djibril@kobecorporation.com'
@@ -53,9 +55,14 @@ function SEO({
 
   useEffect(() => {
     const lang = i18n.language?.startsWith('fr') ? 'fr' : 'en'
-    const baseUrl = window.location.origin
-    const canonicalUrl = `${baseUrl}${location.pathname === '/' ? '/' : location.pathname}`
-    const isKnownRoute = KNOWN_ROUTES.has(location.pathname)
+    const baseUrl = SITE_ORIGIN
+    const pathWithoutLocale = stripLocaleFromPath(location.pathname.replace(/\/+$/, '') || '/')
+    const localeFromPath = location.pathname.split('/').filter(Boolean)[0]
+    const activeLocale = localeFromPath === 'fr' || localeFromPath === 'en' ? localeFromPath : lang
+    const canonicalPath =
+      pathWithoutLocale === '/' ? `/${activeLocale}` : `/${activeLocale}${pathWithoutLocale}`
+    const canonicalUrl = `${baseUrl}${canonicalPath}`
+    const isKnownRoute = KNOWN_ROUTES.has(pathWithoutLocale)
     const shouldNoIndex = noIndex ?? !isKnownRoute
 
     const routeTitles: Record<string, string> = {
@@ -80,14 +87,14 @@ function SEO({
       '/contact': t('seo.contact.keywords'),
     }
 
-    const pageTitle = title || routeTitles[location.pathname] || t('seo.default.title')
+    const pageTitle = title || routeTitles[pathWithoutLocale] || t('seo.default.title')
     document.title = pageTitle
 
     const metaDescription = clampDescription(
-      description || routeDescriptions[location.pathname] || t('seo.default.description')
+      description || routeDescriptions[pathWithoutLocale] || t('seo.default.description')
     )
     const metaKeywords =
-      keywords || routeKeywords[location.pathname] || t('seo.default.keywords')
+      keywords || routeKeywords[pathWithoutLocale] || t('seo.default.keywords')
 
     const updateMetaTag = (name: string, content: string, attribute: 'name' | 'property' = 'name') => {
       let meta = document.querySelector(`meta[${attribute}="${name}"]`)
@@ -129,6 +136,13 @@ function SEO({
     updateMetaTag('robots', robotsContent)
     updateMetaTag('googlebot', robotsContent)
 
+    const googleVerification = import.meta.env.VITE_GOOGLE_SITE_VERIFICATION
+    const facebookVerification = import.meta.env.VITE_FACEBOOK_DOMAIN_VERIFICATION
+    const bingVerification = import.meta.env.VITE_BING_SITE_VERIFICATION
+    if (googleVerification) updateMetaTag('google-site-verification', googleVerification)
+    if (facebookVerification) updateMetaTag('facebook-domain-verification', facebookVerification)
+    if (bingVerification) updateMetaTag('msvalidate.01', bingVerification)
+
     const absoluteOgImage = ogImage.startsWith('http') ? ogImage : `${baseUrl}${ogImage}`
     const shareTitle = ogTitle || pageTitle
     const shareDescription = clampDescription(ogDescription || metaDescription)
@@ -145,7 +159,7 @@ function SEO({
       'property'
     )
     updateMetaTag('og:url', shareUrl, 'property')
-    updateMetaTag('og:type', location.pathname === '/about' ? 'profile' : 'website', 'property')
+    updateMetaTag('og:type', pathWithoutLocale === '/about' ? 'profile' : 'website', 'property')
     updateMetaTag('og:locale', lang === 'fr' ? 'fr_FR' : 'en_US', 'property')
     updateMetaTag('og:locale:alternate', lang === 'fr' ? 'en_US' : 'fr_FR', 'property')
     updateMetaTag('og:site_name', SITE_NAME, 'property')
@@ -162,18 +176,11 @@ function SEO({
     updateLinkTag('canonical', canonicalUrl)
 
     document.querySelectorAll('link[rel="alternate"][hreflang]').forEach((link) => link.remove())
-    const hreflangEntries =
-      location.pathname === '/'
-        ? [
-            { code: 'x-default', href: `${baseUrl}/` },
-            { code: 'fr', href: `${baseUrl}/?lang=fr` },
-            { code: 'en', href: `${baseUrl}/?lang=en` },
-          ]
-        : [
-            { code: 'x-default', href: canonicalUrl },
-            { code: 'fr', href: `${canonicalUrl}?lang=fr` },
-            { code: 'en', href: `${canonicalUrl}?lang=en` },
-          ]
+    const suffix = pathWithoutLocale === '/' ? '' : pathWithoutLocale
+    const hreflangEntries = [
+      ...LOCALES.map((code) => ({ code, href: `${baseUrl}/${code}${suffix}` })),
+      { code: 'x-default', href: `${baseUrl}/${DEFAULT_LOCALE}${suffix}` },
+    ]
     hreflangEntries.forEach(({ code, href }) => {
       const link = document.createElement('link')
       link.setAttribute('rel', 'alternate')
@@ -190,7 +197,7 @@ function SEO({
       alternateName: ['Ben Djibril', 'Benjamin Kone Djibril', 'Djibril Benjamin', 'Kone Djibril'],
       jobTitle: ['Founder & CEO', 'Developer', 'Computer Engineer'],
       description: metaDescription,
-      url: `${baseUrl}/`,
+      url: `${baseUrl}/en`,
       image: absoluteOgImage,
       email: CONTACT_EMAIL,
       telephone: CONTACT_PHONE,
@@ -260,7 +267,7 @@ function SEO({
       '@id': `${baseUrl}/#website`,
       name: SITE_NAME,
       alternateName: ['Ben Djibril Portfolio', 'Kone Djibril Benjamin Portfolio'],
-      url: `${baseUrl}/`,
+      url: `${baseUrl}/en`,
       description: metaDescription,
       inLanguage: ['fr', 'en'],
       publisher: { '@id': `${baseUrl}/#organization` },
@@ -277,11 +284,11 @@ function SEO({
         '@type': 'ListItem',
         position: 1,
         name: t('nav.home'),
-        item: `${baseUrl}/`,
+        item: `${baseUrl}/${activeLocale}`,
       },
     ]
-    if (location.pathname !== '/' && isKnownRoute) {
-      const routeKey = location.pathname.slice(1)
+    if (pathWithoutLocale !== '/' && isKnownRoute) {
+      const routeKey = pathWithoutLocale.slice(1)
       breadcrumbItems.push({
         '@type': 'ListItem',
         position: 2,
@@ -304,7 +311,7 @@ function SEO({
     const pageSpecific = document.getElementById('ld-page')
     if (pageSpecific) pageSpecific.remove()
 
-    if (location.pathname === '/services') {
+    if (pathWithoutLocale === '/services') {
       upsertJsonLd('ld-page', {
         '@context': 'https://schema.org',
         '@type': 'ProfessionalService',
@@ -323,7 +330,7 @@ function SEO({
           'DevOps',
         ],
       })
-    } else if (location.pathname === '/contact') {
+    } else if (pathWithoutLocale === '/contact') {
       upsertJsonLd('ld-page', {
         '@context': 'https://schema.org',
         '@type': 'ContactPage',
@@ -332,7 +339,7 @@ function SEO({
         url: canonicalUrl,
         mainEntity: { '@id': `${baseUrl}/#person` },
       })
-    } else if (location.pathname === '/about') {
+    } else if (pathWithoutLocale === '/about') {
       upsertJsonLd('ld-page', {
         '@context': 'https://schema.org',
         '@type': 'ProfilePage',
@@ -341,7 +348,7 @@ function SEO({
         url: canonicalUrl,
         mainEntity: { '@id': `${baseUrl}/#person` },
       })
-    } else if (location.pathname === '/projects') {
+    } else if (pathWithoutLocale === '/projects') {
       upsertJsonLd('ld-page', {
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
