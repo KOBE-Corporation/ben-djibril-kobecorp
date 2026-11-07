@@ -439,17 +439,20 @@ jobs:
             docker network inspect kobecorp-network >/dev/null 2>&1 \
               || docker network create kobecorp-network
 
+            # Un seul pull (docker) — éviter `compose pull` / race containerd leases
             echo "==> Pull image Docker Hub : $FRONT_IMAGE"
             docker pull "$FRONT_IMAGE"
 
-            echo "==> Docker Compose pull/up"
-            docker compose -p "${COMPOSE_PROJECT_NAME:-ben-djibril}" -f compose.yaml pull
-            docker compose -p "${COMPOSE_PROJECT_NAME:-ben-djibril}" -f compose.yaml up -d --force-recreate
+            echo "==> Docker Compose up (image déjà locale, --pull never)"
+            docker compose -p "${COMPOSE_PROJECT_NAME:-ben-djibril}" -f compose.yaml up -d --force-recreate --pull never
             docker compose -p "${COMPOSE_PROJECT_NAME:-ben-djibril}" -f compose.yaml ps
 
-            # Remettre l'autre site sur le réseau s'il tourne (évite 502 croisés)
+            # Remettre les autres sites sur le réseau s'ils tournent (évite 502 croisés)
             if docker ps --format '{{.Names}}' | grep -qx 'kobecorporation-web'; then
               docker network connect kobecorp-network kobecorporation-web 2>/dev/null || true
+            fi
+            if docker ps --format '{{.Names}}' | grep -qx 'pricing-kobecorp'; then
+              docker network connect kobecorp-network pricing-kobecorp 2>/dev/null || true
             fi
 
             echo "==> Verify proxy can resolve container"
