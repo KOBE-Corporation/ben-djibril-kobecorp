@@ -26,5 +26,6 @@ export const companies: Company[] = [
     name: 'Kobe Corporation',
     logo: kobeCorpLogo,
     website: 'https://www.kobecorporation.com',
+    logoFit: 'contain',
   },
 ]

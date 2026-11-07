@@ -26,8 +26,8 @@ ENV VITE_EMAILJS_SERVICE_ID=${VITE_EMAILJS_SERVICE_ID}
 ENV VITE_EMAILJS_CONTACT_TEMPLATE_ID=${VITE_EMAILJS_CONTACT_TEMPLATE_ID}
 ENV VITE_EMAILJS_NEWSLETTER_TEMPLATE_ID=${VITE_EMAILJS_NEWSLETTER_TEMPLATE_ID}
 
-# Build the application
-RUN npx vite build
+# Aligné sur package.json : tsc + vite
+RUN npm run build
 
 # Stage 2: Production avec Nginx
 FROM nginx:alpine AS production
@@ -49,7 +49,7 @@ EXPOSE 80
 
 # Health check (utilise wget qui est disponible dans nginx:alpine)
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD wget --no-verbose --tries=1 --spider http://localhost/health || exit 1
+    CMD wget --no-verbose --tries=1 --spider http://127.0.0.1/health || exit 1
 
 # Démarrer Nginx
 CMD ["nginx", "-g", "daemon off;"]

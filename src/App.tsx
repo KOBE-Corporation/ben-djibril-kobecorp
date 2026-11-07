@@ -42,6 +42,8 @@ function App() {
         <Route path="/projects/*" element={<LegacyRedirect />} />
         <Route path="/about/*" element={<LegacyRedirect />} />
         <Route path="/contact/*" element={<LegacyRedirect />} />
+        <Route path="/privacy" element={<LegacyRedirect />} />
+        <Route path="/legal" element={<LegacyRedirect />} />
       </Routes>
     </Suspense>
   )
