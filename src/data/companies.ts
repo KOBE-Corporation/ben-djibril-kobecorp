@@ -1,6 +1,6 @@
 import uy2SoaLogo from '../assets/trust-company/uy2-soa.webp'
 import gizLogo from '../assets/trust-company/giz-logo.jpg'
-import kobeCorpLogo from '../assets/trust-company/kobe-corporation-nbg.png'
+import kobeCorpLogo from '../assets/trust-company/kobe-corporation-full.png'
 
 export type Company = {
   name: string
