@@ -462,7 +462,7 @@ jobs:
                 || echo "::warning::blogpress-nginx ne joint pas encore ben-djibril-site"
             fi
 
-            docker image prune -f
+            docker image prune -f || true
 
             docker logout || true
 
