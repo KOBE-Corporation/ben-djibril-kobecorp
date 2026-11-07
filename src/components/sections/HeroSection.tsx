@@ -158,8 +158,8 @@ function HeroSection() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.4 + i * 0.1 }}
                   whileHover={{ scale: 1.1 }}
-                  className={`group relative w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-full overflow-hidden transition-all duration-300 ${
-                    company.logoOnWhite ? 'bg-white ring-1 ring-secondary-200 dark:ring-secondary-600' : ''
+                  className={`group relative w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-full overflow-hidden shadow-md ring-1 ring-black/10 dark:ring-white/15 transition-all duration-300 ${
+                    company.logoOnWhite ? 'bg-white ring-secondary-200 dark:ring-secondary-600' : 'bg-black'
                   }`}
                   title={company.name}
                 >
